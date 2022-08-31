@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>
-	Hello world!  Hi Siri!
+	Hello world!  Hi Siri! 안녕
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
