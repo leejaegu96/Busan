@@ -14,6 +14,6 @@
 		FROM infrCodeGroup a
 		WHERE 1=1
 			AND a.ifcgUseNy = 1 
-	</select>
+	</select> 
 
 </mapper>	
