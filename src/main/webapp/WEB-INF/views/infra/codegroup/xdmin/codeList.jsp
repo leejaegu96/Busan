@@ -5,6 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,14 +54,14 @@
                             </a>
                         </li>
                         
-                        <li class="sidebar-item ">
+                        <li class="sidebar-item active ">
                             <a href="CodeList.html" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Code</span>
                             </a>
                         </li>
                         
-                        <li class="sidebar-item active ">
+                        <li class="sidebar-item">
                             <a href="CodeGroupList.html" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>CodeGroup</span>
@@ -96,7 +97,7 @@
             </header>
 
             <div class="page-heading">
-                <h3>CodeGroup Management</h3>
+                <h3>Code Management</h3>
             </div>
             <div class="page-content">
                 <section class="row">
@@ -165,14 +166,18 @@
 														<th>#</th>
 				                                        <th>코드그룹 코드</th>
 				                                        <th>코드그룹 이름(한글)</th>
-				                                        <th>코드그룹 이름(영문)</th>
-				                                        <th>코드 갯수</th>
+				                                        <th>코드</th>
+				                                        <th>대체코드</th>
+				                                        <th>코드 이름(한글)</th>
+				                                        <th>코드 이름(영문)</th>
+				                                        <th>사용</th>
+				                                        <th>순서</th>
 				                                        <th>등록일</th>
 				                                        <th>수정일</th>
 				                                    </tr>
 				                                </thead>
 				                                <tbody id="my_tbody">
-				                                	<c:forEach items="${list}" var="list" varStatus="status">
+				                                    <c:forEach items="${list}" var="list" varStatus="status">
 													<tr>
 														<td>
 															<div class="form-check">
@@ -183,22 +188,34 @@
 															${status.count }
 														</td>
 														<td>
-															<c:out value="${list.ifcgSeq }"/>
+															<c:out value="${list.infrCodeGroup_ifcgSeq }"/>
 														</td>
 														<td>
 															<c:out value="${list.ifcgName }"/>
 														</td>
 														<td>
+															<c:out value="${list.ifcdSeq }"/>
+														</td>
+														<td>
+														</td>
+														<td>
+															<c:out value="${list.ifcdName }"/>
+														</td>
+														<td>
 															<c:out value="${list.ifcgEngName }"/>
 														</td>
+															
 														<td>
-															<c:out value="${list.ifcgCount }"/>
+															<c:out value="${list.ifcdUseNy }"/>
 														</td>
 														<td>
-															<c:out value="${list.ifcgRegDate }"/>
+															<c:out value="${list.ifcdOrder }"/>
 														</td>
 														<td>
-															<c:out value="${list.ifcgModDate }"/>
+														
+														</td>
+														<td>
+														
 														</td>
 																												
 													</tr>
@@ -249,7 +266,7 @@
 											</div>
 											<div class="col-6" style="text-align:right;">
 												<button type="button" class="btn btn-success"><i class="fa-solid fa-file-csv"></i></button>
-												<button type="button" class="btn btn-primary" onClick="location.href='CodeGroupForm.html'"><i class="fa-solid fa-square-plus"></i></button>
+												<button type="button" class="btn btn-primary" onClick="location.href='CodeForm.html'"><i class="fa-solid fa-square-plus"></i></button>
 											</div>
 										</div>
                             			

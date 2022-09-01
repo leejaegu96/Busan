@@ -1,14 +1,45 @@
 package com.decemelev.infra.modules.codegroup;
 
-public class CodeGroup {
+import java.util.Date;
 
-//	infr_code_group
+public class CodeGroup {
+	
 	private String ifcgSeq;
 	private String ifcgName;
+	private String ifcgEngName;
 	private Integer ifcgUseNy;
 	private Integer ifcgOrder;
+	private Integer ifcgCount;
+	private Date ifcgRegDate;
+	private Date ifcgModDate;
 	
-//	-------------------------
+		
+	
+	public Date getIfcgRegDate() {
+		return ifcgRegDate;
+	}
+	public void setIfcgRegDate(Date ifcgRegDate) {
+		this.ifcgRegDate = ifcgRegDate;
+	}
+	public Date getIfcgModDate() {
+		return ifcgModDate;
+	}
+	public void setIfcgModDate(Date ifcgModDate) {
+		this.ifcgModDate = ifcgModDate;
+	}
+	public String getIfcgEngName() {
+		return ifcgEngName;
+	}
+	public void setIfcgEngName(String ifcgEngName) {
+		this.ifcgEngName = ifcgEngName;
+	}
+	public Integer getIfcgCount() {
+		return ifcgCount;
+	}
+	public void setIfcgCount(Integer ifcgCount) {
+		this.ifcgCount = ifcgCount;
+	}
+
 	public String getIfcgSeq() {
 		return ifcgSeq;
 	}
@@ -33,5 +64,5 @@ public class CodeGroup {
 	public void setIfcgOrder(Integer ifcgOrder) {
 		this.ifcgOrder = ifcgOrder;
 	}
-	
+
 }

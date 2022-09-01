@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.decemelev.infra.modules.code.CodeMapper">
+
+    <resultMap id="resultMapObj" type="com.decemelev.infra.modules.code.Code"></resultMap>
+	
+	<select id="selectList" resultMap="resultMapObj">
+		SELECT
+			a.*
+			,b.*
+		FROM infrCode a
+		inner join infrCodeGroup b on a.infrCodeGroup_ifcgSeq = ifcgSeq
+		WHERE 1=1
+			AND a.ifcdUseNy = 1
+	</select>
+
+</mapper>	
