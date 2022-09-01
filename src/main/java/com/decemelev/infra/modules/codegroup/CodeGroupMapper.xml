@@ -11,6 +11,7 @@
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT
 			a.*
+			,(select count(ifcdName) from infrCode aa where 1=1 and aa.infrCodeGroup_ifcgSeq = a.ifcgSeq) as count
 		FROM infrCodeGroup a
 		WHERE 1=1
 			AND a.ifcgUseNy = 1 

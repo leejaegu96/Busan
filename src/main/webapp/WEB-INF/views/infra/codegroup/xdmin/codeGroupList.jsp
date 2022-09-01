@@ -192,7 +192,7 @@
 															<c:out value="${list.ifcgEngName }"/>
 														</td>
 														<td>
-															<c:out value="${list.ifcgCount }"/>
+															<c:out value="${list.count }"/>
 														</td>
 														<td>
 															<c:out value="${list.ifcgRegDate }"/>

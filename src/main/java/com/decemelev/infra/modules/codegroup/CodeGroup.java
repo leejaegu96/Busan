@@ -12,9 +12,16 @@ public class CodeGroup {
 	private Integer ifcgCount;
 	private Date ifcgRegDate;
 	private Date ifcgModDate;
+	private Integer count;
 	
 		
 	
+	public Integer getCount() {
+		return count;
+	}
+	public void setCount(Integer count) {
+		this.count = count;
+	}
 	public Date getIfcgRegDate() {
 		return ifcgRegDate;
 	}
