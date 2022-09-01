@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CodeController {
 	
 	@Autowired
-	CodeServiceImpl service;
+	CodeServiceImpl service; 
 	
 
 	@RequestMapping(value = "codeList")

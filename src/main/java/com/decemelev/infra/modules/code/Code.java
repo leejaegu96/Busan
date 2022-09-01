@@ -2,7 +2,7 @@ package com.decemelev.infra.modules.code;
 
 public class Code {
 	
-	private String ifcdSeq;
+	private String ifcdSeq; 
 	private String ifcdName;
 	private Integer ifcdUseNy;
 	private Integer ifcdOrder;

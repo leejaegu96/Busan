@@ -13,7 +13,7 @@ public class CodeDao {
 	
 	@Inject
 	@Resource(name = "sqlSession")
-	private SqlSession sqlSession;
+	private SqlSession sqlSession; 
 	
 	private static String namespace = "com.decemelev.infra.modules.code.CodeMapper";
 	
