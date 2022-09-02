@@ -14,7 +14,15 @@
 			,(select count(ifcdName) from infrCode aa where 1=1 and aa.infrCodeGroup_ifcgSeq = a.ifcgSeq) as count
 		FROM infrCodeGroup a
 		WHERE 1=1
-			AND a.ifcgUseNy = 1 
+			AND ifcgUseNy = 1 
+			
+			<if test="shValue != null"></if>
+			<choose>
+				<when test="shOption == 1">AND ifcgSeq = #{shValue}</when>
+				<when test="shOption == 2">AND ifcgName LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 3">AND ifcgEngName LIKE CONCAT('%',#{shValue},'%')</when>
+			</choose>
+			
 	</select> 
 
 </mapper>	

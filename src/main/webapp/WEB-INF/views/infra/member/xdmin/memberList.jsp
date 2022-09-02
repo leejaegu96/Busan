@@ -5,6 +5,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,10 +48,17 @@
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
 
-                        <li class="sidebar-item ">
+                        <li class="sidebar-item active ">
                             <a href="MemberListForm.html" class='sidebar-link'>
                                 <i class="bi bi-person-badge-fill"></i>
                                 <span>MemberList</span>
+                            </a>
+                        </li>
+                        
+                        <li class="sidebar-item">
+                            <a href="CodeGroupList.html" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>CodeGroup</span>
                             </a>
                         </li>
                         
@@ -60,22 +69,15 @@
                             </a>
                         </li>
                         
-                        <li class="sidebar-item active ">
-                            <a href="CodeGroupList.html" class='sidebar-link'>
-                                <i class="bi bi-grid-fill"></i>
-                                <span>CodeGroup</span>
-                            </a>
-                        </li>
-                        
                         <li class="sidebar-item">
-                            <a href="index.html" class='sidebar-link'>
+                            <a href="../function/WordList.html" class='sidebar-link'>
                                 <i class="fa fa-book"></i>
                                 <span>Word</span>
                             </a>
                         </li>
                         
                         <li class="sidebar-item">
-                            <a href="index.html" class='sidebar-link'>
+                            <a href="../function/TestList.html" class='sidebar-link'>
                                 <i class="fa fa-chalkboard"></i>
                                 <span>Test</span>
                             </a>
@@ -96,57 +98,143 @@
             </header>
 
             <div class="page-heading">
-                <h3>CodeGroup Management</h3>
+                <h3>Profile Statistics</h3>
             </div>
             <div class="page-content">
                 <section class="row">
                     <div class="col-12">
                         <div class="row">
+                            
+		                    <div class="col-6 col-lg-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body px-3 py-4-5">
+                                        <div class="row">
+                                            <div class="col-md-4" >
+                                                <div class="avatar avatar-xl" id="image-icon">
+			                                        <!-- <img src="../assets/images/faces/1.jpg" alt="Face 1" style="width:50px;height:50px;"> -->
+			                                    </div>
+                                            </div>
+                                            <div class="col-md-8" >
+                                                <h6 class="text-muted font-semibold">Administrator</h6>
+                                                <h6 class="font-extrabold mb-0">@JaeguLee</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+		                    
+                            <div class="col-6 col-lg-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body px-3 py-4-5">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="stats-icon purple">
+                                                    <i class="iconly-boldShow"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <h6 class="text-muted font-semibold">Profile Views</h6>
+                                                <h6 class="font-extrabold mb-0">121</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body px-3 py-4-5">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="stats-icon blue">
+                                                    <i class="iconly-boldProfile"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <h6 class="text-muted font-semibold">Followers</h6>
+                                                <h6 class="font-extrabold mb-0">347</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body px-3 py-4-5">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="stats-icon green">
+                                                    <i class="iconly-boldAdd-User"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <h6 class="text-muted font-semibold">Following</h6>
+                                                <h6 class="font-extrabold mb-0">278</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row">
                          <section class="section">
 		                    <div class="card">
+		                        <div class="card-header">
+		                            Simple Datatable
+		                        </div>
 		                        <div class="card-body">
-	                            	<form method="post" action="/codeGroup/codeGroupList">
-	                            		<div class="row gx-3 gy-2">
-											<div class="col-3">
-												<select class="form-select" aria-label="Default select example">
-													<option selected>사용여부</option>
-													<option value="1">Y</option>
-													<option value="2">N</option>
-												</select>
-											</div>
-											<div class="col-3">
-												<select class="form-select" aria-label="Default select example">
-													<option selected>수정일</option>
-													<option value="1"></option>
-													<option value="2"></option>
-													<option value="3"></option>
-													<option value="4"></option>
-												</select>
-											</div>
-											<div class="col-3">
-												<input type="text" class="form-control" placeholder="시작일">
-											</div>
-											<div class="col-3">
-												<input type="text" class="form-control" placeholder="종료일">
-											</div>
-										
-											<div class="col-3">
-												<select id="shOption" name="shOption" class="form-select" aria-label="Default select example" >
-													<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
-													<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드그룹 코드</option>
-													<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드그룹 이름 (한글)</option>
-													<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드그룹 이름 (영문)</option>
-												</select>
-											</div>
-											<div class="col-3">
-												<input class="form-control" type="text" placeholder="검색어" id="shValue" name="shValue" value="<c:out value="${vo.shValue }"/>" >
-											</div>
-											<div class="col-3">
-												<button class="btn btn-outline-primary" type="submit" style="margin-right:5px;"><i class="fa-solid fa-magnifying-glass"></i></button>
-												<button class="btn btn-outline-danger" type="submit" ><i class="fa-solid fa-arrow-rotate-left"></i></button>
-											</div>
+		                            
+		                            <div class="row gx-3 gy-2">
+										<div class="col-3">
+											<select class="form-select" aria-label="Default select example">
+												<option selected>사용여부</option>
+												<option value="1">N</option>
+												<option value="2">Y</option>
+											</select>
 										</div>
-									</form>
+										<div class="col-3">
+											<select class="form-select" aria-label="Default select example">
+												<option selected>수정일</option>
+												<option value="1"></option>
+												<option value="2"></option>
+												<option value="3"></option>
+												<option value="4"></option>
+											</select>
+										</div>
+										<div class="col-3">
+											<select class="form-select" aria-label="Default select example">
+												<option selected>시작일</option>
+												<option value="1"></option>
+												<option value="2"></option>
+											</select>
+										</div>
+										<div class="col-3">
+											<select class="form-select" aria-label="Default select example">
+												<option selected>종료일</option>
+												<option value="1"></option>
+												<option value="2"></option>
+												<option value="3"></option>
+												<option value="4"></option>
+											</select>
+										</div>
+										<div class="col-3">
+											<select class="form-select" aria-label="Default select example" >
+												<option selected>검색구분</option>
+												<option value="1">--</option>
+												<option value="2">--</option>
+												<option value="3">--</option>
+												<option value="4">--</option>
+											</select>
+										</div>
+										<div class="col-3">
+											<form class="d-flex" role="search">
+												
+												<input class="form-control me-2" type="text" id="searchInput" placeholder="검색어" onkeyup="myFunction()" title="Type in a name">
+												
+												<button class="btn btn-outline-success" type="submit">Search</button>
+											</form>
+										</div>
+									</div>
 		                            
 		                            <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
 		                            	
@@ -160,62 +248,71 @@
 										  					</div>
 														</th>
 														<th>#</th>
-				                                        <th>코드그룹 코드</th>
-				                                        <th>코드그룹 이름(한글)</th>
-				                                        <th>코드그룹 이름(영문)</th>
-				                                        <th>코드 갯수</th>
-				                                        <th>등록일</th>
-				                                        <th>수정일</th>
+				                                        <th>Name</th>
+				                                        <th>NickName</th>
+				                                        <th>Email</th>
+				                                        <th>EmailDomail</th>
+				                                        <th>Gender</th>
+				                                        <th>Dob</th>
+				                                        <th>PhoneCarrier</th>
+				                                        <th>PhoneNumber</th>
+				                                        <th>MailNY</th>
+				                                        <th>SmsNY</th>
 				                                    </tr>
 				                                </thead>
 				                                <tbody id="my_tbody">
-				                                
-					                                <c:choose>
-					                                	<c:when test="${fn:length(list) eq 0}">
-					                                		<tr>
-					                                			<td class="" colspan="8" style="text-align: center;"> There is no data!</td>
-					                                		</tr>
-					                                	</c:when>
-					                                	<c:otherwise>
-					                                
-						                                	<c:forEach items="${list}" var="list" varStatus="status">
-															<tr>
-																<td>
-																	<div class="form-check">
-												  						<input class="form-check-input" type="checkbox" name="chk_box" onclick="check();" value="" id="flexCheckDefault">
-												  					</div>
-																</td>
-																<td>
-																	${status.count }
-																</td>
-																<td>
-																	<c:out value="${list.ifcgSeq }"/>
-																</td>
-																<td>
-																	<c:out value="${list.ifcgName }"/>
-																</td>
-																<td>
-																	<c:out value="${list.ifcgEngName }"/>
-																</td>
-																<td>
-																	<c:out value="${list.count }"/>
-																</td>
-																<td>
-																	<fmt:formatDate value="${list.ifcgRegDate }" pattern ="yyyy-MM-dd HH:mm:ss"/>
-																</td>
-																<td>
-																	<fmt:formatDate value="${list.ifcgModDate }" pattern ="yyyy-MM-dd HH:mm:ss"/>
-																</td>
-															</tr>
-															</c:forEach>
+				                                    
+				                                	<c:forEach items="${list}" var="list" varStatus="status">
+													<tr>
+														<td>
+															<div class="form-check">
+										  						<input class="form-check-input" type="checkbox" name="chk_box" onclick="check();" value="" id="flexCheckDefault">
+										  					</div>
+														</td>
+														<td>
+															${status.count }
+														</td>
+														<td>
+															<c:out value="${list.ifmmName }"/>
+														</td>
+														<td>
+															<c:out value="${list.ifmmNickName }"/>
+														</td>
+														<td>
+															<c:out value="${list.ifmmEmail }"/>
+														</td>
+														<td>
+															<c:out value="${list.ifmmEmailDomain }"/>
+															<%-- <c:choose>
+																<c:when test="${list.ifmmEmailDomain eq list.ifcdName}">
+																	<c:out value="${list.ifcdName }"/>
+																</c:when>
+															</c:choose> --%>
+														</td>
+														<td>
+															<c:out value="${list.ifmmGender }"/>
+														</td>
+														<td>
+															<fmt:formatDate value="${list.ifmmDob }" pattern ="yyyy-MM-dd"/>
+														</td>
+														<td>
+															<c:out value="${list.ifmmPhoneCarrier }"/>
+														</td>
+														<td>
+															<c:out value="${list.ifmmPhone }"/>
+														</td>
+														<td>
+															<c:out value="${list.ifmmMailNY }"/>
+														</td>
+														<td>
+															<c:out value="${list.ifmmSmsNY }"/>
+														</td>
+													</tr>
+													</c:forEach>
 															
-														</c:otherwise>
-													</c:choose>
-													
 				                                </tbody>
 				                            </table>
                             			</div>
-                            			
                             			<div class="row">
 											
 											<div class="col-6" style="text-align:left;">
@@ -258,7 +355,7 @@
 											</div>
 											<div class="col-6" style="text-align:right;">
 												<button type="button" class="btn btn-success"><i class="fa-solid fa-file-csv"></i></button>
-												<button type="button" class="btn btn-primary" onClick="location.href='CodeGroupForm.html'"><i class="fa-solid fa-square-plus"></i></button>
+												<button type="button" class="btn btn-primary" onClick="location.href='MemberRegForm.html'"><i class="fa-solid fa-square-plus"></i></button>
 											</div>
 										</div>
                             			
