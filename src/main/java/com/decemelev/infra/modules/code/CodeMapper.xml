@@ -15,7 +15,15 @@
 		FROM infrCode a
 		inner join infrCodeGroup b on a.infrCodeGroup_ifcgSeq = ifcgSeq
 		WHERE 1=1
-			AND a.ifcdUseNy = 1
+			
+			<if test="shUseNy != null and !shUseNy.equal('')">And ifcdUseNy= #{shUseNy}</if>
+			<choose>
+				<when test="shOption == 1">AND ifcdSeq = #{shValue}</when>
+				<when test="shOption == 2">AND ifcdName LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 3">AND ifcgEngName LIKE CONCAT('%',#{shValue},'%')</when>
+			</choose>
+			
+			
 	</select>
  
 </mapper>	

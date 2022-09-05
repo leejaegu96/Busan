@@ -13,6 +13,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Word Administrator</title>
 
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../resources/assets/css/bootstrap.css">
@@ -108,10 +112,10 @@
 	                            	<form method="post" action="/codeGroup/codeGroupList">
 	                            		<div class="row gx-3 gy-2">
 											<div class="col-3">
-												<select class="form-select" aria-label="Default select example">
-													<option selected>사용여부</option>
-													<option value="1">Y</option>
-													<option value="2">N</option>
+												<select id="shUseNy" name="shUseNy" class="form-select">
+													<option value="" <c:if test="${empty vo.shSelect}">selected</c:if>>사용여부</option>
+													<option value="0" <c:if test="${vo.shSelect eq 0}">selected</c:if>>N</option>
+													<option value="1" <c:if test="${vo.shSelect eq 1}">selected</c:if>>Y</option>
 												</select>
 											</div>
 											<div class="col-3">
@@ -124,10 +128,10 @@
 												</select>
 											</div>
 											<div class="col-3">
-												<input type="text" class="form-control" placeholder="시작일">
+												<input type="text" name="startDate" id="startDate" class="form-control" placeholder="시작일">
 											</div>
 											<div class="col-3">
-												<input type="text" class="form-control" placeholder="종료일">
+												<input type="text" name="endDate" id="endDate" class="form-control" placeholder="종료일">
 											</div>
 										
 											<div class="col-3">
@@ -298,7 +302,7 @@
     <script src="../resources/assets/js/pages/dashboard.js"></script>
 
 	
-	<script>
+	<script type="text/javascript">
         // Simple Datatable
         let table1 = document.querySelector('#table1');
         let dataTable = new simpleDatatables.DataTable(table1);
@@ -324,7 +328,49 @@
     	    }
     	    chk_box[0].checked = checkItem;
      	}
+    	
+    	
+        $(document).ready(function () {
+                $.datepicker.setDefaults($.datepicker.regional['ko']); 
+                $( "#startDate" ).datepicker({
+                     changeMonth: true, 
+                     changeYear: true,
+                     nextText: '다음 달',
+                     prevText: '이전 달', 
+                     dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+                     dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], 
+                     monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                     monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                     dateFormat: "yy-mm-dd",
+                     maxDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)
+                     onClose: function( selectedDate ) {    
+                          //시작일(startDate) datepicker가 닫힐때
+                          //종료일(endDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
+                         $("#endDate").datepicker( "option", "minDate", selectedDate );
+                     }    
+     
+                });
+                $( "#endDate" ).datepicker({
+                     changeMonth: true, 
+                     changeYear: true,
+                     nextText: '다음 달',
+                     prevText: '이전 달', 
+                     dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+                     dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], 
+                     monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                     monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                     dateFormat: "yy-mm-dd",
+                     maxDate: 0,                       // 선택할수있는 최대날짜, ( 0 : 오늘 이후 날짜 선택 불가)
+                     onClose: function( selectedDate ) {    
+                         // 종료일(endDate) datepicker가 닫힐때
+                         // 시작일(startDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 시작일로 지정
+                         $("#startDate").datepicker( "option", "maxDate", selectedDate );
+                     }    
+     
+                });    
+        });
     </script>
+    	
 
     <script src="../resources/assets/js/main.js"></script>
     

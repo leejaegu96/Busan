@@ -7,6 +7,7 @@ public class Code {
 	private Integer ifcdUseNy;
 	private Integer ifcdOrder;
 	private Integer infrCodeGroup_ifcgSeq;
+	private String ifcdEngName;
 	
 	private String ifcgEngName;
 	private String ifcgName;
@@ -14,6 +15,14 @@ public class Code {
 	
 	
 	
+	public String getIfcdEngName() {
+		return ifcdEngName;
+	}
+
+	public void setIfcdEngName(String ifcdEngName) {
+		this.ifcdEngName = ifcdEngName;
+	}
+
 	public String getIfcgEngName() {
 		return ifcgEngName;
 	}

@@ -1,19 +1,10 @@
-package com.decemelev.infra.modules.codegroup;
+package com.decemelev.infra.modules.code;
 
-public class CodeGroupVo {
+public class CodeVo {
 	
 	private Integer shOption;
 	private String shValue;
 	private String shUseNy;
-	
-	
-	
-	public String getShUseNy() {
-		return shUseNy;
-	}
-	public void setShUseNy(String shUseNy) {
-		this.shUseNy = shUseNy;
-	}
 	public Integer getShOption() {
 		return shOption;
 	}
@@ -26,7 +17,13 @@ public class CodeGroupVo {
 	public void setShValue(String shValue) {
 		this.shValue = shValue;
 	}
+	public String getShUseNy() {
+		return shUseNy;
+	}
+	public void setShUseNy(String shUseNy) {
+		this.shUseNy = shUseNy;
+	}
 	
 	
-	
+
 }
