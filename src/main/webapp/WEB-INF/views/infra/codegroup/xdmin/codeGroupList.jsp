@@ -58,14 +58,14 @@
                         </li>
                         
                         <li class="sidebar-item ">
-                            <a href="CodeList.html" class='sidebar-link'>
+                            <a href="../code/codeList" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Code</span>
                             </a>
                         </li>
                         
                         <li class="sidebar-item active ">
-                            <a href="CodeGroupList.html" class='sidebar-link'>
+                            <a href="codeGroupList" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>CodeGroup</span>
                             </a>
@@ -113,9 +113,9 @@
 	                            		<div class="row gx-3 gy-2">
 											<div class="col-3">
 												<select id="shUseNy" name="shUseNy" class="form-select">
-													<option value="" <c:if test="${empty vo.shSelect}">selected</c:if>>사용여부</option>
-													<option value="0" <c:if test="${vo.shSelect eq 0}">selected</c:if>>N</option>
-													<option value="1" <c:if test="${vo.shSelect eq 1}">selected</c:if>>Y</option>
+													<option value="" <c:if test="${empty vo.shUseNy}">selected</c:if>>사용여부</option>
+													<option value="0" <c:if test="${vo.shUseNy eq 0}">selected</c:if>>N</option>
+													<option value="1" <c:if test="${vo.shUseNy eq 1}">selected</c:if>>Y</option>
 												</select>
 											</div>
 											<div class="col-3">
@@ -262,7 +262,7 @@
 											</div>
 											<div class="col-6" style="text-align:right;">
 												<button type="button" class="btn btn-success"><i class="fa-solid fa-file-csv"></i></button>
-												<button type="button" class="btn btn-primary" onClick="location.href='CodeGroupForm.html'"><i class="fa-solid fa-square-plus"></i></button>
+												<button type="button" class="btn btn-primary" onclick="location.href='codeGroupForm'"><i class="fa-solid fa-square-plus"></i></button>
 											</div>
 										</div>
                             			

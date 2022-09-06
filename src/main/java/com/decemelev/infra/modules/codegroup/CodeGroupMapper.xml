@@ -24,5 +24,25 @@
 
 
 	</select> 
+	
+	<insert id="insert">
+		INSERT INTO infrCodeGroup (
+			ifcgName
+		    ,ifcgEngName
+		    ,ifcgUseNy
+		    ,ifcgOrder
+		    ,ifcgRegDate
+			)
+		VALUES (
+			#{ifcgName}
+		    ,#{ifcgEngName}
+		    ,1
+		    ,#{ifcgOrder}
+		    ,#{ifcgRegDate}
+		)
+		<selectKey resultType="String" keyProperty="ifcgSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
 
 </mapper>	

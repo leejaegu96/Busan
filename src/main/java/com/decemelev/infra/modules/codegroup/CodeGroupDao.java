@@ -25,4 +25,16 @@ public class CodeGroupDao {
 		return list;
 	}
 	
+	public List<CodeGroup> selectList() {
+//		List<CodeGroup> list = sqlSession.selectList(namespace + ".selectList", vo);
+		List<CodeGroup> list = sqlSession.selectList("com.decemelev.infra.modules.codegroup.CodeGroupMapper.selectList", "");
+		return list;
+	}
+	
+	public int insert(CodeGroup dto) {
+		int result = sqlSession.insert(namespace + ".insert", dto);
+		System.out.println("dao result: " + result);
+		return result;
+	}
+	
 }

@@ -59,14 +59,14 @@
                         </li>
                         
                         <li class="sidebar-item active ">
-                            <a href="CodeList.html" class='sidebar-link'>
+                            <a href="codeList" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Code</span>
                             </a>
                         </li>
                         
                         <li class="sidebar-item">
-                            <a href="CodeGroupList.html" class='sidebar-link'>
+                            <a href="../codeGroup/codeGroupList" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>CodeGroup</span>
                             </a>
@@ -110,50 +110,47 @@
                          <section class="section">
 		                    <div class="card">
 		                        <div class="card-body">
-		                            
-		                            <div class="row gx-3 gy-2">
-										<div class="col-3">
-											<select id="shUseNy" name="shUseNy" class="form-select">
-												<option value="" <c:if test="${empty vo.shSelect}">selected</c:if>>사용여부</option>
-												<option value="0" <c:if test="${vo.shSelect eq 0}">selected</c:if>>N</option>
-												<option value="1" <c:if test="${vo.shSelect eq 1}">selected</c:if>>Y</option>
-											</select>
-										</div>
-										<div class="col-3">
-											<select class="form-select" aria-label="Default select example">
-												<option selected>수정일</option>
-												<option value="1"></option>
-												<option value="2"></option>
-												<option value="3"></option>
-												<option value="4"></option>
-											</select>
-										</div>
-										<div class="col-3">
-											<input type="text" name="startDate" id="startDate" class="form-control" placeholder="시작일">
-										</div>
-										<div class="col-3">
-											<input type="text" name="endDate" id="endDate" class="form-control" placeholder="종료일">
-										</div>
-										<div class="col-3">
-											<select id="shOption" name="shOption" class="form-select" aria-label="Default select example" >
-												<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
-												<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드그룹 코드</option>
-												<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드그룹 이름 (한글)</option>
-												<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드그룹 이름 (영문)</option>
-											</select>
-										</div>
-										<div class="col-3">
-											<form class="d-flex" role="search">
-												<input class="form-control" type="text" id="searchInput" placeholder="검색어" onkeyup="myFunction()" title="Type in a name">
-											</form>
-										</div>
-										<div class="col-3">
-											<form class="d-flex" role="search">
+		                            <form method="post" action="/code/codeList">
+			                            <div class="row gx-3 gy-2">
+											<div class="col-3">
+												<select id="shUseNy" name="shUseNy" class="form-select">
+													<option value="" <c:if test="${empty vo.shUseNy}">selected</c:if>>사용여부</option>
+													<option value="0" <c:if test="${vo.shUseNy eq 0}">selected</c:if>>N</option>
+													<option value="1" <c:if test="${vo.shUseNy eq 1}">selected</c:if>>Y</option>
+												</select>
+											</div>
+											<div class="col-3">
+												<select class="form-select" aria-label="Default select example">
+													<option selected>수정일</option>
+													<option value="1"></option>
+													<option value="2"></option>
+													<option value="3"></option>
+													<option value="4"></option>
+												</select>
+											</div>
+											<div class="col-3">
+												<input type="text" name="startDate" id="startDate" class="form-control" placeholder="시작일">
+											</div>
+											<div class="col-3">
+												<input type="text" name="endDate" id="endDate" class="form-control" placeholder="종료일">
+											</div>
+											<div class="col-3">
+												<select id="shOption" name="shOption" class="form-select" aria-label="Default select example" >
+													<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
+													<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드 </option>
+													<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드 이름 (한글)</option>
+													<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드 이름 (영문)</option>
+												</select>
+											</div>
+											<div class="col-3">
+												<input class="form-control" type="text" placeholder="검색어" id="shValue" name="shValue" value="<c:out value="${vo.shValue }"/>" >
+											</div>
+											<div class="col-3">
 												<button class="btn btn-outline-primary" type="submit" style="margin-right:5px;"><i class="fa-solid fa-magnifying-glass"></i></button>
 												<button class="btn btn-outline-danger" type="submit" ><i class="fa-solid fa-arrow-rotate-left"></i></button>
-											</form>
+											</div>
 										</div>
-									</div>
+									</form>
 		                            
 		                            <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
 		                            	
@@ -269,7 +266,7 @@
 											</div>
 											<div class="col-6" style="text-align:right;">
 												<button type="button" class="btn btn-success"><i class="fa-solid fa-file-csv"></i></button>
-												<button type="button" class="btn btn-primary" onClick="location.href='CodeForm.html'"><i class="fa-solid fa-square-plus"></i></button>
+												<button type="button" class="btn btn-primary" onClick="location.href='codeForm'"><i class="fa-solid fa-square-plus"></i></button>
 											</div>
 										</div>
                             			
@@ -301,7 +298,7 @@
     <script src="../resources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="../resources/assets/js/bootstrap.bundle.min.js"></script>
 	
-	<script src="../resources/assets/vendors/simple-datatables/simple-datatables.js"></script>
+	<!-- <script src="../resources/assets/vendors/simple-datatables/simple-datatables.js"></script> -->
 	
 	<script src="https://kit.fontawesome.com/20c294a34b.js" crossorigin="anonymous"></script>
 	

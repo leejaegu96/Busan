@@ -5,6 +5,7 @@ public class CodeVo {
 	private Integer shOption;
 	private String shValue;
 	private String shUseNy;
+	
 	public Integer getShOption() {
 		return shOption;
 	}

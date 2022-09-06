@@ -13,17 +13,36 @@
 			a.*
 			,b.*
 		FROM infrCode a
-		inner join infrCodeGroup b on a.infrCodeGroup_ifcgSeq = ifcgSeq
+		inner join infrCodeGroup b on a.infrCodeGroup_ifcgSeq = b.ifcgSeq
 		WHERE 1=1
 			
-			<if test="shUseNy != null and !shUseNy.equal('')">And ifcdUseNy= #{shUseNy}</if>
+			
 			<choose>
-				<when test="shOption == 1">AND ifcdSeq = #{shValue}</when>
-				<when test="shOption == 2">AND ifcdName LIKE CONCAT('%',#{shValue},'%')</when>
-				<when test="shOption == 3">AND ifcgEngName LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 1">AND a.ifcdSeq = #{shValue}</when>
+				<when test="shOption == 2">AND a.ifcdName LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 3">AND a.ifcdEngName LIKE CONCAT('%',#{shValue},'%')</when>
 			</choose>
 			
-			
 	</select>
+	
+	<insert id="insert">
+		INSERT INTO infrCode (
+			ifcdName
+			,ifcdEngName
+			,ifcdUseNy
+			,ifcdOrder
+			,infrCodeGroup_ifcgSeq
+		)
+		VALUES (
+			#{ifcdName}
+			,#{ifcdEngName}
+			,1
+			,#{ifcdOrder}
+			,#{infrCodeGroup_ifcgSeq}
+		)
+		<selectKey resultType="String" keyProperty="ifcdSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
  
 </mapper>	
