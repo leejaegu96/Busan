@@ -138,9 +138,9 @@
 												</div>
 												<div class="col-6">
 													<label class="form-label">코드 그룹</label>
-													<select name="ifcgName" class="form-select" >
-														<c:forEach items="${list1}" var="list1" varStatus="status">
-															<option>${list1.ifcgName }</option>
+													<select name="infrCodeGroup_ifcgSeq" class="form-select" >
+														<c:forEach items="${list}" var="list" varStatus="status">
+															<option value="${list.ifcgSeq }" >${list.ifcgName }</option>
 														</c:forEach>
 													</select>
 												</div>
@@ -257,7 +257,7 @@
 															</div>
 														</div>
 													</div>
-													<button type="submit" class="btn btn-success"><i class="fa-solid fa-bookmark"></i></button>
+													<button type="submit" class="btn btn-success" onClick="test();"><i class="fa-solid fa-bookmark"></i></button>
 												</div>
 											</div>
 										</div>
@@ -335,6 +335,10 @@
     	modalTitle.textContent = `New message to ${recipient}`
     	modalBodyInput.value = recipient
     })
+    
+    function test() {
+    	alert("test")
+    }
     
     </script>
     

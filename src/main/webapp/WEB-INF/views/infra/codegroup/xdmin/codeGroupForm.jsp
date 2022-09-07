@@ -143,7 +143,7 @@
 											<div class="row" id="InputPadding">
 												<div class="col-6">
 													<label class="form-label">코드그룹 이름 (한글)</label>
-													<input type="text" class="form-control" name="ifcgName" >
+													<input type="text" class="form-control" id="ifcgName" name="ifcgName" >
 												</div>
 												<div class="col-6">
 													<label class="form-label">코드그룹 이름 (영문)</label>
@@ -153,10 +153,10 @@
 											<div class="row" id="InputPadding">
 												<div class="col-6">
 													<label class="form-label">사용여부</label>
-													<select id="inputState" class="form-select" >
+													<select id="UseNy" class="form-select" >
 														<option selected disabled>:선택:</option>
-														<option selected>Y</option>
-														<option>N</option>
+														<option value="1">Y</option>
+														<option value="2">N</option>
 													</select>
 												</div>
 												<div class="col-6">
@@ -166,8 +166,8 @@
 											</div>
 											<div class="row" id="InputPadding">
 												<div class="col-6">
-													<label class="form-label">설명</label>
-													<textarea class="form-control" rows="2"></textarea>
+													<label class="form-label" >설명</label>
+													<textarea class="form-control" id="explain" rows="2"></textarea>
 												</div>
 												<div class="col-6">
 													<label class="form-label">삭제여부</label>
@@ -193,6 +193,19 @@
 													<label class="form-label">예비3(varchar type)</label>
 													<input type="text" class="form-control" placeholder="영문(대소문자), 숫자">
 												</div>
+												<div class="col-6">
+													<label class="form-label">체크박스</label>
+	                                                <div class="form-check">
+	                                                    <div class="checkbox">
+	                                                        <input type="checkbox" id="checkbox1" name="checkbox" value="one" class="form-check-input" >
+	                                                        <label for="checkbox1">One</label>
+	                                                    </div>
+	                                                    <div class="checkbox">
+	                                                        <input type="checkbox" id="checkbox2" name="checkbox" value="two" class="form-check-input">
+	                                                        <label for="checkbox2">Two</label>
+	                                                    </div>
+	                                                </div>
+												</div>
 											</div>
 											<div class="row" id="InputPadding">
 												<div class="col-6">
@@ -208,6 +221,33 @@
 												<div class="col-6">
 													<label class="form-label">예비3(int type)</label>
 													<input type="text" class="form-control" placeholder="숫자">
+												</div>
+												<div class="col-6">
+													<label class="form-label">라디오박스</label>
+													<!-- 
+													<input type="radio" id="gender1" name="gender" value="1">남성
+													<input type="radio" id="gender2" name="gender" value="2">여성
+													<input type="radio" id="gender3" name="gender" value="3">기타
+													 -->
+													<div class="form-check">
+				                                        <input class="form-check-input" type="radio" id="gender1" name="gender" value="1">
+				                                        <label class="form-check-label" for="gender1">
+				                                            남자
+				                                        </label>
+				                                    </div>
+				                                    <div class="form-check">
+				                                        <input class="form-check-input" type="radio" id="gender2" name="gender" value="2">
+				                                        <label class="form-check-label" for="gender2">
+				                                            여자
+				                                        </label>
+				                                    </div>
+				                                    <div class="form-check">
+				                                        <input class="form-check-input" type="radio" id="gender3" name="gender" value="3">
+				                                        <label class="form-check-label" for="gender3">
+				                                            기타
+				                                        </label>
+				                                    </div>
+													
 												</div>
 											</div>
 											<div class="row" id="InputPadding">
@@ -230,7 +270,7 @@
 											</div>
 											<div class="row" id="InputPadding">
 												<div class="col-6" style="text-align: left;">
-													<button type="button" class="btn btn-secondary" onClick="location.href='CodeGroupList.html'"><i class="fa-solid fa-bars"></i></button>
+													<button type="button" class="btn btn-secondary" onClick = "test();"><i class="fa-solid fa-bars"></i></button>
 													
 												</div>
 												<div class="col-6" style="text-align: right;">
@@ -270,7 +310,7 @@
 															</div>
 														</div>
 													</div>
-													<button type="submit" class="btn btn-success"><i class="fa-solid fa-bookmark"></i></button>
+													<button type="submit" class="btn btn-success" ><i class="fa-solid fa-bookmark"></i></button>
 												</div>
 											</div>
 										</div>
@@ -313,6 +353,33 @@
     <script src="../resources/assets/js/main.js"></script>
     
     <script type="text/javascript">
+    
+    function test() {
+    	alert("test");
+    	
+    	if(document.getElementById("ifcgName").value == '' || document.getElementById("ifcgName").value==null) {
+        	alert("입력해 주세요...")
+        	document.getElementById("ifcgName").valud= "";
+        	document.getElementById("ifcgName").focus();
+        	return false;
+        } else {
+        	alert("코드그룹이름 : " + document.getElementById('ifcgName').value);
+        	alert("설명 : " + document.getElementById('explain').value);
+        	alert("사용여부 : " + document.getElementById('UseNy').options[document.getElementById('UseNy').selectedIndex].value);
+        	alert("성별 : " + document.querySelector("input[name='gender']:checked").value);;
+        	  
+            for (var i=0; i<document.getElementsByName("checkbox").length; i++) {
+                if (document.getElementsByName("checkbox")[i].checked == true) {
+                    alert("체크박스 : " + document.getElementsByName("checkbox")[i].value);
+                }
+            }
+        	return false;
+        }
+    	
+    }
+    
+    
+    
     
     const reader = new FileReader();
 

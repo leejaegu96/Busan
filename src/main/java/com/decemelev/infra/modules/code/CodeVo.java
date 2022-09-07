@@ -5,7 +5,16 @@ public class CodeVo {
 	private Integer shOption;
 	private String shValue;
 	private String shUseNy;
+	private String shCodeGroup;
 	
+	
+	
+	public String getShCodeGroup() {
+		return shCodeGroup;
+	}
+	public void setShCodeGroup(String shCodeGroup) {
+		this.shCodeGroup = shCodeGroup;
+	}
 	public Integer getShOption() {
 		return shOption;
 	}
