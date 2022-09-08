@@ -4,9 +4,9 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.decemelev.infra.modules.codegroup.CodeGroupMapper">
+<mapper namespace="com.decemelev.infra.modules.home.HomeMapper">
 
-    <resultMap id="resultMapObj" type="com.decemelev.infra.modules.codegroup.CodeGroup"></resultMap>
+    <resultMap id="resultMapObj" type="com.decemelev.infra.modules.home.Home"></resultMap>
 	
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT
