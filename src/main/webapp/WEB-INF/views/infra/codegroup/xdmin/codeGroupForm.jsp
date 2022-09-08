@@ -105,9 +105,62 @@
         
         <div id="main">
             <header class="mb-3">
-                <a href="#" class="burger-btn d-block d-xl-none">
-                    <i class="bi bi-justify fs-3"></i>
-                </a>
+                <div class="dropdown">
+               		<span style="font-size: 24px;">CodeGroup Management</span>
+                	<button class="btn" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float:right">
+                		<i class="fa-regular fa-face-laugh"></i>
+                	</button>
+                	<ul class="dropdown-menu">
+					  <li>
+		                <a class="dropdown-item" href="#">
+		                  <div class="d-flex">
+		                    <div class="flex-shrink-0 me-3" >
+		                      <div class="avatar">
+		                        <img src="../resources/assets/images/faces/1.jpg" alt="" class="w-px-40 h-auto rounded-circle" style="width:40px;">
+		                      </div>
+		                    </div>
+		                    <div class="flex-grow-1">
+		                      <span class="fw-semibold d-block">JaeguLee</span>
+		                      <small class="text-muted">Admin</small>
+		                    </div>
+		                  </div>
+		                </a>
+		              </li>
+		              <li>
+		                <div class="dropdown-divider"></div>
+		              </li>
+		              <li>
+		                <a class="dropdown-item" href="#">
+		                  <i class="bx bx-user me-2"></i>
+		                  <span class="align-middle">My Profile</span>
+		                </a>
+		              </li>
+		              <li>
+		                <a class="dropdown-item" href="#">
+		                  <i class="bx bx-cog me-2"></i>
+		                  <span class="align-middle">Settings</span>
+		                </a>
+		              </li>
+		              <li>
+		                <a class="dropdown-item" href="#">
+		                  <span class="d-flex align-items-center align-middle">
+		                    <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
+		                    <span class="flex-grow-1 align-middle">Billing</span>
+		                    <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
+		                  </span>
+		                </a>
+		              </li>
+		              <li>
+		                <div class="dropdown-divider"></div>
+		              </li>
+		              <li>
+		                <a class="dropdown-item" href="auth-login-basic.html">
+		                  <i class="bx bx-power-off me-2"></i>
+		                  <span class="align-middle">Log Out</span>
+		                </a>
+		              </li>
+					</ul>
+				</div>
             </header>
 
             <div class="page-heading">
@@ -143,7 +196,7 @@
 											<div class="row" id="InputPadding">
 												<div class="col-6">
 													<label class="form-label">코드그룹 이름 (한글)</label>
-													<input type="text" class="form-control" id="ifcgName" name="ifcgName" >
+													<input type="text" class="form-control" id="ifcgName" name="ifcgName" value="<c:out value="${item.ifcgName }"/>" >
 												</div>
 												<div class="col-6">
 													<label class="form-label">코드그룹 이름 (영문)</label>
@@ -229,25 +282,32 @@
 													<input type="radio" id="gender2" name="gender" value="2">여성
 													<input type="radio" id="gender3" name="gender" value="3">기타
 													 -->
-													<div class="form-check">
-				                                        <input class="form-check-input" type="radio" id="gender1" name="gender" value="1">
-				                                        <label class="form-check-label" for="gender1">
-				                                            남자
-				                                        </label>
-				                                    </div>
-				                                    <div class="form-check">
-				                                        <input class="form-check-input" type="radio" id="gender2" name="gender" value="2">
-				                                        <label class="form-check-label" for="gender2">
-				                                            여자
-				                                        </label>
-				                                    </div>
-				                                    <div class="form-check">
-				                                        <input class="form-check-input" type="radio" id="gender3" name="gender" value="3">
-				                                        <label class="form-check-label" for="gender3">
-				                                            기타
-				                                        </label>
-				                                    </div>
-													
+													<div class="row">
+														<div class="col">
+															<div class="form-check">
+						                                        <input class="form-check-input" type="radio" id="gender1" name="gender" value="1">
+						                                        <label class="form-check-label" for="gender1">
+						                                            남자
+						                                        </label>
+						                                    </div>
+						                                </div>
+						                                <div class="col">
+						                                    <div class="form-check">
+						                                        <input class="form-check-input" type="radio" id="gender2" name="gender" value="2">
+						                                        <label class="form-check-label" for="gender2">
+						                                            여자
+						                                        </label>
+						                                    </div>
+						                                </div>
+						                                <div class="col">
+						                                    <div class="form-check">
+						                                        <input class="form-check-input" type="radio" id="gender3" name="gender" value="3">
+						                                        <label class="form-check-label" for="gender3">
+						                                            기타
+						                                        </label>
+						                                    </div>
+					                                    </div>
+				                                   	</div>
 												</div>
 											</div>
 											<div class="row" id="InputPadding">

@@ -5,7 +5,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,7 +49,7 @@
                     <div class="d-flex justify-content-between">
                         <div class="row" style="text-align: center; width:300px;">
 	                        <div class="logo">
-	                            <a href="MemberListForm.html"><span style="font-size: 30px;"><i class="fa-solid fa-book-open"></i>&nbsp E-Word</span><br><span style="font-size: 19px;">Administrator</span></a>
+	                            <a href="MemberList.html"><span style="font-size: 30px;"><i class="fa-solid fa-book-open"></i>&nbsp E-Word</span><br><span style="font-size: 19px;">Administrator</span></a>
 	                        </div>
                         </div>
                         <div class="toggler">
@@ -62,22 +61,22 @@
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
 
-                        <li class="sidebar-item  ">
+                        <li class="sidebar-item ">
                             <a href="MemberListForm.html" class='sidebar-link'>
                                 <i class="bi bi-person-badge-fill"></i>
                                 <span>MemberList</span>
                             </a>
                         </li>
                         
-                        <li class="sidebar-item">
-                            <a href="../codeGroup/codeGroupList" class='sidebar-link'>
+                        <li class="sidebar-item active">
+                            <a href="codeGroupList" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>CodeGroup</span>
                             </a>
                         </li>
                         
-                        <li class="sidebar-item active">
-                            <a href="codeList" class='sidebar-link'>
+                        <li class="sidebar-item ">
+                            <a href="../code/codeList" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Code</span>
                             </a>
@@ -165,7 +164,7 @@
             </header>
 
             <div class="page-heading">
-                <h3>CodeForm</h3>
+                <h3>CodeGroupForm</h3>
             </div>
             <div class="page-content">
                 <section class="row">
@@ -175,57 +174,53 @@
 		                    <div class="card">
 		                        
 		                        <div class="card-body">
-		                            <form method ="post" action="/code/codeInst">
+		                            <form method ="post" action="/codeGroup/codeGroupInst">
 		                                <div class="container-fluid" style="padding-top:30px;">
 											<div class="row">
 												<div class="col">
-													<span style="font-size:25px;">Code</span>
+													<span style="font-size:25px;">CodeGroup</span>
 												</div>
 											</div>
 										</div>
-										<div class="container-fluid"> 
+										<div class="container-fluid">
 											<div class="row" id="InputPadding">
 												<div class="col-6">
-													<label class="form-label">코드</label>
-													<input type="text" class="form-control" id="disabledInput" placeholder="자동생성" disabled="">
+													<label class="form-label">코드그룹 코드</label>
+													<input type="text" class="form-control" name="ifcgSeq"  >
 												</div>
 												<div class="col-6">
-													<label class="form-label">코드 그룹</label>
-													<select name="infrCodeGroup_ifcgSeq" class="form-select" >
-														<c:forEach items="${list}" var="list" varStatus="status">
-															<option value="${list.ifcgSeq }" >${list.ifcgName }</option>
-														</c:forEach>
-													</select>
+													<label class="form-label">코드그룹 코드 (Another)</label>
+													<input type="text" class="form-control" placeholder="영문(대소문자), 숫자">
 												</div>
 											</div>
 											<div class="row" id="InputPadding">
 												<div class="col-6">
-													<label class="form-label">코드 이름 (한글)</label>
-													<input type="text" class="form-control" name="ifcdName">
+													<label class="form-label">코드그룹 이름 (한글)</label>
+													<input type="text" class="form-control" id="ifcgName" name="ifcgName" value="<c:out value="${item.ifcgName }"/>">
 												</div>
 												<div class="col-6">
-													<label class="form-label">코드 이름 (영문)</label>
-													<input type="text" class="form-control" name="ifcdEngName">
+													<label class="form-label">코드그룹 이름 (영문)</label>
+													<input type="text" class="form-control" name="ifcgEngName" placeholder="영문(대소문자), 숫자">
 												</div>
 											</div>
 											<div class="row" id="InputPadding">
 												<div class="col-6">
 													<label class="form-label">사용여부</label>
-													<select id="inputState" class="form-select">
+													<select id="UseNy" class="form-select" >
 														<option selected disabled>:선택:</option>
-														<option selected>Y</option>
-														<option>N</option>
+														<option value="1">Y</option>
+														<option value="2">N</option>
 													</select>
 												</div>
 												<div class="col-6">
 													<label class="form-label">순서</label>
-													<input type="text" class="form-control" name="ifcdOrder">
+													<input type="text" class="form-control" name="ifcgOrder" placeholder="숫자">
 												</div>
 											</div>
 											<div class="row" id="InputPadding">
 												<div class="col-6">
-													<label class="form-label">설명</label>
-													<textarea class="form-control" rows="2"></textarea>
+													<label class="form-label" >설명</label>
+													<textarea class="form-control" id="explain" rows="2"></textarea>
 												</div>
 												<div class="col-6">
 													<label class="form-label">삭제여부</label>
@@ -251,6 +246,19 @@
 													<label class="form-label">예비3(varchar type)</label>
 													<input type="text" class="form-control" placeholder="영문(대소문자), 숫자">
 												</div>
+												<div class="col-6">
+													<label class="form-label">체크박스</label>
+	                                                <div class="form-check">
+	                                                    <div class="checkbox">
+	                                                        <input type="checkbox" id="checkbox1" name="checkbox" value="one" class="form-check-input" >
+	                                                        <label for="checkbox1">One</label>
+	                                                    </div>
+	                                                    <div class="checkbox">
+	                                                        <input type="checkbox" id="checkbox2" name="checkbox" value="two" class="form-check-input">
+	                                                        <label for="checkbox2">Two</label>
+	                                                    </div>
+	                                                </div>
+												</div>
 											</div>
 											<div class="row" id="InputPadding">
 												<div class="col-6">
@@ -267,10 +275,62 @@
 													<label class="form-label">예비3(int type)</label>
 													<input type="text" class="form-control" placeholder="숫자">
 												</div>
+												<div class="col-6">
+													<label class="form-label">라디오박스</label>
+													<!-- 
+													<input type="radio" id="gender1" name="gender" value="1">남성
+													<input type="radio" id="gender2" name="gender" value="2">여성
+													<input type="radio" id="gender3" name="gender" value="3">기타
+													 -->
+													<div class="row">
+														<div class="col">
+															<div class="form-check">
+						                                        <input class="form-check-input" type="radio" id="gender1" name="gender" value="1">
+						                                        <label class="form-check-label" for="gender1">
+						                                            남자
+						                                        </label>
+						                                    </div>
+						                                </div>
+						                                <div class="col">
+						                                    <div class="form-check">
+						                                        <input class="form-check-input" type="radio" id="gender2" name="gender" value="2">
+						                                        <label class="form-check-label" for="gender2">
+						                                            여자
+						                                        </label>
+						                                    </div>
+						                                </div>
+						                                <div class="col">
+						                                    <div class="form-check">
+						                                        <input class="form-check-input" type="radio" id="gender3" name="gender" value="3">
+						                                        <label class="form-check-label" for="gender3">
+						                                            기타
+						                                        </label>
+						                                    </div>
+					                                    </div>
+				                                   	</div>
+												</div>
+											</div>
+											<div class="row" id="InputPadding">
+												<div class="col-3">
+													<label class="form-label">최초등록자</label>
+													<input type="text" class="form-control">
+												</div>
+												<div class="col-3">
+													<label class="form-label">최초등록일</label>
+													<input type="text" class="form-control">
+												</div>
+												<div class="col-3">
+													<label class="form-label">최초등록IP</label>
+													<input type="text" class="form-control">
+												</div>
+												<div class="col-3">
+													<label class="form-label">최초등록디바이스</label>
+													<input type="text" class="form-control">
+												</div>
 											</div>
 											<div class="row" id="InputPadding">
 												<div class="col-6" style="text-align: left;">
-													<button type="button" class="btn btn-secondary" onClick="location.href='CodeList.html'"><i class="fa-solid fa-bars"></i></button>
+													<button type="button" class="btn btn-secondary" onClick = "test();"><i class="fa-solid fa-bars"></i></button>
 													
 												</div>
 												<div class="col-6" style="text-align: right;">
@@ -310,14 +370,11 @@
 															</div>
 														</div>
 													</div>
-													<button type="submit" class="btn btn-success" onClick="test();"><i class="fa-solid fa-bookmark"></i></button>
+													<button type="submit" class="btn btn-success" ><i class="fa-solid fa-bookmark"></i></button>
 												</div>
 											</div>
 										</div>
-		                            
-									    
 								    </form>
-		                            
 		                        </div>
 		                    </div>
 		
@@ -357,6 +414,33 @@
     
     <script type="text/javascript">
     
+    function test() {
+    	alert("test");
+    	
+    	if(document.getElementById("ifcgName").value == '' || document.getElementById("ifcgName").value==null) {
+        	alert("입력해 주세요...")
+        	document.getElementById("ifcgName").valud= "";
+        	document.getElementById("ifcgName").focus();
+        	return false;
+        } else {
+        	alert("코드그룹이름 : " + document.getElementById('ifcgName').value);
+        	alert("설명 : " + document.getElementById('explain').value);
+        	alert("사용여부 : " + document.getElementById('UseNy').options[document.getElementById('UseNy').selectedIndex].value);
+        	alert("성별 : " + document.querySelector("input[name='gender']:checked").value);;
+        	  
+            for (var i=0; i<document.getElementsByName("checkbox").length; i++) {
+                if (document.getElementsByName("checkbox")[i].checked == true) {
+                    alert("체크박스 : " + document.getElementsByName("checkbox")[i].value);
+                }
+            }
+        	return false;
+        }
+    	
+    }
+    
+    
+    
+    
     const reader = new FileReader();
 
     reader.onload = (readerEvent) => {
@@ -388,10 +472,6 @@
     	modalTitle.textContent = `New message to ${recipient}`
     	modalBodyInput.value = recipient
     })
-    
-    function test() {
-    	alert("test")
-    }
     
     </script>
     

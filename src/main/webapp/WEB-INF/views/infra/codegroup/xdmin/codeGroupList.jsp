@@ -30,6 +30,9 @@
     <link rel="stylesheet" href="../resources/assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="../resources/assets/css/app.css">
     <link rel="shortcut icon" href="../resources/assets/images/favicon.svg" type="image/x-icon">
+    <style type="text/css">
+    
+    </style>
 </head>
 
 <body>
@@ -109,63 +112,57 @@
                 		<i class="fa-regular fa-face-laugh"></i>
                 	</button>
                 	<ul class="dropdown-menu">
-					    <li><a class="dropdown-item" href="#">Action</a></li>
-					    <li><a class="dropdown-item" href="#">Another action</a></li>
-					    <li><a class="dropdown-item" href="#">Something else here</a></li>
+					  <li>
+		                <a class="dropdown-item" href="#">
+		                  <div class="d-flex">
+		                    <div class="flex-shrink-0 me-3" >
+		                      <div class="avatar">
+		                        <img src="../resources/assets/images/faces/1.jpg" alt="" class="w-px-40 h-auto rounded-circle" style="width:40px;">
+		                      </div>
+		                    </div>
+		                    <div class="flex-grow-1">
+		                      <span class="fw-semibold d-block">JaeguLee</span>
+		                      <small class="text-muted">Admin</small>
+		                    </div>
+		                  </div>
+		                </a>
+		              </li>
+		              <li>
+		                <div class="dropdown-divider"></div>
+		              </li>
+		              <li>
+		                <a class="dropdown-item" href="#">
+		                  <i class="bx bx-user me-2"></i>
+		                  <span class="align-middle">My Profile</span>
+		                </a>
+		              </li>
+		              <li>
+		                <a class="dropdown-item" href="#">
+		                  <i class="bx bx-cog me-2"></i>
+		                  <span class="align-middle">Settings</span>
+		                </a>
+		              </li>
+		              <li>
+		                <a class="dropdown-item" href="#">
+		                  <span class="d-flex align-items-center align-middle">
+		                    <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
+		                    <span class="flex-grow-1 align-middle">Billing</span>
+		                    <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
+		                  </span>
+		                </a>
+		              </li>
+		              <li>
+		                <div class="dropdown-divider"></div>
+		              </li>
+		              <li>
+		                <a class="dropdown-item" href="auth-login-basic.html">
+		                  <i class="bx bx-power-off me-2"></i>
+		                  <span class="align-middle">Log Out</span>
+		                </a>
+		              </li>
 					</ul>
 				</div>
-				<!-- 
-				<ul class="dropdown-menu dropdown-menu-end show" data-bs-popper="none">
-	              <li>
-	                <a class="dropdown-item" href="#">
-	                  <div class="d-flex">
-	                    <div class="flex-shrink-0 me-3">
-	                      <div class="avatar avatar-online">
-	                        <img src="../assets/img/avatars/1.png" alt="" class="w-px-40 h-auto rounded-circle">
-	                      </div>
-	                    </div>
-	                    <div class="flex-grow-1">
-	                      <span class="fw-semibold d-block">John Doe</span>
-	                      <small class="text-muted">Admin</small>
-	                    </div>
-	                  </div>
-	                </a>
-	              </li>
-	              <li>
-	                <div class="dropdown-divider"></div>
-	              </li>
-	              <li>
-	                <a class="dropdown-item" href="#">
-	                  <i class="bx bx-user me-2"></i>
-	                  <span class="align-middle">My Profile</span>
-	                </a>
-	              </li>
-	              <li>
-	                <a class="dropdown-item" href="#">
-	                  <i class="bx bx-cog me-2"></i>
-	                  <span class="align-middle">Settings</span>
-	                </a>
-	              </li>
-	              <li>
-	                <a class="dropdown-item" href="#">
-	                  <span class="d-flex align-items-center align-middle">
-	                    <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-	                    <span class="flex-grow-1 align-middle">Billing</span>
-	                    <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-	                  </span>
-	                </a>
-	              </li>
-	              <li>
-	                <div class="dropdown-divider"></div>
-	              </li>
-	              <li>
-	                <a class="dropdown-item" href="auth-login-basic.html">
-	                  <i class="bx bx-power-off me-2"></i>
-	                  <span class="align-middle">Log Out</span>
-	                </a>
-	              </li>
-	            </ul>
-                 -->
+				
             </div>
             <div class="page-content">
                 <section class="row">
@@ -218,7 +215,7 @@
 									</form>
 		                            
 		                            <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
-		                            	
+		                            
 		                            	<div class="dataTable-container">
 		                            		<table class="table table-striped" id="table1">
 				                                <thead>
@@ -248,7 +245,7 @@
 					                                	<c:otherwise>
 					                                
 						                                	<c:forEach items="${list}" var="list" varStatus="status">
-															<tr>
+															<tr style="cursor:pointer;" onclick="location.href='/codeGroup/codeGroupView?ifcgSeq=<c:out value="${list.ifcgSeq }"/>'">
 																<td>
 																	<div class="form-check">
 												  						<input class="form-check-input" type="checkbox" name="chk_box" onclick="check();" value="" id="flexCheckDefault">
