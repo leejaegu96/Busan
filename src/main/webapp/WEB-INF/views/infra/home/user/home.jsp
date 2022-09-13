@@ -18,40 +18,8 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		
-		<link rel="stylesheet" href="../assets/css/main.css" />
+		<link rel="stylesheet" href="../resources/assets/css/main.css" />
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-		<style type="text/css">
-		.search {
-		    position: relative;
-		    text-align: center;
-		    width: 400px;
-		    margin: 0 auto;
-		}
-		input {
-		    width: 100%;
-		    border-radius: 20px;
-		    border: 1px solid #bbb;
-		    margin: 10px 0;
-		    padding: 10px 12px;
-		}
-		.fa-search {
-		    position: absolute;
-		    left: 15px;
-		    top: 40px;
-		    margin: 0;
-		}
-		.fa-keyboard {
-		    position: absolute;
-		    right: 50px;
-		    top: 40px;
-		}
-		.fa-microphone {
-		    position: absolute;
-		    right: 20px;
-		    top: 40px;
-		    color: blue;
-		}
-		</style>
 	</head>
 	<body class="landing is-preload">
 		<div id="page-wrapper">
@@ -109,7 +77,7 @@
 						  	<h3>Today's Word</h3><br>
 						    <div class="carousel-item active" data-bs-interval="10000">
 						      <div style="max-width:500px; width:100%; max-height:500px; height:100%; text-align:left; margin:auto;">
-							    <h4>awful <i class="fa-solid fa-volume-high"></i></h4><br>
+							    <h4>${ } <i class="fa-solid fa-volume-high"></i></h4><br>
 							    <span style="line-height:200%;">
 							    
 							    	1. 형용사 비격식   
@@ -223,13 +191,13 @@
 		</div>
 
 		<!-- Scripts -->
-			<script src="../assets/js/jquery.min.js"></script>
-			<script src="../assets/js/jquery.dropotron.min.js"></script>
-			<script src="../assets/js/jquery.scrollex.min.js"></script>
-			<script src="../assets/js/browser.min.js"></script>
-			<script src="../assets/js/breakpoints.min.js"></script>
-			<script src="../assets/js/util.js"></script>
-			<script src="../assets/js/main.js"></script>
+			<script src="../resources/assets/js/jquery.min.js"></script>
+			<script src="../resources/assets/js/jquery.dropotron.min.js"></script>
+			<script src="../resources/assets/js/jquery.scrollex.min.js"></script>
+			<script src="../resources/assets/js/browser.min.js"></script>
+			<script src="../resources/assets/js/breakpoints.min.js"></script>
+			<script src="../resources/assets/js/util.js"></script>
+			<script src="../resources/assets/js/main2.js"></script>
 			<script src="https://kit.fontawesome.com/20c294a34b.js" crossorigin="anonymous"></script>
 			<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
 			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
