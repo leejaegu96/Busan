@@ -57,9 +57,9 @@
 		UPDATE infrCodeGroup
 		SET
 			ifcgName = #{ifcgName}
-			,ifcgNameEng = #{ifcgNameEng}
+			,ifcgEngName = #{ifcgEngName}
 			<!-- <include refid="Base.updateModColumnValue" /> -->
-		WHERE
+		WHERE 
 			ifcgSeq = #{ifcgSeq}
 	</update>
 	

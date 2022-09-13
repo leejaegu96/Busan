@@ -402,21 +402,17 @@
             </footer>
         </div>
     </div>
-    <script src="../resources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <!-- <script src="../resources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="../resources/assets/js/bootstrap.bundle.min.js"></script>
-	
-	
-	
-	
     <script src="../resources/assets/vendors/apexcharts/apexcharts.js"></script>
-    <script src="../resources/assets/js/pages/dashboard.js"></script>
-
+    <script src="../resources/assets/js/pages/dashboard.js"></script> -->
+	<script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
 	
 
-    <script src="../resources/assets/js/main.js"></script>
+    <!-- <script src="../resources/assets/js/main.js"></script> -->
     
-    <script>
-    
+    <script type="text/javascript"> 
+     
     var goUrlList = "/codeGroup/codeGroupList"; 			/* #-> */
 	var goUrlInst = "/codeGroup/codeGroupInst"; 			/* #-> */
 	var goUrlUpdt = "/codeGroup/codeGroupUpdt";				/* #-> */
@@ -426,7 +422,6 @@
 	var seq = $("input:hidden[name=ifcgSeq]");				/* #-> */
 	
 	var form = $("form[name = form]");
-	var formVo = $("form[name=formVo]");
 	
 	
 	$("#btnSave").on("click", function(){
@@ -441,7 +436,16 @@
 	   		form.attr("action", goUrlUpdt).submit();
 	   	}
 	}); 
+	
+
+	function ttbtn(){
+		alert("rrr");
+	}
+	
+	</script>
     
+	<script type="text/javascript"> 
+	
 	
     function test() {
     	alert("test");

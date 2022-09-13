@@ -44,18 +44,12 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 	
 	@Override
 	public int update(CodeGroup dto) throws Exception {
-		setRegMod(dto);
 		return dao.update(dto);
 	}
 
-	private void setRegMod(CodeGroup dto) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public int uelete(CodeGroup dto) throws Exception {
-		setRegMod(dto);
 		return dao.uelete(dto);
 	}
 	
