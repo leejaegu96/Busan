@@ -13,9 +13,18 @@ public class CodeGroup {
 	private Date ifcgRegDate;
 	private Date ifcgModDate;
 	private Integer count;
+	private Integer ifcgDelNy;
+	
+	
 	
 		
 	
+	public Integer getIfcgDelNy() {
+		return ifcgDelNy;
+	}
+	public void setIfcgDelNy(Integer ifcgDelNy) {
+		this.ifcgDelNy = ifcgDelNy;
+	}
 	public Integer getCount() {
 		return count;
 	}

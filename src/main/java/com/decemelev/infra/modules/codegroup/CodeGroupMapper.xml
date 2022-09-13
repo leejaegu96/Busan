@@ -52,5 +52,27 @@
 			SELECT last_insert_id()
 		</selectKey>
 	</insert>
+	
+	<update id="update">
+		UPDATE infrCodeGroup
+		SET
+			ifcgName = #{ifcgName}
+			,ifcgNameEng = #{ifcgNameEng}
+			<!-- <include refid="Base.updateModColumnValue" /> -->
+		WHERE
+			ifcgSeq = #{ifcgSeq}
+	</update>
+	
+	<update id="uelete">
+		UPDATE infrCodeGroup
+		SET
+			ifcgDelNy = 1
+			<!-- <include refid="Base.updateModColumnValue" /> -->
+		WHERE ifcgSeq = #{ifcgSeq}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM infrCodeGroup WHERE ifcgSeq = #{ifcgSeq}
+	</delete>
 
 </mapper>	

@@ -46,7 +46,7 @@
 									</li>
 								</ul>
 							</li>
-							<li><a href="#" class="button" onClick="location.href='../Login/LoginForm.html'" style="cursor:pointer;">Sign Up</a></li>
+							<li><a href="#" class="button" onClick="location.href='../login/login'" style="cursor:pointer;">Login</a></li>
 						</ul>
 					</nav>
 				</header>
@@ -75,55 +75,27 @@
 						<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
 						  <div class="carousel-inner">
 						  	<h3>Today's Word</h3><br>
-						    <div class="carousel-item active" data-bs-interval="10000">
-						      <div style="max-width:500px; width:100%; max-height:500px; height:100%; text-align:left; margin:auto;">
-							    <h4>${ } <i class="fa-solid fa-volume-high"></i></h4><br>
-							    <span style="line-height:200%;">
-							    
-							    	1. 형용사 비격식   
-									    -> 끔직한, 지독한<br>
-									2. 형용사 비격식   
-									    -> (특히 양적으로 많음을 강조하는 의미로) 
-									        엄청<br>
-									3. 부사 비격식 특히 美   
-									    -> 되게, 굉장히<br><hr>
-									What blooming awful weather!
-								    정말 날씨 짜증나게 안좋군!<br>
-								    Slowly the awful truth dawned.
-								    서서히 그 끔찍한 진실이 분명해졌다.
+						  	
+						  	<div class="carousel-item active" data-bs-interval="10000">
+						      <div style="max-width:500px; width:100%; max-height:500px; height:100%; text-align:left; margin:auto; background-color: white;">
+						      	<span style="line-height:200%; text-align:center; ">
+							    	Today's Word
 							    </span>
 							  </div>
 						    </div>
-						    <div class="carousel-item" data-bs-interval="2000">
-						      <div style="max-width:500px; width:100%; max-height:500px; height:100%; text-align:left; margin:auto;">
-							    <h4>hearten <i class="fa-solid fa-volume-high"></i></h4><br>
+						  	
+						  	<c:forEach items="${list}" var="list" varStatus="status">
+						    <div class="carousel-item" data-bs-interval="10000">
+						      <div style="max-width:500px; width:100%; max-height:500px; height:100%; text-align:left; margin:auto; background-color: white;">
+							    <h4> <c:out value="${list.sdwWord }"/> <i class="fa-solid fa-volume-high"></i></h4><br>
 							    <span style="line-height:200%;">
-							    
-							    	1. 동사 타동사 [VN 주로 수동태로]  ...에게 용기[희망]을 북돋우다.<br><hr>
-									This news will hearten them.
-									그 소식은 그들을 고무할 것이다.<br>
-									It should hearten us that they are in disarray.
-									그들이 혼난소에 있다는 것은 우리에게 희망을 줄 것이다.
+							    	<c:out value="${list.sdwMean }"/>
 							    </span>
 							  </div>
 						    </div>
-						    <div class="carousel-item">
-						      <div style="max-width:500px; width:100%; max-height:500px; height:100%; text-align:left; margin:auto;">
-							    <h4>dominate <i class="fa-solid fa-volume-high"></i></h4><br>
-							    <span style="line-height:200%;">
-							    
-							    	1. 동사  (특히 불쾌한 방식으로) 지배하다.<br>
-									2. 타동사  (...의) 가장 중요한[두드러지는] 특징이되다.<br>
-									3. 타동사  (어떤 장소에서) 가장 크다<br><hr>
-									He tended to dominate the conversation.
-									그는 대화를 지배하는 경향이 있었다.<br>
-									The train crash dominated the news.
-									 그 열차 사고가 가장 중요한 뉴스가 되었다.<br>
-									The cathedral dominates the city
-									 그 성당이 그 시에서는 가장 높이 솟아 있다.
-							    </span>
-							  </div>
-						    </div>
+						    </c:forEach>
+						    
+						    
 						  </div>
 						  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev" >
 						    <span class="carousel-control-prev-icon" aria-hidden="true" style="float:top;"></span>

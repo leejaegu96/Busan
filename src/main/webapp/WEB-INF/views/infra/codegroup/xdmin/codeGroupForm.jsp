@@ -174,7 +174,10 @@
 		                    <div class="card">
 		                        
 		                        <div class="card-body">
-		                            <form method ="post" action="/codeGroup/codeGroupInst">
+		                        
+		                            <form method ="post" name="form">
+		                            
+		                            	<input type="hidden" name="ifcgSeq" value="<c:out value="${vo.ifcgSeq }"/>" />
 		                                <div class="container-fluid" style="padding-top:30px;">
 											<div class="row">
 												<div class="col">
@@ -186,7 +189,7 @@
 											<div class="row" id="InputPadding">
 												<div class="col-6">
 													<label class="form-label">코드그룹 코드</label>
-													<input type="text" class="form-control" name="ifcgSeq"  value="">
+													<input type="text" class="form-control" id="ifcgSeq" value="<c:out value="${item.ifcgSeq }"/>" >
 												</div>
 												<div class="col-6">
 													<label class="form-label">코드그룹 코드 (Another)</label>
@@ -200,7 +203,7 @@
 												</div>
 												<div class="col-6">
 													<label class="form-label">코드그룹 이름 (영문)</label>
-													<input type="text" class="form-control" name="ifcgEngName" placeholder="영문(대소문자), 숫자">
+													<input type="text" class="form-control" name="ifcgEngName" placeholder="영문(대소문자), 숫자" value="<c:out value="${item.ifcgEngName }"/>">
 												</div>
 											</div>
 											<div class="row" id="InputPadding">
@@ -370,7 +373,7 @@
 															</div>
 														</div>
 													</div>
-													<button type="submit" class="btn btn-success" ><i class="fa-solid fa-bookmark"></i></button>
+													<button type="button" id="btnSave" class="btn btn-success" ><i class="fa-solid fa-bookmark"></i></button>
 												</div>
 											</div>
 										</div>
@@ -403,7 +406,7 @@
     <script src="../resources/assets/js/bootstrap.bundle.min.js"></script>
 	
 	
-	<script src="https://kit.fontawesome.com/20c294a34b.js" crossorigin="anonymous"></script>
+	
 	
     <script src="../resources/assets/vendors/apexcharts/apexcharts.js"></script>
     <script src="../resources/assets/js/pages/dashboard.js"></script>
@@ -412,8 +415,34 @@
 
     <script src="../resources/assets/js/main.js"></script>
     
-    <script type="text/javascript">
+    <script>
     
+    var goUrlList = "/codeGroup/codeGroupList"; 			/* #-> */
+	var goUrlInst = "/codeGroup/codeGroupInst"; 			/* #-> */
+	var goUrlUpdt = "/codeGroup/codeGroupUpdt";				/* #-> */
+	var goUrlUele = "/codeGroup/codeGroupUele";				/* #-> */
+	var goUrlDele = "/codeGroup/codeGroupDele";				/* #-> */
+	
+	var seq = $("input:hidden[name=ifcgSeq]");				/* #-> */
+	
+	var form = $("form[name = form]");
+	var formVo = $("form[name=formVo]");
+	
+	
+	$("#btnSave").on("click", function(){
+		if (seq.val() == "0" || seq.val() == ""){
+	   		// insert
+	   		/* if (validationInst() == false) return false; */
+	   		form.attr("action", goUrlInst).submit();
+	   	} else {
+	   		// update
+	   		/* keyName.val(atob(keyName.val())); */
+	   		/* if (validationUpdt() == false) return false; */
+	   		form.attr("action", goUrlUpdt).submit();
+	   	}
+	}); 
+    
+	
     function test() {
     	alert("test");
     	
@@ -473,7 +502,11 @@
     	modalBodyInput.value = recipient
     })
     
+    
     </script>
+    
+    <script src="https://kit.fontawesome.com/20c294a34b.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     
     
 </body>

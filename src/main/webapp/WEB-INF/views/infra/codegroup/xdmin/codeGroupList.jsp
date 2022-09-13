@@ -245,7 +245,7 @@
 					                                	<c:otherwise>
 					                                
 						                                	<c:forEach items="${list}" var="list" varStatus="status">
-															<tr style="cursor:pointer;" onclick="location.href='/codeGroup/codeGroupView?ifcgSeq=<c:out value="${list.ifcgSeq }"/>'">
+															<tr style="cursor:pointer;" onclick="location.href='/codeGroup/codeGroupForm?ifcgSeq=<c:out value="${list.ifcgSeq }"/>'">
 																<td>
 																	<div class="form-check">
 												  						<input class="form-check-input" type="checkbox" name="chk_box" onclick="check();" value="" id="flexCheckDefault">

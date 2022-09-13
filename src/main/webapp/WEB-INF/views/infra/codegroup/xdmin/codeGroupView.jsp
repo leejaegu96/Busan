@@ -174,7 +174,8 @@
 		                    <div class="card">
 		                        
 		                        <div class="card-body">
-		                            <form method ="post" action="/codeGroup/codeGroupInst">
+		                            <form id="myform" name="form" method ="post">
+		                            	<%-- <input type="hidden" name="ifcgSeq" value="<c:out value="${vo.ifcgSeq }"/>" /> --%>
 		                                <div class="container-fluid" style="padding-top:30px;">
 											<div class="row">
 												<div class="col">
@@ -186,7 +187,7 @@
 											<div class="row" id="InputPadding">
 												<div class="col-6">
 													<label class="form-label">코드그룹 코드</label>
-													<input type="text" class="form-control" name="ifcgSeq"  >
+													<input type="text" class="form-control" name="ifcgSeq"  value="<c:out value="${item.ifcgSeq }"/>">
 												</div>
 												<div class="col-6">
 													<label class="form-label">코드그룹 코드 (Another)</label>
@@ -196,11 +197,11 @@
 											<div class="row" id="InputPadding">
 												<div class="col-6">
 													<label class="form-label">코드그룹 이름 (한글)</label>
-													<input type="text" class="form-control" id="ifcgName" name="ifcgName" value="<c:out value="${item.ifcgName }"/>">
+													<input type="text" class="form-control" id="ifcgName" name="ifcgName" value="<c:out value="${item.ifcgName }"/>" >
 												</div>
 												<div class="col-6">
 													<label class="form-label">코드그룹 이름 (영문)</label>
-													<input type="text" class="form-control" name="ifcgEngName" placeholder="영문(대소문자), 숫자">
+													<input type="text" class="form-control" name="ifcgEngName" placeholder="영문(대소문자), 숫자" value="<c:out value="${item.ifcgEngName }"/>">
 												</div>
 											</div>
 											<div class="row" id="InputPadding">
@@ -370,7 +371,7 @@
 															</div>
 														</div>
 													</div>
-													<button type="submit" class="btn btn-success" ><i class="fa-solid fa-bookmark"></i></button>
+													<button type="button" id="btnSave" class="btn btn-success" ><i class="fa-solid fa-bookmark"></i></button>
 												</div>
 											</div>
 										</div>
@@ -472,6 +473,33 @@
     	modalTitle.textContent = `New message to ${recipient}`
     	modalBodyInput.value = recipient
     })
+    
+    var goUrlList = "/codeGroup/codeGroupList"; 			/* #-> */
+	var goUrlInst = "/codeGroup/codeGroupInst"; 			/* #-> */
+	var goUrlUpdt = "/codeGroup/codeGroupUpdt";				/* #-> */
+	var goUrlUele = "/codeGroup/codeGroupUele";				/* #-> */
+	var goUrlDele = "/codeGroup/codeGroupDele";				/* #-> */
+	
+	var seq = $("input:hidden[name=ifcgSeq]");				/* #-> */
+	
+	var form = $("form[name=form]");
+	var formVo = $("form[name=formVo]");
+	
+	
+	$("#btnSave").on("click", function(){
+		if (seq.val() == "0" || seq.val() == ""){
+	   		// insert
+	   		if (validationInst() == false) return false;
+	   		form.attr("action", goUrlInst).submit();
+	   	} else {
+	   		// update
+	   		/* keyName.val(atob(keyName.val())); */
+	   		if (validationUpdt() == false) return false;
+	   		form.attr("action", goUrlUpdt).submit();
+	   	}
+	}); 
+    
+    
     
     </script>
     

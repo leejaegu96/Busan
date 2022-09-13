@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -34,20 +35,24 @@ public class CodeGroupController {
 //	}
 	
 	@RequestMapping(value = "codeGroupForm")
-	public String codeGroupForm() throws Exception {
-		return "infra/codegroup/xdmin/codeGroupForm";
-	}
-	
-	
-	@RequestMapping(value = "codeGroupView")
-	public String codeGroupView(CodeGroupVo vo, Model model) throws Exception {
+	public String codeGroupForm(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception {
 		
+		System.out.println("vo.getIfcgSeq(): " + vo.getIfcgSeq());
 		CodeGroup result = service.selectOne(vo);
-		
 		model.addAttribute("item", result);
-		
 		return "infra/codegroup/xdmin/codeGroupForm";
 	}
+	
+	
+//	@RequestMapping(value = "codeGroupView")
+//	public String codeGroupView(CodeGroupVo vo, Model model) throws Exception {
+//		
+//		CodeGroup result = service.selectOne(vo);
+//		
+//		model.addAttribute("item", result);
+//		
+//		return "infra/codegroup/xdmin/codeGroupForm";
+//	}
 	
 	
 	
@@ -62,6 +67,30 @@ public class CodeGroupController {
 		
 	}
 	
+	@RequestMapping(value = "codeGroupUpdt")
+	public String codeGroupUpdt(CodeGroup dto, Model model) throws Exception {
+		service.update(dto);
+		model.addAttribute("item", model);
+		
+		return "redirect:/codeGroup/codeGroupList";
+		
+	}
+	
+	@RequestMapping(value = "codeGroupUele")
+	public String codeGroupUele(CodeGroupVo vo, CodeGroup dto) throws Exception {
+		
+		int result = service.uelete(dto);
+		System.out.println("Controller Result : " + result);
+		return "redirect:/codeGroup/codeGroupList";
+	}
+	
+	@RequestMapping(value = "codeGroupDele")
+	public String nationalityDele(CodeGroupVo vo) throws Exception {
+		
+		int result = service.delete(vo);
+		System.out.println("Controller Result : " + result);
+		return "redirect:/codeGroup/codeGroupList";
+	}
 	
 	
 }

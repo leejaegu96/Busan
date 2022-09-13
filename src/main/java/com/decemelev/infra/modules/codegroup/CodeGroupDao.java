@@ -34,7 +34,7 @@ public class CodeGroupDao {
 	
 	public CodeGroup selectOne(CodeGroupVo vo) {
 		CodeGroup result = sqlSession.selectOne(namespace + ".selectOne", vo);
-		System.out.println("dao result" + result);
+		System.out.println("dao result: " + result);
 		return result;
 	}
 	
@@ -44,5 +44,9 @@ public class CodeGroupDao {
 		System.out.println("dao result: " + result);
 		return result;
 	}
+	
+	public int update(CodeGroup dto) { return sqlSession.update(namespace + ".update", dto); }
+	public int uelete(CodeGroup dto) { return sqlSession.update(namespace + ".uelete", dto); }
+	public int delete(CodeGroupVo vo) { return sqlSession.delete(namespace + ".delete", vo); }
 	
 }

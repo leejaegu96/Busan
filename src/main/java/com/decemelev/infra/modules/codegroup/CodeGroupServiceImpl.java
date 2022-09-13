@@ -23,11 +23,17 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 	}
 	
 	@Override
+	public int insert(CodeGroup dto) throws Exception {
+		int result = dao.insert(dto);
+		System.out.println("service result: " + result);
+		return result;
+	}
+	
+	@Override
 	public List<CodeGroup> selectList() throws Exception {
 		List<CodeGroup> list = dao.selectList();
 		return list;
 	}
-	
 	
 	@Override
 	public CodeGroup selectOne(CodeGroupVo vo) throws Exception {
@@ -36,12 +42,27 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 		return result;
 	}
 	
-	
+	@Override
+	public int update(CodeGroup dto) throws Exception {
+		setRegMod(dto);
+		return dao.update(dto);
+	}
+
+	private void setRegMod(CodeGroup dto) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int uelete(CodeGroup dto) throws Exception {
+		setRegMod(dto);
+		return dao.uelete(dto);
+	}
 	
 	@Override
-	public int insert(CodeGroup dto) throws Exception {
-		int result = dao.insert(dto);
-		System.out.println("service result: " + result);
-		return result;
+	public int delete(CodeGroupVo vo) throws Exception {
+		return dao.delete(vo);
 	}
+	
+	
 }
