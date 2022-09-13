@@ -3913,17 +3913,17 @@
 		.fa-search {
 		    position: absolute;
 		    left: 15px;
-		    top: 40px;
+		    top: 30px;
 		    margin: 0;
 		}
 		.fa-keyboard {
 		    position: absolute;
 		    right: 50px;
-		    top: 40px;
+		    top: 30px;
 		}
 		.fa-microphone {
 		    position: absolute;
 		    right: 20px;
-		    top: 40px;
+		    top: 30px;
 		    color: blue;
 		}
