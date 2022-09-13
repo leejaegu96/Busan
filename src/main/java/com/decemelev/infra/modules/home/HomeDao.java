@@ -8,6 +8,9 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.decemelev.infra.modules.codegroup.CodeGroup;
+import com.decemelev.infra.modules.codegroup.CodeGroupVo;
+
 @Repository
 public class HomeDao {
 
@@ -17,6 +20,9 @@ public class HomeDao {
 	
 	private static String namespace = "com.decemelev.infra.modules.home.HomeMapper";
 	
-	public List<Home> selectList(){ return sqlSession.selectList(namespace + ".selectList", ""); }
+	public List<Home> selectList() {
+		List<Home> list = sqlSession.selectList("com.decemelev.infra.modules.home.HomeMapper.selectList", "");
+		return list;
+	}
 	
 }
