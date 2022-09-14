@@ -17,7 +17,7 @@ public class CodeGroupController {
 	
 
 	@RequestMapping(value = "codeGroupList")
-	public String codeGroupList(Model model, CodeGroupVo vo) throws Exception {
+	public String codeGroupList(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception {
 		
 		System.out.println("vo.getShValue(): " + vo.getShValue());
 		System.out.println("vo.getShOption(): " + vo.getShOption());
@@ -87,6 +87,7 @@ public class CodeGroupController {
 	@RequestMapping(value = "codeGroupDele")
 	public String nationalityDele(CodeGroupVo vo) throws Exception {
 		
+		System.out.println("dd왜안돼");
 		int result = service.delete(vo);
 		System.out.println("Controller Result : " + result);
 		return "redirect:/codeGroup/codeGroupList";

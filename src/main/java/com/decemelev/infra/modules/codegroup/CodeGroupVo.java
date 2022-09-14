@@ -6,7 +6,19 @@ public class CodeGroupVo {
 	private String shValue;
 	private String shUseNy;
 	
+	
 	private String ifcgSeq;
+	
+	private String shDelNy;
+	
+	
+	public String getShDelNy() {
+		return shDelNy;
+	}
+
+	public void setShDelNy(String shDelNy) {
+		this.shDelNy = shDelNy;
+	}
 
 	public Integer getShOption() {
 		return shOption;

@@ -62,17 +62,17 @@
                             </a>
                         </li>
                         
-                        <li class="sidebar-item ">
-                            <a href="../code/codeList" class='sidebar-link'>
-                                <i class="bi bi-grid-fill"></i>
-                                <span>Code</span>
-                            </a>
-                        </li>
-                        
                         <li class="sidebar-item active ">
                             <a href="codeGroupList" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>CodeGroup</span>
+                            </a>
+                        </li>
+                        
+                        <li class="sidebar-item ">
+                            <a href="../code/codeList" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Code</span>
                             </a>
                         </li>
                         
