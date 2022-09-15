@@ -7,7 +7,7 @@
 <mapper namespace="com.decemelev.infra.modules.codegroup.CodeGroupMapper">
 
     <resultMap id="resultMapObj" type="com.decemelev.infra.modules.codegroup.CodeGroup"></resultMap>
-	
+	<!-- 
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT
 			a.*
@@ -21,9 +21,36 @@
 				<when test="shOption == 2">AND ifcgName LIKE CONCAT('%',#{shValue},'%')</when>
 				<when test="shOption == 3">AND ifcgEngName LIKE CONCAT('%',#{shValue},'%')</when>
 			</choose>
-
-
 	</select> 
+	 -->
+	
+	<sql id ="selectCommon">
+		FROM infrCodeGroup a
+		WHERE 1=1
+			<if test="shDelNy != null and !shDelNy.equals('')">AND ifcgDelNy = #{shDelNy}</if>
+			<choose>
+				<when test="shOption == 1">AND ifcgSeq = #{shValue}</when>
+				<when test="shOption == 2">AND ifcgName LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 3">AND ifcgEngName LIKE CONCAT('%',#{shValue},'%')</when>
+			</choose>
+	</sql>
+	
+	<select id="selectList" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql" />
+			SELECT
+				a.*
+				,(select count(ifcdName) from infrCode aa where 1=1 and aa.infrCodeGroup_ifcgSeq = a.ifcgSeq) as count
+			<include refid="selectCommon" />
+			ORDER BY a.ifcgSeq DESC
+			<include refid="Base.orderByLimitForMysql" />
+		<include refid="Base.selectListLowerForMysql" />
+	</select>
+	
+	<select id="selectOneCount" resultType="Integer">
+		SELECT COUNT(*)
+		<include refid="selectCommon" />
+	</select>
+	
 	
 	<select id="selectOne" resultMap="resultMapObj">
 		SELECT
@@ -32,6 +59,7 @@
 		WHERE 1=1
 			AND ifcgSeq = #{ifcgSeq}
 	</select>
+	
 	
 	<insert id="insert">
 		INSERT INTO infrCodeGroup (

@@ -38,6 +38,14 @@ public class CodeGroupDao {
 		return result;
 	}
 	
+	public int selectOneCount(CodeGroupVo vo) {
+		System.out.println("다오 출");
+		int result = sqlSession.selectOne(namespace + ".selectOneCount", vo);
+		System.out.println("dao result: " + result);
+		System.out.println("다오 도");
+		return result;
+	}
+	
 	
 	public int insert(CodeGroup dto) {
 		int result = sqlSession.insert(namespace + ".insert", dto);

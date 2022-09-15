@@ -18,13 +18,20 @@ public class CodeGroupController {
 
 	@RequestMapping(value = "codeGroupList")
 	public String codeGroupList(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception {
-		
+		System.out.println("컨트롤러 출");
 		System.out.println("vo.getShValue(): " + vo.getShValue());
 		System.out.println("vo.getShOption(): " + vo.getShOption());
 		System.out.println("vo.getShUseNy(): " + vo.getShUseNy());
 		
+		vo.setParamsPaging(service.selectOneCount(vo));
+		System.out.println("컨트롤러 중간");
+		
 		List<CodeGroup> list = service.selectList(vo);
 		model.addAttribute("list", list);
+		
+		
+		
+		System.out.println("컨트롤러 도");
 		
 		return "infra/codegroup/xdmin/codeGroupList";
 	}
@@ -33,6 +40,8 @@ public class CodeGroupController {
 //	public String a(Locale locale, Model model) {
 //		return "infra/codegroup/xdmin/codeGroupForm";
 //	}
+	
+	
 	
 	@RequestMapping(value = "codeGroupForm")
 	public String codeGroupForm(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception {

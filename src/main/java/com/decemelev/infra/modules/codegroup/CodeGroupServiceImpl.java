@@ -23,17 +23,19 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 	}
 	
 	@Override
+	public List<CodeGroup> selectList() throws Exception {
+		List<CodeGroup> list = dao.selectList();
+		return list;
+	}
+	
+	@Override
 	public int insert(CodeGroup dto) throws Exception {
 		int result = dao.insert(dto);
 		System.out.println("service result: " + result);
 		return result;
 	}
 	
-	@Override
-	public List<CodeGroup> selectList() throws Exception {
-		List<CodeGroup> list = dao.selectList();
-		return list;
-	}
+	
 	
 	@Override
 	public CodeGroup selectOne(CodeGroupVo vo) throws Exception {
@@ -41,6 +43,18 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 		System.out.println("service result: " + result);
 		return result;
 	}
+	
+	
+	@Override
+	public int selectOneCount(CodeGroupVo vo) throws Exception {
+		System.out.println("서비스 출");
+		int result = dao.selectOneCount(vo);
+		System.out.println("service result: " + result);
+		System.out.println("서비스 도");
+		return result;
+	}
+	
+	
 	
 	@Override
 	public int update(CodeGroup dto) throws Exception {

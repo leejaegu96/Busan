@@ -13,5 +13,7 @@ public interface CodeGroupService {
 	
 	public CodeGroup selectOne(CodeGroupVo vo) throws Exception;
 	
+	public int selectOneCount(CodeGroupVo vo) throws Exception;
+	
 	public int insert(CodeGroup dto) throws Exception;
 }

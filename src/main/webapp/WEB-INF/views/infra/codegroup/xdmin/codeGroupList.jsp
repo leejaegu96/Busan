@@ -170,7 +170,13 @@
                          <section class="section">
 		                    <div class="card">
 		                        <div class="card-body">
-	                            	<form method="post" action="/codeGroup/codeGroupList">
+	                            	<form method="post" name="formList" action="/codeGroup/codeGroupList">
+	                            		
+	                            		<input type="hidden" name="mainKey">
+	                            		<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>" >
+	                            		<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>" >
+	                            		<input type="hidden" name="checkboxSeqArray">
+	                            	
 	                            		<div class="row gx-3 gy-2">
 											<div class="col-3">
 												<select id="shDelNy" name="shDelNy" class="form-select">
@@ -284,6 +290,13 @@
                             			<div class="row">
 											
 											<div class="col">
+											
+												<!-- pagination s -->
+												<%@include file="../../../common/xdmin/includeV1/pagination.jsp"%>
+												<!-- pagination e -->
+												
+												
+												<!-- 
 												<nav aria-label="Page navigation example">
 													<ul class="pagination justify-content-center">
 														<li class="page-item">
@@ -298,6 +311,7 @@
 														</li>
 													</ul>
 												</nav>
+												 -->
 											</div>
 											
 											<div class="row">
@@ -358,7 +372,6 @@
                     
                 </section>
             </div>
-
             <footer>
                 <div class="footer clearfix mb-0 text-muted">
                     <div class="float-start">
@@ -373,6 +386,9 @@
         </div>
     </div>
     
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    
     <script src="../resources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     
     <script src="../resources/assets/js/bootstrap.bundle.min.js"></script>
@@ -386,6 +402,17 @@
 
 	
 	<script type="text/javascript">
+	
+		var form = $("form[name=formList]");
+		
+		var goUrlList = "/codeGroup/codeGroupList";		
+		
+				
+		goList = function(thisPage) {
+			$("input:hidden[name=thisPage]").val(thisPage);
+			form.attr("action", goUrlList).submit();
+		}
+	
         // Simple Datatable
         let table1 = document.querySelector('#table1');
         let dataTable = new simpleDatatables.DataTable(table1);
