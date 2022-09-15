@@ -109,62 +109,9 @@
         
         <div id="main">
             <header class="mb-3">
-                <div class="dropdown">
-               		<span style="font-size: 24px;">CodeGroup Management</span>
-                	<button class="btn" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float:right">
-                		<i class="fa-regular fa-face-laugh"></i>
-                	</button>
-                	<ul class="dropdown-menu">
-					  <li>
-		                <a class="dropdown-item" href="#">
-		                  <div class="d-flex">
-		                    <div class="flex-shrink-0 me-3" >
-		                      <div class="avatar">
-		                        <img src="../resources/assets/images/faces/1.jpg" alt="" class="w-px-40 h-auto rounded-circle" style="width:40px;">
-		                      </div>
-		                    </div>
-		                    <div class="flex-grow-1">
-		                      <span class="fw-semibold d-block">JaeguLee</span>
-		                      <small class="text-muted">Admin</small>
-		                    </div>
-		                  </div>
-		                </a>
-		              </li>
-		              <li>
-		                <div class="dropdown-divider"></div>
-		              </li>
-		              <li>
-		                <a class="dropdown-item" href="#">
-		                  <i class="bx bx-user me-2"></i>
-		                  <span class="align-middle">My Profile</span>
-		                </a>
-		              </li>
-		              <li>
-		                <a class="dropdown-item" href="#">
-		                  <i class="bx bx-cog me-2"></i>
-		                  <span class="align-middle">Settings</span>
-		                </a>
-		              </li>
-		              <li>
-		                <a class="dropdown-item" href="#">
-		                  <span class="d-flex align-items-center align-middle">
-		                    <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-		                    <span class="flex-grow-1 align-middle">Billing</span>
-		                    <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-		                  </span>
-		                </a>
-		              </li>
-		              <li>
-		                <div class="dropdown-divider"></div>
-		              </li>
-		              <li>
-		                <a class="dropdown-item" href="auth-login-basic.html">
-		                  <i class="bx bx-power-off me-2"></i>
-		                  <span class="align-middle">Log Out</span>
-		                </a>
-		              </li>
-					</ul>
-				</div>
+            	<a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
             </header>
 
             <div class="page-heading">
@@ -406,11 +353,8 @@
         </div>
     </div>
     <!-- 
-    
-    <script src="../resources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="../resources/assets/vendors/apexcharts/apexcharts.js"></script>
     <script src="../resources/assets/js/pages/dashboard.js"></script>
-    <script src="../resources/assets/js/bootstrap.bundle.min.js"></script>
      -->
 	
 	
@@ -418,10 +362,12 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 	
-	<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script> -->
+    <script src="../resources/assets/js/bootstrap.bundle.min.js"></script>
+	<script src="../resources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script src="../resources/assets/js/main.js"></script>
 	
-
-    <!-- <script src="../resources/assets/js/main.js"></script> -->
+	<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script> -->
+	<!--  -->
     
     <script type="text/javascript"> 
      
@@ -476,11 +422,6 @@
 	$("#btnModalUelete").on("click", function(){
 		form.attr("action", goUrlUele).submit();
 	});
-	
-	
-	
-	
-	
 	
 	
 	</script>

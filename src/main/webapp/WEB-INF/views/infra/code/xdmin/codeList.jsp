@@ -95,8 +95,10 @@
         
         <div id="main">
             <header class="mb-3">
+            	<a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
                 <div class="dropdown">
-               		<span style="font-size: 24px;">CodeGroup Management</span>
                 	<button class="btn" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float:right">
                 		<i class="fa-regular fa-face-laugh"></i>
                 	</button>

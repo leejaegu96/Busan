@@ -99,15 +99,10 @@
         
         <div id="main">
             <header class="mb-3">
-                <a href="#" class="burger-btn d-block d-xl-none">
+            	<a href="#" class="burger-btn d-block d-xl-none">
                     <i class="bi bi-justify fs-3"></i>
                 </a>
-            </header>
-            
-            <div class="page-heading">
-	                	
-               	<div class="dropdown">
-               		<span style="font-size: 24px;">CodeGroup Management</span>
+                <div class="dropdown">
                 	<button class="btn" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float:right">
                 		<i class="fa-regular fa-face-laugh"></i>
                 	</button>
@@ -162,8 +157,12 @@
 		              </li>
 					</ul>
 				</div>
+            </header>
 				
+            <div class="page-heading">
+                <h3>CodeGroup Management</h3>
             </div>
+            
             <div class="page-content">
                 <section class="row">
                     <div class="col-12">
@@ -174,10 +173,10 @@
 	                            	<form method="post" action="/codeGroup/codeGroupList">
 	                            		<div class="row gx-3 gy-2">
 											<div class="col-3">
-												<select id="shUseNy" name="shUseNy" class="form-select">
-													<option value="" <c:if test="${empty vo.shUseNy}">selected</c:if>>사용여부</option>
-													<option value="0" <c:if test="${vo.shUseNy eq 0}">selected</c:if>>N</option>
-													<option value="1" <c:if test="${vo.shUseNy eq 1}">selected</c:if>>Y</option>
+												<select id="shDelNy" name="shDelNy" class="form-select">
+													<option value="" <c:if test="${empty vo.shDelNy}">selected</c:if>>사용여부</option>
+													<option value="0" <c:if test="${vo.shDelNy eq 0}">selected</c:if>>Y</option>
+													<option value="1" <c:if test="${vo.shDelNy eq 1}">selected</c:if>>N</option>
 												</select>
 											</div>
 											<div class="col-3">
@@ -284,47 +283,67 @@
                             			
                             			<div class="row">
 											
-											<div class="col-6" style="text-align:left;">
-												<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-square-minus"></i></button>
-												<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i class="fa-solid fa-xmark"></i></button>
-												<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-													<div class="modal-dialog">
-														<div class="modal-content">
-															<div class="modal-header">
-																<h5 class="modal-title" id="exampleModalLabel2">삭제</h5>
-																<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-															</div>
-															<div class="modal-body">
-															  정말 삭제하시겠습니까?
-															</div>
-															<div class="modal-footer">
-																<button type="button" class="btn btn-danger" data-bs-dismiss="modal" onClick="delete_row();">삭제하기</button>
-																<button type="button" class="btn btn-primary" data-bs-dismiss="modal">취소하기</button>
-															</div>
-														</div>
-													</div>
-												</div>
-												<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-													<div class="modal-dialog">
-														<div class="modal-content">
-															<div class="modal-header">
-																<h5 class="modal-title" id="exampleModalLabel">삭제</h5>
-																<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-															</div>
-															<div class="modal-body">
-															  정말 삭제하시겠습니까?
-															</div>
-															<div class="modal-footer">
-																<button type="button" class="btn btn-danger" data-bs-dismiss="modal" onClick="delete_row();">삭제하기</button>
-																<button type="button" class="btn btn-primary" data-bs-dismiss="modal">취소하기</button>
-															</div>
-														</div>
-													</div>
-												</div>
+											<div class="col">
+												<nav aria-label="Page navigation example">
+													<ul class="pagination justify-content-center">
+														<li class="page-item">
+															<a class="page-link" href="#">Previous</a>
+														</li>
+														<li class="page-item active"><a class="page-link" href="#">1</a></li>
+														<li class="page-item"><a class="page-link" href="#">2</a></li>
+														<li class="page-item"><a class="page-link" href="#">3</a></li>
+														<li class="page-item"><a class="page-link" href="#">┅</a></li>
+														<li class="page-item">
+															<a class="page-link" href="#">Next</a>
+														</li>
+													</ul>
+												</nav>
 											</div>
-											<div class="col-6" style="text-align:right;">
-												<button type="button" class="btn btn-success"><i class="fa-solid fa-file-csv"></i></button>
-												<button type="button" class="btn btn-primary" onclick="location.href='codeGroupForm'"><i class="fa-solid fa-square-plus"></i></button>
+											
+											<div class="row">
+											
+												<div class="col-6" style="text-align:left;">
+													<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-square-minus"></i></button>
+													<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i class="fa-solid fa-xmark"></i></button>
+													<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+														<div class="modal-dialog">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<h5 class="modal-title" id="exampleModalLabel2">삭제</h5>
+																	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+																</div>
+																<div class="modal-body">
+																  정말 삭제하시겠습니까?
+																</div>
+																<div class="modal-footer">
+																	<button type="button" class="btn btn-danger" data-bs-dismiss="modal" onClick="delete_row();">삭제하기</button>
+																	<button type="button" class="btn btn-primary" data-bs-dismiss="modal">취소하기</button>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+														<div class="modal-dialog">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<h5 class="modal-title" id="exampleModalLabel">삭제</h5>
+																	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+																</div>
+																<div class="modal-body">
+																  정말 삭제하시겠습니까?
+																</div>
+																<div class="modal-footer">
+																	<button type="button" class="btn btn-danger" data-bs-dismiss="modal" onClick="delete_row();">삭제하기</button>
+																	<button type="button" class="btn btn-primary" data-bs-dismiss="modal">취소하기</button>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="col-6" style="text-align:right;">
+													<button type="button" class="btn btn-success"><i class="fa-solid fa-file-csv"></i></button>
+													<button type="button" class="btn btn-primary" onclick="location.href='codeGroupForm'"><i class="fa-solid fa-square-plus"></i></button>
+												</div>
 											</div>
 										</div>
                             			
@@ -357,9 +376,9 @@
     <script src="../resources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     
     <script src="../resources/assets/js/bootstrap.bundle.min.js"></script>
-    
+    <!-- 
 	<script src="../resources/assets/vendors/simple-datatables/simple-datatables.js"></script>
-	
+	 -->
 	<script src="https://kit.fontawesome.com/20c294a34b.js" crossorigin="anonymous"></script>
 	
     <script src="../resources/assets/vendors/apexcharts/apexcharts.js"></script>
