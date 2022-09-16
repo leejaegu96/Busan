@@ -126,9 +126,13 @@
 		                        
 		                        <div class="card-body">
 		                        
-		                            <form method ="post" name="form">
-		                            
+		                            <form id="form" name="form" method="post">
+		                            <!-- *Vo.jsp s -->
+									<%@include file="codeGroupVo.jsp"%>		<!-- #-> -->
+									<!-- *Vo.jsp e -->
+		                            	<%-- 
 		                            	<input type="hidden" name="ifcgSeq" value="<c:out value="${vo.ifcgSeq }"/>" />
+		                            	 --%>
 		                                <div class="container-fluid" style="padding-top:30px;">
 											<div class="row">
 												<div class="col">
@@ -284,7 +288,7 @@
 											</div>
 											<div class="row" id="InputPadding">
 												<div class="col-6" style="text-align: left;">
-													<button type="button" class="btn btn-secondary" onClick = "test();"><i class="fa-solid fa-bars"></i></button>
+													<button type="button" class="btn btn-secondary" id="btnList"><i class="fa-solid fa-bars"></i></button>
 													
 												</div>
 												<div class="col-6" style="text-align: right;">
@@ -328,6 +332,13 @@
 											</div>
 										</div>
 								    </form>
+								    
+								    <form name="formVo" id="formVo" method="post">
+									<!-- *Vo.jsp s -->
+									<%@include file="codeGroupVo.jsp"%>		<!-- #-> -->
+									<!-- *Vo.jsp e -->
+									</form>
+								    
 		                        </div>
 		                    </div>
 		
@@ -377,6 +388,8 @@
 	var goUrlUele = "/codeGroup/codeGroupUele";				/* #-> */
 	var goUrlDele = "/codeGroup/codeGroupDele";				/* #-> */
 	
+	var mainKey = $("input:hidden[name=mainKey]");
+	
 	var seq = $("input:hidden[name=ifcgSeq]");				/* #-> */
 	
 	var form = $("form[name = form]");
@@ -396,6 +409,9 @@
 	   	}
 	}); 
 	
+	$("#btnList").on("click", function(){
+		formVo.attr("action", goUrlList).submit();
+	});
 	
 	
 	

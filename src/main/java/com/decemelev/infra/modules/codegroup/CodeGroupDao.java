@@ -39,10 +39,8 @@ public class CodeGroupDao {
 	}
 	
 	public int selectOneCount(CodeGroupVo vo) {
-		System.out.println("다오 출");
 		int result = sqlSession.selectOne(namespace + ".selectOneCount", vo);
 		System.out.println("dao result: " + result);
-		System.out.println("다오 도");
 		return result;
 	}
 	
@@ -53,7 +51,10 @@ public class CodeGroupDao {
 		return result;
 	}
 	
-	public int update(CodeGroup dto) { return sqlSession.update(namespace + ".update", dto); }
+	public int update(CodeGroup dto) { 
+		System.out.println("업데이트 다오 출");
+		return sqlSession.update(namespace + ".update", dto); 
+	}
 	public int uelete(CodeGroup dto) { return sqlSession.update(namespace + ".uelete", dto); }
 	public int delete(CodeGroupVo vo) { return sqlSession.delete(namespace + ".delete", vo); }
 	

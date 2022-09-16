@@ -47,10 +47,8 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 	
 	@Override
 	public int selectOneCount(CodeGroupVo vo) throws Exception {
-		System.out.println("서비스 출");
 		int result = dao.selectOneCount(vo);
 		System.out.println("service result: " + result);
-		System.out.println("서비스 도");
 		return result;
 	}
 	
@@ -58,7 +56,10 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 	
 	@Override
 	public int update(CodeGroup dto) throws Exception {
-		return dao.update(dto);
+		System.out.println("서비스 출");
+		int result = dao.update(dto);
+		System.out.println("서비스 도");
+		return result;
 	}
 
 

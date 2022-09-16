@@ -122,7 +122,8 @@
 		                    <div class="card">
 		                        
 		                        <div class="card-body">
-		                            <form method ="post" action="/code/codeInst">
+		                            <form method ="post" name="form">
+		                            	<input type="hidden" name="ifcdSeq" value="<c:out value="${vo.ifcdSeq }"/>" />
 		                                <div class="container-fluid" style="padding-top:30px;">
 											<div class="row">
 												<div class="col">
@@ -217,47 +218,46 @@
 											</div>
 											<div class="row" id="InputPadding">
 												<div class="col-6" style="text-align: left;">
-													<button type="button" class="btn btn-secondary" onClick="location.href='CodeList.html'"><i class="fa-solid fa-bars"></i></button>
+													<button type="button" class="btn btn-secondary" onClick=""><i class="fa-solid fa-bars"></i></button>
 													
 												</div>
 												<div class="col-6" style="text-align: right;">
-													<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i class="fa-solid fa-xmark"></i></button>
-													<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-														<div class="modal-dialog">
-															<div class="modal-content">
-																<div class="modal-header">
-																	<h5 class="modal-title" id="exampleModalLabel">삭제</h5>
-																	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-																</div>
-																<div class="modal-body" style="text-align: left;">
-																  정말 삭제하시겠습니까?
-																</div>
-																<div class="modal-footer">
-																	<button type="button" class="btn btn-danger" data-bs-dismiss="modal" onClick="delete_row();">삭제하기</button>
-																	<button type="button" class="btn btn-primary" data-bs-dismiss="modal">취소하기</button>
-																</div>
-															</div>
-														</div>
-													</div>
-													<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-trash-can"></i></button>
+													<button type="button" id="btnDelete" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-xmark"></i></button>
 													<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 														<div class="modal-dialog">
 															<div class="modal-content">
 																<div class="modal-header">
-																	<h5 class="modal-title" id="exampleModalLabel">삭제</h5>
+																	<h5 class="modal-title"></h5>
 																	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 																</div>
-																<div class="modal-body" style="text-align: left;">
-																  정말 삭제하시겠습니까?
-																</div>
+																<div class="modal-body" style="text-align: left;"></div>
 																<div class="modal-footer">
-																	<button type="button" class="btn btn-danger" data-bs-dismiss="modal" onClick="delete_row();">삭제하기</button>
-																	<button type="button" class="btn btn-primary" data-bs-dismiss="modal">취소하기</button>
+																	<button type="button" class="btn btn-danger" id="btnModalUelete">삭제하기</button>
+																	<button type="button" class="btn btn-warning" id="btnModalDelete">삭제하기</button>
+																	<button type="button" class="btn btn-primary" id="">취소하기</button>
 																</div>
 															</div>
 														</div>
 													</div>
-													<button type="submit" class="btn btn-success" onClick="test();"><i class="fa-solid fa-bookmark"></i></button>
+													<button type="button" id="btnUelete" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-trash-can"></i></button>
+													<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+														<div class="modal-dialog">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<h5 class="modal-title"></h5>
+																	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+																</div>
+																<div class="modal-body" style="text-align: left;"></div>
+																<div class="modal-footer">
+																	<button type="button" class="btn btn-danger" id="btnModalUelete">삭제하기</button>
+																	<button type="button" class="btn btn-warning" id="btnModalDelete">삭제하기</button>
+																	<button type="button" class="btn btn-primary" id="">취소하기</button>
+																</div>
+															</div>
+														</div>
+													</div>
+													
+													<button type="button" id="btnSave" class="btn btn-success" ><i class="fa-solid fa-bookmark"></i></button>
 												</div>
 											</div>
 										</div>
@@ -289,6 +289,11 @@
             </footer>
         </div>
     </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    
     <script src="../resources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="../resources/assets/js/bootstrap.bundle.min.js"></script>
 	
@@ -303,6 +308,59 @@
     <script src="../resources/assets/js/main.js"></script>
     
     <script type="text/javascript">
+    
+    var goUrlList = "/code/codeList"; 			/* #-> */
+	var goUrlInst = "/code/codeInst"; 			/* #-> */
+	var goUrlUpdt = "/code/codeUpdt";				/* #-> */
+	var goUrlUele = "/code/codeUele";				/* #-> */
+	var goUrlDele = "/code/codeDele";				/* #-> */
+	
+	var seq = $("input:hidden[name=ifcgSeq]");				/* #-> */
+	
+	var form = $("form[name = form]");
+	var formVo = $("form[name=formVo]");
+	
+	
+	$("#btnSave").on("click", function(){
+		if (seq.val() == "0" || seq.val() == ""){
+	   		// insert
+	   		/* if (validationInst() == false) return false; */
+	   		form.attr("action", goUrlInst).submit();
+	   	} else {
+	   		// update
+	   		/* keyName.val(atob(keyName.val())); */
+	   		/* if (validationUpdt() == false) return false; */
+	   		form.attr("action", goUrlUpdt).submit();
+	   	}
+	}); 
+	
+	
+	
+	
+	$("#btnDelete").on("click", function(){
+		$("input:hidden[name=exDeleteType]").val(2);
+		$(".modal-title").text("확 인");
+		$(".modal-body").text("해당 데이터를 삭제하시겠습니까 ?");
+		$("#btnModalUelete").hide();
+		$("#btnModalDelete").show();
+	});
+	
+	$("#btnUelete").on("click", function(){
+		$("input:hidden[name=exDeleteType]").val(1);
+		$(".modal-title").text("확 인");
+		$(".modal-body").text("해당 데이터를 삭제하시겠습니까 ?");
+		$("#btnModalUelete").show();
+		$("#btnModalDelete").hide();
+	});
+	
+	$("#btnModalDelete").on("click", function(){
+		form.attr("action", goUrlDele).submit();
+	});
+	
+	$("#btnModalUelete").on("click", function(){
+		form.attr("action", goUrlUele).submit();
+	});
+    
     
     const reader = new FileReader();
 

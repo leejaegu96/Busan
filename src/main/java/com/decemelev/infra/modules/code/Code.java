@@ -14,7 +14,15 @@ public class Code {
 	private String infrCodeGroup_ifcgSeq;
 	private String ifcgName;
 	
+	private Integer ifcdDelNy;
 	
+	
+	public Integer getIfcdDelNy() {
+		return ifcdDelNy;
+	}
+	public void setIfcdDelNy(Integer ifcdDelNy) {
+		this.ifcdDelNy = ifcdDelNy;
+	}
 	public String getIfcgName() {
 		return ifcgName;
 	}

@@ -15,7 +15,7 @@
     <!-- 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	 -->
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
@@ -33,6 +33,11 @@
     <style type="text/css">
     
     </style>
+    
+    <script type="text/javascript">
+	
+	</script>
+    
 </head>
 
 <body>
@@ -161,6 +166,8 @@
 				
             <div class="page-heading">
                 <h3>CodeGroup Management</h3>
+                cgSeq =   <c:out value="${vo.ifcgSeq }"/>
+                shValue  =  <c:out value="${vo.shValue }"/>
             </div>
             
             <div class="page-content">
@@ -170,35 +177,36 @@
                          <section class="section">
 		                    <div class="card">
 		                        <div class="card-body">
-	                            	<form method="post" name="formList" action="/codeGroup/codeGroupList">
+	                            	<form method="post" name="formList" id="formList" action="/codeGroup/codeGroupList">
 	                            		
-	                            		<input type="hidden" name="mainKey">
+	                            		<input type="hidden" name="ifcgSeq">
 	                            		<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>" >
 	                            		<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>" >
 	                            		<input type="hidden" name="checkboxSeqArray">
 	                            	
 	                            		<div class="row gx-3 gy-2">
 											<div class="col-3">
-												<select id="shDelNy" name="shDelNy" class="form-select">
-													<option value="" <c:if test="${empty vo.shDelNy}">selected</c:if>>사용여부</option>
-													<option value="0" <c:if test="${vo.shDelNy eq 0}">selected</c:if>>Y</option>
-													<option value="1" <c:if test="${vo.shDelNy eq 1}">selected</c:if>>N</option>
+												<select id="shUseNy" name="shUseNy" class="form-select">
+													<option value="" <c:if test="${empty vo.shUseNy}">selected</c:if>>사용여부</option>
+													<option value="0" <c:if test="${vo.shUseNy eq 0}">selected</c:if>>N</option>
+													<option value="1" <c:if test="${vo.shUseNy eq 1}">selected</c:if>>Y</option>
 												</select>
 											</div>
 											<div class="col-3">
-												<select class="form-select" aria-label="Default select example">
-													<option selected>수정일</option>
-													<option value="1"></option>
-													<option value="2"></option>
-													<option value="3"></option>
-													<option value="4"></option>
+												<select id="shOptionDate" name="shOptionDate" class="form-select">
+													<option value="" <c:if test="${empty vo.shOptionDate}">selected</c:if>>날짜</option>
+													<option value="1" <c:if test="${vo.shOptionDate eq 1}">selected</c:if>>등록일</option>
+													<option value="2" <c:if test="${vo.shOptionDate eq 2}">selected</c:if>>수정일</option>
+													<option value="3" <c:if test="${vo.shOptionDate eq 3}">selected</c:if>>생일</option>
 												</select>
 											</div>
 											<div class="col-3">
-												<input type="text" name="startDate" id="startDate" class="form-control" placeholder="시작일">
+												<fmt:parseDate var="shDateStart" value="${vo.shDateStart}" pattern="yyyy-MM-dd HH:mm:ss"/>
+												<input type="text" class="form-control" id="shDateStart" name="shDateStart" placeholder="시작일" <fmt:formatDate  value="${vo.shDateStart}" pattern="yyyy-MM-dd HH:mm:ss"/>>
 											</div>
 											<div class="col-3">
-												<input type="text" name="endDate" id="endDate" class="form-control" placeholder="종료일">
+												<fmt:parseDate var="shDateEnd" value="${vo.shDateEnd}" pattern="yyyy-MM-dd HH:mm:ss"/>
+												<input type="text" class="form-control" id="shDateEnd" name="shDateEnd" placeholder="종료일" <fmt:formatDate  value="${vo.shDateEnd}" pattern="yyyy-MM-dd HH:mm:ss"/>>
 											</div>
 										
 											<div class="col-3">
@@ -214,7 +222,7 @@
 											</div>
 											<div class="col-3">
 												<button class="btn btn-outline-primary" type="submit" style="margin-right:5px;"><i class="fa-solid fa-magnifying-glass"></i></button>
-												<button class="btn btn-outline-danger" type="submit" ><i class="fa-solid fa-arrow-rotate-left"></i></button>
+												<button class="btn btn-outline-danger" type="button" id="btnReset" ><i class="fa-solid fa-arrow-rotate-left"></i></button>
 											</div>
 										</div>
 									</form>
@@ -251,19 +259,20 @@
 					                                
 						                                	<c:forEach items="${list}" var="list" varStatus="status">
 															<tr style="cursor:pointer;" onclick="location.href='/codeGroup/codeGroupForm?ifcgSeq=<c:out value="${list.ifcgSeq }"/>'">
+															
 																<td>
 																	<div class="form-check">
 												  						<input class="form-check-input" type="checkbox" name="chk_box" onclick="check();" value="" id="flexCheckDefault">
 												  					</div>
 																</td>
 																<td>
-																	${status.count }
+																	<c:out value="${vo.totalRows - ((vo.thisPage -1) * vo.rowNumToShow + status.index) }"/>
 																</td>
 																<td>
 																	<c:out value="${list.ifcgSeq }"/>
 																</td>
 																<td>
-																	<c:out value="${list.ifcgName }"/>
+																	<a href="javascript:goForm(<c:out value="${list.ifcgSeq }"/>)" class="text-decoration-none"><c:out value="${list.ifcgName }"/></a>
 																</td>
 																<td>
 																	<c:out value="${list.ifcgEngName }"/>
@@ -282,6 +291,8 @@
 															
 														</c:otherwise>
 													</c:choose>
+													
+													<c:out value="${vo.shValue }"/>
 													
 				                                </tbody>
 				                            </table>
@@ -356,7 +367,7 @@
 												</div>
 												<div class="col-6" style="text-align:right;">
 													<button type="button" class="btn btn-success"><i class="fa-solid fa-file-csv"></i></button>
-													<button type="button" class="btn btn-primary" onclick="location.href='codeGroupForm'"><i class="fa-solid fa-square-plus"></i></button>
+													<button type="button" class="btn btn-primary" id="btnForm"><i class="fa-solid fa-square-plus"></i></button>
 												</div>
 											</div>
 										</div>
@@ -385,7 +396,6 @@
             </footer>
         </div>
     </div>
-    
     <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     
@@ -399,21 +409,42 @@
 	
     <script src="../resources/assets/vendors/apexcharts/apexcharts.js"></script>
     <script src="../resources/assets/js/pages/dashboard.js"></script>
-
+	
+	<script src="../resources/assets/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 	
 	<script type="text/javascript">
+		
+		var goUrlList = "/codeGroup/codeGroupList";
+		var goUrlForm = "/codeGroup/codeGroupForm";
+		
+	
+		var seq = $("input:hidden[name=ifcgSeq]");
+	
+		$('#btnForm').on("click", function() {
+			goForm(0);                
+		});
+	
+		goForm = function(keyValue) {
+	    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+	    	seq.val(keyValue);
+			form.attr("action", goUrlForm).submit();
+		}
 	
 		var form = $("form[name=formList]");
-		
-		var goUrlList = "/codeGroup/codeGroupList";		
 		
 				
 		goList = function(thisPage) {
 			$("input:hidden[name=thisPage]").val(thisPage);
 			form.attr("action", goUrlList).submit();
 		}
-	
-        // Simple Datatable
+        
+		$("btnReset").on("click", function(){
+			$(location).attr("href", goUrlList)
+		})
+		
+		
+     // Simple Datatable
         let table1 = document.querySelector('#table1');
         let dataTable = new simpleDatatables.DataTable(table1);
         
@@ -439,53 +470,50 @@
     	    chk_box[0].checked = checkItem;
      	}
     	
+    	$(document).ready(function () {
+	        $.datepicker.setDefaults($.datepicker.regional['ko']); 
+	        $( "#shDateStart" ).datepicker({
+	             changeMonth: true, 
+	             changeYear: true,
+	             nextText: '다음 달',
+	             prevText: '이전 달', 
+	             dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+	             dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], 
+	             monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+	             monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+	             dateFormat: "yymmdd",
+	             maxDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)
+	             onClose: function( selectedDate ) {    
+	                  //시작일(startDate) datepicker가 닫힐때
+	                  //종료일(endDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
+	                 $("#shDateEnd").datepicker( "option", "minDate", selectedDate );
+	             }    
+
+	        });
+	        $( "#shDateEnd" ).datepicker({
+	             changeMonth: true, 
+	             changeYear: true,
+	             nextText: '다음 달',
+	             prevText: '이전 달', 
+	             dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+	             dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], 
+	             monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+	             monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+	             dateFormat: "yymmdd",
+	             maxDate: 0,                       // 선택할수있는 최대날짜, ( 0 : 오늘 이후 날짜 선택 불가)
+	             onClose: function( selectedDate ) {    
+	                 // 종료일(endDate) datepicker가 닫힐때
+	                 // 시작일(startDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 시작일로 지정
+	                 $("#shDateStart").datepicker( "option", "maxDate", selectedDate );
+	             }    
+
+	        });    
+		});
     	
-        $(document).ready(function () {
-                $.datepicker.setDefaults($.datepicker.regional['ko']); 
-                $( "#startDate" ).datepicker({
-                     changeMonth: true, 
-                     changeYear: true,
-                     nextText: '다음 달',
-                     prevText: '이전 달', 
-                     dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
-                     dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], 
-                     monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-                     monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-                     dateFormat: "yy-mm-dd",
-                     maxDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)
-                     onClose: function( selectedDate ) {    
-                          //시작일(startDate) datepicker가 닫힐때
-                          //종료일(endDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
-                         $("#endDate").datepicker( "option", "minDate", selectedDate );
-                     }    
-     
-                });
-                $( "#endDate" ).datepicker({
-                     changeMonth: true, 
-                     changeYear: true,
-                     nextText: '다음 달',
-                     prevText: '이전 달', 
-                     dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
-                     dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], 
-                     monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-                     monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-                     dateFormat: "yy-mm-dd",
-                     maxDate: 0,                       // 선택할수있는 최대날짜, ( 0 : 오늘 이후 날짜 선택 불가)
-                     onClose: function( selectedDate ) {    
-                         // 종료일(endDate) datepicker가 닫힐때
-                         // 시작일(startDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 시작일로 지정
-                         $("#startDate").datepicker( "option", "maxDate", selectedDate );
-                     }    
-     
-                });    
-        });
     </script>
     	
 
-    <script src="../resources/assets/js/main.js"></script>
-    <!-- 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-     -->
+    
     
     
 </body>

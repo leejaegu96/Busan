@@ -1,19 +1,21 @@
 package com.decemelev.infra.modules.code;
 
-public class CodeVo {
+import com.decemelev.infra.common.base.BaseVo;
+
+public class CodeVo extends BaseVo {
 	
 	private Integer shOption;
 	private String shValue;
 	private String shUseNy;
+	private String shDelNy;
 	private String shCodeGroup;
+	private String ifcdSeq;
 	
-	
-	
-	public String getShCodeGroup() {
-		return shCodeGroup;
+	public String getIfcdSeq() {
+		return ifcdSeq;
 	}
-	public void setShCodeGroup(String shCodeGroup) {
-		this.shCodeGroup = shCodeGroup;
+	public void setIfcdSeq(String ifcdSeq) {
+		this.ifcdSeq = ifcdSeq;
 	}
 	public Integer getShOption() {
 		return shOption;
@@ -33,6 +35,22 @@ public class CodeVo {
 	public void setShUseNy(String shUseNy) {
 		this.shUseNy = shUseNy;
 	}
+	public String getShDelNy() {
+		return shDelNy;
+	}
+	public void setShDelNy(String shDelNy) {
+		this.shDelNy = shDelNy;
+	}
+	public String getShCodeGroup() {
+		return shCodeGroup;
+	}
+	public void setShCodeGroup(String shCodeGroup) {
+		this.shCodeGroup = shCodeGroup;
+	}
+	
+	
+	
+	
 	
 	
 

@@ -7,6 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.decemelev.infra.common.constants.Constants;
+import com.decemelev.infra.common.util.UtilDateTime;
 
 @Controller
 @RequestMapping(value = "/codeGroup/")
@@ -15,15 +19,25 @@ public class CodeGroupController {
 	@Autowired
 	CodeGroupServiceImpl service;
 	
-
+	public void setSerchAndPaging(CodeGroupVo vo) throws Exception {
+		
+		vo.setShOptionDate(vo.getShOptionDate() == null ? 2 : vo.getShOptionDate());
+		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()) );
+		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()) );
+		
+		vo.setParamsPaging(service.selectOneCount(vo));
+	}
+	
 	@RequestMapping(value = "codeGroupList")
 	public String codeGroupList(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception {
 		System.out.println("컨트롤러 출");
 		System.out.println("vo.getShValue(): " + vo.getShValue());
 		System.out.println("vo.getShOption(): " + vo.getShOption());
 		System.out.println("vo.getShUseNy(): " + vo.getShUseNy());
+		System.out.println("vo.getShDelNy(): " + vo.getShDelNy());
 		
-		vo.setParamsPaging(service.selectOneCount(vo));
+		setSerchAndPaging(vo);
+//		vo.setParamsPaging(service.selectOneCount(vo));
 		System.out.println("컨트롤러 중간");
 		
 		List<CodeGroup> list = service.selectList(vo);
@@ -46,6 +60,14 @@ public class CodeGroupController {
 	@RequestMapping(value = "codeGroupForm")
 	public String codeGroupForm(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception {
 		
+//		if(vo.getMainKey().equals("0") || vo.getMainKey().equals("")) {
+//			//insert
+//		} else {
+//			CodeGroup item = service.selectOne(vo);
+//			model.addAttribute("item", item);
+//		}
+		
+		
 		System.out.println("vo.getIfcgSeq(): " + vo.getIfcgSeq());
 		CodeGroup result = service.selectOne(vo);
 		model.addAttribute("item", result);
@@ -65,19 +87,32 @@ public class CodeGroupController {
 	
 	
 	
-	
+	@SuppressWarnings(value = {"all"})
 	@RequestMapping(value = "codeGroupInst")
-	public String codeGroupInst(CodeGroup dto) throws Exception {
+	public String codeGroupInst(CodeGroupVo vo, CodeGroup dto, RedirectAttributes redirectAttributes) throws Exception {
 		
-		int result = service.insert(dto);
-		System.out.println("controller result: " + result);
+		service.insert(dto);
 		
-		return "redirect:/codeGroup/codeGroupList";
+		vo.setIfcgSeq(dto.getIfcgSeq());
+		
+		redirectAttributes.addFlashAttribute("vo",vo);
+		
+		if(Constants.INSERT_AFTER_TYPE == 1) {
+			return "redirect:/codeGroup/codeGroupForm";
+		} else {
+			return "redirect:/codeGroup/codeGroupList";
+		}
+		
+//		int result = service.insert(dto);
+//		System.out.println("controller result: " + result);
+//		
+//		return "redirect:/codeGroup/codeGroupList";
 		
 	}
 	
 	@RequestMapping(value = "codeGroupUpdt")
 	public String codeGroupUpdt(CodeGroup dto, Model model) throws Exception {
+		System.out.println("업데이트 가즈아!");
 		service.update(dto);
 		model.addAttribute("item", model);
 		
