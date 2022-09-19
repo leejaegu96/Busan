@@ -11,14 +11,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
+    
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+      integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    
+    
     <title>E-Word Administrator</title>
     <!-- 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-	 -->
-	<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <link rel="stylesheet" href="/resources/demos/style.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"> 
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
+	 -->
+	
+	
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../resources/assets/css/bootstrap.css">
@@ -34,9 +52,8 @@
     
     </style>
     
-    <script type="text/javascript">
-	
-	</script>
+    
+    
     
 </head>
 
@@ -166,8 +183,12 @@
 				
             <div class="page-heading">
                 <h3>CodeGroup Management</h3>
-                cgSeq =   <c:out value="${vo.ifcgSeq }"/>
-                shValue  =  <c:out value="${vo.shValue }"/>
+                cgSeq =   <c:out value="${vo.ifcgSeq }"/><br>
+                shUseNy  =  <c:out value="${vo.shUseNy }"/><br>
+                shOptionDate  =  <c:out value="${vo.shOptionDate }"/><br>
+                shOption  =  <c:out value="${vo.shOption }"/><br>
+                shValue  =  <c:out value="${vo.shValue }"/><br>
+                
             </div>
             
             <div class="page-content">
@@ -188,8 +209,8 @@
 											<div class="col-3">
 												<select id="shUseNy" name="shUseNy" class="form-select">
 													<option value="" <c:if test="${empty vo.shUseNy}">selected</c:if>>사용여부</option>
-													<option value="0" <c:if test="${vo.shUseNy eq 0}">selected</c:if>>N</option>
 													<option value="1" <c:if test="${vo.shUseNy eq 1}">selected</c:if>>Y</option>
+													<option value="0" <c:if test="${vo.shUseNy eq 0}">selected</c:if>>N</option>
 												</select>
 											</div>
 											<div class="col-3">
@@ -202,11 +223,11 @@
 											</div>
 											<div class="col-3">
 												<fmt:parseDate var="shDateStart" value="${vo.shDateStart}" pattern="yyyy-MM-dd HH:mm:ss"/>
-												<input type="text" class="form-control" id="shDateStart" name="shDateStart" placeholder="시작일" <fmt:formatDate  value="${vo.shDateStart}" pattern="yyyy-MM-dd HH:mm:ss"/>>
+												<input type="text" class="form-control" id="shDateStart"  placeholder="시작일" <fmt:formatDate  value="${vo.shDateStart}" />>
 											</div>
 											<div class="col-3">
 												<fmt:parseDate var="shDateEnd" value="${vo.shDateEnd}" pattern="yyyy-MM-dd HH:mm:ss"/>
-												<input type="text" class="form-control" id="shDateEnd" name="shDateEnd" placeholder="종료일" <fmt:formatDate  value="${vo.shDateEnd}" pattern="yyyy-MM-dd HH:mm:ss"/>>
+												<input type="text" class="form-control" id="shDateEnd"  placeholder="종료일" <fmt:formatDate  value="${vo.shDateEnd}" pattern="yyyy-MM-dd HH:mm:ss"/>>
 											</div>
 										
 											<div class="col-3">
@@ -228,7 +249,9 @@
 									</form>
 		                            
 		                            <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
-		                            
+		                            	
+		                            	
+		                            	
 		                            	<div class="dataTable-container">
 		                            		<table class="table table-striped" id="table1">
 				                                <thead>
@@ -256,10 +279,9 @@
 					                                		</tr>
 					                                	</c:when>
 					                                	<c:otherwise>
-					                                
 						                                	<c:forEach items="${list}" var="list" varStatus="status">
 															<tr style="cursor:pointer;" onclick="location.href='/codeGroup/codeGroupForm?ifcgSeq=<c:out value="${list.ifcgSeq }"/>'">
-															
+																
 																<td>
 																	<div class="form-check">
 												  						<input class="form-check-input" type="checkbox" name="chk_box" onclick="check();" value="" id="flexCheckDefault">
@@ -291,8 +313,6 @@
 															
 														</c:otherwise>
 													</c:choose>
-													
-													<c:out value="${vo.shValue }"/>
 													
 				                                </tbody>
 				                            </table>
@@ -396,22 +416,32 @@
             </footer>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     
-    <script src="../resources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    
-    <script src="../resources/assets/js/bootstrap.bundle.min.js"></script>
-    <!-- 
-	<script src="../resources/assets/vendors/simple-datatables/simple-datatables.js"></script>
-	 -->
-	<script src="https://kit.fontawesome.com/20c294a34b.js" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	
+   <!--
+   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>  
+    <script src="../resources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="../resources/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../resources/assets/vendors/simple-datatables/simple-datatables.js"></script>
+     -->
+	<script src="https://kit.fontawesome.com/20c294a34b.js" crossorigin="anonymous"></script>
+	<!-- 
     <script src="../resources/assets/vendors/apexcharts/apexcharts.js"></script>
     <script src="../resources/assets/js/pages/dashboard.js"></script>
-	
+	 -->
 	<script src="../resources/assets/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+	
+	<script>
+	$(document).ready(function(){
+		$("#shDateStart, #shDateEnd").datepicker();
+	});
+
+    
+	</script>
 	
 	<script type="text/javascript">
 		
@@ -446,7 +476,7 @@
 		
      // Simple Datatable
         let table1 = document.querySelector('#table1');
-        let dataTable = new simpleDatatables.DataTable(table1);
+        /* let dataTable = new simpleDatatables.DataTable(table1); */
         
         function allcheck(){
     	    var chk_box = document.getElementsByName("chk_box");
@@ -470,45 +500,6 @@
     	    chk_box[0].checked = checkItem;
      	}
     	
-    	$(document).ready(function () {
-	        $.datepicker.setDefaults($.datepicker.regional['ko']); 
-	        $( "#shDateStart" ).datepicker({
-	             changeMonth: true, 
-	             changeYear: true,
-	             nextText: '다음 달',
-	             prevText: '이전 달', 
-	             dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
-	             dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], 
-	             monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-	             monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-	             dateFormat: "yymmdd",
-	             maxDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)
-	             onClose: function( selectedDate ) {    
-	                  //시작일(startDate) datepicker가 닫힐때
-	                  //종료일(endDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
-	                 $("#shDateEnd").datepicker( "option", "minDate", selectedDate );
-	             }    
-
-	        });
-	        $( "#shDateEnd" ).datepicker({
-	             changeMonth: true, 
-	             changeYear: true,
-	             nextText: '다음 달',
-	             prevText: '이전 달', 
-	             dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
-	             dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], 
-	             monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-	             monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-	             dateFormat: "yymmdd",
-	             maxDate: 0,                       // 선택할수있는 최대날짜, ( 0 : 오늘 이후 날짜 선택 불가)
-	             onClose: function( selectedDate ) {    
-	                 // 종료일(endDate) datepicker가 닫힐때
-	                 // 시작일(startDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 시작일로 지정
-	                 $("#shDateStart").datepicker( "option", "maxDate", selectedDate );
-	             }    
-
-	        });    
-		});
     	
     </script>
     	

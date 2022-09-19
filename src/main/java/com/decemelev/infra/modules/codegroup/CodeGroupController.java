@@ -97,11 +97,7 @@ public class CodeGroupController {
 		
 		redirectAttributes.addFlashAttribute("vo",vo);
 		
-		if(Constants.INSERT_AFTER_TYPE == 1) {
-			return "redirect:/codeGroup/codeGroupForm";
-		} else {
-			return "redirect:/codeGroup/codeGroupList";
-		}
+		return "redirect:/codeGroup/codeGroupList";
 		
 //		int result = service.insert(dto);
 //		System.out.println("controller result: " + result);
@@ -111,9 +107,10 @@ public class CodeGroupController {
 	}
 	
 	@RequestMapping(value = "codeGroupUpdt")
-	public String codeGroupUpdt(CodeGroup dto, Model model) throws Exception {
+	public String codeGroupUpdt(CodeGroupVo vo, CodeGroup dto, Model model, RedirectAttributes redirectAttributes) throws Exception {
 		System.out.println("업데이트 가즈아!");
 		service.update(dto);
+		redirectAttributes.addFlashAttribute("vo",vo);
 		model.addAttribute("item", model);
 		
 		return "redirect:/codeGroup/codeGroupList";

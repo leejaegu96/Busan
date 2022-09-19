@@ -8,20 +8,23 @@
 
     <resultMap id="resultMapObj" type="com.decemelev.infra.modules.code.Code"></resultMap>
 	
+	<sql id="selectCommon">
+		FROM infrCode a
+		WHERE 1=1
+			<if test="shDelNy != null and !shDelNy.equals('')">AND ifcgDelNy = #{shDelNy}</if>
+			<if test="shUseNy != null and !shUseNy.equals('')">AND ifcgUseNy = #{shUseNy}</if>
+			<choose>
+				<when test="shOption == 1">AND ifcdSeq = #{shValue}</when>
+				<when test="shOption == 2">AND ifcdName LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 3">AND ifcdEngName LIKE CONCAT('%',#{shValue},'%')</when>
+			</choose>
+	</sql>
+	
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT
 			a.*
 			,b.*
-		FROM infrCode a
-		inner join infrCodeGroup b on a.infrCodeGroup_ifcgSeq = b.ifcgSeq
-		WHERE 1=1
-			
-			
-			<choose>
-				<when test="shOption == 1">AND a.ifcdSeq = #{shValue}</when>
-				<when test="shOption == 2">AND a.ifcdName LIKE CONCAT('%',#{shValue},'%')</when>
-				<when test="shOption == 3">AND a.ifcdEngName LIKE CONCAT('%',#{shValue},'%')</when>
-			</choose>
+		<include refid="selectCommon" />
 			
 	</select>
 	
