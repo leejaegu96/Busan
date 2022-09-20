@@ -1,5 +1,8 @@
 package com.decemelev.infra.modules.code;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Code {
 	
 	private String ifcdSeq; 
@@ -15,6 +18,13 @@ public class Code {
 	private String ifcgName;
 	
 	private Integer ifcdDelNy;
+	
+	
+//	for cache
+	public static List<Code> cachedCodeArrayList = new ArrayList<Code>();
+	
+	
+	
 	
 	
 	public Integer getIfcdDelNy() {

@@ -15,9 +15,18 @@ public class CodeVo extends BaseVo {
 	private String shDateStart;
 	private String shDateEnd;
 	
+	private String ifcgSeq;
 	
 	
 	
+	
+	
+	public String getIfcgSeq() {
+		return ifcgSeq;
+	}
+	public void setIfcgSeq(String ifcgSeq) {
+		this.ifcgSeq = ifcgSeq;
+	}
 	public String getShDateStart() {
 		return shDateStart;
 	}

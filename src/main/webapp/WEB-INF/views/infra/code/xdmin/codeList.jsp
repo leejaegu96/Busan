@@ -80,8 +80,7 @@
 					<div class="d-flex justify-content-between">
 						<div class="row" style="text-align: center; width: 300px;">
 							<div class="logo">
-								<a href="MemberListForm.html"><span style="font-size: 30px;"><i class="fa-solid fa-book-open"></i>&nbsp E-Word</span><br>
-								<span style="font-size: 19px;">Administrator</span></a>
+								<a href="MemberListForm.html"><span style="font-size: 30px;"><i class="fa-solid fa-book-open"></i>&nbsp E-Word</span><br> <span style="font-size: 19px;">Administrator</span></a>
 							</div>
 						</div>
 						<div class="toggler">
@@ -180,10 +179,7 @@
 									<div class="card-body">
 										<form method="post" name="formList" id="formList" action="/code/codeList">
 
-											<input type="hidden" name="ifcdSeq">
-											<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
-											<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>">
-											<input type="hidden" name="checkboxSeqArray">
+											<input type="hidden" name="ifcdSeq"> <input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>"> <input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>"> <input type="hidden" name="checkboxSeqArray">
 
 											<div class="row gx-3 gy-2">
 												<div class="col-3">
@@ -272,29 +268,15 @@
 																			</div>
 																		</td>
 																		<td>${status.count }</td>
-																		<td>
-																			<c:out value="${list.infrCodeGroup_ifcgSeq }" />
-																		</td>
-																		<td>
-																			<c:out value="${list.ifcgName }" />
-																		</td>
-																		<td>
-																			<c:out value="${list.ifcdSeq }" />
-																		</td>
+																		<td><c:out value="${list.infrCodeGroup_ifcgSeq }" /></td>
+																		<td><c:out value="${list.ifcgName }" /></td>
+																		<td><c:out value="${list.ifcdSeq }" /></td>
 																		<td></td>
-																		<td>
-																			<c:out value="${list.ifcdName }" />
-																		</td>
-																		<td>
-																			<c:out value="${list.ifcdEngName }" />
-																		</td>
+																		<td><c:out value="${list.ifcdName }" /></td>
+																		<td><c:out value="${list.ifcdEngName }" /></td>
 
-																		<td>
-																			<c:out value="${list.ifcdUseNy }" />
-																		</td>
-																		<td>
-																			<c:out value="${list.ifcdOrder }" />
-																		</td>
+																		<td><c:out value="${list.ifcdUseNy }" /></td>
+																		<td><c:out value="${list.ifcdOrder }" /></td>
 																		<td></td>
 																		<td></td>
 

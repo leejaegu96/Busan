@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
+<jsp:useBean id="CodeServiceImpl" class="com.decemelev.infra.modules.code.CodeServiceImpl"/>
 
 
 
@@ -261,6 +262,7 @@
 				                                    </tr>
 				                                </thead>
 				                                <tbody id="my_tbody">
+				                                <c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('1')}"/>
 				                                    
 				                                	<c:forEach items="${list}" var="list" varStatus="status">
 													<tr>
@@ -290,7 +292,14 @@
 															</c:choose> --%>
 														</td>
 														<td>
+															<%-- 
 															<c:out value="${list.ifmmGender }"/>
+															 --%>
+															<c:forEach items="${listCodeGender}" var="listGender" varStatus="statusGender">
+																<c:if test="${list.ifmmGender eq listGender.ifcdSeq}">
+																	<c:out value="${listGender.ifcdName }"/>
+																</c:if>
+															</c:forEach>
 														</td>
 														<td>
 															<fmt:formatDate value="${list.ifmmDob }" pattern ="yyyy-MM-dd"/>
