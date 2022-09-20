@@ -22,11 +22,14 @@
 	</sql>
 	
 	<select id="selectList" resultMap="resultMapObj">
-		SELECT
-			a.*
-			,b.*
-		<include refid="selectCommon" />
-		ORDER BY a.ifcdSeq DESC
+		<include refid="Base.selectListUpperForMysql" />
+			SELECT
+				a.*
+				,b.*
+			<include refid="selectCommon" />
+			ORDER BY a.ifcdSeq DESC
+		<include refid="Base.orderByLimitForMysql" />
+		<include refid="Base.selectListLowerForMysql" />
 	</select>
 	
 	<insert id="insert">
@@ -66,5 +69,27 @@
 		WHERE 1=1
 			AND ifcdSeq = #{ifcdSeq}
 	</select>
+ 	
+ 	<update id="update">
+		UPDATE infrCode
+		SET
+			ifcdName = #{ifcdName}
+			,ifcdEngName = #{ifcdEngName}
+			<!-- <include refid="Base.updateModColumnValue" /> -->
+		WHERE 
+			ifcdSeq = #{ifcdSeq}
+	</update>
+	
+	<update id="uelete">
+		UPDATE infrCode
+		SET
+			ifcdDelNy = 1
+			<!-- <include refid="Base.updateModColumnValue" /> -->
+		WHERE ifcdSeq = #{ifcdSeq}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM infrCodeGroup WHERE ifcdSeq = #{ifcdSeq}
+	</delete>
  	
 </mapper>

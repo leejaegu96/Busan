@@ -37,6 +37,21 @@ public class CodeServiceImpl implements CodeService {
 		System.out.println("service selectOneCount result: " + result);
 		return result;
 	}
-
+	
+	@Override
+	public int update(Code dto) throws Exception {
+		int result = dao.update(dto);
+		return result;
+	}
+	
+	@Override
+	public int uelete(Code dto) throws Exception {
+		return dao.uelete(dto);
+	}
+	
+	@Override
+	public int delete(CodeVo vo) throws Exception {
+		return dao.delete(vo);
+	}
 	
 }

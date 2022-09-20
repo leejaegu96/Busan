@@ -113,6 +113,11 @@
 
             <div class="page-heading">
                 <h3>CodeForm</h3>
+                ifcdSeq =   <c:out value="${vo.ifcdSeq }"/><br>
+                shUseNy  =  <c:out value="${vo.shUseNy }"/><br>
+                shOptionDate  =  <c:out value="${vo.shOptionDate }"/><br>
+                shOption  =  <c:out value="${vo.shOption }"/><br>
+                shValue  =  <c:out value="${vo.shValue }"/><br>
             </div>
             <div class="page-content">
                 <section class="row">
@@ -122,8 +127,13 @@
 		                    <div class="card">
 		                        
 		                        <div class="card-body">
-		                            <form method ="post" name="form">
+		                            <form id="form" name="form" method="post">
+		                            <!-- *Vo.jsp s -->
+									<%@include file="codeVo.jsp"%>		<!-- #-> -->
+									<!-- *Vo.jsp e -->
+										<%-- 
 		                            	<input type="hidden" name="ifcdSeq" value="<c:out value="${vo.ifcdSeq }"/>" />
+		                            	 --%>
 		                                <div class="container-fluid" style="padding-top:30px;">
 											<div class="row">
 												<div class="col">
@@ -135,7 +145,7 @@
 											<div class="row" id="InputPadding">
 												<div class="col-6">
 													<label class="form-label">코드</label>
-													<input type="text" class="form-control" id="disabledInput" placeholder="자동생성" disabled="">
+													<input type="text" class="form-control" id="disabledInput" value="<c:out value="${vo.ifcdSeq }"/>"  disabled="" >
 												</div>
 												<div class="col-6">
 													<label class="form-label">코드 그룹</label>
@@ -149,11 +159,11 @@
 											<div class="row" id="InputPadding">
 												<div class="col-6">
 													<label class="form-label">코드 이름 (한글)</label>
-													<input type="text" class="form-control" name="ifcdName">
+													<input type="text" class="form-control" name="ifcdName" value="<c:out value="${item.ifcdName }"/>" >
 												</div>
 												<div class="col-6">
 													<label class="form-label">코드 이름 (영문)</label>
-													<input type="text" class="form-control" name="ifcdEngName">
+													<input type="text" class="form-control" name="ifcdEngName" value="<c:out value="${item.ifcdEngName }"/>" >
 												</div>
 											</div>
 											<div class="row" id="InputPadding">
@@ -264,6 +274,11 @@
 		                            
 									    
 								    </form>
+								    <form name="formVo" id="formVo" method="post">
+									<!-- *Vo.jsp s -->
+									<%@include file="codeVo.jsp"%>		<!-- #-> -->
+									<!-- *Vo.jsp e -->
+									</form>
 		                            
 		                        </div>
 		                    </div>
@@ -293,17 +308,14 @@
     <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-    
+    <!-- 
     <script src="../resources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="../resources/assets/js/bootstrap.bundle.min.js"></script>
-	
-	
-	<script src="https://kit.fontawesome.com/20c294a34b.js" crossorigin="anonymous"></script>
-	
     <script src="../resources/assets/vendors/apexcharts/apexcharts.js"></script>
     <script src="../resources/assets/js/pages/dashboard.js"></script>
-
+	 -->
 	
+	<script src="https://kit.fontawesome.com/20c294a34b.js" crossorigin="anonymous"></script>
 
     <script src="../resources/assets/js/main.js"></script>
     
@@ -315,7 +327,9 @@
 	var goUrlUele = "/code/codeUele";				/* #-> */
 	var goUrlDele = "/code/codeDele";				/* #-> */
 	
-	var seq = $("input:hidden[name=ifcgSeq]");				/* #-> */
+	var mainKey = $("input:hidden[name=mainKey]");
+	
+	var seq = $("input:hidden[name=ifcdSeq]");				/* #-> */
 	
 	var form = $("form[name = form]");
 	var formVo = $("form[name=formVo]");
@@ -361,7 +375,7 @@
 		form.attr("action", goUrlUele).submit();
 	});
     
-    
+    /* 
     const reader = new FileReader();
 
     reader.onload = (readerEvent) => {
@@ -392,8 +406,8 @@
     	
     	modalTitle.textContent = `New message to ${recipient}`
     	modalBodyInput.value = recipient
-    })
-    
+    }) 
+    */
     function test() {
     	alert("test")
     }

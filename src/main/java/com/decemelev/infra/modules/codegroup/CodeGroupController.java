@@ -19,7 +19,7 @@ public class CodeGroupController {
 	@Autowired
 	CodeGroupServiceImpl service;
 	
-	public void setSerchAndPaging(CodeGroupVo vo) throws Exception {
+	public void setSearchAndPaging(CodeGroupVo vo) throws Exception {
 		
 		vo.setShOptionDate(vo.getShOptionDate() == null ? 2 : vo.getShOptionDate());
 		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()) );
@@ -36,7 +36,7 @@ public class CodeGroupController {
 		System.out.println("vo.getShUseNy(): " + vo.getShUseNy());
 		System.out.println("vo.getShDelNy(): " + vo.getShDelNy());
 		
-		setSerchAndPaging(vo);
+		setSearchAndPaging(vo);
 //		vo.setParamsPaging(service.selectOneCount(vo));
 		System.out.println("컨트롤러 중간");
 		
