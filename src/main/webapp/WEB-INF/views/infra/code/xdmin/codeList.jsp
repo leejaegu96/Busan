@@ -17,8 +17,49 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  	
+  	<script type="text/javascript">
+    $(document).ready(function () {
+            $.datepicker.setDefaults($.datepicker.regional['ko']); 
+            $( "#shDateStart" ).datepicker({
+                 changeMonth: true, 
+                 changeYear: true,
+                 nextText: '다음 달',
+                 prevText: '이전 달', 
+                 dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+                 dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], 
+                 monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                 monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                 dateFormat: "yymmdd",
+                 maxDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)
+                 onClose: function( selectedDate ) {    
+                      //시작일(startDate) datepicker가 닫힐때
+                      //종료일(endDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
+                     $("#shDateEnd").datepicker( "option", "minDate", selectedDate );
+                 }    
+ 
+            });
+            $( "#shDateEnd" ).datepicker({
+                 changeMonth: true, 
+                 changeYear: true,
+                 nextText: '다음 달',
+                 prevText: '이전 달', 
+                 dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+                 dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], 
+                 monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                 monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                 dateFormat: "yymmdd",
+                 maxDate: 0,                       // 선택할수있는 최대날짜, ( 0 : 오늘 이후 날짜 선택 불가)
+                 onClose: function( selectedDate ) {    
+                     // 종료일(endDate) datepicker가 닫힐때
+                     // 시작일(startDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 시작일로 지정
+                     $("#shDateStart").datepicker( "option", "maxDate", selectedDate );
+                 }    
+ 
+            });    
+    });
+	</script>
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../resources/assets/css/bootstrap.css">
 
@@ -157,6 +198,11 @@
 
             <div class="page-heading">
                 <h3>Code Management</h3>
+                ifcdSeq =   <c:out value="${vo.ifcdSeq }"/><br>
+                shUseNy  =  <c:out value="${vo.shUseNy }"/><br>
+                shOptionDate  =  <c:out value="${vo.shOptionDate }"/><br>
+                shOption  =  <c:out value="${vo.shOption }"/><br>
+                shValue  =  <c:out value="${vo.shValue }"/><br>
             </div>
             <div class="page-content">
                 <section class="row">
@@ -165,7 +211,7 @@
                          <section class="section">
 		                    <div class="card">
 		                        <div class="card-body">
-		                            <form method="post" action="/code/codeList">
+		                            <form method="post" name="formList" id="formList" action="/codeGroup/codeGroupList">
 			                            <div class="row gx-3 gy-2">
 											<div class="col-3">
 												<select id="shUseNy" name="shUseNy" class="form-select">
@@ -175,26 +221,27 @@
 												</select>
 											</div>
 											<div class="col-3">
-												<select class="form-select" aria-label="Default select example">
-													<option selected>수정일</option>
-													<option value="1"></option>
-													<option value="2"></option>
-													<option value="3"></option>
-													<option value="4"></option>
+												<select id="shOptionDate" name="shOptionDate" class="form-select">
+													<option value="" <c:if test="${empty vo.shOptionDate}">selected</c:if>>날짜</option>
+													<option value="1" <c:if test="${vo.shOptionDate eq 1}">selected</c:if>>등록일</option>
+													<option value="2" <c:if test="${vo.shOptionDate eq 2}">selected</c:if>>수정일</option>
+													<option value="3" <c:if test="${vo.shOptionDate eq 3}">selected</c:if>>생일</option>
 												</select>
 											</div>
 											<div class="col-3">
-												<input type="text" name="startDate" id="startDate" class="form-control" placeholder="시작일">
+												<fmt:parseDate var="shDateStart" value="${vo.shDateStart}" pattern="yyyy-MM-dd HH:mm:ss"/>
+												<input type="text" class="form-control" id="shDateStart"  placeholder="시작일" <fmt:formatDate  value="${vo.shDateStart}" />>
 											</div>
 											<div class="col-3">
-												<input type="text" name="endDate" id="endDate" class="form-control" placeholder="종료일">
+												<fmt:parseDate var="shDateEnd" value="${vo.shDateEnd}" pattern="yyyy-MM-dd HH:mm:ss"/>
+												<input type="text" class="form-control" id="shDateEnd"  placeholder="종료일" <fmt:formatDate  value="${vo.shDateEnd}" pattern="yyyy-MM-dd HH:mm:ss"/>>
 											</div>
 											<div class="col-3">
 												<select id="shOption" name="shOption" class="form-select" aria-label="Default select example" >
 													<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
-													<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드 </option>
-													<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드 이름 (한글)</option>
-													<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드 이름 (영문)</option>
+													<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드그룹 코드</option>
+													<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드그룹 이름 (한글)</option>
+													<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드그룹 이름 (영문)</option>
 												</select>
 											</div>
 											<div class="col-3">
@@ -232,49 +279,59 @@
 				                                    </tr>
 				                                </thead>
 				                                <tbody id="my_tbody">
-				                                    <c:forEach items="${list}" var="list" varStatus="status">
-													<tr>
-														<td>
-															<div class="form-check">
-										  						<input class="form-check-input" type="checkbox" name="chk_box" onclick="check();" value="" id="flexCheckDefault">
-										  					</div>
-														</td>
-														<td>
-															${status.count }
-														</td>
-														<td>
-															<c:out value="${list.infrCodeGroup_ifcgSeq }"/>
-														</td>
-														<td>
-															<c:out value="${list.ifcgName }"/>
-														</td>
-														<td>
-															<c:out value="${list.ifcdSeq }"/>
-														</td>
-														<td>
-														</td>
-														<td>
-															<c:out value="${list.ifcdName }"/>
-														</td>
-														<td>
-															<c:out value="${list.ifcdEngName }"/>
-														</td>
-															
-														<td>
-															<c:out value="${list.ifcdUseNy }"/>
-														</td>
-														<td>
-															<c:out value="${list.ifcdOrder }"/>
-														</td>
-														<td>
-														
-														</td>
-														<td>
-														
-														</td>
-																												
-													</tr>
-													</c:forEach>
+				                                	<c:choose>
+					                                	<c:when test="${fn:length(list) eq 0}">
+					                                		<tr>
+					                                			<td class="" colspan="12" style="text-align: center;"> There is no data!</td>
+					                                		</tr>
+					                                	</c:when>
+					                                	<c:otherwise>
+				                                
+						                                    <c:forEach items="${list}" var="list" varStatus="status">
+															<tr style="cursor:pointer;" onclick="location.href='/code/codeForm?ifcdSeq=<c:out value="${list.ifcdSeq }"/>'">
+																<td>
+																	<div class="form-check">
+												  						<input class="form-check-input" type="checkbox" name="chk_box" onclick="check();" value="" id="flexCheckDefault">
+												  					</div>
+																</td>
+																<td>
+																	${status.count }
+																</td>
+																<td>
+																	<c:out value="${list.infrCodeGroup_ifcgSeq }"/>
+																</td>
+																<td>
+																	<c:out value="${list.ifcgName }"/>
+																</td>
+																<td>
+																	<c:out value="${list.ifcdSeq }"/>
+																</td>
+																<td>
+																</td>
+																<td>
+																	<c:out value="${list.ifcdName }"/>
+																</td>
+																<td>
+																	<c:out value="${list.ifcdEngName }"/>
+																</td>
+																	
+																<td>
+																	<c:out value="${list.ifcdUseNy }"/>
+																</td>
+																<td>
+																	<c:out value="${list.ifcdOrder }"/>
+																</td>
+																<td>
+																
+																</td>
+																<td>
+																
+																</td>
+																														
+															</tr>
+															</c:forEach>
+														</c:otherwise>
+													</c:choose>
 				                                </tbody>
 				                            </table>
                             			</div>
@@ -321,7 +378,7 @@
 											</div>
 											<div class="col-6" style="text-align:right;">
 												<button type="button" class="btn btn-success"><i class="fa-solid fa-file-csv"></i></button>
-												<button type="button" class="btn btn-primary" onClick="location.href='codeForm'"><i class="fa-solid fa-square-plus"></i></button>
+												<button type="button" class="btn btn-primary" id="btnForm"><i class="fa-solid fa-square-plus"></i></button>
 											</div>
 										</div>
                             			
@@ -350,21 +407,45 @@
             </footer>
         </div>
     </div>
+    
+	
+	<!-- 
+	<script src="../resources/assets/vendors/simple-datatables/simple-datatables.js"></script>
+	<script src="../resources/assets/vendors/apexcharts/apexcharts.js"></script>
+    <script src="../resources/assets/js/pages/dashboard.js"></script>
     <script src="../resources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="../resources/assets/js/bootstrap.bundle.min.js"></script>
-	
-	<!-- <script src="../resources/assets/vendors/simple-datatables/simple-datatables.js"></script> -->
+	 -->
 	
 	<script src="https://kit.fontawesome.com/20c294a34b.js" crossorigin="anonymous"></script>
+	<script src="../resources/assets/js/main.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 	
-    <script src="../resources/assets/vendors/apexcharts/apexcharts.js"></script>
-    <script src="../resources/assets/js/pages/dashboard.js"></script>
-
+	<script type="text/javascript">
+    
+	    var goUrlList = "/code/codeList";
+		var goUrlForm = "/code/codeForm";
+		
+		$('#btnForm').on("click", function() {
+			goForm(0);                
+		});
+		
+		goList = function(thisPage) {
+			$("input:hidden[name=thisPage]").val(thisPage);
+			form.attr("action", goUrlList).submit();
+		}
+		
+	    goForm = function(keyValue) {
+	    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+	    	seq.val(keyValue);
+			form.attr("action", goUrlForm).submit();
+		}
+    </script>
 	
 	<script>
         // Simple Datatable
         let table1 = document.querySelector('#table1');
-        let dataTable = new simpleDatatables.DataTable(table1);
+        /* let dataTable = new simpleDatatables.DataTable(table1); */
         
         function allcheck(){
     	    var chk_box = document.getElementsByName("chk_box");
@@ -387,48 +468,11 @@
     	    }
     	    chk_box[0].checked = checkItem;
      	}
-    	$(document).ready(function () {
-            $.datepicker.setDefaults($.datepicker.regional['ko']); 
-            $( "#startDate" ).datepicker({
-                 changeMonth: true, 
-                 changeYear: true,
-                 nextText: '다음 달',
-                 prevText: '이전 달', 
-                 dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
-                 dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], 
-                 monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-                 monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-                 dateFormat: "yy-mm-dd",
-                 maxDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)
-                 onClose: function( selectedDate ) {    
-                      //시작일(startDate) datepicker가 닫힐때
-                      //종료일(endDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
-                     $("#endDate").datepicker( "option", "minDate", selectedDate );
-                 }    
- 
-            });
-            $( "#endDate" ).datepicker({
-                 changeMonth: true, 
-                 changeYear: true,
-                 nextText: '다음 달',
-                 prevText: '이전 달', 
-                 dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
-                 dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], 
-                 monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-                 monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-                 dateFormat: "yy-mm-dd",
-                 maxDate: 0,                       // 선택할수있는 최대날짜, ( 0 : 오늘 이후 날짜 선택 불가)
-                 onClose: function( selectedDate ) {    
-                     // 종료일(endDate) datepicker가 닫힐때
-                     // 시작일(startDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 시작일로 지정
-                     $("#startDate").datepicker( "option", "maxDate", selectedDate );
-                 }    
- 
-            });
-    	});
+    	
     </script>
+    
 
-    <script src="../resources/assets/js/main.js"></script>
+    
     
     
     

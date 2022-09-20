@@ -75,7 +75,7 @@
 		    ,#{ifcgEngName}
 		    ,1
 		    ,#{ifcgOrder}
-		    ,#{ifcgRegDate}
+		    ,now()
 		)
 		<selectKey resultType="String" keyProperty="ifcgSeq" order="AFTER">
 			SELECT last_insert_id()

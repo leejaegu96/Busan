@@ -10,15 +10,27 @@ public class CodeGroup {
 	private Integer ifcgUseNy;
 	private Integer ifcgOrder;
 	private Integer ifcgCount;
-	private Date ifcgRegDate;
-	private Date ifcgModDate;
 	private Integer count;
 	private Integer ifcgDelNy;
+	private String ifcgRegDate;
+	private String ifcgModDate;
 	
 	
 	
 		
 	
+	public String getIfcgRegDate() {
+		return ifcgRegDate;
+	}
+	public void setIfcgRegDate(String ifcgRegDate) {
+		this.ifcgRegDate = ifcgRegDate;
+	}
+	public String getIfcgModDate() {
+		return ifcgModDate;
+	}
+	public void setIfcgModDate(String ifcgModDate) {
+		this.ifcgModDate = ifcgModDate;
+	}
 	public Integer getIfcgDelNy() {
 		return ifcgDelNy;
 	}
@@ -31,18 +43,8 @@ public class CodeGroup {
 	public void setCount(Integer count) {
 		this.count = count;
 	}
-	public Date getIfcgRegDate() {
-		return ifcgRegDate;
-	}
-	public void setIfcgRegDate(Date ifcgRegDate) {
-		this.ifcgRegDate = ifcgRegDate;
-	}
-	public Date getIfcgModDate() {
-		return ifcgModDate;
-	}
-	public void setIfcgModDate(Date ifcgModDate) {
-		this.ifcgModDate = ifcgModDate;
-	}
+	
+	
 	public String getIfcgEngName() {
 		return ifcgEngName;
 	}

@@ -25,6 +25,18 @@ public class CodeDao {
 		return result;
 	}
 	
+	public Code SelectOne(CodeVo vo) {
+		Code result = sqlSession.selectOne(namespace + ".selectOne", vo);
+		System.out.println("dao SelectOne result :" + result);
+		return result;
+	}
+	
+	public int selectOneCount(CodeVo vo) {
+		int result = sqlSession.selectOne(namespace + ".selectOneCount", vo);
+		System.out.println("dao SelectOneCount result :" + result);
+		return result;
+	}
+	
 
 	
 }

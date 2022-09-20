@@ -10,6 +10,7 @@
 	
 	<sql id="selectCommon">
 		FROM infrCode a
+		INNER JOIN infrCodeGroup b on a.infrCodeGroup_ifcgSeq = b.ifcgSeq
 		WHERE 1=1
 			<if test="shDelNy != null and !shDelNy.equals('')">AND ifcgDelNy = #{shDelNy}</if>
 			<if test="shUseNy != null and !shUseNy.equals('')">AND ifcgUseNy = #{shUseNy}</if>
@@ -25,7 +26,7 @@
 			a.*
 			,b.*
 		<include refid="selectCommon" />
-			
+		ORDER BY a.ifcdSeq DESC
 	</select>
 	
 	<insert id="insert">
@@ -47,5 +48,23 @@
 			SELECT last_insert_id()
 		</selectKey>
 	</insert>
- 
+ 	
+ 	<select id="selectOneCount" resultType="Integer">
+		SELECT 
+			COUNT(*)
+		FROM infrCode a
+		INNER JOIN infrCodeGroup b on a.infrCodeGroup_ifcgSeq = b.ifcgSeq
+	</select>
+ 	
+	
+	<select id="selectOne" resultMap="resultMapObj">
+		SELECT
+			a.*
+			,b.*
+		FROM infrCode a
+		INNER JOIN infrCodeGroup b on a.infrCodeGroup_ifcgSeq = b.ifcgSeq
+		WHERE 1=1
+			AND ifcdSeq = #{ifcdSeq}
+	</select>
+ 	
 </mapper>

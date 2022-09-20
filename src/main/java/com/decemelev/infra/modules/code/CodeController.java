@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.decemelev.infra.modules.codegroup.CodeGroup;
@@ -20,7 +21,7 @@ public class CodeController {
 	CodeGroupServiceImpl service2;
 
 	@RequestMapping(value = "codeList")
-	public String codeList(Model model, CodeVo vo) throws Exception {
+	public String codeList(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception {
 		
 		System.out.println("vo.getShValue(): " + vo.getShValue());
 		System.out.println("vo.getShOption(): " + vo.getShOption());
@@ -33,10 +34,14 @@ public class CodeController {
 	}
 	
 	@RequestMapping(value = "codeForm")
-	public String codeForm(Model model) throws Exception {
+	public String codeForm(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception {
 		
-		List<CodeGroup> list = service2.selectList();
-		model.addAttribute("list", list);
+		System.out.println("vo.getIfcdSeq(): " + vo.getIfcdSeq());
+		/*
+		 * List<CodeGroup> list = service2.selectList();
+		 */
+		Code result = service.selectOne(vo);
+		model.addAttribute("item", result);
 		
 		return "infra/code/xdmin/codeForm";
 	}
