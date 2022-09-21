@@ -14,6 +14,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  	
+    
     <title>E-Word Administrator</title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -50,7 +56,7 @@
                         <li class="sidebar-title">Menu</li>
 
                         <li class="sidebar-item active ">
-                            <a href="MemberListForm.html" class='sidebar-link'>
+                            <a href="memberList" class='sidebar-link'>
                                 <i class="bi bi-person-badge-fill"></i>
                                 <span>MemberList</span>
                             </a>
@@ -184,59 +190,48 @@
 		                            Simple Datatable
 		                        </div>
 		                        <div class="card-body">
-		                            
-		                            <div class="row gx-3 gy-2">
-										<div class="col-3">
-											<select class="form-select" aria-label="Default select example">
-												<option selected>사용여부</option>
-												<option value="1">N</option>
-												<option value="2">Y</option>
-											</select>
+		                            <form method="post" name="formList" id="formList" action="/member/memberList">
+			                            <div class="row gx-3 gy-2">
+											<div class="col-3">
+												<select id="shUseNy" name="shUseNy" class="form-select">
+													<option value="" <c:if test="${empty vo.shUseNy}">selected</c:if>>사용여부</option>
+													<option value="1" <c:if test="${vo.shUseNy eq 1}">selected</c:if>>Y</option>
+													<option value="0" <c:if test="${vo.shUseNy eq 0}">selected</c:if>>N</option>
+												</select>
+											</div>
+											<div class="col-3">
+												<select id="shOptionDate" name="shOptionDate" class="form-select">
+													<option value="" <c:if test="${empty vo.shOptionDate}">selected</c:if>>날짜</option>
+													<option value="1" <c:if test="${vo.shOptionDate eq 1}">selected</c:if>>등록일</option>
+													<option value="2" <c:if test="${vo.shOptionDate eq 2}">selected</c:if>>수정일</option>
+													<option value="3" <c:if test="${vo.shOptionDate eq 3}">selected</c:if>>생일</option>
+												</select>
+											</div>
+											<div class="col-3">
+												<fmt:parseDate var="shDateStart" value="${vo.shDateStart}" pattern="yyyy-MM-dd HH:mm:ss"/>
+												<input type="text" class="form-control" id="shDateStart"  placeholder="시작일" <fmt:formatDate  value="${vo.shDateStart}" />>
+											</div>
+											<div class="col-3">
+												<fmt:parseDate var="shDateEnd" value="${vo.shDateEnd}" pattern="yyyy-MM-dd HH:mm:ss"/>
+												<input type="text" class="form-control" id="shDateEnd"  placeholder="종료일" <fmt:formatDate  value="${vo.shDateEnd}" pattern="yyyy-MM-dd HH:mm:ss"/>>
+											</div>
+											<div class="col-3">
+												<select id="shOption" name="shOption" class="form-select" aria-label="Default select example" >
+													<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
+													<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드그룹 코드</option>
+													<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드그룹 이름 (한글)</option>
+													<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드그룹 이름 (영문)</option>
+												</select>
+											</div>
+											<div class="col-3">
+												<input class="form-control" type="text" placeholder="검색어" id="shValue" name="shValue" value="<c:out value="${vo.shValue }"/>" >
+											</div>
+											<div class="col-3">
+												<button class="btn btn-outline-primary" type="submit" style="margin-right:5px;"><i class="fa-solid fa-magnifying-glass"></i></button>
+												<button class="btn btn-outline-danger" type="button" id="btnReset" ><i class="fa-solid fa-arrow-rotate-left"></i></button>
+											</div>
 										</div>
-										<div class="col-3">
-											<select class="form-select" aria-label="Default select example">
-												<option selected>수정일</option>
-												<option value="1"></option>
-												<option value="2"></option>
-												<option value="3"></option>
-												<option value="4"></option>
-											</select>
-										</div>
-										<div class="col-3">
-											<select class="form-select" aria-label="Default select example">
-												<option selected>시작일</option>
-												<option value="1"></option>
-												<option value="2"></option>
-											</select>
-										</div>
-										<div class="col-3">
-											<select class="form-select" aria-label="Default select example">
-												<option selected>종료일</option>
-												<option value="1"></option>
-												<option value="2"></option>
-												<option value="3"></option>
-												<option value="4"></option>
-											</select>
-										</div>
-										<div class="col-3">
-											<select class="form-select" aria-label="Default select example" >
-												<option selected>검색구분</option>
-												<option value="1">--</option>
-												<option value="2">--</option>
-												<option value="3">--</option>
-												<option value="4">--</option>
-											</select>
-										</div>
-										<div class="col-3">
-											<form class="d-flex" role="search">
-												
-												<input class="form-control me-2" type="text" id="searchInput" placeholder="검색어" onkeyup="myFunction()" title="Type in a name">
-												
-												<button class="btn btn-outline-success" type="submit">Search</button>
-											</form>
-										</div>
-									</div>
-		                            
+									</form>
 		                            <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
 		                            	
 		                            	<div class="dataTable-container">
@@ -263,108 +258,138 @@
 				                                </thead>
 				                                <tbody id="my_tbody">
 				                                <c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('1')}"/>
-				                                    
-				                                	<c:forEach items="${list}" var="list" varStatus="status">
-													<tr>
-														<td>
-															<div class="form-check">
-										  						<input class="form-check-input" type="checkbox" name="chk_box" onclick="check();" value="" id="flexCheckDefault">
-										  					</div>
-														</td>
-														<td>
-															${status.count }
-														</td>
-														<td>
-															<c:out value="${list.ifmmName }"/>
-														</td>
-														<td>
-															<c:out value="${list.ifmmNickName }"/>
-														</td>
-														<td>
-															<c:out value="${list.ifmmEmail }"/>
-														</td>
-														<td>
-															<c:out value="${list.ifmmEmailDomain }"/>
-															<%-- <c:choose>
-																<c:when test="${list.ifmmEmailDomain eq list.ifcdName}">
-																	<c:out value="${list.ifcdName }"/>
-																</c:when>
-															</c:choose> --%>
-														</td>
-														<td>
-															<%-- 
-															<c:out value="${list.ifmmGender }"/>
-															 --%>
-															<c:forEach items="${listCodeGender}" var="listGender" varStatus="statusGender">
-																<c:if test="${list.ifmmGender eq listGender.ifcdSeq}">
-																	<c:out value="${listGender.ifcdName }"/>
-																</c:if>
+				                                    <c:choose>
+					                                	<c:when test="${fn:length(list) eq 0}">
+					                                		<tr>
+					                                			<td class="" colspan="12" style="text-align: center;"> There is no data!</td>
+					                                		</tr>
+					                                	</c:when>
+					                                	<c:otherwise>
+					                                	<c:forEach items="${list}" var="list" varStatus="status">
+															<tr style="cursor:pointer;" onclick="location.href='/member/memberForm?ifmmSeq=<c:out value="${list.ifmmSeq }"/>'">
+																<td>
+																	<div class="form-check">
+												  						<input class="form-check-input" type="checkbox" name="chk_box" onclick="check();" value="" id="flexCheckDefault">
+												  					</div>
+																</td>
+																<td>
+																	${status.count }
+																</td>
+																<td>
+																	<c:out value="${list.ifmmName }"/>
+																</td>
+																<td>
+																	<c:out value="${list.ifmmNickName }"/>
+																</td>
+																<td>
+																	<c:out value="${list.ifmmEmail }"/>
+																</td>
+																<td>
+																	<c:out value="${list.ifmmEmailDomain }"/>
+																</td>
+																<td>
+																	<%-- 
+																	<c:out value="${list.ifmmGender }"/>
+																	 --%>
+																	<c:forEach items="${listCodeGender}" var="listGender" varStatus="statusGender">
+																		<c:if test="${list.ifmmGender eq listGender.ifcdSeq}">
+																			<c:out value="${listGender.ifcdName }"/>
+																		</c:if>
+																	</c:forEach>
+																</td>
+																<td>
+																	<fmt:formatDate value="${list.ifmmDob }" pattern ="yyyy-MM-dd"/>
+																</td>
+																<td>
+																	<c:out value="${list.ifmmPhoneCarrier }"/>
+																</td>
+																<td>
+																	<c:out value="${list.ifmmPhone }"/>
+																</td>
+																<td>
+																	<c:out value="${list.ifmmMailNY }"/>
+																</td>
+																<td>
+																	<c:out value="${list.ifmmSmsNY }"/>
+																</td>
+															</tr>
 															</c:forEach>
-														</td>
-														<td>
-															<fmt:formatDate value="${list.ifmmDob }" pattern ="yyyy-MM-dd"/>
-														</td>
-														<td>
-															<c:out value="${list.ifmmPhoneCarrier }"/>
-														</td>
-														<td>
-															<c:out value="${list.ifmmPhone }"/>
-														</td>
-														<td>
-															<c:out value="${list.ifmmMailNY }"/>
-														</td>
-														<td>
-															<c:out value="${list.ifmmSmsNY }"/>
-														</td>
-													</tr>
-													</c:forEach>
-															
-				                                </tbody>
-				                            </table>
+														</c:otherwise>
+													</c:choose>
+					                            </tbody>
+					                        </table>
                             			</div>
                             			<div class="row">
 											
-											<div class="col-6" style="text-align:left;">
-												<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-square-minus"></i></button>
-												<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i class="fa-solid fa-xmark"></i></button>
-												<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-													<div class="modal-dialog">
-														<div class="modal-content">
-															<div class="modal-header">
-																<h5 class="modal-title" id="exampleModalLabel2">삭제</h5>
-																<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-															</div>
-															<div class="modal-body">
-															  정말 삭제하시겠습니까?
-															</div>
-															<div class="modal-footer">
-																<button type="button" class="btn btn-danger" data-bs-dismiss="modal" onClick="delete_row();">삭제하기</button>
-																<button type="button" class="btn btn-primary" data-bs-dismiss="modal">취소하기</button>
-															</div>
-														</div>
-													</div>
-												</div>
-												<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-													<div class="modal-dialog">
-														<div class="modal-content">
-															<div class="modal-header">
-																<h5 class="modal-title" id="exampleModalLabel">삭제</h5>
-																<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-															</div>
-															<div class="modal-body">
-															  정말 삭제하시겠습니까?
-															</div>
-															<div class="modal-footer">
-																<button type="button" class="btn btn-danger" data-bs-dismiss="modal" onClick="delete_row();">삭제하기</button>
-																<button type="button" class="btn btn-primary" data-bs-dismiss="modal">취소하기</button>
-															</div>
-														</div>
-													</div>
-												</div>
+											<div class="col">
+											
+												<!-- pagination s -->
+												<%-- <%@include file="../../../common/xdmin/includeV1/pagination.jsp"%> --%>
+												<!-- pagination e -->
+												
+												
+												<!-- 
+												<nav aria-label="Page navigation example">
+													<ul class="pagination justify-content-center">
+														<li class="page-item">
+															<a class="page-link" href="#">Previous</a>
+														</li>
+														<li class="page-item active"><a class="page-link" href="#">1</a></li>
+														<li class="page-item"><a class="page-link" href="#">2</a></li>
+														<li class="page-item"><a class="page-link" href="#">3</a></li>
+														<li class="page-item"><a class="page-link" href="#">┅</a></li>
+														<li class="page-item">
+															<a class="page-link" href="#">Next</a>
+														</li>
+													</ul>
+												</nav>
+												 -->
 											</div>
-											<div class="col-6" style="text-align:right;">
-												<button type="button" class="btn btn-success"><i class="fa-solid fa-file-csv"></i></button>
-												<button type="button" class="btn btn-primary" onClick="location.href='MemberRegForm.html'"><i class="fa-solid fa-square-plus"></i></button>
+											
+											<div class="row">
+											
+												<div class="col-6" style="text-align:left;">
+													<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-square-minus"></i></button>
+													<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i class="fa-solid fa-xmark"></i></button>
+													<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+														<div class="modal-dialog">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<h5 class="modal-title" id="exampleModalLabel2">삭제</h5>
+																	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+																</div>
+																<div class="modal-body">
+																  정말 삭제하시겠습니까?
+																</div>
+																<div class="modal-footer">
+																	<button type="button" class="btn btn-danger" data-bs-dismiss="modal" onClick="delete_row();">삭제하기</button>
+																	<button type="button" class="btn btn-primary" data-bs-dismiss="modal">취소하기</button>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+														<div class="modal-dialog">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<h5 class="modal-title" id="exampleModalLabel">삭제</h5>
+																	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+																</div>
+																<div class="modal-body">
+																  정말 삭제하시겠습니까?
+																</div>
+																<div class="modal-footer">
+																	<button type="button" class="btn btn-danger" data-bs-dismiss="modal" onClick="delete_row();">삭제하기</button>
+																	<button type="button" class="btn btn-primary" data-bs-dismiss="modal">취소하기</button>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="col-6" style="text-align:right;">
+													<button type="button" class="btn btn-success"><i class="fa-solid fa-file-csv"></i></button>
+													<button type="button" class="btn btn-primary" id="btnForm"><i class="fa-solid fa-square-plus"></i></button>
+												</div>
 											</div>
 										</div>
                             			
@@ -393,22 +418,45 @@
             </footer>
         </div>
     </div>
-    <script src="../resources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="../resources/assets/js/bootstrap.bundle.min.js"></script>
-	
-	<script src="../resources/assets/vendors/simple-datatables/simple-datatables.js"></script>
-	
-	<script src="https://kit.fontawesome.com/20c294a34b.js" crossorigin="anonymous"></script>
-	
-    <script src="../resources/assets/vendors/apexcharts/apexcharts.js"></script>
-    <script src="../resources/assets/js/pages/dashboard.js"></script>
-
+    <script src="https://kit.fontawesome.com/20c294a34b.js" crossorigin="anonymous"></script>
+    <script src="../resources/assets/js/main.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 	
 	<script>
+		
+		var goUrlList = "/member/memberList";
+		var goUrlForm = "/member/memberForm";
+		
+	
+		var seq = $("input:hidden[name=ifmmSeq]");
+	
+		$('#btnForm').on("click", function() {
+			goForm(0);                
+		});
+	
+		goForm = function(keyValue) {
+	    	/* if(keyValue != 0) seq.val(btoa(keyValue)); */
+	    	seq.val(keyValue);
+			form.attr("action", goUrlForm).submit();
+		}
+	
+		var form = $("form[name=formList]");
+		
+				
+		goList = function(thisPage) {
+			$("input:hidden[name=thisPage]").val(thisPage);
+			form.attr("action", goUrlList).submit();
+		}
+	    
+		$("btnReset").on("click", function(){
+			$(location).attr("href", goUrlList)
+		})
+	
+		/* 
         // Simple Datatable
         let table1 = document.querySelector('#table1');
         let dataTable = new simpleDatatables.DataTable(table1);
-        
+         */
         function allcheck(){
     	    var chk_box = document.getElementsByName("chk_box");
     	    var checkItem="";
@@ -432,7 +480,7 @@
      	}
     </script>
 
-    <script src="../resources/assets/js/main.js"></script>
+    
     
     
     

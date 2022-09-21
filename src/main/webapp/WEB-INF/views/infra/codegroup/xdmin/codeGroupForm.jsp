@@ -66,7 +66,7 @@
                         <li class="sidebar-title">Menu</li>
 
                         <li class="sidebar-item ">
-                            <a href="MemberListForm.html" class='sidebar-link'>
+                            <a href="../member/memberList" class='sidebar-link'>
                                 <i class="bi bi-person-badge-fill"></i>
                                 <span>MemberList</span>
                             </a>
