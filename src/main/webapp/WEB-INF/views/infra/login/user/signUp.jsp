@@ -25,7 +25,6 @@
 
 
 <body>
-	
 	<div class="limiter">
 		<div class="container-login150">
 			<div class="wrap-login150">
@@ -226,7 +225,7 @@
    					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn" type="button" onClick="location.href='login'">								
+							<button class="login100-form-btn" type="submit" ">								
 								Continue to checkout
 							</button>
 						</div>
