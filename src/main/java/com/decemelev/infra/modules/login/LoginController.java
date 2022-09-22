@@ -21,4 +21,9 @@ public class LoginController {
 		return "infra/login/user/signUp";
 	}
 	
+	@RequestMapping(value="findIdPassword", method = RequestMethod.GET)
+	public String findIdPassword(Locale locale, Model model) {
+		return "infra/login/user/findIdPassword";
+	}
+	
 }

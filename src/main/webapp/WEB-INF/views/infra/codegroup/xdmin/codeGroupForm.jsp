@@ -116,7 +116,7 @@
 
             <div class="page-heading">
                 <h3>CodeGroupForm</h3>
-                cgSeq =   <c:out value="${vo.ifcgSeq }"/><br>
+                ifcgSeq =   <c:out value="${vo.ifcgSeq }"/><br>
                 shUseNy  =  <c:out value="${vo.shUseNy }"/><br>
                 shOptionDate  =  <c:out value="${vo.shOptionDate }"/><br>
                 shOption  =  <c:out value="${vo.shOption }"/><br>

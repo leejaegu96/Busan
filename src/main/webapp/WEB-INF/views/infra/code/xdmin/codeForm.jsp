@@ -228,7 +228,7 @@
 											</div>
 											<div class="row" id="InputPadding">
 												<div class="col-6" style="text-align: left;">
-													<button type="button" class="btn btn-secondary" onClick=""><i class="fa-solid fa-bars"></i></button>
+													<button type="button" class="btn btn-secondary" id="btnList"><i class="fa-solid fa-bars"></i></button>
 													
 												</div>
 												<div class="col-6" style="text-align: right;">
@@ -348,7 +348,9 @@
 	   	}
 	}); 
 	
-	
+	$("#btnList").on("click", function(){
+		formVo.attr("action", goUrlList).submit();
+	});
 	
 	
 	$("#btnDelete").on("click", function(){

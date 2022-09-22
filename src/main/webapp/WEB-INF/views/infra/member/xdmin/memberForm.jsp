@@ -51,7 +51,7 @@
 						<li class="sidebar-item active "><a href="memberList" class='sidebar-link'> <i class="bi bi-person-badge-fill"></i> <span>MemberList</span>
 						</a></li>
 
-						<li class="sidebar-item"><a href="codeGroupList" class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>CodeGroup</span>
+						<li class="sidebar-item"><a href="../codeGroup/codeGroupList" class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>CodeGroup</span>
 						</a></li>
 
 						<li class="sidebar-item "><a href="../code/codeList" class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>Code</span>
@@ -95,10 +95,13 @@
 									
 									<div class="card-body">
 									
-										<form id="form" name="form" method="get">
-											
+										<form id="form" name="form" method="post">
+										<!-- *Vo.jsp s -->
+										<%@include file="memberVo.jsp"%>		<!-- #-> -->
+										<!-- *Vo.jsp e -->
+											<%-- 
 											<input type="hidden" name="ifmmSeq" value="<c:out value="${vo.ifmmSeq }"/>" />
-											
+											 --%>
 											<div class="row mb-3">
 												<label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
 												<div class="col-md-8 col-lg-9">
@@ -187,31 +190,38 @@
 												</div>
 											</div>
 											
-												<div class="row mb-3">
-													<label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
-													<div class="col-md-8 col-lg-9">
-														<div class="input-group">
-															<div class="col-6">
-																<div class="input-group">
-																	<input type="text" id="sample6_postcode" class="form-control" placeholder="우편번호" disabled >
-																	<button class="btn btn-outline-secondary" type="button"  onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
-																		<i class="fa-solid fa-magnifying-glass"></i>
-																	</button>
-																	<button class="btn btn-outline-secondary" type="reset" onclick="" value="리셋하기">
-																		<i class="fa-solid fa-xmark"></i>
-																	</button>
-																</div>
-															</div>
-															<div class="input-group" style="padding-top: 5px;">
-																<input type="text" class="form-control" id="sample6_address" placeholder="주소" disabled >
-															</div>
-															<div class="input-group" style="padding-top: 5px;">
-																<input type="text" class="form-control" id="sample6_detailAddress" placeholder="상세주소" required>
-																<input type="text" class="form-control" id="sample6_extraAddress" placeholder="참고항목" disabled >
+											<div class="row mb-3">
+												<label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
+												<div class="col-md-8 col-lg-9">
+													<div class="input-group">
+														<div class="col-6">
+															<div class="input-group">
+																<input type="text" id="sample6_postcode" class="form-control" placeholder="우편번호" disabled >
+																<button class="btn btn-outline-secondary" type="button"  onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+																	<i class="fa-solid fa-magnifying-glass"></i>
+																</button>
+																<button class="btn btn-outline-secondary" type="button" id="btnAddressClear" value="리셋하기">
+																	<i class="fa-solid fa-xmark"></i>
+																</button>
 															</div>
 														</div>
+														<div class="input-group" style="padding-top: 5px;">
+															<input type="text" class="form-control" id="sample6_address" placeholder="주소" disabled >
+														</div>
+														<div class="input-group" style="padding-top: 5px;">
+															<input type="text" class="form-control" id="sample6_detailAddress" placeholder="상세주소" required>
+															<input type="text" class="form-control" id="sample6_extraAddress" placeholder="참고항목" disabled >
+														</div>
+														<div class="input-group" style="padding-top: 5px;padding-bottom:5px;">
+															<input type="text" class="form-control" id="ifmaLatArray0"  placeholder="위도" disabled>
+															<input type="text" class="form-control"  id="ifmaLngArray0"  placeholder="경도" disabled >
+														</div>
 													</div>
+													<p id="result"></p>
+													<div id="map" style="width:500px;height:400px;"></div>
 												</div>
+												
+											</div>
 											
 											<div class="row" id="InputPadding">
 												<div class="col-6" style="text-align: left;">
@@ -258,7 +268,12 @@
 												</div>
 											</div>
 										</form>
-
+										
+										<form name="formVo" id="formVo" method="post">
+										<!-- *Vo.jsp s -->
+										<%@include file="memberVo.jsp"%>		<!-- #-> -->
+										<!-- *Vo.jsp e -->
+										</form>
 									</div>
 								</div>
 
@@ -294,7 +309,34 @@
 	<script src="https://kit.fontawesome.com/20c294a34b.js" crossorigin="anonymous"></script>
 	<script src="../resources/assets/js/main.js"></script>
 	
-	<script type="text/javascript">
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b47c27c3c9651fa1057b04c48b7117fe&libraries=services"></script>
+	<script>
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+    mapOption = { 
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };
+
+	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+	
+	// 지도가 이동, 확대, 축소로 인해 중심좌표가 변경되면 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
+	kakao.maps.event.addListener(map, 'center_changed', function() {
+
+    // 지도의  레벨을 얻어옵니다
+    var level = map.getLevel();
+
+    // 지도의 중심좌표를 얻어옵니다 
+    var latlng = map.getCenter(); 
+
+    var message = '<p>지도 레벨은 ' + level + ' 이고</p>';
+    message += '<p>중심 좌표는 위도 ' + latlng.getLat() + ', 경도 ' + latlng.getLng() + '입니다</p>';
+
+    var resultDiv = document.getElementById('result');
+    resultDiv.innerHTML = message;
+
+});
+	</script>
+	<script type="text/javascript" >
 	function sample6_execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -333,11 +375,31 @@
                 } else {
                     document.getElementById("sample6_extraAddress").value = '';
                 }
-
+				
+                
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('sample6_postcode').value = data.zonecode;
                 document.getElementById("sample6_address").value = addr;
-                // 커서를 상세주소 필드로 이동한다.
+				
+                
+				/* lat and lng from address s */
+ 				
+				// 주소-좌표 변환 객체를 생성
+				var geocoder = new daum.maps.services.Geocoder();
+				
+				// 주소로 좌표를 검색
+				geocoder.addressSearch(addr, function(result, status) {
+				 
+					// 정상적으로 검색이 완료됐으면,
+					if (status == daum.maps.services.Status.OK) {
+						
+						document.getElementById("ifmaLatArray0").value=result[0].y;
+						document.getElementById("ifmaLngArray0").value=result[0].x;
+					}
+				});
+				/* lat and lng from address e */
+				
+				// 커서를 상세주소 필드로 이동한다.
                 document.getElementById("sample6_detailAddress").focus();
             }
         }).open();
@@ -366,8 +428,6 @@
 	   		/* if (validationInst() == false) return false; */
 	   		form.attr("action", goUrlInst).submit();
 	   	} else {
-	   		alert($("input[name=ifmmName]").val())
-	   		alert($("input[name=ifmmSeq]").val())
 	   		// update
 	   		/* keyName.val(atob(keyName.val())); */
 	   		/* if (validationUpdt() == false) return false; */
@@ -406,40 +466,15 @@
 	});
 	
 	
+	$("#btnAddressClear").on("click", function(){
+		$("#sample6_postcode").val('');
+		$("#sample6_address").val('');
+		$("#sample6_detailAddress").val('');
+		$("#sample6_extraAddress").val('');
+		$("#ifmaLatArray0").val('');
+		$("#ifmaLngArray0").val('');
+	});
 	
-	
-    const reader = new FileReader();
-
-    reader.onload = (readerEvent) => {
-        document.querySelector("#img_section").setAttribute("src", readerEvent.target.result);
-        //파일을 읽는 이벤트가 발생하면 img_section의 src 속성을 readerEvent의 결과물로 대체함
-    };
-
-    document.querySelector("#upload_file").addEventListener("change", (changeEvent) => {
-        //upload_file 에 이벤트리스너를 장착
-
-        const imgFile = changeEvent.target.files[0];
-        reader.readAsDataURL(imgFile);
-        //업로드한 이미지의 URL을 reader에 등록
-    })
-
-    const exampleModal = document.getElementById('exampleModal')
-    	exampleModal.addEventListener('show.bs.modal', event => {
-    	// Button that triggered the modal
-    const button = event.relatedTarget
-    	// Extract info from data-bs-* attributes
-    const recipient = button.getAttribute('data-bs-whatever')
-    	// If necessary, you could initiate an AJAX request here
-    	// and then do the updating in a callback.
-    	//
-    	// Update the modal's content.
-    const modalTitle = exampleModal.querySelector('.modal-title')
-    const modalBodyInput = exampleModal.querySelector('.modal-body input')
-    	
-    	modalTitle.textContent = `New message to ${recipient}`
-    	modalBodyInput.value = recipient
-    })
-    
     </script>
 
 

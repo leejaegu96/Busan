@@ -24,8 +24,8 @@
 <body>
 	
 <div class="limiter">
-	<div class="container-login100">
-		<div class="wrap-login100">
+	<div class="container-login150">
+		<div class="wrap-login150">
 			<h4 class="mb-3">Find your ID / PASSWORD</h4>
 			<div class="bd-example">
 				<nav>

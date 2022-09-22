@@ -69,10 +69,6 @@ public class MemberController {
 	@RequestMapping(value = "memberUpdt")
 	public String memberUpdt(MemberVo vo, Member dto, Model model, RedirectAttributes redirectAttributes) throws Exception {
 		
-		System.out.println("업데이트 가즈아!");
-		System.out.println("name : " + dto.getIfmmName());
-		System.out.println("nickname : " + dto.getIfmmNickName());
-		
 		int result = service.update(dto);
 		System.out.println("Controller update Result : " + result);
 		redirectAttributes.addFlashAttribute("vo",vo);

@@ -20,9 +20,13 @@
 	</sql>
 	
 	<select id="selectList" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql" />
 			SELECT
 				a.*
-			FROM infrMember a
+			<include refid="selectCommon" />
+			ORDER BY a.ifmmSeq DESC
+			<include refid="Base.orderByLimitForMysql" />
+		<include refid="Base.selectListLowerForMysql" />
 	</select> 
 	
 	<select id="selectOneCount" resultType="Integer">

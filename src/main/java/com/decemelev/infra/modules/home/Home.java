@@ -9,8 +9,15 @@ public class Home {
 	private String sdwWord;
 	private String sdwMean;
 	private String sdwExample;
-	private String SdDate_sddSeq;
+	private String sdDate_sddSeq;
 	
+	
+	public String getSdDate_sddSeq() {
+		return sdDate_sddSeq;
+	}
+	public void setSdDate_sddSeq(String sdDate_sddSeq) {
+		this.sdDate_sddSeq = sdDate_sddSeq;
+	}
 	public String getSddSeq() {
 		return sddSeq;
 	}
@@ -47,12 +54,7 @@ public class Home {
 	public void setSdwExample(String sdwExample) {
 		this.sdwExample = sdwExample;
 	}
-	public String getSdDate_sddSeq() {
-		return SdDate_sddSeq;
-	}
-	public void setSdDate_sddSeq(String sdDate_sddSeq) {
-		SdDate_sddSeq = sdDate_sddSeq;
-	}
+	
 	
 	
 	

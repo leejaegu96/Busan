@@ -12,23 +12,24 @@ public class CodeGroup {
 	private Integer ifcgCount;
 	private Integer count;
 	private Integer ifcgDelNy;
-	private String ifcgRegDate;
-	private String ifcgModDate;
+	private Date ifcgRegDate;
+	private Date ifcgModDate;
 	
 	
 	
 		
 	
-	public String getIfcgRegDate() {
+
+	public Date getIfcgRegDate() {
 		return ifcgRegDate;
 	}
-	public void setIfcgRegDate(String ifcgRegDate) {
+	public void setIfcgRegDate(Date ifcgRegDate) {
 		this.ifcgRegDate = ifcgRegDate;
 	}
-	public String getIfcgModDate() {
+	public Date getIfcgModDate() {
 		return ifcgModDate;
 	}
-	public void setIfcgModDate(String ifcgModDate) {
+	public void setIfcgModDate(Date ifcgModDate) {
 		this.ifcgModDate = ifcgModDate;
 	}
 	public Integer getIfcgDelNy() {

@@ -53,7 +53,7 @@
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn" type="button" onclick="location.href='../home/home';">								
+							<button class="login100-form-btn" Onclick="href=''../home/home'"  >								
 								Login
 							</button>
 						</div>
@@ -79,16 +79,16 @@
 								Don’t have an account?
 							</span>
 	
-							<a class="txt2" href="#" onClick="location.href='signUp'" style="cursor:pointer;">
+							<a class="txt2" href="signUp" style="cursor:pointer;">
 								Sign Up
 							</a>
 							<br>
 							<div class="cover">
-								<a class="txt2" href="#" onClick="location.href='Find/user_LoginForm_IdPwdFindInput.html'">
+								<a class="txt2" href="findIdPassword" style="cursor:pointer;">
 									Forgot your ID?
 								</a>
 								&nbsp;&nbsp;&nbsp;
-								<a class="txt2" href="#" onClick="location.href='Find/user_LoginForm_IdPwdFindInput.html'">
+								<a class="txt2" href="findIdPassword" style="cursor:pointer;">
 									Forgot your Password?
 								</a>
 							</div>

@@ -115,7 +115,7 @@
                         <li class="sidebar-title">Menu</li>
 
                         <li class="sidebar-item ">
-                            <a href="MemberListForm.html" class='sidebar-link'>
+                            <a href="../member/memberList" class='sidebar-link'>
                                 <i class="bi bi-person-badge-fill"></i>
                                 <span>MemberList</span>
                             </a>
@@ -220,7 +220,7 @@
 				
             <div class="page-heading">
                 <h3>CodeGroup Management</h3>
-                cgSeq =   <c:out value="${vo.ifcgSeq }"/><br>
+                ifcgSeq =   <c:out value="${vo.ifcgSeq }"/><br>
                 shUseNy  =  <c:out value="${vo.shUseNy }"/><br>
                 shOptionDate  =  <c:out value="${vo.shOptionDate }"/><br>
                 shOption  =  <c:out value="${vo.shOption }"/><br>
@@ -363,23 +363,6 @@
 												<%@include file="../../../common/xdmin/includeV1/pagination.jsp"%>
 												<!-- pagination e -->
 												
-												
-												<!-- 
-												<nav aria-label="Page navigation example">
-													<ul class="pagination justify-content-center">
-														<li class="page-item">
-															<a class="page-link" href="#">Previous</a>
-														</li>
-														<li class="page-item active"><a class="page-link" href="#">1</a></li>
-														<li class="page-item"><a class="page-link" href="#">2</a></li>
-														<li class="page-item"><a class="page-link" href="#">3</a></li>
-														<li class="page-item"><a class="page-link" href="#">┅</a></li>
-														<li class="page-item">
-															<a class="page-link" href="#">Next</a>
-														</li>
-													</ul>
-												</nav>
-												 -->
 											</div>
 											
 											<div class="row">

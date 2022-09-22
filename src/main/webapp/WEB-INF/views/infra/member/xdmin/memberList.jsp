@@ -63,14 +63,14 @@
                         </li>
                         
                         <li class="sidebar-item">
-                            <a href="CodeGroupList.html" class='sidebar-link'>
+                            <a href="../codeGroup/codeGroupList" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>CodeGroup</span>
                             </a>
                         </li>
                         
                         <li class="sidebar-item ">
-                            <a href="CodeList.html" class='sidebar-link'>
+                            <a href="../code/codeList" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Code</span>
                             </a>
@@ -102,6 +102,61 @@
                 <a href="#" class="burger-btn d-block d-xl-none">
                     <i class="bi bi-justify fs-3"></i>
                 </a>
+                <div class="dropdown">
+                	<button class="btn" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float:right">
+                		<i class="fa-regular fa-face-laugh"></i>
+                	</button>
+                	<ul class="dropdown-menu">
+					  <li>
+		                <a class="dropdown-item" href="#">
+		                  <div class="d-flex">
+		                    <div class="flex-shrink-0 me-3" >
+		                      <div class="avatar">
+		                        <img src="../resources/assets/images/faces/1.jpg" alt="" class="w-px-40 h-auto rounded-circle" style="width:40px;">
+		                      </div>
+		                    </div>
+		                    <div class="flex-grow-1">
+		                      <span class="fw-semibold d-block">JaeguLee</span>
+		                      <small class="text-muted">Admin</small>
+		                    </div>
+		                  </div>
+		                </a>
+		              </li>
+		              <li>
+		                <div class="dropdown-divider"></div>
+		              </li>
+		              <li>
+		                <a class="dropdown-item" href="#">
+		                  <i class="bx bx-user me-2"></i>
+		                  <span class="align-middle">My Profile</span>
+		                </a>
+		              </li>
+		              <li>
+		                <a class="dropdown-item" href="#">
+		                  <i class="bx bx-cog me-2"></i>
+		                  <span class="align-middle">Settings</span>
+		                </a>
+		              </li>
+		              <li>
+		                <a class="dropdown-item" href="#">
+		                  <span class="d-flex align-items-center align-middle">
+		                    <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
+		                    <span class="flex-grow-1 align-middle">Billing</span>
+		                    <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
+		                  </span>
+		                </a>
+		              </li>
+		              <li>
+		                <div class="dropdown-divider"></div>
+		              </li>
+		              <li>
+		                <a class="dropdown-item" href="auth-login-basic.html">
+		                  <i class="bx bx-power-off me-2"></i>
+		                  <span class="align-middle">Log Out</span>
+		                </a>
+		              </li>
+					</ul>
+				</div>
             </header>
 
             <div class="page-heading">
@@ -118,7 +173,7 @@
                                         <div class="row">
                                             <div class="col-md-4" >
                                                 <div class="avatar avatar-xl" id="image-icon">
-			                                        <!-- <img src="../assets/images/faces/1.jpg" alt="Face 1" style="width:50px;height:50px;"> -->
+			                                        <img src="../resources/assets/images/faces/1.jpg" alt="Face 1" style="width:50px;height:50px;">
 			                                    </div>
                                             </div>
                                             <div class="col-md-8" >
@@ -187,10 +242,21 @@
                          <section class="section">
 		                    <div class="card">
 		                        <div class="card-header">
-		                            Simple Datatable
+		                            <h3>Member Management</h3>
+					                ifmmSeq =   <c:out value="${vo.ifmmSeq }"/><br>
+					                shUseNy  =  <c:out value="${vo.shUseNy }"/><br>
+					                shOptionDate  =  <c:out value="${vo.shOptionDate }"/><br>
+					                shOption  =  <c:out value="${vo.shOption }"/><br>
+					                shValue  =  <c:out value="${vo.shValue }"/><br>
 		                        </div>
 		                        <div class="card-body">
 		                            <form method="post" name="formList" id="formList" action="/member/memberList">
+		                            
+		                            	<input type="hidden" name="ifmmSeq">
+	                            		<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>" >
+	                            		<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>" >
+	                            		<input type="hidden" name="checkboxSeqArray">
+	                            		
 			                            <div class="row gx-3 gy-2">
 											<div class="col-3">
 												<select id="shUseNy" name="shUseNy" class="form-select">
@@ -218,9 +284,9 @@
 											<div class="col-3">
 												<select id="shOption" name="shOption" class="form-select" aria-label="Default select example" >
 													<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
-													<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드그룹 코드</option>
-													<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드그룹 이름 (한글)</option>
-													<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드그룹 이름 (영문)</option>
+													<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>번호</option>
+													<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>이름</option>
+													<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>닉네임</option>
 												</select>
 											</div>
 											<div class="col-3">
@@ -244,6 +310,7 @@
 										  					</div>
 														</th>
 														<th>#</th>
+														<th>Seq</th>
 				                                        <th>Name</th>
 				                                        <th>NickName</th>
 				                                        <th>Email</th>
@@ -261,7 +328,7 @@
 				                                    <c:choose>
 					                                	<c:when test="${fn:length(list) eq 0}">
 					                                		<tr>
-					                                			<td class="" colspan="12" style="text-align: center;"> There is no data!</td>
+					                                			<td class="" colspan="13" style="text-align: center;"> There is no data!</td>
 					                                		</tr>
 					                                	</c:when>
 					                                	<c:otherwise>
@@ -273,10 +340,14 @@
 												  					</div>
 																</td>
 																<td>
-																	${status.count }
+																	<c:out value="${vo.totalRows - ((vo.thisPage -1) * vo.rowNumToShow + status.index) }"/>
 																</td>
 																<td>
-																	<c:out value="${list.ifmmName }"/>
+																	<c:out value="${list.ifmmSeq }"/>
+																</td>
+																<td>
+																	<a href="javascript:goForm(<c:out value="${list.ifmmSeq }"/>)" class="text-decoration-none"><c:out value="${list.ifmmName }"/></a>
+																	<%-- <c:out value="${list.ifmmName }"/> --%>
 																</td>
 																<td>
 																	<c:out value="${list.ifmmNickName }"/>
@@ -324,26 +395,9 @@
 											<div class="col">
 											
 												<!-- pagination s -->
-												<%-- <%@include file="../../../common/xdmin/includeV1/pagination.jsp"%> --%>
+												<%@include file="../../../common/xdmin/includeV1/pagination.jsp"%>
 												<!-- pagination e -->
 												
-												
-												<!-- 
-												<nav aria-label="Page navigation example">
-													<ul class="pagination justify-content-center">
-														<li class="page-item">
-															<a class="page-link" href="#">Previous</a>
-														</li>
-														<li class="page-item active"><a class="page-link" href="#">1</a></li>
-														<li class="page-item"><a class="page-link" href="#">2</a></li>
-														<li class="page-item"><a class="page-link" href="#">3</a></li>
-														<li class="page-item"><a class="page-link" href="#">┅</a></li>
-														<li class="page-item">
-															<a class="page-link" href="#">Next</a>
-														</li>
-													</ul>
-												</nav>
-												 -->
 											</div>
 											
 											<div class="row">

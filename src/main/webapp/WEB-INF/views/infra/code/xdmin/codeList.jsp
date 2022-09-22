@@ -92,7 +92,7 @@
 					<ul class="menu">
 						<li class="sidebar-title">Menu</li>
 
-						<li class="sidebar-item "><a href="MemberListForm.html" class='sidebar-link'> <i class="bi bi-person-badge-fill"></i> <span>MemberList</span>
+						<li class="sidebar-item "><a href="../member/memberList" class='sidebar-link'> <i class="bi bi-person-badge-fill"></i> <span>MemberList</span>
 						</a></li>
 
 						<li class="sidebar-item"><a href="../codeGroup/codeGroupList" class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>CodeGroup</span>
@@ -208,9 +208,9 @@
 												<div class="col-3">
 													<select id="shOption" name="shOption" class="form-select" aria-label="Default select example">
 														<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
-														<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드그룹 코드</option>
-														<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드그룹 이름 (한글)</option>
-														<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드그룹 이름 (영문)</option>
+														<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드</option>
+														<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드 이름 (한글)</option>
+														<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드 이름 (영문)</option>
 													</select>
 												</div>
 												<div class="col-3">
@@ -272,7 +272,10 @@
 																		<td><c:out value="${list.ifcgName }" /></td>
 																		<td><c:out value="${list.ifcdSeq }" /></td>
 																		<td></td>
-																		<td><c:out value="${list.ifcdName }" /></td>
+																		<td>
+																		<a href="javascript:goForm(<c:out value="${list.ifcdSeq }"/>)" class="text-decoration-none"><c:out value="${list.ifcdName }"/></a>
+																		<%-- <c:out value="${list.ifcdName }" /> --%>
+																		</td>
 																		<td><c:out value="${list.ifcdEngName }" /></td>
 
 																		<td><c:out value="${list.ifcdUseNy }" /></td>
@@ -399,10 +402,11 @@
     <script src="../resources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="../resources/assets/js/bootstrap.bundle.min.js"></script>
 	 -->
-
+	<script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 	<script src="https://kit.fontawesome.com/20c294a34b.js" crossorigin="anonymous"></script>
 	<script src="../resources/assets/js/main.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
 	<script type="text/javascript">
     
