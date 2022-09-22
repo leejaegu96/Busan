@@ -29,18 +29,19 @@
 		<div class="container-login150">
 			<div class="wrap-login150">
 				<h4 class="mb-3">Create your learner account</h4>
-		          <form class="needs-validation" novalidate>
+		          <fo
+		          rm class="needs-validation" novalidate>
 		            <div class="row">
 		              <div class="col-md-6 mb-3">
-		                <label for="username">Name</label>
-		                <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+		                <label for="Name">Name</label>
+		                <input type="text" class="form-control" id="Name" placeholder="" value="" required>
 		                <div class="invalid-feedback">
 		                  Valid name is required.
 		                </div>
 		              </div>
 		              <div class="col-md-6 mb-3">
 		                <label for="user_nickname">Nickname</label>
-		                <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+		                <input type="text" class="form-control" id="user_nickname" placeholder="" value="" required>
 		                <div class="invalid-feedback">
 		                  Valid last nickname is required.
 		                </div>
@@ -49,15 +50,15 @@
 					
 					<div class="row">
 		              <div class="col-md-6 mb-3">
-		                <label for="username">Password</label>
+		                <label for="Password">Password</label>
 		                <input type="password" class="form-control" id="Password" placeholder="" value="" required>
 		                <div class="invalid-feedback">
 		                  Valid password is required.
 		                </div>
 		              </div>
 		              <div class="col-md-6 mb-3">
-		                <label for="username">Password Check</label>
-		                <input type="password" class="form-control" id="Password" placeholder="" value="" required>
+		                <label for="Password1">Password Check</label>
+		                <input type="password" class="form-control" id="Password1" placeholder="" value="" required>
 		                <div class="invalid-feedback">
 		                  Valid password is required.
 		                </div>
