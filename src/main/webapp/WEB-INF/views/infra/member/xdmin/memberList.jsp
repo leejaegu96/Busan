@@ -311,8 +311,8 @@
 														</th>
 														<th>#</th>
 														<th>Seq</th>
+														<th>Id</th>
 				                                        <th>Name</th>
-				                                        <th>NickName</th>
 				                                        <th>Email</th>
 				                                        <th>EmailDomail</th>
 				                                        <th>Gender</th>
@@ -346,11 +346,11 @@
 																	<c:out value="${list.ifmmSeq }"/>
 																</td>
 																<td>
-																	<a href="javascript:goForm(<c:out value="${list.ifmmSeq }"/>)" class="text-decoration-none"><c:out value="${list.ifmmName }"/></a>
-																	<%-- <c:out value="${list.ifmmName }"/> --%>
+																	<c:out value="${list.ifmmId }"/>
 																</td>
 																<td>
-																	<c:out value="${list.ifmmNickName }"/>
+																	<a href="javascript:goForm(<c:out value="${list.ifmmSeq }"/>)" class="text-decoration-none"><c:out value="${list.ifmmName }"/></a>
+																	<%-- <c:out value="${list.ifmmName }"/> --%>
 																</td>
 																<td>
 																	<c:out value="${list.ifmmEmail }"/>

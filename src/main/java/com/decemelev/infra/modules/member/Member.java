@@ -6,7 +6,7 @@ public class Member {
 	
 	private String ifmmSeq;
 	private String ifmmName;
-	private String ifmmNickName;
+	private String ifmmId;
 	private String ifmmEmail;
 	private Integer ifmmEmailDomain;
 	private String ifmmPassword;
@@ -23,6 +23,19 @@ public class Member {
 	
 	
 	private Integer ifmmDelNy;
+
+
+	
+
+
+	public String getIfmmId() {
+		return ifmmId;
+	}
+
+
+	public void setIfmmId(String ifmmId) {
+		this.ifmmId = ifmmId;
+	}
 
 
 	public String getIfmmSeq() {
@@ -45,14 +58,7 @@ public class Member {
 	}
 
 
-	public String getIfmmNickName() {
-		return ifmmNickName;
-	}
-
-
-	public void setIfmmNickName(String ifmmNickName) {
-		this.ifmmNickName = ifmmNickName;
-	}
+	
 
 
 	public String getIfmmEmail() {

@@ -15,7 +15,7 @@
 			<choose>
 				<when test="shOption == 1">AND ifmmSeq = #{shValue}</when>
 				<when test="shOption == 2">AND ifmmName LIKE CONCAT('%',#{shValue},'%')</when>
-				<when test="shOption == 3">AND ifmmNickName LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 3">AND ifmmId LIKE CONCAT('%',#{shValue},'%')</when>
 			</choose>
 	</sql>
 	
@@ -45,11 +45,11 @@
 	<insert id="insert">
 		INSERT INTO infrMember (
 			ifmmName
-			,ifmmNickName
+			,ifmmId
 			)
 		VALUES (
 			#{ifmmName}
-			,#{ifmmNickName}
+			,#{ifmmId}
 		)
 		<selectKey resultType="String" keyProperty="ifmmSeq" order="AFTER">
 			SELECT last_insert_id()
@@ -60,7 +60,7 @@
 		UPDATE infrMember
 		SET
 			ifmmName = #{ifmmName}
-			,ifmmNickName = #{ifmmNickName}
+			,ifmmId = #{ifmmId}
 			<!-- <include refid="Base.updateModColumnValue" /> -->
 		WHERE 
 			ifmmSeq = #{ifmmSeq}
@@ -77,5 +77,13 @@
 	<delete id="delete">
 		DELETE FROM infrMember WHERE ifmmSeq = #{ifmmSeq}
 	</delete>
-
+	
+	<select id = "selectOneIdCheck" resultType="Integer">
+		SELECT
+			count(*)
+		FROM infrMember a
+		WHERE 1=1 
+			AND ifmmId = #{ifmmId}
+	</select>
+	
 </mapper>	

@@ -29,21 +29,25 @@
 		<div class="container-login150">
 			<div class="wrap-login150">
 				<h4 class="mb-3">Create your learner account</h4>
-		          <form class="needs-validation" novalidate>
+		          <form>
 		            <div class="row">
 		              <div class="col-md-6 mb-3">
-		                <label for="user_nickname">Nickname</label>
-		                <input type="text" class="form-control" id="user_nickname" placeholder="" value="" required>
-		                <div class="invalid-feedback">
-		                  Valid last nickname is required.
-		                </div>
+		                <label for="ifmmId" class="form-label">Id</label>
+		                <input type="hidden" id="ifmmIdAllowedNy" name="ifmmIdAllowedNy" value="0">
+			                <input type="text" class="form-control" id="ifmmId" name="ifmmId" 
+			                	value="<c:out value="${item.ifmmId}"/>"
+			                	maxlength="20"
+			                	placeholder="영대소문자,숫자,특수문자(-_.),4~20자리"
+			                	<c:if test="${not empty item.ifmmId }"> readonly</c:if>
+			                >
+			              <input type="button" id= "idcheck" value= "idcheck">
+			              
+		                <div class="invaild-feedback" id="ifmmIdFeedback"></div>
 		              </div>
 		              <div class="col-md-6 mb-3">
 		                <label for="Name">Name</label>
 		                <input type="text" class="form-control" id="Name" placeholder="" value="" required>
-		                <div class="invalid-feedback">
-		                  Valid name is required.
-		                </div>
+		                
 		              </div>
 		            </div>
 					
@@ -239,10 +243,22 @@
 
 
 </body>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/20c294a34b.js" crossorigin="anonymous"></script>
+
+<script>
+$("#ifmmId").on("onClick", function(){
+	alert('asdf');
+	
+	
+		
+	});
+</script>
+
 <script type="text/javascript">
+
 //Example starter JavaScript for disabling form submissions if there are invalid fields
 (function() {
   'use strict';
@@ -343,5 +359,8 @@ function sample6_execDaumPostcode() {
         }
     }).open();
 }
+
+
 </script>
+
 </html>

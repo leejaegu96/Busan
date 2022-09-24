@@ -125,16 +125,26 @@
 											</div>
 
 											<div class="row mb-3">
+												<label for="ifmmId" class="col-md-4 col-lg-3 col-form-label">Id</label>
+												<input type="hidden" id="ifmmIdAllowedNy" name="ifmmIdAllowedNy" value="0">
+												<div class="col-md-8 col-lg-9">
+													<input type="text" class="form-control" id="ifmmId" name="ifmmId" 
+									                	value="<c:out value="${item.ifmmId}"/>"
+									                	maxlength="20"
+									                	placeholder="영대소문자,숫자,특수문자(-_.),4~20자리"
+									                	<c:if test="${not empty item.ifmmId }"> readonly</c:if>
+									                >
+									            <div class="invalid-feedback" id="ifmmIdFeedback"></div>
+								                <c:if test="${list.ifmmSeq eq 0 || list.ifmmSeq eq null }">
+											    	<input type="button" id= "idcheck" value="아이디 중복확인" style="margin-top: 10px;">
+											    </c:if>
+												</div>
+											</div>
+											
+											<div class="row mb-3">
 												<label for="Name" class="col-md-4 col-lg-3 col-form-label">Name</label>
 												<div class="col-md-8 col-lg-9">
 													<input  type="text" class="form-control" id="ifmmName" name="ifmmName" value="<c:out value="${item.ifmmName }"/>" >
-												</div>
-											</div>
-
-											<div class="row mb-3">
-												<label for="NickName" class="col-md-4 col-lg-3 col-form-label">NickName</label>
-												<div class="col-md-8 col-lg-9">
-													<input type="text" class="form-control" id= "ifmmNickName" name="ifmmNickName"  value="<c:out value="${item.ifmmNickName }"/>" >
 												</div>
 											</div>
 
@@ -310,7 +320,47 @@
 	<script src="../resources/assets/js/main.js"></script>
 	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b47c27c3c9651fa1057b04c48b7117fe&libraries=services"></script>
+	
+	<script type="text/javascript">
+	$("#idcheck").on("click", function(){
+		alert('asdf');
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			/* ,dataType:"json" */
+			,url: "/member/checkId"
+			/* ,data : $("#formLogin").serialize() */
+			,data : { "ifmmId" : $("#ifmmId").val() }
+			,success: function(response) {
+				if(response.rt == "success") {
+					document.getElementById("ifmmId").classList.add('is-valid');
+
+					document.getElementById("ifmmIdFeedback").classList.remove('invalid-feedback');
+					document.getElementById("ifmmIdFeedback").classList.add('valid-feedback');
+					document.getElementById("ifmmIdFeedback").innerText = "사용 가능 합니다.";
+					
+					document.getElementById("ifmmIdAllowedNy").value = 1;
+					
+				} else {
+					document.getElementById("ifmmId").classList.add('is-invalid');
+					
+					document.getElementById("ifmmIdFeedback").classList.remove('valid-feedback');
+					document.getElementById("ifmmIdFeedback").classList.add('invalid-feedback');
+					document.getElementById("ifmmIdFeedback").innerText = "사용 불가능 합니다";
+					
+					document.getElementById("ifmmIdAllowedNy").value = 0;
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	});
+	</script>
+	
 	<script>
+	
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div
     mapOption = { 
         center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -337,6 +387,7 @@
 });
 	</script>
 	<script type="text/javascript" >
+	
 	function sample6_execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {

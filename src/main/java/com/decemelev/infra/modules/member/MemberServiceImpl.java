@@ -66,4 +66,14 @@ public class MemberServiceImpl implements MemberService {
 		int result = dao.delete(vo);
 		return result;
 	}
+	
+	@Override
+	public int selectOneIdCheck(Member dto) throws Exception {
+		int result = dao.selectOneIdCheck(dto);
+		return result;
+	}
+	/*
+	 * @Override public int signUp(Member dto) throws Exception { int result =
+	 * dao.signUp(dto); return result; }
+	 */
 }
