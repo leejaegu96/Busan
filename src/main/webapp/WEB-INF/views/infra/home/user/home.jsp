@@ -53,6 +53,42 @@
 
 			<!-- Banner -->
 				<section id="banner">
+					
+					<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+					  <div class="carousel-inner">
+					  	<h3>Today's Word</h3><br>
+					  	
+					  	<div class="carousel-item active" data-bs-interval="10000">
+					      <div style="max-width:450px; width:100%; height:500px; height:100%; text-align:left; margin:auto; text-align:center; background-color: #666666;">
+					      	<span style="line-height:200%;">
+						    	Today's Word
+						    </span>
+						  </div>
+					    </div>
+					  	
+					  	<c:forEach items="${list}" var="list" varStatus="status">
+					    <div class="carousel-item" data-bs-interval="10000">
+					      <div style="max-width:450px; width:100%; height:500px; height:100%; text-align:left; margin:auto; background-color: #666666;">
+						    <h4> <c:out value="${list.sdwWord }"/> &nbsp; <i class="fa-solid fa-volume-high"></i></h4><br>
+						    <span style="line-height:200%;">
+						    	<span style="color:Blue; font-style: italic;"><c:out value="${list.sdwmPartOfSpeech}"/></span> &nbsp; <b><c:out value="${list.sdwmContents}"/></b> <br>
+						    	<br><c:out value="${list.sdweContents}"/> <br> <c:out value="${list.sdweTranslate}"/>
+						    </span>
+						  </div>
+					    </div>
+					    </c:forEach>
+					    
+					  </div>
+					  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev" >
+					    <span class="carousel-control-prev-icon" aria-hidden="true" style="float:top;"></span>
+					    <span class="visually-hidden">Previous</span>
+					  </button>
+					  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+					    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+					    <span class="visually-hidden">Next</span>
+					  </button>
+					</div>
+					<!-- 
 					<h3 style="letter-spacing:7px;">Look up a word, Learn it forever!</h3>
 					<div class="search" style="color:black; padding-top:10px; padding-bottom:10px;">
 						<i class="fas fa-search"></i>
@@ -64,11 +100,12 @@
 						<li><a href="#" class="button primary" onClick="location.href='../Login/LoginForm.html'" style="cursor:pointer;">Sign Up</a></li>
 						<li><a href="#" class="button">Learn More</a></li>
 					</ul>
+					 -->
 				</section>
 
 			<!-- Main -->
 				<section id="main" class="container">
-
+					<%-- 
 					<section class="box special">
 						<header class="major">
 						
@@ -77,8 +114,8 @@
 						  	<h3>Today's Word</h3><br>
 						  	
 						  	<div class="carousel-item active" data-bs-interval="10000">
-						      <div style="max-width:500px; width:100%; max-height:500px; height:100%; text-align:left; margin:auto; background-color: white;">
-						      	<span style="line-height:200%; text-align:center; ">
+						      <div style="max-width:450px; width:100%; height:500px; height:100%; text-align:left; margin:auto; text-align:center; background-color: white;">
+						      	<span style="line-height:200%;">
 							    	Today's Word
 							    </span>
 							  </div>
@@ -86,16 +123,15 @@
 						  	
 						  	<c:forEach items="${list}" var="list" varStatus="status">
 						    <div class="carousel-item" data-bs-interval="10000">
-						      <div style="max-width:450px; width:100%; max-height:500px; height:100%; text-align:left; margin:auto; background-color: white;">
-							    <h4> <c:out value="${list.sdwWord }"/> <i class="fa-solid fa-volume-high"></i></h4><br>
+						      <div style="max-width:450px; width:100%; height:500px; height:100%; text-align:left; margin:auto; background-color: white;">
+							    <h4> <c:out value="${list.sdwWord }"/> &nbsp; <i class="fa-solid fa-volume-high"></i></h4><br>
 							    <span style="line-height:200%;">
-							    	<span style="color:Blue; font-style: italic;"><c:out value="${list.sdwmPartOfSpeech}"/></span> &nbsp; <b><c:out value="${list.sdwmContents}"/></b><br>
-							    	<c:out value="${list.sdweContents}"/> <br> <c:out value="${list.sdweTranslate}"/>
+							    	<span style="color:Blue; font-style: italic;"><c:out value="${list.sdwmPartOfSpeech}"/></span> &nbsp; <b><c:out value="${list.sdwmContents}"/></b> <br>
+							    	<br><c:out value="${list.sdweContents}"/> <br> <c:out value="${list.sdweTranslate}"/>
 							    </span>
 							  </div>
 						    </div>
 						    </c:forEach>
-						    
 						    
 						  </div>
 						  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev" >
@@ -107,6 +143,7 @@
 						    <span class="visually-hidden">Next</span>
 						  </button>
 						</div>
+						
 							<!-- 
 							<h2>Introducing the ultimate mobile app
 							<br />
@@ -115,9 +152,11 @@
 							adipiscing nunc adipiscing. Condimentum turpis massa.</p>
 							 -->
 						</header>
-						<span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
+						<!-- 
+						<span class="image featured"><img src="../resources/assets/images/background/pic01.jpg" alt="" /></span>
+						 -->
 					</section>
-
+					 --%>
 					<section class="box special features">
 						<div class="features-row">
 							<section>
