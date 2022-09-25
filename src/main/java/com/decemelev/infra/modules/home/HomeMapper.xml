@@ -10,9 +10,18 @@
 	
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT
-			a.*
+		    a.sdwWord
+		    ,c.sdwmPartOfSpeech
+		    ,c.sdwmContents
+		    ,d.sdweContents
+		    ,d.sdweTranslate
+		    ,b.sddDateChoice
 		FROM sdWord a
-		WHERE 1=1
-
+		INNER JOIN sdDate b on b.sddSeq=a.sdDate_sddSeq
+		INNER JOIN sdwMean c on c.sdWord_sdwSeq=a.sdwSeq
+		INNER JOIN sdwExample d on d.sdWord_sdwSeq=a.sdwSeq
+		WHERE 1=1 
+		GROUP BY a.sdwWord
+		
 	</select> 
 </mapper>	

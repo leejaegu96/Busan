@@ -86,10 +86,11 @@
 						  	
 						  	<c:forEach items="${list}" var="list" varStatus="status">
 						    <div class="carousel-item" data-bs-interval="10000">
-						      <div style="max-width:500px; width:100%; max-height:500px; height:100%; text-align:left; margin:auto; background-color: white;">
+						      <div style="max-width:450px; width:100%; max-height:500px; height:100%; text-align:left; margin:auto; background-color: white;">
 							    <h4> <c:out value="${list.sdwWord }"/> <i class="fa-solid fa-volume-high"></i></h4><br>
 							    <span style="line-height:200%;">
-							    	<c:out value="${list.sdwMean }"/>
+							    	<span style="color:Blue; font-style: italic;"><c:out value="${list.sdwmPartOfSpeech}"/></span> &nbsp; <b><c:out value="${list.sdwmContents}"/></b><br>
+							    	<c:out value="${list.sdweContents}"/> <br> <c:out value="${list.sdweTranslate}"/>
 							    </span>
 							  </div>
 						    </div>

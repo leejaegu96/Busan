@@ -135,9 +135,11 @@
 									                	<c:if test="${not empty item.ifmmId }"> readonly</c:if>
 									                >
 									            <div class="invalid-feedback" id="ifmmIdFeedback"></div>
-								                <c:if test="${list.ifmmSeq eq 0 || list.ifmmSeq eq null }">
+									            <%-- 
+								                <c:if test="${item.ifmmSeq eq 0 || item.ifmmSeq eq null }">
 											    	<input type="button" id= "idcheck" value="아이디 중복확인" style="margin-top: 10px;">
 											    </c:if>
+											     --%>
 												</div>
 											</div>
 											
@@ -322,8 +324,7 @@
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b47c27c3c9651fa1057b04c48b7117fe&libraries=services"></script>
 	
 	<script type="text/javascript">
-	$("#idcheck").on("click", function(){
-		alert('asdf');
+	$("#ifmmId").on("focusout", function(){
 		$.ajax({
 			async: true 
 			,cache: false

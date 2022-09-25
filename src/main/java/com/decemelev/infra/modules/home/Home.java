@@ -7,17 +7,18 @@ public class Home {
 	
 	private String sdwSeq;
 	private String sdwWord;
-	private String sdwMean;
-	private String sdwExample;
 	private String sdDate_sddSeq;
 	
+	private String sdwmSeq;
+	private String sdwmPartOfSpeech;
+	private String sdwmContents;
+	private String sdWord_sdwSeq;
 	
-	public String getSdDate_sddSeq() {
-		return sdDate_sddSeq;
-	}
-	public void setSdDate_sddSeq(String sdDate_sddSeq) {
-		this.sdDate_sddSeq = sdDate_sddSeq;
-	}
+	private String sdweSeq;
+	private String sdweContents;
+	private String sdweTranslate;
+	
+	
 	public String getSddSeq() {
 		return sddSeq;
 	}
@@ -42,18 +43,55 @@ public class Home {
 	public void setSdwWord(String sdwWord) {
 		this.sdwWord = sdwWord;
 	}
-	public String getSdwMean() {
-		return sdwMean;
+	public String getSdDate_sddSeq() {
+		return sdDate_sddSeq;
 	}
-	public void setSdwMean(String sdwMean) {
-		this.sdwMean = sdwMean;
+	public void setSdDate_sddSeq(String sdDate_sddSeq) {
+		this.sdDate_sddSeq = sdDate_sddSeq;
 	}
-	public String getSdwExample() {
-		return sdwExample;
+	public String getSdwmSeq() {
+		return sdwmSeq;
 	}
-	public void setSdwExample(String sdwExample) {
-		this.sdwExample = sdwExample;
+	public void setSdwmSeq(String sdwmSeq) {
+		this.sdwmSeq = sdwmSeq;
 	}
+	public String getSdwmPartOfSpeech() {
+		return sdwmPartOfSpeech;
+	}
+	public void setSdwmPartOfSpeech(String sdwmPartOfSpeech) {
+		this.sdwmPartOfSpeech = sdwmPartOfSpeech;
+	}
+	public String getSdwmContents() {
+		return sdwmContents;
+	}
+	public void setSdwmContents(String sdwmContents) {
+		this.sdwmContents = sdwmContents;
+	}
+	public String getSdWord_sdwSeq() {
+		return sdWord_sdwSeq;
+	}
+	public void setSdWord_sdwSeq(String sdWord_sdwSeq) {
+		this.sdWord_sdwSeq = sdWord_sdwSeq;
+	}
+	public String getSdweSeq() {
+		return sdweSeq;
+	}
+	public void setSdweSeq(String sdweSeq) {
+		this.sdweSeq = sdweSeq;
+	}
+	public String getSdweContents() {
+		return sdweContents;
+	}
+	public void setSdweContents(String sdweContents) {
+		this.sdweContents = sdweContents;
+	}
+	public String getSdweTranslate() {
+		return sdweTranslate;
+	}
+	public void setSdweTranslate(String sdweTranslate) {
+		this.sdweTranslate = sdweTranslate;
+	}
+	
 	
 	
 	
