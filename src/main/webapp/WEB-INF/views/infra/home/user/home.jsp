@@ -60,9 +60,7 @@
 					  	
 					  	<div class="carousel-item active" data-bs-interval="10000">
 					      <div style="max-width:450px; width:100%; height:500px; height:100%; text-align:left; margin:auto; text-align:center; background-color: #666666;">
-					      	<span style="line-height:200%;">
-						    	Today's Word
-						    </span>
+						    <img alt="" src="../resources/assets/images/samples/study.jpg" style="height:150px; width:300px;">
 						  </div>
 					    </div>
 					  	
@@ -71,7 +69,7 @@
 					      <div style="max-width:450px; width:100%; height:500px; height:100%; text-align:left; margin:auto; background-color: #666666;">
 						    <h4> <c:out value="${list.sdwWord }"/> &nbsp; <i class="fa-solid fa-volume-high"></i></h4><br>
 						    <span style="line-height:200%;">
-						    	<span style="color:Blue; font-style: italic;"><c:out value="${list.sdwmPartOfSpeech}"/></span> &nbsp; <b><c:out value="${list.sdwmContents}"/></b> <br>
+						    	<b style="color:Blue; font-style: italic;"><c:out value="${list.sdwmPartOfSpeech}"/></b> &nbsp; <b style="color:white;"><c:out value="${list.sdwmContents}"/></b> <br>
 						    	<br><c:out value="${list.sdweContents}"/> <br> <c:out value="${list.sdweTranslate}"/>
 						    </span>
 						  </div>
