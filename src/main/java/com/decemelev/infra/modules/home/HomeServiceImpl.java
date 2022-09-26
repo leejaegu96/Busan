@@ -16,7 +16,20 @@ public class HomeServiceImpl implements HomeService{
 		List<Home> list = dao.selectList();
 		return list;
 	}
-	
-	
+	@Override
+	public List<Home> selectContents() throws Exception {
+		List<Home> item = dao.selectContents();
+		return item;
+	}
+	@Override
+	public List<Home> selectTest() throws Exception {
+		List<Home> test = dao.selectTest();
+		return test;
+	}
+	@Override
+	public List<Home> selectRank() throws Exception {
+		List<Home> rank = dao.selectRank();
+		return rank;
+	}
 	
 }

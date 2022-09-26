@@ -25,4 +25,19 @@ public class HomeDao {
 		return list;
 	}
 	
+	public List<Home> selectContents() {
+		List<Home> list = sqlSession.selectList("com.decemelev.infra.modules.home.HomeMapper.selectContents", "");
+		return list;
+	}
+	
+	public List<Home> selectTest() {
+		List<Home> test = sqlSession.selectList("com.decemelev.infra.modules.home.HomeMapper.selectTest", "");
+		return test;
+	}
+	
+	public List<Home> selectRank() {
+		List<Home> rank = sqlSession.selectList("com.decemelev.infra.modules.home.HomeMapper.selectRank", "");
+		return rank;
+	}
+	
 }

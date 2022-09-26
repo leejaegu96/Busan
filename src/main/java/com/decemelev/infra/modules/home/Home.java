@@ -18,7 +18,66 @@ public class Home {
 	private String sdweContents;
 	private String sdweTranslate;
 	
+	private String sdqSeq;
+	private Integer sdqNumber;
+	private String sdqKo;
+	private String sdqEng;
+	private String sdqAnswer;
+
+	private String infrMember_ifmmSeq;
+	private String ifmmName;
+	private Integer sdtrsTotalScore;
 	
+
+	
+	public String getInfrMember_ifmmSeq() {
+		return infrMember_ifmmSeq;
+	}
+	public void setInfrMember_ifmmSeq(String infrMember_ifmmSeq) {
+		this.infrMember_ifmmSeq = infrMember_ifmmSeq;
+	}
+	public String getIfmmName() {
+		return ifmmName;
+	}
+	public void setIfmmName(String ifmmName) {
+		this.ifmmName = ifmmName;
+	}
+	public Integer getSdtrsTotalScore() {
+		return sdtrsTotalScore;
+	}
+	public void setSdtrsTotalScore(Integer sdtrsTotalScore) {
+		this.sdtrsTotalScore = sdtrsTotalScore;
+	}
+	public String getSdqSeq() {
+		return sdqSeq;
+	}
+	public void setSdqSeq(String sdqSeq) {
+		this.sdqSeq = sdqSeq;
+	}
+	public Integer getSdqNumber() {
+		return sdqNumber;
+	}
+	public void setSdqNumber(Integer sdqNumber) {
+		this.sdqNumber = sdqNumber;
+	}
+	public String getSdqKo() {
+		return sdqKo;
+	}
+	public void setSdqKo(String sdqKo) {
+		this.sdqKo = sdqKo;
+	}
+	public String getSdqEng() {
+		return sdqEng;
+	}
+	public void setSdqEng(String sdqEng) {
+		this.sdqEng = sdqEng;
+	}
+	public String getSdqAnswer() {
+		return sdqAnswer;
+	}
+	public void setSdqAnswer(String sdqAnswer) {
+		this.sdqAnswer = sdqAnswer;
+	}
 	public String getSddSeq() {
 		return sddSeq;
 	}

@@ -32,18 +32,12 @@
 		          <form class="needs-validation" novalidate>
 		            <div class="row">
 		              <div class="col-md-6 mb-3">
-		                <label for="user_nickname">Nickname</label>
-		                <input type="text" class="form-control" id="user_nickname" placeholder="" value="" required>
-		                <div class="invalid-feedback">
-		                  Valid last nickname is required.
-		                </div>
+		                <label for="ifmmId">Id</label>
+		                <input type="text" class="form-control" name="ifmmId" >
 		              </div>
 		              <div class="col-md-6 mb-3">
-		                <label for="Name">Name</label>
-		                <input type="text" class="form-control" id="Name" placeholder="" value="" required>
-		                <div class="invalid-feedback">
-		                  Valid name is required.
-		                </div>
+		                <label for="ifmmName">Name</label>
+		                <input type="text" class="form-control" id="ifmmName" >
 		              </div>
 		            </div>
 					
@@ -225,7 +219,7 @@
    					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn" type="submit" ">								
+							<button class="login100-form-btn" type="button" id="btnSave">								
 								Continue to checkout
 							</button>
 						</div>
@@ -242,7 +236,19 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/20c294a34b.js" crossorigin="anonymous"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
 <script type="text/javascript">
+
+var goUrlInst = "/login/loginInst";
+
+$("#btnSave").on("click", function(){
+	form.attr("action", goUrlInst).submit();
+}); 
+
 //Example starter JavaScript for disabling form submissions if there are invalid fields
 (function() {
   'use strict';

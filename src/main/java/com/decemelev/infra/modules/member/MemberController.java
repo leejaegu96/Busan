@@ -2,7 +2,6 @@ package com.decemelev.infra.modules.member;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -108,11 +106,20 @@ public class MemberController {
 	public Map<String, Object> checkId(Member dto) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		int result = service.selectOneIdCheck(dto);
+		
+		System.out.println("asdf");
 		if(result > 0) {
+			System.out.println("ss");
 			returnMap.put("rt", "fail");
+			System.out.println("ss");
 		} else {
+			System.out.println("dd");
 			returnMap.put("rt", "success");
+			System.out.println("dd");
+			
 		}
+		System.out.println("returnMap : " + returnMap);
+
 		return returnMap;
 	}
 	

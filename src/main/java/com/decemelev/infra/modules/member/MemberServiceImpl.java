@@ -34,14 +34,14 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public Member selectOne(MemberVo vo) throws Exception {
 		Member result = dao.selectOne(vo);
-		System.out.println("service result: " + result);
+		System.out.println("service selectOne result: " + result);
 		return result;
 	}
 	
 	@Override
 	public int selectOneCount(MemberVo vo) throws Exception {
 		int result = dao.selectOneCount(vo);
-		System.out.println("service result: " + result);
+		System.out.println("service selectOneCount result: " + result);
 		return result;
 	}
 	
@@ -70,6 +70,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int selectOneIdCheck(Member dto) throws Exception {
 		int result = dao.selectOneIdCheck(dto);
+		System.out.println("service selectOneIdCheck result: " + result);
 		return result;
 	}
 	/*

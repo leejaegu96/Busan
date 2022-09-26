@@ -16,13 +16,37 @@ public class HomeController {
 	HomeServiceImpl service;
 	
 	@RequestMapping(value = "home")
-	public String homeList(Model model) throws Exception {
+	public String home(Model model) throws Exception {
 		
 		List<Home> list = service.selectList();
 		model.addAttribute("list", list);
+		
+		List<Home> item = service.selectContents();
+		model.addAttribute("item", item);
+		
 		
 		return "infra/home/user/home";
 		
 	}
 
+	
+	@RequestMapping(value = "test")
+	public String test(Model model) throws Exception {
+		
+		List<Home> test = service.selectTest();
+		model.addAttribute("test", test);
+		
+		return "infra/home/user/test";
+		
+	}
+	
+	@RequestMapping(value = "rank")
+	public String rank(Model model) throws Exception {
+		
+		List<Home> rank = service.selectRank();
+		model.addAttribute("rank", rank);
+		
+		return "infra/home/user/rank";
+		
+	}
 }

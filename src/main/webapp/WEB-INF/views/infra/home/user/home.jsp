@@ -58,22 +58,33 @@
 					  <div class="carousel-inner">
 					  	<h3>Today's Word</h3><br>
 					  	
-					  	<div class="carousel-item active" data-bs-interval="10000">
+					  	<div class="carousel-item active" data-bs-interval="1000000">
 					      <div style="max-width:450px; width:100%; height:500px; height:100%; text-align:left; margin:auto; text-align:center; background-color: #666666;">
 						    <img alt="" src="../resources/assets/images/samples/study.jpg" style="height:150px; width:300px;">
 						  </div>
 					    </div>
 					  	
 					  	<c:forEach items="${list}" var="list" varStatus="status">
+					  	
 					    <div class="carousel-item" data-bs-interval="10000">
 					      <div style="max-width:450px; width:100%; height:500px; height:100%; text-align:left; margin:auto; background-color: #666666;">
-						    <h4> <c:out value="${list.sdwWord }"/> &nbsp; <i class="fa-solid fa-volume-high"></i></h4><br>
+						    
+						    <h4>
+						    	<input type="hidden" id="sdwSeq" name="sdwSeq">
+					    		<c:out value="${list.sdwWord }"/> &nbsp; <i class="fa-solid fa-volume-high"></i>
+						    </h4><br>
+						    
+						    <c:forEach items="${item}" var="item" varStatus="status">
 						    <span style="line-height:200%;">
-						    	<b style="color:Blue; font-style: italic;"><c:out value="${list.sdwmPartOfSpeech}"/></b> &nbsp; <b style="color:white;"><c:out value="${list.sdwmContents}"/></b> <br>
-						    	<br><c:out value="${list.sdweContents}"/> <br> <c:out value="${list.sdweTranslate}"/>
+						    	<c:if test="${list.sdwWord == item.sdwWord }">
+						    	<span style="color:Blue; font-style: italic;" value="${list.sdwSeq }">${item.sdwmPartOfSpeech}</span> &nbsp; <span style="color:white;"value="${list.sdwSeq }">${item.sdwmContents}</span> <br>
+						    	<span value="${list.sdwSeq }">${item.sdweContents}</span> <br> <span value="${list.sdwSeq }">${item.sdweTranslate}</span><br>
+						    	</c:if>
 						    </span>
+						    </c:forEach>
 						  </div>
 					    </div>
+					    
 					    </c:forEach>
 					    
 					  </div>

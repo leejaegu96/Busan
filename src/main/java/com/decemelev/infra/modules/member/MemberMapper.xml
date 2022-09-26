@@ -86,4 +86,10 @@
 			AND ifmmId = #{ifmmId}
 	</select>
 	
+	<select id="selectSign" resultMap="resultMapObj">
+		SELECT
+			a.*
+		ORDER BY a.ifmmSeq DESC
+	</select> 
+	
 </mapper>	
