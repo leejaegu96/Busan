@@ -131,7 +131,8 @@
 											</div>
 
 											<div class="row mb-3">
-												<label for="ifmmId" class="col-md-4 col-lg-3 col-form-label">Id</label> <input type="hidden" id="ifmmIdAllowedNy" name="ifmmIdAllowedNy" value="0">
+												<label for="ifmmId" class="col-md-4 col-lg-3 col-form-label">Id</label> 
+												<input type="hidden" id="ifmmIdAllowedNy" name="ifmmIdAllowedNy" value="0">
 												<div class="col-md-8 col-lg-9">
 													<input type="text" class="form-control" id="ifmmId" name="ifmmId" value="<c:out value="${item.ifmmId}"/>" maxlength="20" placeholder="영대소문자,숫자,특수문자(-_.),4~20자리" <c:if test="${not empty item.ifmmId }"> readonly</c:if>>
 													<div class="invalid-feedback" id="ifmmIdFeedback"></div>

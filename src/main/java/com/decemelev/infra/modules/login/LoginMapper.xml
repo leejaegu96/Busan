@@ -20,15 +20,46 @@
 		INSERT INTO infrMember (
 			ifmmName
 			,ifmmId
+			,ifmmPassword
 		)
 		VALUES (
 			#{ifmmName}
-			,{ifmmId}
+			,#{ifmmId}
+			,#{ifmmPassword}
 		)
 		<selectKey resultType="String" keyProperty="ifmmSeq" order="AFTER">
 			SELECT last_insert_id()
 		</selectKey>
 		
 	</insert>
-
+	
+	<select id="selectOneIdCheck" resultType="Integer">
+		SELECT
+			count(*)
+		FROM infrMember a
+		WHERE 1=1 
+			AND ifmmId = #{ifmmId}
+	</select>
+	
+	<select id="selectOneId" resultMap="resultMapObj">
+		SELECT
+			a.ifmmSeq
+			,a.ifmmId
+		FROM infrMember a
+		WHERE 1=1 
+			AND a.ifmmId = #{ifmmId}
+	</select>
+	<select id="selectOneLogin" resultMap="resultMapObj">
+		SELECT
+			a.ifmmSeq
+			,a.ifmmId
+			,a.ifmmPassword
+			,a.ifmmName
+		FROM infrMember a
+		WHERE 1=1 
+			AND a.ifmmId = #{ifmmId}
+			AND a.ifmmPassword = #{ifmmPassword}
+			<!-- <if test="ifmmPassword != null and !ifmmPassword.equals('')">AND a.ifmmPassword = #{ifmmPassword}</if> -->
+			
+	</select>
 </mapper>

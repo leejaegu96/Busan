@@ -24,6 +24,8 @@
 	<body class="landing is-preload">
 		<div id="page-wrapper">
 
+
+
 			<!-- Header -->
 				<header id="header" class="alt">
 					<h3 style="font-size: 20px; margin-top:15px; margin-left:20px; height: 52px; cursor:pointer;" onClick="location.href='HomeForm.html'"><i class="fa-solid fa-book-open"></i>&nbsp;E-WORD</h3>
@@ -50,10 +52,14 @@
 						</ul>
 					</nav>
 				</header>
-
+				
 			<!-- Banner -->
 				<section id="banner">
-					
+					<div style="float:left">
+						sessSeq: <c:out value="${sessSeq }"/><br>
+						sessName: <c:out value="${sessName }"/><br>
+						sessId: <c:out value="${sessId }"/><br>
+					</div>
 					<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
 					  <div class="carousel-inner">
 					  	<h3>Today's Word</h3><br>

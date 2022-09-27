@@ -29,32 +29,32 @@
 		<div class="container-login150">
 			<div class="wrap-login150">
 				<h4 class="mb-3">Create your learner account</h4>
-		          <form class="needs-validation" novalidate>
+		          <form id="form" name="form" method="post">
 		            <div class="row">
 		              <div class="col-md-6 mb-3">
 		                <label for="ifmmId">Id</label>
-		                <input type="text" class="form-control" name="ifmmId" >
+		                <input type="hidden" id="ifmmIdAllowedNy" name="ifmmIdAllowedNy" value="0">
+		                <input type="text" class="form-control" id="ifmmId" name="ifmmId" value="<c:out value="${item.ifmmId}"/>" maxlength="20" placeholder="영대소문자,숫자,특수문자(-_.),4~20자리">
+		                <div class="invalid-feedback" id="ifmmIdFeedback"></div>
 		              </div>
 		              <div class="col-md-6 mb-3">
 		                <label for="ifmmName">Name</label>
-		                <input type="text" class="form-control" id="ifmmName" >
+		                <input type="text" class="form-control" name="ifmmName" >
 		              </div>
 		            </div>
 					
 					<div class="row">
 		              <div class="col-md-6 mb-3">
-		                <label for="Password">Password</label>
-		                <input type="password" class="form-control" id="Password" placeholder="" value="" required>
-		                <div class="invalid-feedback">
-		                  Valid password is required.
-		                </div>
+		                <label for="ifmmPassword">Password</label>
+		                <input type="hidden" id="ifmmPasswordAllowedNy" name="ifmmPasswordAllowedNy" value="0">
+		                <input type="password" class="form-control" name="ifmmPassword" id="ifmmPassword" placeholder="" value="" required>
+		                <div class="invalid-feedback" id="ifmmPasswordFeedback"></div>
 		              </div>
 		              <div class="col-md-6 mb-3">
-		                <label for="Password1">Password Check</label>
-		                <input type="password" class="form-control" id="Password1" placeholder="" value="" required>
-		                <div class="invalid-feedback">
-		                  Valid password is required.
-		                </div>
+		                <label for="ifmmPasswordChk">Password Check</label>
+		                <input type="hidden" id="ifmmPasswordAllowedNy" name="ifmmPasswordAllowedNy" value="0">
+		                <input type="password" class="form-control" name="ifmmPasswordChk" id="ifmmPasswordChk" placeholder="" value="" required>
+		                <div class="invalid-feedback" id="ifmmPasswordChkFeedback"></div>
 		              </div>
 					</div>
 					
@@ -87,17 +87,16 @@
 		            <div class="mb-3">
 		              <label for="user_email">User email</label>
 		              <div class="input-group">
-		                <input type="text" id="inputEmail" class="form-control" placeholder="User email" aria-label="Username" required>
+		                <input type="text" id="ifmmEmail" name="ifmmEmail" class="form-control" placeholder="User email">
 						<span class="input-group-text">@</span>
-						<select class="form-select" id="validationCustom04">
-							<option selected value="">naver.com</option>
-							<option>
-								<span>google.com</span>
-							</option>
-							<option>
-								<span>hanmail.net</span>
-							</option>
+						<input type="text" id="ifmmEmail2" name="ifmmEmail2" class="form-control" placeholder="Domain" >
+						<select class="form-select" name="selectEmail" id="selectEmail">
+							<option value="1" >직접입력</option>
+							<option value="naver.com" >naver.com</option>
+							<option value="google.com" >google.com</option>
+							<option value="hanmail.net" >hanmail.net</option>
 						</select>
+						
 		              </div>
 		              <input class="form-text" type="checkbox" id="autoSizingCheck_1">
 					  <label class="form-text" for="autoSizingCheck_1">
@@ -128,6 +127,7 @@
 								</option>
 							</select>
 							<select class="form-select" id="inputPhone" required>
+								<option >통신사</option>
 								<option selected value="">010</option>
 								<option>
 									<span>011</span>
@@ -163,7 +163,7 @@
 								<button class="btn btn-outline-secondary" type="button"  onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
 									<i class="fa-solid fa-magnifying-glass"></i>
 								</button>
-								<button class="btn btn-outline-secondary" type="reset" onclick="" value="리셋하기">
+								<button class="btn btn-outline-secondary" type="button" id="btnAddressClear" value="리셋하기">
 									<i class="fa-solid fa-xmark"></i>
 								</button>
 							</div>
@@ -242,8 +242,130 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
 <script type="text/javascript">
+	$("#ifmmId").on("focusout", function(){
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			/* ,dataType:"json" */
+			,url: "/login/checkId"
+			/* ,data : $("#formLogin").serialize() */
+			,data : { "ifmmId" : $("#ifmmId").val() }
+			
+			,success: function(response) {
+				if(response.rt == "success") {
+					document.getElementById("ifmmId").classList.add('is-valid');
+					document.getElementById("ifmmId").classList.remove('is-invalid');
+					document.getElementById("ifmmIdFeedback").classList.remove('invalid-feedback');
+					document.getElementById("ifmmIdFeedback").classList.add('valid-feedback');
+					document.getElementById("ifmmIdFeedback").innerText = "사용 가능 합니다.";
+					
+					document.getElementById("ifmmIdAllowedNy").value = 1;
+					
+				} else {
+					document.getElementById("ifmmId").classList.add('is-invalid');
+					
+					document.getElementById("ifmmIdFeedback").classList.remove('valid-feedback');
+					document.getElementById("ifmmIdFeedback").classList.add('invalid-feedback');
+					document.getElementById("ifmmIdFeedback").innerText = "사용 불가능 합니다";
+					
+					document.getElementById("ifmmIdAllowedNy").value = 0;
+					
+				}
+			}
+			
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+			
+		});
+	});
+</script>
+
+<script type="text/javascript">
+	$("#ifmmPassword").on("focusout", function(){
+		var pw = $("#ifmmPassword").val();
+		var num = pw.search(/[0-9]/g);
+		var eng = pw.search(/[a-z]/ig);
+		var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+		
+		if(pw.length < 10 || pw.length > 20){
+			document.getElementById("ifmmPassword").classList.add('is-invalid');
+			document.getElementById("ifmmPasswordFeedback").classList.remove('valid-feedback');
+			document.getElementById("ifmmPasswordFeedback").classList.add('invalid-feedback');
+			document.getElementById("ifmmPasswordFeedback").innerText = "10자리 ~ 20자리 이내로 입력해주세요.";
+			document.getElementById("ifmmPasswordAllowedNy").value = 0;
+			return false;
+		}else if(pw.search(/\s/) != -1){
+			document.getElementById("ifmmPassword").classList.add('is-invalid');
+			document.getElementById("ifmmPasswordFeedback").classList.remove('valid-feedback');
+			document.getElementById("ifmmPasswordFeedback").classList.add('invalid-feedback');
+			document.getElementById("ifmmPasswordFeedback").innerText = "비밀번호는 공백 없이 입력해주세요.";
+			document.getElementById("ifmmPasswordAllowedNy").value = 0;
+			return false;
+		}else if( (num < 0 && eng < 0) || (eng < 0 && spe < 0) || (spe < 0 && num < 0) ){
+			document.getElementById("ifmmPassword").classList.add('is-invalid');
+			document.getElementById("ifmmPasswordFeedback").classList.remove('valid-feedback');
+			document.getElementById("ifmmPasswordFeedback").classList.add('invalid-feedback');
+			document.getElementById("ifmmPasswordFeedback").innerText = "영문,숫자, 특수문자 중 2가지 이상을 혼합하여 입력해주세요.";
+			document.getElementById("ifmmPasswordAllowedNy").value = 0;
+			return false;
+		}else {
+			document.getElementById("ifmmPassword").classList.add('is-valid');
+			document.getElementById("ifmmPassword").classList.remove('is-invalid');
+			document.getElementById("ifmmPasswordFeedback").classList.remove('invalid-feedback');
+			document.getElementById("ifmmPasswordFeedback").classList.add('valid-feedback');
+			document.getElementById("ifmmPasswordFeedback").innerText = "사용 가능 합니다.";
+			document.getElementById("ifmmPasswordAllowedNy").value = 1;
+		}
+	});
+	$("#ifmmPasswordChk").on("focusout", function(){
+		if($('#ifmmPassword').val() != $('#ifmmPasswordChk').val()){
+			document.getElementById("ifmmPasswordChk").classList.add('is-invalid');
+			document.getElementById("ifmmPasswordChkFeedback").classList.remove('valid-feedback');
+			document.getElementById("ifmmPasswordChkFeedback").classList.add('invalid-feedback');
+			document.getElementById("ifmmPasswordChkFeedback").innerText = "비밀번호가 일치하지 않습니다.";
+			document.getElementById("ifmmPasswordChkAllowedNy").value = 0;
+        } else{
+        	document.getElementById("ifmmPasswordChk").classList.add('is-valid');
+			document.getElementById("ifmmPasswordChk").classList.remove('is-invalid');
+			document.getElementById("ifmmPasswordChkFeedback").classList.remove('invalid-feedback');
+			document.getElementById("ifmmPasswordChkFeedback").classList.add('valid-feedback');
+			document.getElementById("ifmmPasswordChkFeedback").innerText = "비밀번호가 일치합니다.";
+			document.getElementById("ifmmPasswordChkAllowedNy").value = 1;
+        }
+	});
+</script>
+
+<script type="text/javascript">
+	$('#selectEmail').change(function(){
+	   $("#selectEmail option:selected").each(function () {
+			
+			if($(this).val()== '1'){ //직접입력일 경우
+				 $("#ifmmEmail2").val('');                        //값 초기화
+				 $("#ifmmEmail2").attr("disabled",false); //활성화
+			}else{ //직접입력이 아닐경우
+				 $("#ifmmEmail2").val($(this).text());      //선택값 입력
+				 $("#ifmmEmail2").attr("disabled",true); //비활성화
+			}
+	   });
+	});
+</script>
+
+<script type="text/javascript">
 
 var goUrlInst = "/login/loginInst";
+
+var form = $("form[name = form]");
+
+$("#btnAddressClear").on("click", function() {
+	$("#sample6_postcode").val('');
+	$("#sample6_address").val('');
+	$("#sample6_detailAddress").val('');
+	$("#sample6_extraAddress").val('');
+	$("#ifmaLatArray0").val('');
+	$("#ifmaLngArray0").val('');
+});
 
 $("#btnSave").on("click", function(){
 	form.attr("action", goUrlInst).submit();
