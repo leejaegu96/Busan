@@ -16,7 +16,18 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
     <link rel="stylesheet" href="../resources/assets/css/login.css">
-
+	
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<!-- <script src="https://code.jquery.com/jquery-3.4.1.js"></script> -->
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  	
+  	<script type="text/javascript">
+  	$( function() {
+  	    $( "#ifmmDob" ).datepicker();
+  	  } );
+	</script>
+	
 <style type="text/css">
 
 </style>
@@ -61,25 +72,15 @@
 					<div class="row">
 		              <div class="col-md-6 mb-3">
 		                <label for="username">Gender</label>
-		                <select class="form-select" id="validationCustom04">
-							<option selected value="">Male</option>
-							<option>
-								<span>Female</span>
-							</option>
-							<option>
-								<span>etc..</span>
-							</option>
+		                <select class="form-select" name="ifmmGender">
+							<option value="1">Male</option>
+							<option value="2">Female</option>
+							<option value="3">etc</option>
 						</select>
-		                <div class="invalid-feedback">
-		                  Valid password is required.
-		                </div>
 		              </div>
 		              <div class="col-md-6 mb-3">
 		                <label for="username">Date Of Birth</label>
-		                <input type="date" class="form-control" id="Password" placeholder="" value="" required>
-		                <div class="invalid-feedback">
-		                  Valid password is required.
-		                </div>
+						<input type="text" class="form-control" id="ifmmDob" name="ifmmDob">
 		              </div>
 					</div>
 					
