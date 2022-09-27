@@ -6,7 +6,7 @@ public class CodeVo extends BaseVo {
 	
 	private Integer shOption;
 	private String shValue;
-	private String shUseNy;
+	private Integer shUseNy;
 	private String shDelNy;
 	private String shCodeGroup;
 	private String ifcdSeq;
@@ -21,6 +21,12 @@ public class CodeVo extends BaseVo {
 	
 	
 	
+	public Integer getShUseNy() {
+		return shUseNy;
+	}
+	public void setShUseNy(Integer shUseNy) {
+		this.shUseNy = shUseNy;
+	}
 	public String getIfcgSeq() {
 		return ifcgSeq;
 	}
@@ -63,12 +69,7 @@ public class CodeVo extends BaseVo {
 	public void setShValue(String shValue) {
 		this.shValue = shValue;
 	}
-	public String getShUseNy() {
-		return shUseNy;
-	}
-	public void setShUseNy(String shUseNy) {
-		this.shUseNy = shUseNy;
-	}
+	
 	public String getShDelNy() {
 		return shDelNy;
 	}

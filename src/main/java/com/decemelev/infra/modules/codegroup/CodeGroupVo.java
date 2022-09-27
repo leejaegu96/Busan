@@ -6,7 +6,7 @@ public class CodeGroupVo extends BaseVo {
 	
 	private Integer shOption;
 	private String shValue;
-	private String shUseNy;
+	private Integer shUseNy;
 	
 	
 	private String ifcgSeq;
@@ -16,13 +16,7 @@ public class CodeGroupVo extends BaseVo {
 	private Integer shOptionDate;
 	
 
-	public Integer getShOptionDate() {
-		return shOptionDate;
-	}
 
-	public void setShOptionDate(Integer shOptionDate) {
-		this.shOptionDate = shOptionDate;
-	}
 
 	private String shDateStart;
 	private String shDateEnd;
@@ -30,7 +24,21 @@ public class CodeGroupVo extends BaseVo {
 	
 	
 	
-	
+	public Integer getShUseNy() {
+		return shUseNy;
+	}
+
+	public void setShUseNy(Integer shUseNy) {
+		this.shUseNy = shUseNy;
+	}
+
+	public Integer getShOptionDate() {
+		return shOptionDate;
+	}
+
+	public void setShOptionDate(Integer shOptionDate) {
+		this.shOptionDate = shOptionDate;
+	}
 
 	public String getShDateStart() {
 		return shDateStart;
@@ -72,13 +80,7 @@ public class CodeGroupVo extends BaseVo {
 		this.shValue = shValue;
 	}
 
-	public String getShUseNy() {
-		return shUseNy;
-	}
-
-	public void setShUseNy(String shUseNy) {
-		this.shUseNy = shUseNy;
-	}
+	
 
 	public String getIfcgSeq() {
 		return ifcgSeq;

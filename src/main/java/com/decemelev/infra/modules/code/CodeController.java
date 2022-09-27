@@ -24,6 +24,7 @@ public class CodeController {
 	CodeGroupServiceImpl service2;
 
 	public void setSerchAndPaging(CodeVo vo) throws Exception {
+		vo.setShUseNy(vo.getShUseNy() == null ? 1 : vo.getShUseNy() );
 		vo.setShOptionDate(vo.getShOptionDate() == null ? 2 : vo.getShOptionDate());
 		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()) );
 		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()) );
