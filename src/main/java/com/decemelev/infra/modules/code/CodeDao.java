@@ -44,11 +44,14 @@ public class CodeDao {
 		return sqlSession.update(namespace + ".uelete", dto);
 	}
 	public int delete(CodeVo vo) {
-		return sqlSession.update(namespace + ".delete", vo);
+		return sqlSession.delete(namespace + ".delete", vo);
 	}
 	
 //	for cache
 	public List<Code> selectListCachedCodeArrayList(){ return sqlSession.selectList(namespace + ".selectListCachedCodeArrayList", null); }
 	
+	public List<Code> selectName(Code dto) {
+		return sqlSession.selectList(namespace + ".selectName", dto);
+	}
 	
 }

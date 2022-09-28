@@ -6,6 +6,8 @@
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
 
+
+
 <!DOCTYPE HTML>
 <!--
 	Alpha by HTML5 UP
@@ -28,17 +30,17 @@
 
 			<!-- Header -->
 				<header id="header" class="alt">
-					<h3 style="font-size: 20px; margin-top:15px; margin-left:20px; height: 52px; cursor:pointer;" onClick="location.href='HomeForm.html'"><i class="fa-solid fa-book-open"></i>&nbsp;E-WORD</h3>
+					<h3 style="font-size: 20px; margin-top:15px; margin-left:20px; height: 52px; cursor:pointer;" onClick="location.href='home'"><i class="fa-solid fa-book-open"></i>&nbsp;E-WORD</h3>
 					<nav id="nav">
 						<ul>
-							<li><a href="HomeForm.html">Home</a></li>
+							<li><a href="home">Home</a></li>
 							<li>
 								<a href="#" class="icon solid fa-angle-down">Contents</a>
 								<ul>
-									<li><a href="TestForm.html">Exam</a></li>
-									<li><a href="RankingForm.html">Ranking</a></li>
-									<li><a href="../Mypage/ProfileForm.html">Mypage</a></li>
-									<li><a href="contact.html">Translate</a></li>
+									<li><a href="test">Exam</a></li>
+									<li><a href="rank">Ranking</a></li>
+									<li><a href="">Mypage</a></li>
+									<li><a href="">Translate</a></li>
 									<li>
 										<a href="#">Word</a>
 										<ul>
@@ -48,7 +50,24 @@
 									</li>
 								</ul>
 							</li>
+							<c:choose>
+								<c:when test="${sessSeq eq null}">
+									<!--로그인 전 화면  -->
+								    <li><a href="#" class="button" onClick="location.href='../login/signUp'" style="cursor:pointer;">회원가입</a></li>
+								    <li><a href="#" class="button" onClick="location.href='../login/login'" style="cursor:pointer;">Login</a></li>
+								</c:when>
+								<c:otherwise>
+									<!--로그인 후 화면  -->
+								    <li><a href="#">Mypage</a></li>
+								    <li><a href="#">계정설정</a></li>
+								    <li><a href="#" class="button" id="btnLogout" style="cursor:pointer;">Logout</a></li>
+								 </c:otherwise>
+							</c:choose>
+							
+							<!-- 
 							<li><a href="#" class="button" onClick="location.href='../login/login'" style="cursor:pointer;">Login</a></li>
+							<li><a href="#" class="button" id="btnLogout" style="cursor:pointer;">Logout</a></li>
+							 -->
 						</ul>
 					</nav>
 				</header>
@@ -175,12 +194,12 @@
 					<section class="box special features">
 						<div class="features-row">
 							<section>
-								<span class="icon solid major fa-file-pen accent2" onClick="location.href='TestForm.html'" style="cursor:pointer;"></span>
+								<span class="icon solid major fa-file-pen accent2" onClick="location.href='test'" style="cursor:pointer;"></span>
 								<h3>TEST</h3>
 								<p>Test your skills based on what you've learned</p>
 							</section>
 							<section>
-								<span class="icon solid major fa-ranking-star accent3" onClick="location.href='RankingForm.html'" style="cursor:pointer;"></span>
+								<span class="icon solid major fa-ranking-star accent3" onClick="location.href='rank'" style="cursor:pointer;"></span>
 								<h3>RANKING</h3>
 								<p>Check the test scores you have taken so far</p>
 							</section>
@@ -228,6 +247,28 @@
 			<script src="https://kit.fontawesome.com/20c294a34b.js" crossorigin="anonymous"></script>
 			<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
 			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+			<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+			<script type="text/javascript">
+			$("#btnLogout").on("click", function(){
+				$.ajax({
+					async: true 
+					,cache: false
+					,type: "post"
+					,url: "/login/logoutProc"
+					,data: {}
+					,success: function(response) {
+						if(response.rt == "success") {
+							location.href = "/home/home";
+						} else {
+							// by pass
+						}
+					}
+					,error : function(jqXHR, textStatus, errorThrown){
+						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+					}
+				});
+			});
+			</script>
 
 	</body>
 </html>

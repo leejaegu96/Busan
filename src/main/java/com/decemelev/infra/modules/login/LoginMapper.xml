@@ -21,11 +21,30 @@
 			ifmmName
 			,ifmmId
 			,ifmmPassword
+			,ifmmGender
+			,ifmmDob
+			,ifmmEmailDomain
+			,ifmmEmail
+			,ifmmPhoneCarrier
+			,ifmmPhone
+			,ifmmAddress
+			,ifmmDelNy
+			
 		)
 		VALUES (
 			#{ifmmName}
 			,#{ifmmId}
 			,#{ifmmPassword}
+			,#{ifmmGender}
+			,#{ifmmDob}
+			,#{ifmmEmailDomain}
+			,#{ifmmEmail}
+			,#{ifmmPhoneCarrier}
+			,#{ifmmPhone}
+			,#{ifmmAddress}
+			,0
+			
+			
 		)
 		<selectKey resultType="String" keyProperty="ifmmSeq" order="AFTER">
 			SELECT last_insert_id()

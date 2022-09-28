@@ -17,20 +17,33 @@
     <link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
     <link rel="stylesheet" href="../resources/assets/css/login.css">
 	
+		
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<!-- <script src="https://code.jquery.com/jquery-3.4.1.js"></script> -->
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   	
   	<script type="text/javascript">
-  	$( function() {
-  	    $( "#ifmmDob" ).datepicker();
-  	  } );
-	</script>
-	
-<style type="text/css">
+    $(document).ready(function () {
+        $.datepicker.setDefaults($.datepicker.regional['ko']); 
+        $( "#ifmmDob" ).datepicker({
+             changeMonth: true, 
+             changeYear: true,
+             nextText: '다음 달',
+             prevText: '이전 달', 
+             dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+             dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], 
+             monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+             monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+             dateFormat: "yy-mm-dd",
+             maxDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)
+             onClose: function( selectedDate ) {    
+                  //시작일(startDate) datepicker가 닫힐때
+                  //종료일(endDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
+             }    
 
-</style>
+        });
+    });
+	</script>
 
 </head>
 
@@ -45,7 +58,7 @@
 		              <div class="col-md-6 mb-3">
 		                <label for="ifmmId">Id</label>
 		                <input type="hidden" id="ifmmIdAllowedNy" name="ifmmIdAllowedNy" value="0">
-		                <input type="text" class="form-control" id="ifmmId" name="ifmmId" value="<c:out value="${item.ifmmId}"/>" maxlength="20" placeholder="영대소문자,숫자,특수문자(-_.),4~20자리">
+		                <input type="text" class="form-control" id="ifmmId" name="ifmmId" value="<c:out value="${item.ifmmId}"/>" maxlength="20" placeholder="영문,숫자,4~15자리">
 		                <div class="invalid-feedback" id="ifmmIdFeedback"></div>
 		              </div>
 		              <div class="col-md-6 mb-3">
@@ -79,7 +92,7 @@
 						</select>
 		              </div>
 		              <div class="col-md-6 mb-3">
-		                <label for="username">Date Of Birth</label>
+		                <label for="ifmmDob">Date Of Birth</label>
 						<input type="text" class="form-control" id="ifmmDob" name="ifmmDob">
 		              </div>
 					</div>
@@ -88,19 +101,19 @@
 		            <div class="mb-3">
 		              <label for="user_email">User email</label>
 		              <div class="input-group">
-		                <input type="text" id="ifmmEmail" name="ifmmEmail" class="form-control" placeholder="User email">
+		                <input type="text" id="Email" name="Email" class="form-control" placeholder="User email">
 						<span class="input-group-text">@</span>
-						<input type="text" id="ifmmEmail2" name="ifmmEmail2" class="form-control" placeholder="Domain" >
-						<select class="form-select" name="selectEmail" id="selectEmail">
-							<option value="1" >직접입력</option>
-							<option value="naver.com" >naver.com</option>
-							<option value="google.com" >google.com</option>
-							<option value="hanmail.net" >hanmail.net</option>
+						<input type="text" id="Domain" name="Domain" class="form-control" placeholder="Domain" >
+						<select class="form-select" name="ifmmEmailDomain" id="ifmmEmailDomain">
+							<option value="11" >직접입력</option>
+							<option value="8" >naver.com</option>
+							<option value="9" >google.com</option>
+							<option value="10" >daum.net</option>
 						</select>
-						
 		              </div>
-		              <input class="form-text" type="checkbox" id="autoSizingCheck_1">
-					  <label class="form-text" for="autoSizingCheck_1">
+		              <input type="text" class="form-control" id="ifmmEmail" name="ifmmEmail" >
+		              <input class="form-text" type="checkbox" id="ifmmMailNy" name="ifmmMailNy" value="1" >
+					  <label class="form-text" for="ifmmMailNy" >
 						E-mail을 통한 소식/정보 수신을 동의하시겠습니까? 
 					  </label>
 		            </div>
@@ -117,40 +130,38 @@
 		            
 		            <div class="mb-3">
 		            	<label for="user_email">User Phone</label>
+		            	<input type="hidden" id="inputPhone2AllowedNy" name="inputPhone2AllowedNy" value="0">
 			            <div class="input-group">
-			            	<select class="form-select" id="inputPhone" required>
-								<option selected value="">SKT</option>
-								<option>
-									<span>KT</span>
-								</option>
-								<option>
-									<span>LG</span>
-								</option>
+			            	<select class="form-select" id="ifmmPhoneCarrier" name="ifmmPhoneCarrier" >
+								<option value="4">SKT</option>
+								<option value="5">KT</option>
+								<option value="6">LG</option>
+								<option value="7">기타</option>
 							</select>
-							<select class="form-select" id="inputPhone" required>
-								<option >통신사</option>
-								<option selected value="">010</option>
-								<option>
-									<span>011</span>
-								</option>
-								<option>
-									<span>019</span>
-								</option>
+							<select class="form-select" id="inputPhone1" required>
+								<option>010</option>
+								<option>011</option>
+								<option>019</option>
 							</select>
 							<span class="input-group-text">-</span>
-							<input type="text" id="inputPhone" class="form-control"  required>
+							<input type="text" id="inputPhone2" class="form-control" maxlength='4' onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
 							<span class="input-group-text">-</span>
-							<input type="text" id="inputPhone" class="form-control"  required>
-							<button class="btn btn-outline-secondary" type="button" id="button-addon2">인증번호 요청</button>
+							<input type="text" id="inputPhone3" class="form-control" maxlength='4' onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
+							
+							<!-- <button class="btn btn-outline-secondary" type="button" id="button-addon2">인증번호 요청</button> -->
 						</div>
+						<div class="invalid-feedback" id="inputPhone2ChkFeedback"></div>
+						<input type="text" id="ifmmPhone" name="ifmmPhone" class="form-control" >
+						<!-- 
 						<div class="col-6">
 							<div class="input-group md-3" style="padding-top: 5px;">
 								<input type="text" class="form-control" placeholder="Code Number" aria-label="Recipient's username" aria-describedby="button-addon2" required>
 								<button class="btn btn-outline-secondary" type="button" id="button-addon2">인증번호 확인</button>
 							</div>
 						</div>
-						<input class="form-text" type="checkbox" id="autoSizingCheck_1">
-					    <label class="form-text" for="autoSizingCheck_1">
+						 -->
+						<input class="form-text" type="checkbox" id="ifmmSmsNy" name="ifmmSmsNy" value="1" >
+					    <label class="form-text" for="ifmmSmsNy">
 					  	  SMS을 통한 소식/정보 수신을 동의하시겠습니까? 
 					    </label>
 					</div>
@@ -176,10 +187,8 @@
 							<input type="text" class="form-control" id="sample6_detailAddress" placeholder="상세주소" aria-label="Recipient's username" aria-describedby="button-addon2" required>
 							<input type="text" class="form-control" id="sample6_extraAddress" placeholder="참고항목" aria-label="Recipient's username" aria-describedby="button-addon2" required>
 						</div>
+						<input type="text" class="form-control" id="ifmmAddress" name="ifmmAddress">
 				  	  </div>
-		              <div class="invalid-feedback">
-		                Please enter your shipping address.
-		              </div>
 		            </div>
 		            
 		            <div class="mb-3">
@@ -211,9 +220,6 @@
 							</div>
 						</div>
 					  </div>
-		              <div class="invalid-feedback">
-		                Please enter your shipping address.
-		              </div>
 		            </div>
 		
 		            <hr class="mb-4">
@@ -237,13 +243,112 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/20c294a34b.js" crossorigin="anonymous"></script>
-
+<!-- 
 <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+ -->
 
 <script type="text/javascript">
+/* 
+$("#ifmmSmsNy").on("click", function(){
+	alert(document.getElementById('ifmmSmsNy').value);
+	return false;
+});
+$("#ifmmMailNy").on("click", function(){
+	alert(document.getElementById('ifmmMailNy').value);
+	return false;
+});
+ */
+</script>
+
+<script type="text/javascript">
+//이메일
+const Email = document.getElementById('Email');
+const Domain = document.getElementById('Domain');
+const ifmmEmailDomain = document.getElementById('ifmmEmailDomain');
+
+Email.addEventListener('keyup', callback);
+Domain.addEventListener('keyup', callback);
+ifmmEmailDomain.addEventListener('focusout', callback);
+
+function callback() {
+	if(Domain.value == null || Domain.value == '') {
+		let str = Email.value + '@' + ifmmEmailDomain.value;
+		document.getElementById('ifmmEmail').value = str;
+	}else {
+		let str = Email.value + '@' + Domain.value;
+		document.getElementById('ifmmEmail').value = str;
+	}
+}
+</script>
+<script type="text/javascript">
+// 핸드폰
+const inputPhone1 = document.getElementById('inputPhone1');
+const inputPhone2 = document.getElementById('inputPhone2');
+const inputPhone3 = document.getElementById('inputPhone3');
+
+inputPhone1.addEventListener('focusout', callback);
+inputPhone2.addEventListener('keyup', callback);
+inputPhone3.addEventListener('keyup', callback);
+
+function callback() {
+let str = inputPhone1.value + inputPhone2.value + inputPhone3.value;
+document.getElementById('ifmmPhone').value = str;
+}
+
+</script>
+<script type="text/javascript">
+//우편번호
+const sample6_address = document.getElementById('sample6_address');
+const sample6_extraAddress = document.getElementById('sample6_extraAddress');
+const sample6_detailAddress = document.getElementById('sample6_detailAddress');
+
+sample6_address.addEventListener('focusout', callback);
+sample6_extraAddress.addEventListener('focusout', callback);
+sample6_detailAddress.addEventListener('focusout', callback);
+
+function callback() {
+let str = sample6_address.value + sample6_extraAddress.value + " " + sample6_detailAddress.value;
+document.getElementById('ifmmAddress').value = str;
+}
+
+</script>
+<script type="text/javascript">
+// 아이디 확인
 	$("#ifmmId").on("focusout", function(){
+		var id = $("#ifmmId").val();
+		var num = id.search(/[0-9]/g);
+		var eng = id.search(/[a-z]/ig);
+		if(id.length < 1){
+			document.getElementById("ifmmId").classList.add('is-invalid');
+			document.getElementById("ifmmIdFeedback").classList.remove('valid-feedback');
+			document.getElementById("ifmmIdFeedback").classList.add('invalid-feedback');
+			document.getElementById("ifmmIdFeedback").innerText = "아이디를 입력해주세요.";
+			document.getElementById("ifmmIdAllowedNy").value = 0;
+			return false;
+		}else if(id.length < 4 || id.length > 15){
+			document.getElementById("ifmmId").classList.add('is-invalid');
+			document.getElementById("ifmmIdFeedback").classList.remove('valid-feedback');
+			document.getElementById("ifmmIdFeedback").classList.add('invalid-feedback');
+			document.getElementById("ifmmIdFeedback").innerText = "영문, 숫자 포함 4~15자를 입력해주세요.";
+			document.getElementById("ifmmIdAllowedNy").value = 0;
+			return false;
+		} else if(id.search(/\s/) != -1){
+			document.getElementById("ifmmId").classList.add('is-invalid');
+			document.getElementById("ifmmIdFeedback").classList.remove('valid-feedback');
+			document.getElementById("ifmmIdFeedback").classList.add('invalid-feedback');
+			document.getElementById("ifmmIdFeedback").innerText = "공백 없이 입력해주세요.";
+			document.getElementById("ifmmIdAllowedNy").value = 0;
+			return false;
+		} else if(num < 0 || eng < 0){
+			document.getElementById("ifmmId").classList.add('is-invalid');
+			document.getElementById("ifmmIdFeedback").classList.remove('valid-feedback');
+			document.getElementById("ifmmIdFeedback").classList.add('invalid-feedback');
+			document.getElementById("ifmmIdFeedback").innerText = "영문,숫자 중 2가지 이상을 혼합하여 입력해주세요.";
+			document.getElementById("ifmmIdAllowedNy").value = 0;
+			return false;
+		}
 		$.ajax({
 			async: true 
 			,cache: false
@@ -252,7 +357,6 @@
 			,url: "/login/checkId"
 			/* ,data : $("#formLogin").serialize() */
 			,data : { "ifmmId" : $("#ifmmId").val() }
-			
 			,success: function(response) {
 				if(response.rt == "success") {
 					document.getElementById("ifmmId").classList.add('is-valid');
@@ -284,6 +388,7 @@
 </script>
 
 <script type="text/javascript">
+// 패스워드 확인
 	$("#ifmmPassword").on("focusout", function(){
 		var pw = $("#ifmmPassword").val();
 		var num = pw.search(/[0-9]/g);
@@ -337,20 +442,26 @@
         }
 	});
 </script>
+<script type="text/javascript">
+// 휴대폰 번호
+</script>
 
 <script type="text/javascript">
-	$('#selectEmail').change(function(){
-	   $("#selectEmail option:selected").each(function () {
+	$('#ifmmEmailDomain').change(function(){
+	   $("#ifmmEmailDomain option:selected").each(function () {
 			
-			if($(this).val()== '1'){ //직접입력일 경우
-				 $("#ifmmEmail2").val('');                        //값 초기화
-				 $("#ifmmEmail2").attr("disabled",false); //활성화
+			if($(this).val()== '11'){ //직접입력일 경우
+				 $("#Domain").val('');                        //값 초기화
+				 $("#Domain").attr("disabled",false); //활성화
 			}else{ //직접입력이 아닐경우
-				 $("#ifmmEmail2").val($(this).text());      //선택값 입력
-				 $("#ifmmEmail2").attr("disabled",true); //비활성화
+				 $("#Domain").val($(this).text());      //선택값 입력
+				 $("#Domain").attr("disabled",true); //비활성화
 			}
 	   });
 	});
+	
+	
+	
 </script>
 
 <script type="text/javascript">

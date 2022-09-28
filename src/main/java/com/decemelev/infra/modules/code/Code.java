@@ -15,18 +15,24 @@ public class Code {
 	private String ifcgEngName;
 	
 	private String infrCodeGroup_ifcgSeq;
-	private String ifcgName;
-	
 	private Integer ifcdDelNy;
+	
 	
 	
 //	for cache
 	public static List<Code> cachedCodeArrayList = new ArrayList<Code>();
 	
+	private String ifcgName;
+	private String ifcgSeq;
 	
 	
 	
-	
+	public String getIfcgSeq() {
+		return ifcgSeq;
+	}
+	public void setIfcgSeq(String ifcgSeq) {
+		this.ifcgSeq = ifcgSeq;
+	}
 	public Integer getIfcdDelNy() {
 		return ifcdDelNy;
 	}

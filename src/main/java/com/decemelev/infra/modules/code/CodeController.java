@@ -24,7 +24,7 @@ public class CodeController {
 	CodeGroupServiceImpl service2;
 
 	public void setSerchAndPaging(CodeVo vo) throws Exception {
-		vo.setShUseNy(vo.getShUseNy() == null ? 1 : vo.getShUseNy() );
+		/* vo.setShUseNy(vo.getShUseNy() == null ? 1 : vo.getShUseNy() ); */
 		vo.setShOptionDate(vo.getShOptionDate() == null ? 2 : vo.getShOptionDate());
 		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()) );
 		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()) );
@@ -48,14 +48,16 @@ public class CodeController {
 	}
 	
 	@RequestMapping(value = "codeForm")
-	public String codeForm(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception {
+	public String codeForm(@ModelAttribute("vo") CodeVo vo, Code dto, Model model) throws Exception {
 		
 		System.out.println("vo.getIfcdSeq(): " + vo.getIfcdSeq());
 		/*
 		 * List<CodeGroup> list = service2.selectList();
 		 */
+		List<Code> result1 = service.selectname(dto);
 		Code result = service.selectOne(vo);
 		model.addAttribute("item", result);
+		model.addAttribute("name", result1);
 		
 		return "infra/code/xdmin/codeForm";
 	}

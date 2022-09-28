@@ -83,13 +83,18 @@ public class LoginController {
 		if (rtLogin != null) {
 			Login rtLogin2 = service.selectOneLogin(dto);
 			
-			httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE); // 60second * 30 = 30minute
-			httpSession.setAttribute("sessSeq", rtLogin2.getIfmmSeq());
-			httpSession.setAttribute("sessId", rtLogin2.getIfmmId());
-			httpSession.setAttribute("sessName", rtLogin2.getIfmmName());
-			
-			System.out.println("success");
-			returnMap.put("rt", "success");
+			if(rtLogin2 != null) {
+				httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE); // 60second * 30 = 30minute
+				httpSession.setAttribute("sessSeq", rtLogin2.getIfmmSeq());
+				httpSession.setAttribute("sessId", rtLogin2.getIfmmId());
+				httpSession.setAttribute("sessName", rtLogin2.getIfmmName());
+				
+				System.out.println("success");
+				returnMap.put("rt", "success");
+			} else {
+				System.out.println("fail");
+				returnMap.put("rt", "fail");
+			}
 		} else {
 			System.out.println("fail");
 			returnMap.put("rt", "fail");
@@ -97,5 +102,17 @@ public class LoginController {
 		
 		return returnMap;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "logoutProc")
+	public Map<String, Object> logoutProc(HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		httpSession.invalidate();
+		returnMap.put("rt", "success");
+		return returnMap;
+	}
+	
+	
+	
 	
 }

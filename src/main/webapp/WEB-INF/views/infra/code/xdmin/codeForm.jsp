@@ -149,9 +149,10 @@
 												</div>
 												<div class="col-6">
 													<label class="form-label">코드 그룹</label>
-													<select name="infrCodeGroup_ifcgSeq" class="form-select" >
-														<c:forEach items="${list}" var="list" varStatus="status">
-															<option value="${list.ifcgSeq }" >${list.ifcgName }</option>
+													<select name="ifcgSeq" id="ifcgSeq" class="form-select" >
+														<c:forEach items="${name}" var="name" varStatus="status">
+															<%-- <option>${name.ifcgName }</option> --%>
+															<option value="${name.ifcgSeq }" >${name.ifcgName }</option>
 														</c:forEach>
 													</select>
 												</div>

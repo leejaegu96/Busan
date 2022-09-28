@@ -45,7 +45,7 @@
 			,#{ifcdEngName}
 			,1
 			,#{ifcdOrder}
-			,#{infrCodeGroup_ifcgSeq}
+			,#{ifcgSeq}
 		)
 		<selectKey resultType="String" keyProperty="ifcdSeq" order="AFTER">
 			SELECT last_insert_id()
@@ -75,6 +75,7 @@
 		SET
 			ifcdName = #{ifcdName}
 			,ifcdEngName = #{ifcdEngName}
+			,infrCodeGroup_ifcgSeq = #{ifcgSeq}
 			<!-- <include refid="Base.updateModColumnValue" /> -->
 		WHERE 
 			ifcdSeq = #{ifcdSeq}
@@ -103,5 +104,14 @@
 			AND ifcdDelNy = 0
 		    AND ifcdUseNy = 1
     </select>
+ 	
+ 	<select id="selectName" resultMap="resultMapObj">
+ 		SELECT
+			a.ifcgname
+			,a.ifcgSeq
+		FROM infrCodeGroup a
+		;
+ 			
+ 	</select>
  	
 </mapper>

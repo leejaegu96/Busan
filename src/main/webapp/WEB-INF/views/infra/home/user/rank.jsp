@@ -100,14 +100,14 @@ body {
 					<h3 style="color:white; font-size: 20px; margin-top:15px; margin-left:20px; height: 52px; cursor:pointer;" onClick="location.href='HomeForm.html'"><i class="fa-solid fa-book-open"></i>&nbsp;E-WORD</h3>
 					<nav id="nav">
 						<ul>
-							<li><a href="HomeForm.html">Home</a></li>
+							<li><a href="home">Home</a></li>
 							<li>
 								<a href="#" class="icon solid fa-angle-down">Contents</a>
 								<ul>
-									<li><a href="TestForm.html">Exam</a></li>
-									<li><a href="RankingForm.html">Ranking</a></li>
-									<li><a href="../Mypage/ProfileForm.html">Mypage</a></li>
-									<li><a href="contact.html">Translate</a></li>
+									<li><a href="test">Exam</a></li>
+									<li><a href="rank">Ranking</a></li>
+									<li><a href="">Mypage</a></li>
+									<li><a href="">Translate</a></li>
 									<li>
 										<a href="#">Word</a>
 										<ul>
@@ -117,7 +117,24 @@ body {
 									</li>
 								</ul>
 							</li>
-							<li><a href="#" class="button">Sign Up</a></li>
+							<c:choose>
+								<c:when test="${sessSeq eq null}">
+									<!--로그인 전 화면  -->
+								    <li><a href="#" class="button" onClick="location.href='../login/signUp'" style="cursor:pointer;">회원가입</a></li>
+								    <li><a href="#" class="button" onClick="location.href='../login/login'" style="cursor:pointer;">Login</a></li>
+								</c:when>
+								<c:otherwise>
+									<!--로그인 후 화면  -->
+								    <li><a href="#">Mypage</a></li>
+								    <li><a href="#">계정설정</a></li>
+								    <li><a href="#" class="button" id="btnLogout" style="cursor:pointer;">Logout</a></li>
+								 </c:otherwise>
+							</c:choose>
+							
+							<!-- 
+							<li><a href="#" class="button" onClick="location.href='../login/login'" style="cursor:pointer;">Login</a></li>
+							<li><a href="#" class="button" id="btnLogout" style="cursor:pointer;">Logout</a></li>
+							 -->
 						</ul>
 					</nav>
 				</header>
@@ -285,8 +302,28 @@ body {
 			<script src="https://kit.fontawesome.com/20c294a34b.js" crossorigin="anonymous"></script>
 			<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
 			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+			<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 			<script type="text/javascript">
-    		
+			$("#btnLogout").on("click", function(){
+				$.ajax({
+					async: true 
+					,cache: false
+					,type: "post"
+					,url: "/login/logoutProc"
+					,data: {}
+					,success: function(response) {
+						if(response.rt == "success") {
+							location.href = "/home/home";
+						} else {
+							// by pass
+						}
+					}
+					,error : function(jqXHR, textStatus, errorThrown){
+						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+					}
+				});
+			});
 			</script>
 			
 

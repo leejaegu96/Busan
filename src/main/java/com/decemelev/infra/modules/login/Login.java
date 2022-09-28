@@ -11,12 +11,51 @@ public class Login {
 	private Integer ifmmEmailDomain;
 	private String ifmmPassword;
 	private Integer ifmmGender;
-	private Date ifmmDob;
+	private String ifmmDob;
 	private Integer ifmmPhoneCarrier;
 	private String ifmmPhone;
-	private Integer ifmmMailNY;
-	private Integer ifmmSmsNY;
+	private Integer ifmmMailNy;
+	private Integer ifmmSmsNy;
+	private String ifmmAddress;
+	private Integer ifmmDelNy;
 	
+	
+	
+	
+	
+	
+	
+	
+	public Integer getIfmmDelNy() {
+		return ifmmDelNy;
+	}
+	public void setIfmmDelNy(Integer ifmmDelNy) {
+		this.ifmmDelNy = ifmmDelNy;
+	}
+	public Integer getIfmmMailNy() {
+		return ifmmMailNy;
+	}
+	public void setIfmmMailNy(Integer ifmmMailNy) {
+		this.ifmmMailNy = ifmmMailNy;
+	}
+	public Integer getIfmmSmsNy() {
+		return ifmmSmsNy;
+	}
+	public void setIfmmSmsNy(Integer ifmmSmsNy) {
+		this.ifmmSmsNy = ifmmSmsNy;
+	}
+	public String getIfmmAddress() {
+		return ifmmAddress;
+	}
+	public void setIfmmAddress(String ifmmAddress) {
+		this.ifmmAddress = ifmmAddress;
+	}
+	public String getIfmmDob() {
+		return ifmmDob;
+	}
+	public void setIfmmDob(String ifmmDob) {
+		this.ifmmDob = ifmmDob;
+	}
 	public String getIfmmSeq() {
 		return ifmmSeq;
 	}
@@ -59,12 +98,7 @@ public class Login {
 	public void setIfmmGender(Integer ifmmGender) {
 		this.ifmmGender = ifmmGender;
 	}
-	public Date getIfmmDob() {
-		return ifmmDob;
-	}
-	public void setIfmmDob(Date ifmmDob) {
-		this.ifmmDob = ifmmDob;
-	}
+	
 	public Integer getIfmmPhoneCarrier() {
 		return ifmmPhoneCarrier;
 	}
@@ -77,17 +111,6 @@ public class Login {
 	public void setIfmmPhone(String ifmmPhone) {
 		this.ifmmPhone = ifmmPhone;
 	}
-	public Integer getIfmmMailNY() {
-		return ifmmMailNY;
-	}
-	public void setIfmmMailNY(Integer ifmmMailNY) {
-		this.ifmmMailNY = ifmmMailNY;
-	}
-	public Integer getIfmmSmsNY() {
-		return ifmmSmsNY;
-	}
-	public void setIfmmSmsNY(Integer ifmmSmsNY) {
-		this.ifmmSmsNY = ifmmSmsNY;
-	}
+	
 	
 }

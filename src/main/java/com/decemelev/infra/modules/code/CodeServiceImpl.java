@@ -57,6 +57,14 @@ public class CodeServiceImpl implements CodeService {
 		return dao.delete(vo);
 	}
 	
+//	셀렉트 네임
+	
+	@Override
+	public List<Code> selectname(Code dto) throws Exception {
+		return dao.selectName(dto);
+	}
+	
+	
 	@PostConstruct
 	public void selectListCachedCodeArrayList() throws Exception {
 		List<Code> codeListFromDb = (ArrayList<Code>) dao.selectListCachedCodeArrayList();
