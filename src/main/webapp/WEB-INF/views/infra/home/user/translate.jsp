@@ -97,7 +97,7 @@ body {
 
 			<!-- Header -->
 				<header id="header">
-					<h3 style="color:white; font-size: 20px; margin-top:15px; margin-left:20px; height: 52px; cursor:pointer;" onClick="location.href='HomeForm.html'"><i class="fa-solid fa-book-open"></i>&nbsp;E-WORD</h3>
+					<h3 style="color:white; font-size: 20px; margin-top:15px; margin-left:20px; height: 52px; cursor:pointer;" onClick="location.href='home'"><i class="fa-solid fa-book-open"></i>&nbsp;E-WORD</h3>
 					<nav id="nav">
 						<ul>
 							<li><a href="home">Home</a></li>
@@ -111,7 +111,7 @@ body {
 									<li>
 										<a href="#">Word</a>
 										<ul>
-											<li><a href="#">Today's Word</a></li>
+											<li><>Today's Word</a></li>
 											<li><a href="#">Favorite Word</a></li>
 										</ul>
 									</li>
@@ -139,7 +139,7 @@ body {
 				<section id="main" class="container">
 					<header>
 						<h2>Translate</h2>
-						<p>Translate it yourself</p>
+						<p>We dream of a world where we can communicate without language barriers.</p>
 					</header>
 					<div class="row">
 						<div class="col-12">

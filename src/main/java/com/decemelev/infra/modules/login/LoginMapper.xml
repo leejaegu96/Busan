@@ -69,6 +69,14 @@
 		WHERE 1=1 
 			AND a.ifmmId = #{ifmmId}
 	</select>
+	<select id="selectOneId1" resultMap="resultMapObj">
+		SELECT
+			a.ifmmSeq
+			,a.ifmmEmail
+		FROM infrMember a
+		WHERE 1=1 
+			AND a.ifmmEmail = #{ifmmEmail}
+	</select>
 	<select id="selectOneLogin" resultMap="resultMapObj">
 		SELECT
 			a.ifmmSeq
@@ -79,6 +87,20 @@
 		WHERE 1=1 
 			AND a.ifmmId = #{ifmmId}
 			AND a.ifmmPassword = #{ifmmPassword}
+			<!-- <if test="ifmmPassword != null and !ifmmPassword.equals('')">AND a.ifmmPassword = #{ifmmPassword}</if> -->
+			
+	</select>
+	<select id="selectOneLogin1" resultMap="resultMapObj">
+		SELECT
+			a.ifmmSeq
+			,a.ifmmEmail
+			,a.ifmmPassword
+			,a.ifmmName
+		FROM infrMember a
+		WHERE 1=1 
+			AND a.ifmmEmail = #{ifmmEmail}
+			AND a.ifmmPassword = #{ifmmPassword}
+			AND a.ifmmSeq = "144"
 			<!-- <if test="ifmmPassword != null and !ifmmPassword.equals('')">AND a.ifmmPassword = #{ifmmPassword}</if> -->
 			
 	</select>

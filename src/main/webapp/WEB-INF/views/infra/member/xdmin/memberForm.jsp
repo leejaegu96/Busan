@@ -56,10 +56,10 @@
 						<li class="sidebar-item "><a href="../code/codeList" class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>Code</span>
 						</a></li>
 
-						<li class="sidebar-item"><a href="../function/WordList.html" class='sidebar-link'> <i class="fa fa-book"></i> <span>Word</span>
+						<li class="sidebar-item"><a href="" class='sidebar-link'> <i class="fa fa-book"></i> <span>Word</span>
 						</a></li>
 
-						<li class="sidebar-item"><a href="../function/TestList.html" class='sidebar-link'> <i class="fa fa-chalkboard"></i> <span>Test</span>
+						<li class="sidebar-item"><a href="" class='sidebar-link'> <i class="fa fa-chalkboard"></i> <span>Test</span>
 						</a></li>
 					</ul>
 				</div>

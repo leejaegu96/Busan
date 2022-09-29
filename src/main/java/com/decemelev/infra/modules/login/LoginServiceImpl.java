@@ -44,11 +44,23 @@ public class LoginServiceImpl implements LoginService {
 		System.out.println("service selectOneId result: " + result);
 		return result;
 	}
+	@Override
+	public Login selectOneId1(Login dto) throws Exception {
+		Login result = dao.selectOneId1(dto);
+		System.out.println("service selectOneId1 result: " + result);
+		return result;
+	}
 	
 	@Override
 	public Login selectOneLogin(Login dto) throws Exception {
 		Login result = dao.selectOneLogin(dto);
 		System.out.println("service selectOneLogin result: " + result);
+		return result;
+	}
+	@Override
+	public Login selectOneLogin1(Login dto) throws Exception {
+		Login result = dao.selectOneLogin1(dto);
+		System.out.println("service selectOneLogin1 result: " + result);
 		return result;
 	}
 }

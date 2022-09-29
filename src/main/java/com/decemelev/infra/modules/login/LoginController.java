@@ -104,6 +104,39 @@ public class LoginController {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value = "loginProc1")
+	public Map<String, Object> loginProc1(Login dto, HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		dto.setIfmmPassword(UtilSecurity.encryptSha256(dto.getIfmmPassword()));
+		Login rtLogin = service.selectOneId1(dto);
+		System.out.println(rtLogin);
+		
+		if (rtLogin != null) {
+			Login rtLogin2 = service.selectOneLogin1(dto);
+			
+			if(rtLogin2 != null) {
+				httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE); // 60second * 30 = 30minute
+				httpSession.setAttribute("sessSeq", rtLogin2.getIfmmSeq());
+				httpSession.setAttribute("sessEmail", rtLogin2.getIfmmEmail());
+				httpSession.setAttribute("sessName", rtLogin2.getIfmmName());
+				
+				System.out.println("success");
+				returnMap.put("rt", "success");
+			} else {
+				System.out.println("fail");
+				returnMap.put("rt", "fail");
+			}
+		} else {
+			System.out.println("fail");
+			returnMap.put("rt", "fail");
+			
+			
+		}
+		
+		return returnMap;
+	}
+	
+	@ResponseBody
 	@RequestMapping(value = "logoutProc")
 	public Map<String, Object> logoutProc(HttpSession httpSession) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();

@@ -32,7 +32,13 @@ public class LoginDao {
 	public Login selectOneId(Login dto) {
 		return sqlSession.selectOne(namespace + ".selectOneId", dto);
 	}
+	public Login selectOneId1(Login dto) {
+		return sqlSession.selectOne(namespace + ".selectOneId1", dto);
+	}
 	public Login selectOneLogin(Login dto) {
 		return sqlSession.selectOne(namespace + ".selectOneLogin", dto);
+	}
+	public Login selectOneLogin1(Login dto) {
+		return sqlSession.selectOne(namespace + ".selectOneLogin1", dto);
 	}
 }

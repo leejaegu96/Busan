@@ -12,6 +12,8 @@ public interface LoginService {
 	public int selectOneIdCheck(Login dto) throws Exception;
 	
 	public Login selectOneId(Login dto) throws Exception;
+	public Login selectOneId1(Login dto) throws Exception;
 	public Login selectOneLogin(Login dto) throws Exception;
+	public Login selectOneLogin1(Login dto) throws Exception;
 	
 }

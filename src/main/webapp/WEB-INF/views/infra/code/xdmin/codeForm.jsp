@@ -84,14 +84,14 @@
                         </li>
                         
                         <li class="sidebar-item">
-                            <a href="../function/WordList.html" class='sidebar-link'>
+                            <a href="" class='sidebar-link'>
                                 <i class="fa fa-book"></i>
                                 <span>Word</span>
                             </a>
                         </li>
                         
                         <li class="sidebar-item">
-                            <a href="../function/TestList.html" class='sidebar-link'>
+                            <a href="" class='sidebar-link'>
                                 <i class="fa fa-chalkboard"></i>
                                 <span>Test</span>
                             </a>

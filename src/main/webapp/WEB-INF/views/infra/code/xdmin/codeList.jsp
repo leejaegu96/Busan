@@ -101,10 +101,10 @@
 						<li class="sidebar-item active "><a href="codeList" class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>Code</span>
 						</a></li>
 
-						<li class="sidebar-item"><a href="index.html" class='sidebar-link'> <i class="fa fa-book"></i> <span>Word</span>
+						<li class="sidebar-item"><a href="" class='sidebar-link'> <i class="fa fa-book"></i> <span>Word</span>
 						</a></li>
 
-						<li class="sidebar-item"><a href="index.html" class='sidebar-link'> <i class="fa fa-chalkboard"></i> <span>Test</span>
+						<li class="sidebar-item"><a href="" class='sidebar-link'> <i class="fa fa-chalkboard"></i> <span>Test</span>
 						</a></li>
 					</ul>
 				</div>
@@ -401,9 +401,10 @@
     <script src="../resources/assets/js/pages/dashboard.js"></script>
     <script src="../resources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="../resources/assets/js/bootstrap.bundle.min.js"></script>
-	 -->
-	<script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+	 -->
+	
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 	<script src="https://kit.fontawesome.com/20c294a34b.js" crossorigin="anonymous"></script>
 	<script src="../resources/assets/js/main.js"></script>

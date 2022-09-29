@@ -206,7 +206,7 @@
 						</div>
 						<div class="features-row">
 							<section>
-								<span class="icon solid major fa-book-atlas accent4" onClick="location.href='translate'"></span>
+								<span class="icon solid major fa-book-atlas accent4" onClick="location.href='translate'"  style="cursor:pointer;"></span>
 								<h3>TRANSLATE</h3>
 								<p>We dream of a world where we can communicate without language barriers.</p>
 							</section>

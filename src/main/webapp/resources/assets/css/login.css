@@ -175,6 +175,7 @@ iframe {
 
 .wrap-login100 {
   width: 390px;
+  min-height: 700px;
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
