@@ -208,6 +208,21 @@ body {
 				});
 			});
 			</script>
+			<script type="text/javascript">
+			
+			function translateText(userLang) {
+				var sourceText = "이것이 한석봉이다.";
+			    $.ajax({
+			        type:"POST",
+			        data:'&target='+userLang+'&format=html&q=' + sourceText,
+			        url:'https://www.googleapis.com/language/translate/v2?key=AIzaSyAo8Uvy71vOiz5yqYLQwz_O9Ux6rIuhlEk';,
 
+			        success:function(response){
+			            alert( response.data.translations[0].translatedText );
+			        }
+			    });
+			}
+			
+			</script>
 	</body>
 </html>

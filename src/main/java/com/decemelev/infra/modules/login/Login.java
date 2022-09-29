@@ -16,8 +16,8 @@ public class Login {
 	private String ifmmPhone;
 	private String ifmmAddress;
 	private Integer ifmmDelNy;
-	private String ifmmMailNy;
-	private String ifmmSmsNy;
+	private Integer ifmmMailNy;
+	private Integer ifmmSmsNy;
 	
 	
 	
@@ -26,16 +26,16 @@ public class Login {
 	
 	
 	
-	public String getIfmmMailNy() {
+	public Integer getIfmmMailNy() {
 		return ifmmMailNy;
 	}
-	public void setIfmmMailNy(String ifmmMailNy) {
+	public void setIfmmMailNy(Integer ifmmMailNy) {
 		this.ifmmMailNy = ifmmMailNy;
 	}
-	public String getIfmmSmsNy() {
+	public Integer getIfmmSmsNy() {
 		return ifmmSmsNy;
 	}
-	public void setIfmmSmsNy(String ifmmSmsNy) {
+	public void setIfmmSmsNy(Integer ifmmSmsNy) {
 		this.ifmmSmsNy = ifmmSmsNy;
 	}
 	public Integer getIfmmDelNy() {
