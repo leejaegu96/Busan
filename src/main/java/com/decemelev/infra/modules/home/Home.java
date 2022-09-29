@@ -28,8 +28,8 @@ public class Home {
 	private String ifmmName;
 	private Integer sdtrsTotalScore;
 	
-
 	
+
 	public String getInfrMember_ifmmSeq() {
 		return infrMember_ifmmSeq;
 	}

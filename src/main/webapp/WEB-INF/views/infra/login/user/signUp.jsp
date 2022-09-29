@@ -112,7 +112,8 @@
 						</select>
 		              </div>
 		              <input type="text" class="form-control" id="ifmmEmail" name="ifmmEmail" >
-		              <input class="form-text" type="checkbox" id="ifmmMailNy" name="ifmmMailNy" value="1" >
+		              <input class="form-text" type="checkbox" name="ifmmMailNy" value="1" >
+		              <input class="form-text" type="hidden" name="ifmmMailNy" value="0" >
 					  <label class="form-text" for="ifmmMailNy" >
 						E-mail을 통한 소식/정보 수신을 동의하시겠습니까? 
 					  </label>
@@ -160,7 +161,8 @@
 							</div>
 						</div>
 						 -->
-						<input class="form-text" type="checkbox" id="ifmmSmsNy" name="ifmmSmsNy" value="1" >
+						<input class="form-text" type="checkbox" name="ifmmSmsNy" value="1" >
+						<input class="form-text" type="hidden" name="ifmmSmsNy" value="0" >
 					    <label class="form-text" for="ifmmSmsNy">
 					  	  SMS을 통한 소식/정보 수신을 동의하시겠습니까? 
 					    </label>

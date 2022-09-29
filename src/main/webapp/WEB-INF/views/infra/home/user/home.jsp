@@ -40,7 +40,7 @@
 									<li><a href="test">Exam</a></li>
 									<li><a href="rank">Ranking</a></li>
 									<li><a href="">Mypage</a></li>
-									<li><a href="">Translate</a></li>
+									<li><a href="translate">Translate</a></li>
 									<li>
 										<a href="#">Word</a>
 										<ul>
@@ -206,7 +206,7 @@
 						</div>
 						<div class="features-row">
 							<section>
-								<span class="icon solid major fa-book-atlas accent4"></span>
+								<span class="icon solid major fa-book-atlas accent4" onClick="location.href='translate'"></span>
 								<h3>TRANSLATE</h3>
 								<p>We dream of a world where we can communicate without language barriers.</p>
 							</section>

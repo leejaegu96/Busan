@@ -29,7 +29,8 @@
 			,ifmmPhone
 			,ifmmAddress
 			,ifmmDelNy
-			
+			,ifmmMailNy
+			,ifmmSmsNy
 		)
 		VALUES (
 			#{ifmmName}
@@ -43,8 +44,8 @@
 			,#{ifmmPhone}
 			,#{ifmmAddress}
 			,0
-			
-			
+			,#{ifmmMailNy}
+			,#{ifmmSmsNy}
 		)
 		<selectKey resultType="String" keyProperty="ifmmSeq" order="AFTER">
 			SELECT last_insert_id()

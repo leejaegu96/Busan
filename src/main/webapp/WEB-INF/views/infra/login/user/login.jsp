@@ -29,7 +29,7 @@
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<form id="form" name="form" method="post">
-					<span class="login100-form-title p-b-26"> Welcome </span><br> <br> <span class="login100-form-title p-b-48" href = "/home/home"> <i class="fa-solid fa-book-open" style="font-size: 50px;"></i><br>
+					<span class="login100-form-title p-b-26"> Welcome </span><br> <br> <span class="login100-form-title p-b-48" onClick="location.href='/home/home'" style="cursor:pointer;"> <i class="fa-solid fa-book-open" style="font-size: 50px;"></i><br>
 					</span><br> <br>
 
 					<div class="wrap-input100 validate-input">

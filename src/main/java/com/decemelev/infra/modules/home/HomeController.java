@@ -1,5 +1,6 @@
 package com.decemelev.infra.modules.home;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,4 +50,13 @@ public class HomeController {
 		return "infra/home/user/rank";
 		
 	}
+	
+	@RequestMapping(value = "translate")
+	public String translate(Model model) throws Exception {
+		
+		return "infra/home/user/translate";
+	}
+	
+	
+				
 }

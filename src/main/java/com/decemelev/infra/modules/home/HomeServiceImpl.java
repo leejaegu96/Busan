@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class HomeServiceImpl implements HomeService{
 	
@@ -31,5 +32,7 @@ public class HomeServiceImpl implements HomeService{
 		List<Home> rank = dao.selectRank();
 		return rank;
 	}
+	
+	
 	
 }
