@@ -6,8 +6,8 @@ public class MemberVo extends BaseVo {
 	
 	private Integer shOption;
 	private String shValue;
-	private String shUseNy;
-	private String shDelNy;
+	private Integer shUseNy;
+	private Integer shDelNy;
 	private Integer shOptionDate;
 	private String ifmmSeq;
 	
@@ -16,6 +16,21 @@ public class MemberVo extends BaseVo {
 	
 	
 	
+	
+	
+	
+	public Integer getShUseNy() {
+		return shUseNy;
+	}
+	public void setShUseNy(Integer shUseNy) {
+		this.shUseNy = shUseNy;
+	}
+	public Integer getShDelNy() {
+		return shDelNy;
+	}
+	public void setShDelNy(Integer shDelNy) {
+		this.shDelNy = shDelNy;
+	}
 	public String getShDateStart() {
 		return shDateStart;
 	}
@@ -40,18 +55,7 @@ public class MemberVo extends BaseVo {
 	public void setShValue(String shValue) {
 		this.shValue = shValue;
 	}
-	public String getShUseNy() {
-		return shUseNy;
-	}
-	public void setShUseNy(String shUseNy) {
-		this.shUseNy = shUseNy;
-	}
-	public String getShDelNy() {
-		return shDelNy;
-	}
-	public void setShDelNy(String shDelNy) {
-		this.shDelNy = shDelNy;
-	}
+	
 	public Integer getShOptionDate() {
 		return shOptionDate;
 	}

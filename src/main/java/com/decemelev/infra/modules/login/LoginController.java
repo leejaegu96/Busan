@@ -49,6 +49,10 @@ public class LoginController {
 	public String findIdPassword(Locale locale, Model model) {
 		return "infra/login/user/findIdPassword";
 	}
+	@RequestMapping(value="selectForm", method = RequestMethod.GET)
+	public String selectForm(Locale locale, Model model) {
+		return "infra/login/user/selectForm";
+	}
 	
 	@SuppressWarnings(value= {"all"})
 	@RequestMapping(value = "loginInst")

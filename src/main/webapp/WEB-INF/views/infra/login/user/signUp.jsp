@@ -196,31 +196,12 @@
 		            <div class="mb-3">
 		              <label for="address">Profile</label>
 		              <div class="row">
-			              <div class="col-10">
+			              <div class="col">
 				              <div class="input-group mb-3">
 								  <input type="file" class="form-control" id="upload_file" accept="image/*" required=true>
 								  <label class="input-group-text" for="inputGroupFile02">Upload</label>
 							  </div>
 						  </div>
-						  <div class="col-2">
-						  	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" >미리보기 </button>
-						  </div>
-					  </div>
-					  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-body">
-									<form>
-										<div class="mb-3" style="text-align:center;">
-											<img src="" id="img_section" style="width: 300px; height: 350px;">
-									    </div>
-									</form>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-								</div>
-							</div>
-						</div>
 					  </div>
 		            </div>
 		
@@ -461,9 +442,7 @@ document.getElementById('ifmmAddress').value = str;
 			}
 	   });
 	});
-	
-	
-	
+
 </script>
 
 <script type="text/javascript">

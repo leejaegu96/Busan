@@ -22,6 +22,39 @@
 		
 		<link rel="stylesheet" href="../resources/assets/css/main.css" />
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+		
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+		<style>
+		.ui-datepicker{ font-size: 15px; width: 400px; }
+		.ui-datepicker select.ui-datepicker-month{ width:30%; font-size: 15px; }
+		.ui-datepicker select.ui-datepicker-year{ width:40%; font-size: 15px; }
+		</style>
+		<script type="text/javascript">
+	    $(document).ready(function () {
+	        $.datepicker.setDefaults($.datepicker.regional['ko']); 
+	        $( "#datepicker" ).datepicker({
+	             changeMonth: true, 
+	             changeYear: true,
+	             nextText: '다음 달',
+	             prevText: '이전 달', 
+	             dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+	             dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], 
+	             monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+	             monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+	             dateFormat: "yy-mm-dd",
+	             maxDate: 0,
+	             minDate: new Date('2022-07-25'),
+	             maxDate: new Date('2022-07-27'),
+	        	// 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)
+	             onClose: function( selectedDate ) {    
+	             }    
+	
+	        });
+	    });
+		</script>
+		
 	</head>
 	<body class="landing is-preload">
 		<div id="page-wrapper">
@@ -74,18 +107,24 @@
 				
 			<!-- Banner -->
 				<section id="banner">
+					<%-- 
 					<div style="float:left">
+					
 						sessSeq: <c:out value="${sessSeq }"/><br>
 						sessName: <c:out value="${sessName }"/><br>
 						sessId: <c:out value="${sessId }"/><br>
+						
 					</div>
+					 --%>
 					<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
 					  <div class="carousel-inner">
 					  	<h3>Today's Word</h3><br>
 					  	
 					  	<div class="carousel-item active" data-bs-interval="1000000">
 					      <div style="max-width:450px; width:100%; height:500px; height:100%; text-align:left; margin:auto; text-align:center; background-color: #666666;">
-						    <img alt="" src="../resources/assets/images/samples/study.jpg" style="height:150px; width:300px;">
+						    <img alt="" src="../resources/assets/images/samples/study.jpg" style="height:200px; width:400px; padding:10px;">
+						    
+							  <input type="text" class="form-control" id="datepicker" placeholder="Choice Date!!" style="text-align:center; color:black;">
 						  </div>
 					    </div>
 					  	
@@ -122,75 +161,12 @@
 					    <span class="visually-hidden">Next</span>
 					  </button>
 					</div>
-					<!-- 
-					<h3 style="letter-spacing:7px;">Look up a word, Learn it forever!</h3>
-					<div class="search" style="color:black; padding-top:10px; padding-bottom:10px;">
-						<i class="fas fa-search"></i>
-						<input type="text" style="text-indent: 20px;">
-						<i class="fas fa-keyboard"></i>
-						<i class="fas fa-microphone"></i>
-					</div>
-					<ul class="actions special">
-						<li><a href="#" class="button primary" onClick="location.href='../Login/LoginForm.html'" style="cursor:pointer;">Sign Up</a></li>
-						<li><a href="#" class="button">Learn More</a></li>
-					</ul>
-					 -->
+					
 				</section>
 
 			<!-- Main -->
 				<section id="main" class="container">
-					<%-- 
-					<section class="box special">
-						<header class="major">
-						
-						<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-						  <div class="carousel-inner">
-						  	<h3>Today's Word</h3><br>
-						  	
-						  	<div class="carousel-item active" data-bs-interval="10000">
-						      <div style="max-width:450px; width:100%; height:500px; height:100%; text-align:left; margin:auto; text-align:center; background-color: white;">
-						      	<span style="line-height:200%;">
-							    	Today's Word
-							    </span>
-							  </div>
-						    </div>
-						  	
-						  	<c:forEach items="${list}" var="list" varStatus="status">
-						    <div class="carousel-item" data-bs-interval="10000">
-						      <div style="max-width:450px; width:100%; height:500px; height:100%; text-align:left; margin:auto; background-color: white;">
-							    <h4> <c:out value="${list.sdwWord }"/> &nbsp; <i class="fa-solid fa-volume-high"></i></h4><br>
-							    <span style="line-height:200%;">
-							    	<span style="color:Blue; font-style: italic;"><c:out value="${list.sdwmPartOfSpeech}"/></span> &nbsp; <b><c:out value="${list.sdwmContents}"/></b> <br>
-							    	<br><c:out value="${list.sdweContents}"/> <br> <c:out value="${list.sdweTranslate}"/>
-							    </span>
-							  </div>
-						    </div>
-						    </c:forEach>
-						    
-						  </div>
-						  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev" >
-						    <span class="carousel-control-prev-icon" aria-hidden="true" style="float:top;"></span>
-						    <span class="visually-hidden">Previous</span>
-						  </button>
-						  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-						    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-						    <span class="visually-hidden">Next</span>
-						  </button>
-						</div>
-						
-							<!-- 
-							<h2>Introducing the ultimate mobile app
-							<br />
-							for doing stuff with your phone</h2>
-							<p>Blandit varius ut praesent nascetur eu penatibus nisi risus faucibus nunc ornare<br />
-							adipiscing nunc adipiscing. Condimentum turpis massa.</p>
-							 -->
-						</header>
-						<!-- 
-						<span class="image featured"><img src="../resources/assets/images/background/pic01.jpg" alt="" /></span>
-						 -->
-					</section>
-					 --%>
+					
 					<section class="box special features">
 						<div class="features-row">
 							<section>
@@ -237,6 +213,7 @@
 		</div>
 
 		<!-- Scripts -->
+			<!-- 
 			<script src="../resources/assets/js/jquery.min.js"></script>
 			<script src="../resources/assets/js/jquery.dropotron.min.js"></script>
 			<script src="../resources/assets/js/jquery.scrollex.min.js"></script>
@@ -244,10 +221,13 @@
 			<script src="../resources/assets/js/breakpoints.min.js"></script>
 			<script src="../resources/assets/js/util.js"></script>
 			<script src="../resources/assets/js/main2.js"></script>
-			<script src="https://kit.fontawesome.com/20c294a34b.js" crossorigin="anonymous"></script>
 			<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
-			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
 			<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+			 -->
+			<script src="https://kit.fontawesome.com/20c294a34b.js" crossorigin="anonymous"></script>
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+			
+			
 			<script type="text/javascript">
 			$("#btnLogout").on("click", function(){
 				$.ajax({
