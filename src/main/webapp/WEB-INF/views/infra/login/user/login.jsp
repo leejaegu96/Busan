@@ -36,12 +36,12 @@
 						</span><br> <br>
 
 						<div class="wrap-input100 validate-input">
-							<input class="input100" type="text" id="ifmmId" name="ifmmId" > <span class="focus-input100" id="ifmmId" name="ifmmId" data-placeholder="ID" style="text-align: center;"></span>
+							<input class="input100" type="text" id="ifmmId" name="ifmmId" value="dlworn123"> <span class="focus-input100" id="ifmmId" name="ifmmId" data-placeholder="ID" style="text-align: center;"></span>
 						</div>
 	
 						<div class="wrap-input100 validate-input" data-validate="Enter password">
 							<span class="btn-show-pass"> <i class="zmdi zmdi-eye"></i>
-							</span> <input class="input100" type="password" id="ifmmPassword" name="ifmmPassword" > <span class="focus-input100" id="ifmmPassword" name="ifmmPassword" data-placeholder="Password" style="text-align: center;"></span>
+							</span> <input class="input100" type="password" id="ifmmPassword" name="ifmmPassword" value="dlworn123!"> <span class="focus-input100" id="ifmmPassword" name="ifmmPassword" data-placeholder="Password" style="text-align: center;"></span>
 						</div>
 	
 						<div class="container-login100-form-btn">
@@ -123,7 +123,7 @@ $("#btnLogin").on("click", function(){
 		,success: function(response) {
 			if( $("#ifmmId").val() == "dlworn123") {
 				if(response.rt == "success") {
-					location.href = "/member/memberList";
+					location.href = "/login/selectForm";
 				} else {
 					alert("회원없음");
 				}

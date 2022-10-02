@@ -106,6 +106,9 @@
 
 						<li class="sidebar-item"><a href="" class='sidebar-link'> <i class="fa fa-chalkboard"></i> <span>Test</span>
 						</a></li>
+						
+						<li class="sidebar-item"><a href="/home/home" class='sidebar-link'> <i class="fa-solid fa-house-chimney-user"></i> <span>User Home</span>
+						</a></li>
 					</ul>
 				</div>
 				<button class="sidebar-toggler btn x">

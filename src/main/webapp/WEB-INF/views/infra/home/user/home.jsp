@@ -89,6 +89,13 @@
 								    <li><a href="#" class="button" onClick="location.href='../login/signUp'" style="cursor:pointer;">회원가입</a></li>
 								    <li><a href="#" class="button" onClick="location.href='../login/login'" style="cursor:pointer;">Login</a></li>
 								</c:when>
+								<c:when test="${sessSeq eq 144}">
+									<!--로그인 전 화면  -->
+								    <li><a href="/member/memberList">Admin</a></li>
+								    <li><a href="#">Mypage</a></li>
+								    <li><a href="#">계정설정</a></li>
+								    <li><a href="#" class="button" id="btnLogout" style="cursor:pointer;">Logout</a></li>
+								</c:when>
 								<c:otherwise>
 									<!--로그인 후 화면  -->
 								    <li><a href="#">Mypage</a></li>

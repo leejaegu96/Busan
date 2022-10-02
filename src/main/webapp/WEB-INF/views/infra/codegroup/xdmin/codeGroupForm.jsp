@@ -99,6 +99,9 @@
                                 <span>Test</span>
                             </a>
                         </li>
+                        
+                        <li class="sidebar-item"><a href="/home/home" class='sidebar-link'> <i class="fa-solid fa-house-chimney-user"></i> <span>User Home</span>
+						</a></li>
                     </ul>
                 </div>
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
