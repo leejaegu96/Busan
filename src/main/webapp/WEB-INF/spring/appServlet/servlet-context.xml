@@ -28,7 +28,10 @@
 		<interceptor>
 			<mapping path="/**"/>
 			<exclude-mapping path="/resources/**" />
-			<exclude-mapping path="/login/**" />
+			<exclude-mapping path="/login/login" />
+			<exclude-mapping path="/login/loginProc" />
+			<exclude-mapping path="/login/logoutProc" />
+			<exclude-mapping path="/home/home" />
 			<beans:bean id="checkLoginSessionInterception" class="com.decemelev.infra.common.interceptor.CheckLoginSessionInterception"/>
 		</interceptor>
 	</interceptors>	

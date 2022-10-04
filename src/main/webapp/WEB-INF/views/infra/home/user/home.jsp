@@ -72,34 +72,25 @@
 								<ul>
 									<li><a href="test">Exam</a></li>
 									<li><a href="rank">Ranking</a></li>
-									<li><a href="">Mypage</a></li>
+									<li><a href="mypage">Mypage</a></li>
 									<li><a href="translate">Translate</a></li>
-									<li>
-										<a href="#">Word</a>
-										<ul>
-											<li><a href="#">Today's Word</a></li>
-											<li><a href="#">Favorite Word</a></li>
-										</ul>
-									</li>
 								</ul>
 							</li>
 							<c:choose>
 								<c:when test="${sessSeq eq null}">
 									<!--로그인 전 화면  -->
-								    <li><a href="#" class="button" onClick="location.href='../login/signUp'" style="cursor:pointer;">회원가입</a></li>
+								    <li><a href="#" class="button" onClick="location.href='../login/signUp'" style="cursor:pointer;">Sign Up</a></li>
 								    <li><a href="#" class="button" onClick="location.href='../login/login'" style="cursor:pointer;">Login</a></li>
 								</c:when>
 								<c:when test="${sessSeq eq 144}">
-									<!--로그인 전 화면  -->
+									<!--관리자 로그인 후 화면  -->
+									<li><a href="mypage">Mypage</a></li>
 								    <li><a href="/member/memberList">Admin</a></li>
-								    <li><a href="#">Mypage</a></li>
-								    <li><a href="#">계정설정</a></li>
 								    <li><a href="#" class="button" id="btnLogout" style="cursor:pointer;">Logout</a></li>
 								</c:when>
 								<c:otherwise>
 									<!--로그인 후 화면  -->
-								    <li><a href="#">Mypage</a></li>
-								    <li><a href="#">계정설정</a></li>
+								    <li><a href="mypage">Mypage</a></li>
 								    <li><a href="#" class="button" id="btnLogout" style="cursor:pointer;">Logout</a></li>
 								 </c:otherwise>
 							</c:choose>

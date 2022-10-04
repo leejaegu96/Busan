@@ -107,45 +107,38 @@ body {
 			<nav id="nav">
 				<ul>
 					<li><a href="home">Home</a></li>
-					<li><a href="#" class="icon solid fa-angle-down">Contents</a>
+					<li>
+						<a href="#" class="icon solid fa-angle-down">Contents</a>
 						<ul>
 							<li><a href="test">Exam</a></li>
 							<li><a href="rank">Ranking</a></li>
-							<li><a href="">Mypage</a></li>
-							<li><a href="">Translate</a></li>
-							<li><a href="#">Word</a>
-								<ul>
-									<li><>Today's Word</a></li>
-									<li><a href="#">Favorite Word</a></li>
-								</ul></li>
-						</ul></li>
+							<li><a href="mypage">Mypage</a></li>
+							<li><a href="translate">Translate</a></li>
+						</ul>
+					</li>
 					<c:choose>
 						<c:when test="${sessSeq eq null}">
 							<!--로그인 전 화면  -->
-							<li><a href="#" class="button"
-								onClick="location.href='../login/signUp'"
-								style="cursor: pointer;">회원가입</a></li>
-							<li><a href="#" class="button"
-								onClick="location.href='../login/login'"
-								style="cursor: pointer;">Login</a></li>
+						    <li><a href="#" class="button" onClick="location.href='../login/signUp'" style="cursor:pointer;">Sign Up</a></li>
+						    <li><a href="#" class="button" onClick="location.href='../login/login'" style="cursor:pointer;">Login</a></li>
 						</c:when>
 						<c:when test="${sessSeq eq 144}">
-							<!--로그인 전 화면  -->
-							<li><a href="/member/memberList">Admin</a></li>
-							<li><a href="#">Mypage</a></li>
-							<li><a href="#">계정설정</a></li>
-							<li><a href="#" class="button" id="btnLogout"
-								style="cursor: pointer;">Logout</a></li>
+							<!--관리자 로그인 후 화면  -->
+							<li><a href="mypage">Mypage</a></li>
+						    <li><a href="/member/memberList">Admin</a></li>
+						    <li><a href="#" class="button" id="btnLogout" style="cursor:pointer;">Logout</a></li>
 						</c:when>
 						<c:otherwise>
 							<!--로그인 후 화면  -->
-							<li><a href="#">Mypage</a></li>
-							<li><a href="#">계정설정</a></li>
-							<li><a href="#" class="button" id="btnLogout"
-								style="cursor: pointer;">Logout</a></li>
-						</c:otherwise>
+						    <li><a href="mypage">Mypage</a></li>
+						    <li><a href="#" class="button" id="btnLogout" style="cursor:pointer;">Logout</a></li>
+						 </c:otherwise>
 					</c:choose>
-
+					
+					<!-- 
+					<li><a href="#" class="button" onClick="location.href='../login/login'" style="cursor:pointer;">Login</a></li>
+					<li><a href="#" class="button" id="btnLogout" style="cursor:pointer;">Logout</a></li>
+					 -->
 				</ul>
 			</nav>
 		</header>
@@ -163,13 +156,9 @@ body {
 					<!-- Text -->
 					<section class="box" style="max-height: 800px;">
 						<div class="row">
-							<!-- 
-									<textarea id="send_text" class="form-control" name="content" cols="40" rows="4" placeholder="보낼값"></textarea>
-									<button id="jsonConvertStringSend" type="button"> 번역하기 </button>
-									<textarea id="result_text" class="form-control" name="content" cols="40" rows="4" placeholder="결과값" readonly></textarea>
-									 -->
-
-
+							<textarea id="sendtext" class="form-control" name="send_text" cols="40" rows="4" placeholder="보낼값"></textarea>
+							<button id="jsonConvertStringSend" type="button"> 번역하기 </button>
+							<textarea id="result_text" class="form-control" name="result_text" cols="40" rows="4" placeholder="결과값" readonly></textarea>
 						</div>
 						<input type="button" id="english" value="영어">
 					</section>
@@ -225,27 +214,53 @@ body {
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script type="text/javascript">
 		$("#btnLogout").on(
-				"click",
-				function() {
-					$.ajax({
-						async : true,
-						cache : false,
-						type : "post",
-						url : "/login/logoutProc",
-						data : {},
-						success : function(response) {
-							if (response.rt == "success") {
-								location.href = "/home/home";
-							} else {
-								// by pass
-							}
-						},
-						error : function(jqXHR, textStatus, errorThrown) {
-							alert("ajaxUpdate " + jqXHR.textStatus + " : "
-									+ jqXHR.errorThrown);
+			"click",
+			function() {
+				$.ajax({
+					async : true,
+					cache : false,
+					type : "post",
+					url : "/login/logoutProc",
+					data : {},
+					success : function(response) {
+						if (response.rt == "success") {
+							location.href = "/home/home";
+						} else {
+							// by pass
 						}
-					});
+					},
+					error : function(jqXHR, textStatus, errorThrown) {
+						alert("ajaxUpdate " + jqXHR.textStatus + " : "
+								+ jqXHR.errorThrown);
+					}
 				});
+			});
+	</script>
+	<script type="text/javascript">
+	
+	$("#jsonConvertStringSend").on(
+		"click",
+		function() {
+			var str = document.getElementById("sendtext").value;
+			
+			$.ajax({
+				async : true,
+				cache : false,
+				type : "post",
+				url : "/home/trans",
+				data : {"str" : str},
+				success : function(response) {
+					let tmp = JSON.parse(response);
+					console.log(tmp.message.result.translatedText);
+					
+					document.getElementById("result_text").value = tmp.message.result.translatedText;
+				},
+				error : function(jqXHR, textStatus, errorThrown) {
+					alert("ajaxUpdate " + jqXHR.textStatus + " : "
+							+ jqXHR.errorThrown);
+				}
+			});
+		});
 	</script>
 
 </body>
