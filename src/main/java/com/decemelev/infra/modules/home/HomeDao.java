@@ -38,4 +38,14 @@ public class HomeDao {
 		return rank;
 	}
 	
+	public int update(Home dto) {
+		return sqlSession.update(namespace + ".update", dto);
+	}
+	
+	public Home memberList(HomeVo vo) {
+		Home list = sqlSession.selectOne(namespace + ".memberList", vo);
+		return list;
+	}
+	
+	
 }

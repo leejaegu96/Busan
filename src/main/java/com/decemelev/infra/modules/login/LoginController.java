@@ -54,10 +54,11 @@ public class LoginController {
 		return "infra/login/user/selectForm";
 	}
 	
-	@SuppressWarnings(value= {"all"})
+	/* @SuppressWarnings(value= {"all"}) */
 	@RequestMapping(value = "loginInst")
 	public String loginInst(Login dto) throws Exception {
 		int result = service.insert(dto);
+		System.out.println("result: " + result);
 		return "redirect:/login/login";
 	}
 	

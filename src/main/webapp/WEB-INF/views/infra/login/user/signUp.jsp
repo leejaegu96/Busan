@@ -173,7 +173,7 @@
 		              <div class="input-group">
 						<div class="col-6">
 							<div class="input-group">
-								<input type="text" id="sample6_postcode" class="form-control" placeholder="우편번호" aria-label="Recipient's username" aria-describedby="button-addon2" required>
+								<input type="text" id="ifmmPostNum" name="ifmmPostNum" class="form-control" placeholder="우편번호" aria-label="Recipient's username" aria-describedby="button-addon2" required>
 								<button class="btn btn-outline-secondary" type="button"  onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
 									<i class="fa-solid fa-magnifying-glass"></i>
 								</button>
@@ -183,11 +183,11 @@
 							</div>
 						</div>
 						<div class="input-group" style="padding-top: 5px;">
-							<input type="text" class="form-control" id="sample6_address" placeholder="주소" aria-label="Recipient's username" aria-describedby="button-addon2" required>
+							<input type="text" class="form-control" id="ifmmResidence" name="ifmmResidence" placeholder="주소" aria-label="Recipient's username" aria-describedby="button-addon2" required>
 						</div>
 						<div class="input-group" style="padding-top: 5px;">
-							<input type="text" class="form-control" id="sample6_detailAddress" placeholder="상세주소" aria-label="Recipient's username" aria-describedby="button-addon2" required>
-							<input type="text" class="form-control" id="sample6_extraAddress" placeholder="참고항목" aria-label="Recipient's username" aria-describedby="button-addon2" required>
+							<input type="text" class="form-control" id="ifmmDetailedAddress" name="ifmmDetailedAddress" placeholder="상세주소" aria-label="Recipient's username" aria-describedby="button-addon2" required>
+							<input type="text" class="form-control" id="ifmmReference" name="ifmmReference" placeholder="참고항목" aria-label="Recipient's username" aria-describedby="button-addon2" required>
 						</div>
 						<input type="text" class="form-control" id="ifmmAddress" name="ifmmAddress">
 				  	  </div>
@@ -283,16 +283,16 @@ document.getElementById('ifmmPhone').value = str;
 </script>
 <script type="text/javascript">
 //우편번호
-const sample6_address = document.getElementById('sample6_address');
-const sample6_extraAddress = document.getElementById('sample6_extraAddress');
-const sample6_detailAddress = document.getElementById('sample6_detailAddress');
+const ifmmResidence = document.getElementById('ifmmResidence');
+const ifmmReference = document.getElementById('ifmmReference');
+const ifmmDetailedAddress = document.getElementById('ifmmDetailedAddress');
 
-sample6_address.addEventListener('focusout', callback);
-sample6_extraAddress.addEventListener('focusout', callback);
-sample6_detailAddress.addEventListener('focusout', callback);
+ifmmResidence.addEventListener('focusout', callback);
+ifmmReference.addEventListener('focusout', callback);
+ifmmDetailedAddress.addEventListener('focusout', callback);
 
 function callback() {
-let str = sample6_address.value + sample6_extraAddress.value + " " + sample6_detailAddress.value;
+let str = ifmmResidence.value + ifmmReference.value + " " + ifmmDetailedAddress.value;
 document.getElementById('ifmmAddress').value = str;
 }
 
@@ -452,10 +452,10 @@ var goUrlInst = "/login/loginInst";
 var form = $("form[name = form]");
 
 $("#btnAddressClear").on("click", function() {
-	$("#sample6_postcode").val('');
-	$("#sample6_address").val('');
-	$("#sample6_detailAddress").val('');
-	$("#sample6_extraAddress").val('');
+	$("#ifmmPostNum").val('');
+	$("#ifmmResidence").val('');
+	$("#ifmmDetailedAddress").val('');
+	$("#ifmmReference").val('');
 	$("#ifmaLatArray0").val('');
 	$("#ifmaLngArray0").val('');
 });
@@ -550,17 +550,17 @@ function sample6_execDaumPostcode() {
                     extraAddr = ' (' + extraAddr + ')';
                 }
                 // 조합된 참고항목을 해당 필드에 넣는다.
-                document.getElementById("sample6_extraAddress").value = extraAddr;
+                document.getElementById("ifmmReference").value = extraAddr;
             
             } else {
-                document.getElementById("sample6_extraAddress").value = '';
+                document.getElementById("ifmmReference").value = '';
             }
 
             // 우편번호와 주소 정보를 해당 필드에 넣는다.
-            document.getElementById('sample6_postcode').value = data.zonecode;
-            document.getElementById("sample6_address").value = addr;
+            document.getElementById('ifmmPostNum').value = data.zonecode;
+            document.getElementById("ifmmResidence").value = addr;
             // 커서를 상세주소 필드로 이동한다.
-            document.getElementById("sample6_detailAddress").focus();
+            document.getElementById("ifmmDetailedAddress").focus();
         }
     }).open();
 }

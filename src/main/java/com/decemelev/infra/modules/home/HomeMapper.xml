@@ -65,4 +65,32 @@
 		group by a.infrMember_ifmmSeq
 		order by sum
 	</select>
+	
+	<select id="memberList" resultMap="resultMapObj">
+		select
+			a.*
+		FROM infrMember a
+		WHERE 1=1
+			AND ifmmSeq = #{mainKey}
+	</select>
+	
+	<update id="update">
+		UPDATE infrMember
+		SET
+			ifmmName = #{ifmmName}
+			,ifmmGender = #{ifmmGender}
+			,ifmmDob = #{ifmmDob}
+			,ifmmEmail = #{ifmmEmail}
+			,ifmmEmailDomain = #{ifmmEmailDomain}
+			,ifmmPhoneCarrier = #{ifmmPhoneCarrier}
+			,ifmmPhone = #{ifmmPhone}
+			,ifmmAddress = #{ifmmAddress}
+			,ifmmPostNum = #{ifmmPostNum}
+			,ifmmResidence = #{ifmmResidence}
+			,ifmmDetailedAddress = #{ifmmDetailedAddress}
+			,ifmmReference = #{ifmmReference}
+		WHERE 
+			ifmmSeq = #{ifmmSeq}
+	</update>
+	
 </mapper>	

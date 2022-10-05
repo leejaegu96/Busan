@@ -17,6 +17,9 @@
 		<title>Elements - Alpha by HTML5 UP</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+		<link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
 		<link rel="stylesheet" href="../resources/assets/css/main.css" />
 		<style type="text/css">
 
@@ -89,32 +92,35 @@ body {
   
 
 		
-		</style>
+	</style>
 	</head>
-	<body class="landing is-preload"">
+	<body>
 		<div id="page-wrapper">
 
 			<!-- Header -->
-				<header id="header">
-					<h3 style="color:white; font-size: 20px; margin-top:15px; margin-left:20px; height: 52px; cursor:pointer;" onClick="location.href='home'"><i class="fa-solid fa-book-open"></i>&nbsp;E-WORD</h3>
+				<header id="header" >
+					<h3 style="color: white;font-size: 20px; margin-top:15px; margin-left:20px; height: 52px; cursor:pointer;" onClick="location.href='home'"><i class="fa-solid fa-book-open"></i>&nbsp;E-WORD</h3>
 					<nav id="nav">
 						<ul>
-							<li><a href="home">Home</a></li>
+							<li><a href="home" class="button" style="cursor:pointer; background-color: #444444;">Home</a></li>
 							<c:choose>
 								<c:when test="${sessSeq eq null}">
 									<!--로그인 전 화면  -->
-								    <li><a href="#" class="button" onClick="location.href='../login/signUp'" style="cursor:pointer;">Sign Up</a></li>
+								    <li><a href="#" class="button" onClick="location.href='../login/signUp'" style="cursor:pointer; background-color: #444444;">Sign Up</a></li>
 								    <li><a href="#" class="button" onClick="location.href='../login/login'" style="cursor:pointer;">Login</a></li>
 								</c:when>
 								<c:when test="${sessSeq eq 144}">
 									<!--관리자 로그인 후 화면  -->
-									<li><a href="mypage">Mypage</a></li>
-								    <li><a href="/member/memberList">Admin</a></li>
+									<li><a href="mypage" class="button" style="cursor:pointer; background-color: #444444;">Mypage</a></li>
+								    <li><a href="/member/memberList" class="button" style="cursor:pointer; background-color: #444444;">Admin</a></li>
 								    <li><a href="#" class="button" id="btnLogout" style="cursor:pointer;">Logout</a></li>
 								</c:when>
 								<c:otherwise>
 									<!--로그인 후 화면  -->
-								    <li><a href="mypage">Mypage</a></li>
+									<li><a href="test" class="button" style="cursor:pointer; background-color: #444444;">Test</a></li>
+									<li><a href="rank" class="button" style="cursor:pointer; background-color: #444444;">Rank</a></li>
+									<li><a href="translate" class="button" style="cursor:pointer; background-color: #444444;">Translate</a></li>
+								    <li><a href="mypage" class="button" style="cursor:pointer; background-color: #444444;">Mypage</a></li>
 								    <li><a href="#" class="button" id="btnLogout" style="cursor:pointer;">Logout</a></li>
 								 </c:otherwise>
 							</c:choose>
@@ -124,6 +130,7 @@ body {
 							 -->
 						</ul>
 					</nav>
+					
 				</header>
 
 			<!-- Main -->
@@ -178,23 +185,46 @@ body {
 		</div>
 
 		<!-- Scripts -->
-			<!-- 
 			<script src="../resources/assets/js/jquery.min.js"></script>
 			<script src="../resources/assets/js/jquery.dropotron.min.js"></script>
 			<script src="../resources/assets/js/jquery.scrollex.min.js"></script>
 			<script src="../resources/assets/js/browser.min.js"></script>
 			<script src="../resources/assets/js/breakpoints.min.js"></script>
 			<script src="../resources/assets/js/util.js"></script>
-			<script src="https://kit.fontawesome.com/20c294a34b.js" crossorigin="anonymous"></script>
-			<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
-			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
-			<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-			 -->
+			
 			<script src="https://kit.fontawesome.com/20c294a34b.js" crossorigin="anonymous"></script>
 			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
 			
 			<script src="../resources/assets/js/main2.js"></script>
 			<div id="navButton"><a href="#navPanel" class="toggle"></a></div>
+			<div id="navPanel">
+				<nav>
+					<c:choose>
+						<c:when test="${sessSeq eq null}">
+							<!--로그인 전 화면  -->
+						    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='home'" >Home</a>
+						    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='/login/signUp'" >Sign Up</a>
+						    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='/login/login'" >Login</a>
+						    
+						</c:when>
+						<c:when test="${sessSeq eq 144}">
+							<!--관리자 로그인 후 화면  -->
+						    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='home'" >Home</a>
+						    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='mypage'" >Mypage</a>
+						    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='/member/memberList'" >Admin</a>
+						</c:when>
+						<c:otherwise>
+							<!--로그인 후 화면  -->
+						    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='home'" >Home</a>
+						    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='test'" >Test</a>
+						    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='rank'" >Rank</a>
+						    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='translate'" >Translate</a>
+						    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='mypage'" >Mypage</a>
+						 </c:otherwise>
+					</c:choose>
+					
+				</nav>
+			</div>
 			
 			<script type="text/javascript">
 			$("#btnLogout").on("click", function(){

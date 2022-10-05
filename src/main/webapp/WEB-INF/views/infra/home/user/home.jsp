@@ -64,7 +64,7 @@
 					<h3 style="font-size: 20px; margin-top:15px; margin-left:20px; height: 52px; cursor:pointer;" onClick="location.href='home'"><i class="fa-solid fa-book-open"></i>&nbsp;E-WORD</h3>
 					<nav id="nav">
 						<ul>
-							<li><a href="home">Home</a></li>
+							<li><a href="home" class="button" style="cursor:pointer;">Home</a></li>
 							<c:choose>
 								<c:when test="${sessSeq eq null}">
 									<!--로그인 전 화면  -->
@@ -73,13 +73,16 @@
 								</c:when>
 								<c:when test="${sessSeq eq 144}">
 									<!--관리자 로그인 후 화면  -->
-									<li><a href="mypage">Mypage</a></li>
-								    <li><a href="/member/memberList">Admin</a></li>
+									<li><a href="mypage" class="button" style="cursor:pointer;">Mypage</a></li>
+								    <li><a href="/member/memberList" class="button" style="cursor:pointer;">Admin</a></li>
 								    <li><a href="#" class="button" id="btnLogout" style="cursor:pointer;">Logout</a></li>
 								</c:when>
 								<c:otherwise>
 									<!--로그인 후 화면  -->
-								    <li><a href="mypage">Mypage</a></li>
+									<li><a href="test" class="button" style="cursor:pointer;">Test</a></li>
+									<li><a href="rank" class="button" style="cursor:pointer;">Rank</a></li>
+									<li><a href="translate" class="button" style="cursor:pointer;">Translate</a></li>
+								    <li><a href="mypage" class="button" style="cursor:pointer;">Mypage</a></li>
 								    <li><a href="#" class="button" id="btnLogout" style="cursor:pointer;">Logout</a></li>
 								 </c:otherwise>
 							</c:choose>
@@ -198,23 +201,46 @@
 		</div>
 
 		<!-- Scripts -->
-			<!-- 
-			<script src="../resources/assets/js/main2.js"></script>
-			<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
-			<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-			 -->
-			 <script src="../resources/assets/js/jquery.min.js"></script>
+			<script src="../resources/assets/js/jquery.min.js"></script>
 			<script src="../resources/assets/js/jquery.dropotron.min.js"></script>
 			<script src="../resources/assets/js/jquery.scrollex.min.js"></script>
 			<script src="../resources/assets/js/browser.min.js"></script>
 			<script src="../resources/assets/js/breakpoints.min.js"></script>
 			<script src="../resources/assets/js/util.js"></script>
+			
 			<script src="https://kit.fontawesome.com/20c294a34b.js" crossorigin="anonymous"></script>
 			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
 			
 			<script src="../resources/assets/js/main2.js"></script>
 			<div id="navButton"><a href="#navPanel" class="toggle"></a></div>
-			
+			<div id="navPanel">
+				<nav>
+					<c:choose>
+						<c:when test="${sessSeq eq null}">
+							<!--로그인 전 화면  -->
+						    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='home'" >Home</a>
+						    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='/login/signUp'" >Sign Up</a>
+						    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='/login/login'" >Login</a>
+						    
+						</c:when>
+						<c:when test="${sessSeq eq 144}">
+							<!--관리자 로그인 후 화면  -->
+						    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='home'" >Home</a>
+						    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='mypage'" >Mypage</a>
+						    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='/member/memberList'" >Admin</a>
+						</c:when>
+						<c:otherwise>
+							<!--로그인 후 화면  -->
+						    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='home'" >Home</a>
+						    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='test'" >Test</a>
+						    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='rank'" >Rank</a>
+						    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='translate'" >Translate</a>
+						    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='mypage'" >Mypage</a>
+						 </c:otherwise>
+					</c:choose>
+					
+				</nav>
+			</div>
 			
 			<script type="text/javascript">
 			$("#btnLogout").on("click", function(){

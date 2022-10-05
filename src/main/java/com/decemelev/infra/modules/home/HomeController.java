@@ -15,9 +15,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -71,10 +75,30 @@ public class HomeController {
 		return "infra/home/user/translate";
 	}
 	
+	public String sessSeq = ""; 
 	@RequestMapping(value = "mypage")
-	public String mypage(Model model) throws Exception {
+	public String mypage(@ModelAttribute("vo") HomeVo vo, Model model, HttpServletRequest httpServletRequest) throws Exception {
+		
+		HttpSession httpSession =  httpServletRequest.getSession();
+		sessSeq = (String) httpSession.getAttribute("sessSeq");
+		
+		vo.setMainKey(sessSeq);
+		
+		Home list = service.memberList(vo);
+		model.addAttribute("list", list);
+		
 		
 		return "infra/home/user/mypage";
+	}
+	
+	@RequestMapping(value = "homeUpdt")
+	public String homeUpdt(Home dto, Model model) throws Exception {
+		
+		int result = service.update(dto);
+		model.addAttribute("item", model);
+		System.out.println("Controller update Result : " + result);
+		
+		return "redirect:/home/homeUpdt";
 	}
 	
 	

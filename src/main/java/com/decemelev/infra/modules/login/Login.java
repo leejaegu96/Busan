@@ -18,6 +18,10 @@ public class Login {
 	private Integer ifmmDelNy;
 	private Integer ifmmMailNy;
 	private Integer ifmmSmsNy;
+	private String ifmmPostNum;
+	private String ifmmResidence;
+	private String ifmmDetailedAddress;
+	private String ifmmReference;
 	
 	
 	
@@ -26,6 +30,30 @@ public class Login {
 	
 	
 	
+	public String getIfmmPostNum() {
+		return ifmmPostNum;
+	}
+	public void setIfmmPostNum(String ifmmPostNum) {
+		this.ifmmPostNum = ifmmPostNum;
+	}
+	public String getIfmmResidence() {
+		return ifmmResidence;
+	}
+	public void setIfmmResidence(String ifmmResidence) {
+		this.ifmmResidence = ifmmResidence;
+	}
+	public String getIfmmDetailedAddress() {
+		return ifmmDetailedAddress;
+	}
+	public void setIfmmDetailedAddress(String ifmmDetailedAddress) {
+		this.ifmmDetailedAddress = ifmmDetailedAddress;
+	}
+	public String getIfmmReference() {
+		return ifmmReference;
+	}
+	public void setIfmmReference(String ifmmReference) {
+		this.ifmmReference = ifmmReference;
+	}
 	public Integer getIfmmMailNy() {
 		return ifmmMailNy;
 	}

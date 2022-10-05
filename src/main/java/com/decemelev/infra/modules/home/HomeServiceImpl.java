@@ -33,6 +33,16 @@ public class HomeServiceImpl implements HomeService{
 		return rank;
 	}
 	
+	@Override
+	public int update(Home dto) throws Exception {
+		int result = dao.update(dto);
+		return result;
+	}
+	@Override
+	public Home memberList(HomeVo vo) throws Exception {
+		Home list = dao.memberList(vo);
+		return list;
+	}
 	
 	
 }
