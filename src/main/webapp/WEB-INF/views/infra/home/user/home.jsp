@@ -59,23 +59,12 @@
 	<body class="landing is-preload">
 		<div id="page-wrapper">
 
-
-
 			<!-- Header -->
 				<header id="header" class="alt">
 					<h3 style="font-size: 20px; margin-top:15px; margin-left:20px; height: 52px; cursor:pointer;" onClick="location.href='home'"><i class="fa-solid fa-book-open"></i>&nbsp;E-WORD</h3>
 					<nav id="nav">
 						<ul>
 							<li><a href="home">Home</a></li>
-							<li>
-								<a href="#" class="icon solid fa-angle-down">Contents</a>
-								<ul>
-									<li><a href="test">Exam</a></li>
-									<li><a href="rank">Ranking</a></li>
-									<li><a href="mypage">Mypage</a></li>
-									<li><a href="translate">Translate</a></li>
-								</ul>
-							</li>
 							<c:choose>
 								<c:when test="${sessSeq eq null}">
 									<!--로그인 전 화면  -->
@@ -94,7 +83,6 @@
 								    <li><a href="#" class="button" id="btnLogout" style="cursor:pointer;">Logout</a></li>
 								 </c:otherwise>
 							</c:choose>
-							
 							<!-- 
 							<li><a href="#" class="button" onClick="location.href='../login/login'" style="cursor:pointer;">Login</a></li>
 							<li><a href="#" class="button" id="btnLogout" style="cursor:pointer;">Logout</a></li>
@@ -102,7 +90,6 @@
 						</ul>
 					</nav>
 				</header>
-				
 			<!-- Banner -->
 				<section id="banner">
 					<%-- 
@@ -212,18 +199,21 @@
 
 		<!-- Scripts -->
 			<!-- 
-			<script src="../resources/assets/js/jquery.min.js"></script>
+			<script src="../resources/assets/js/main2.js"></script>
+			<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+			<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+			 -->
+			 <script src="../resources/assets/js/jquery.min.js"></script>
 			<script src="../resources/assets/js/jquery.dropotron.min.js"></script>
 			<script src="../resources/assets/js/jquery.scrollex.min.js"></script>
 			<script src="../resources/assets/js/browser.min.js"></script>
 			<script src="../resources/assets/js/breakpoints.min.js"></script>
 			<script src="../resources/assets/js/util.js"></script>
-			<script src="../resources/assets/js/main2.js"></script>
-			<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
-			<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-			 -->
 			<script src="https://kit.fontawesome.com/20c294a34b.js" crossorigin="anonymous"></script>
 			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+			
+			<script src="../resources/assets/js/main2.js"></script>
+			<div id="navButton"><a href="#navPanel" class="toggle"></a></div>
 			
 			
 			<script type="text/javascript">

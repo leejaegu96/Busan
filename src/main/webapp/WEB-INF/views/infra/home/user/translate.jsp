@@ -91,14 +91,67 @@ body {
 	background: #c34c74;
 	color: #fff;
 }
+.container-login100 {
+  width: 100%;  
+  min-height: 300px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  background: #f2f2f2;  
+}
+.wrap-login100 {
+  max-width: 400px;
+  min-height: 300px;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 77px 55px 33px 55px;
+
+  box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+  -o-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+  -ms-box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+}
+.circle{
+width:100px;
+height:100px;
+border-radius:50%;
+
+-webkit-border-radius:50%;
+-moz-border-radius:50%;
+background:#666666;
+
+font-size:16px;
+
+text-align:center;
+
+
+color:white;
+font-size:20px;
+font-weight: 900;
+
+border:6px solid #fff;
+box-shadow: 0 0 16px rgb(221,221,221);
+
+-webkit-box-shadow: 0 0 16px rgb(221,221,221);
+-moz-box-shadow: 0 0 16px rgb(221,221,221);
+}
 
 </style>
 </head>
-<body class="is-preload">
+<body>
 	<div id="page-wrapper">
 
 		<!-- Header -->
 		<header id="header">
+			
 			<h3
 				style="color: white; font-size: 20px; margin-top: 15px; margin-left: 20px; height: 52px; cursor: pointer;"
 				onClick="location.href='home'">
@@ -134,11 +187,6 @@ body {
 						    <li><a href="#" class="button" id="btnLogout" style="cursor:pointer;">Logout</a></li>
 						 </c:otherwise>
 					</c:choose>
-					
-					<!-- 
-					<li><a href="#" class="button" onClick="location.href='../login/login'" style="cursor:pointer;">Login</a></li>
-					<li><a href="#" class="button" id="btnLogout" style="cursor:pointer;">Logout</a></li>
-					 -->
 				</ul>
 			</nav>
 		</header>
@@ -154,13 +202,34 @@ body {
 				<div class="col-12">
 
 					<!-- Text -->
-					<section class="box" style="max-height: 800px;">
+					<section class="box" style="max-height: 800px;" style="margin: auto;">
+						
+						<div class="row" style="margin: auto;">
+							<div class="container-login100">
+								<div class="col-5" >
+									<div class="wrap-login100" style="padding:30px;">
+										<textarea id="sendtext" class="form-control" name="send_text" style="width:100%; min-height:300px; " placeholder="번역할 내용을 입력해주세요."></textarea>
+									</div>
+								</div>
+								<div class="col-2" style="text-align: center;">
+									<button type="button" class="circle" id="jsonConvertStringSend" >번역</button>
+								</div>
+								<div class="col-5" >
+									<div class="wrap-login100" style="padding:30px;">
+										<textarea id="result_text" class="form-control" name="result_text" style="width:100%; min-height:300px; " placeholder="Please enter the text to be translated" readonly></textarea>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+						<!-- 
 						<div class="row">
 							<textarea id="sendtext" class="form-control" name="send_text" cols="40" rows="4" placeholder="보낼값"></textarea>
 							<button id="jsonConvertStringSend" type="button"> 번역하기 </button>
 							<textarea id="result_text" class="form-control" name="result_text" cols="40" rows="4" placeholder="결과값" readonly></textarea>
 						</div>
-						<input type="button" id="english" value="영어">
+						 -->
+						 
 					</section>
 				</div>
 			</div>
@@ -190,13 +259,15 @@ body {
 	</div>
 
 	<!-- Scripts -->
+	<script src="../resources/assets/js/main.js"></script>
+	<script src="../resources/assets/js/util.js"></script>
 	<script src="../resources/assets/js/jquery.min.js"></script>
 	<script src="../resources/assets/js/jquery.dropotron.min.js"></script>
 	<script src="../resources/assets/js/jquery.scrollex.min.js"></script>
 	<script src="../resources/assets/js/browser.min.js"></script>
 	<script src="../resources/assets/js/breakpoints.min.js"></script>
-	<script src="../resources/assets/js/util.js"></script>
-	<script src="../resources/assets/js/main.js"></script>
+	
+	
 	<script src="https://kit.fontawesome.com/20c294a34b.js"
 		crossorigin="anonymous"></script>
 	<script
@@ -212,6 +283,9 @@ body {
 		integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
 		crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	
+	<script src="../resources/assets/js/main2.js"></script>
+	<div id="navButton"><a href="#navPanel" class="toggle"></a></div>
 	<script type="text/javascript">
 		$("#btnLogout").on(
 			"click",
@@ -262,6 +336,5 @@ body {
 			});
 		});
 	</script>
-
 </body>
 </html>
