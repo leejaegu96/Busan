@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags"%>
-
+<jsp:useBean id="CodeServiceImpl" class="com.decemelev.infra.modules.code.CodeServiceImpl" />
 
 
 
@@ -166,11 +166,11 @@ input-group-text {
 								<div class="tab-content pt-2">
 
 									<div class="tab-pane fade show active profile-overview" id="profile-overview">
-
+										<!-- 첫번쩨 화면---------------------------------------------------------------------------------------------------- -->
 										<h3 class="card-title">Profile Details</h3>
 										<br>
 										
-										<input type="text" name="ifmmSeq" value="<c:out value="${list.ifmmSeq }"/>" />
+										<input type="hidden" name="ifmmSeq" value="<c:out value="${list.ifmmSeq }"/>" />
 										
 										<div class="row mb-3">
 											<label for="Name" class="col-md-4 col-lg-3 col-form-label">Name</label>
@@ -180,11 +180,20 @@ input-group-text {
 										</div>
 										
 										<div class="row mb-3">
+											<label for="Name" class="col-md-4 col-lg-3 col-form-label">Gender</label>
+											<div class="col-md-8 col-lg-9">
+												<label for="Name" class="col-lg-9 col-md-8" style="padding-top: 5px;"> <c:out value="${list.ifmmGender }"/> </label>
+											</div>
+										</div>
+										
+										<div class="row mb-3">
 											<label for="Name" class="col-md-4 col-lg-3 col-form-label">Date Of Birth</label>
 											<div class="col-md-8 col-lg-9">
 												<label for="Name" class="col-lg-9 col-md-8" style="padding-top: 5px;"> <c:out value="${list.ifmmDob }"/> </label>
 											</div>
 										</div>
+										
+										
 
 										<div class="row mb-3">
 											<label for="Name" class="col-md-4 col-lg-3 col-form-label">Email</label>
@@ -213,8 +222,14 @@ input-group-text {
 
 									<div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
-										<!-- Profile Edit Form----------------------------------------- -->
+										<!-- 두번쩨 화면(수정폼)---------------------------------------------------------------------------------------------------- -->
 										<form id="form" name="form" method="post">
+										
+											<c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('1')}" />
+											<c:set var="listCodeCarrier" value="${CodeServiceImpl.selectListCachedCode('2')}" />
+											<c:set var="listCodeDomain" value="${CodeServiceImpl.selectListCachedCode('3')}" />
+											
+											<input type="hidden" name="ifmmSeq" value="<c:out value="${list.ifmmSeq }"/>" />
 											
 											<div class="row mb-3">
 												<label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
@@ -226,17 +241,25 @@ input-group-text {
 											<div class="row mb-3">
 												<label for="Name" class="col-md-4 col-lg-3 col-form-label">Name</label>
 												<div class="col-md-8 col-lg-9">
-													<input type="text" class="form-control" name="ifmmName">
+													<input type="text" class="form-control" name="ifmmName" value="<c:out value="${list.ifmmName }"/>" >
 												</div>
 											</div>
 
 											<div class="row mb-3">
 												<label for="Gender" class="col-md-4 col-lg-3 col-form-label">Gender</label>
 												<div class="col-md-8 col-lg-9">
-													<select class="form-select" name="ifmmGender">
+													<select class="form-select" name="ifmmGender" value="<c:out value="${list.ifmmGender }"/>" >
+														
+														<c:forEach items="${listCodeGender}" var="listGender" varStatus="status">
+															<option value = "${listGender.ifcdSeq }" <c:if test="${list.ifmmGender eq listGender.ifcdSeq }"> selected </c:if> > 
+																<c:out value="${listGender.ifcdName }" />
+															</option>
+														</c:forEach>
+														<!-- 
 														<option value="1">Male</option>
 														<option value="2">Female</option>
 														<option value="3">etc</option>
+														 -->
 													</select>
 												</div>
 											</div>
@@ -244,7 +267,7 @@ input-group-text {
 											<div class="row mb-3">
 												<label for="date" class="col-md-4 col-lg-3 col-form-label">Date Of Birth</label>
 												<div class="col-md-8 col-lg-9">
-													<input type="text" class="form-control" id="ifmmDob" name="ifmmDob">
+													<input type="text" class="form-control" id="ifmmDob" name="ifmmDob" value="<c:out value="${list.ifmmDob }"/>" >
 												</div>
 											</div>
 
@@ -252,16 +275,32 @@ input-group-text {
 												<label for="Country" class="col-md-4 col-lg-3 col-form-label">Email</label>
 												<div class="col-md-8 col-lg-9">
 													<div class="input-group">
-														<input type="text" id="Email" name="Email" class="form-control" placeholder="User email"> <span class="input-group-text">@</span> <input type="text" id="Domain" name="Domain" class="form-control" placeholder="Domain"> <select class="form-select" name="ifmmEmailDomain" id="ifmmEmailDomain">
+														<input type="text" id="Email" name="Email" class="form-control" placeholder="User email"  value="${fn:split(list.ifmmEmail,'@')[0]}"> 
+														<span class="input-group-text">@</span> 
+														
+														<input type="text" id="Domain" name="Domain" class="form-control" placeholder="Domain" value="${fn:split(list.ifmmEmail,'@')[1]}" >
+														<%-- <input type="text" id="Domain" name="Domain" class="form-control" placeholder="Domain" value="${fn:split(list.ifmmEmail,'@')[1]}" > --%>
+														
+														<select class="form-select" name="ifmmEmailDomain" id="ifmmEmailDomain" >
+															<%-- 
+															<c:forEach items="${listCodeDomain}" var="listDomain" varStatus="status">
+																<option value = "${listDomain.ifcdSeq }" <c:if test="${list.ifmmEmailDomain eq listDomain.ifcdSeq }"> selected </c:if> > 
+																	<c:out value="${listDomain.ifcdName }" />
+																</option>
+															</c:forEach>
+															 --%>
 															<option value="11">직접입력</option>
 															<option value="8">naver.com</option>
 															<option value="9">google.com</option>
 															<option value="10">daum.net</option>
 														</select>
 													</div>
-													<input type="text" class="form-control" id="ifmmEmail" name="ifmmEmail">
+													
+													<input type="text" class="form-control" id="ifmmEmail" name="ifmmEmail" value="<c:out value="${list.ifmmEmail }"/>" >
 													<div class="input-group">
-														<input class="form-text" type="hidden" name="ifmmMailNy" value="0"> <input class="form-text" type="checkbox" name="ifmmMailNy" value="1"> <label class="form-text" for="ifmmMailNy" style="margin: auto; margin-left: 0;"> E-mail을 통한 소식/정보 수신을 동의하시겠습니까? </label>
+														<input class="form-text" type="hidden" name="ifmmMailNy" value="0"> 
+														<input class="form-text" type="checkbox" name="ifmmMailNy" value="1" <c:if test="${list.ifmmMailNy eq 1 }"> checked </c:if> > 
+														<label class="form-text" for="ifmmMailNy" style="margin: auto; margin-left: 0;"> E-mail을 통한 소식/정보 수신을 동의하시겠습니까? </label>
 													</div>
 												</div>
 											</div>
@@ -271,23 +310,31 @@ input-group-text {
 												<div class="col-md-8 col-lg-9">
 													<input type="hidden" id="inputPhone2AllowedNy" name="inputPhone2AllowedNy" value="0">
 													<div class="input-group">
-														<select class="form-select" id="ifmmPhoneCarrier" name="ifmmPhoneCarrier">
-															<option value="4">SKT</option>
-															<option value="5">KT</option>
-															<option value="6">LG</option>
-															<option value="7">기타</option>
-														</select> <select class="form-select" id="inputPhone1" required>
-															<option>010</option>
-															<option>011</option>
-															<option>019</option>
-														</select> <span class="input-group-text">-</span> <input type="text" id="inputPhone2" class="form-control" maxlength='4' onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"> <span class="input-group-text">-</span> <input type="text" id="inputPhone3" class="form-control" maxlength='4' onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
+														<select class="form-select" id="ifmmPhoneCarrier" name="ifmmPhoneCarrier" >
+															<c:forEach items="${listCodeCarrier}" var="listCarrier" varStatus="statusGender">
+																<option value = "${list.ifmmPhoneCarrier }" <c:if test="${list.ifmmPhoneCarrier eq listCarrier.ifcdSeq }"> selected </c:if> > 
+																	<c:out value="${listCarrier.ifcdName }" />
+																</option>
+															</c:forEach>
+														</select> 
+														<select class="form-select" id="inputPhone1"  value="${fn:substring(list.ifmmPhone,0,3)}" required>
+															<option value="010" <c:if test="${fn:substring(list.ifmmPhone,0,3) eq 010 }"> selected </c:if>>010</option>
+															<option value="011" <c:if test="${fn:substring(list.ifmmPhone,0,3) eq 011 }"> selected </c:if>>011</option>
+															<option value="019" <c:if test="${fn:substring(list.ifmmPhone,0,3) eq 019 }"> selected </c:if>>019</option>
+														</select> <span class="input-group-text">-</span> 
+														<input type="text" id="inputPhone2" class="form-control" maxlength='4' onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" value="${fn:substring(list.ifmmPhone,3,7)}"> 
+														<span class="input-group-text">-</span> 
+														<input type="text" id="inputPhone3" class="form-control" maxlength='4' onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" value="${fn:substring(list.ifmmPhone,7,11)}">
 
 														<!-- <button class="btn btn-outline-secondary" type="button" id="button-addon2">인증번호 요청</button> -->
 													</div>
 													<div class="invalid-feedback" id="inputPhone2ChkFeedback"></div>
-													<input type="text" id="ifmmPhone" name="ifmmPhone" class="form-control">
+													<input type="hidden" id="ifmmPhone" name="ifmmPhone" class="form-control" value="<c:out value="${list.ifmmPhone }"/>" >
+													
 													<div class="input-group">
-														<input class="form-text" type="hidden" name="ifmmSmsNy" value="0"> <input class="form-text" type="checkbox" name="ifmmSmsNy" value="1"> <label class="form-text" for="ifmmSmsNy" style="margin: auto; margin-left: 0;"> SMS을 통한 소식/정보 수신을 동의하시겠습니까? </label>
+														<input class="form-text" type="hidden" name="ifmmSmsNy" value="0" > 
+														<input class="form-text" type="checkbox" name="ifmmSmsNy" value="1" <c:if test="${list.ifmmSmsNy eq 1 }"> checked </c:if>> 
+														<label class="form-text" for="ifmmSmsNy" style="margin: auto; margin-left: 0;"> SMS을 통한 소식/정보 수신을 동의하시겠습니까? </label>
 													</div>
 												</div>
 											</div>
@@ -298,7 +345,7 @@ input-group-text {
 													<div class="input-group">
 														<div class="col-6">
 															<div class="input-group">
-																<input type="text" id="ifmmPostNum" name="ifmmPostNum" class="form-control" placeholder="우편번호" aria-label="Recipient's username" aria-describedby="button-addon2" required>
+																<input type="text" id="ifmmPostNum" name="ifmmPostNum" value="<c:out value="${list.ifmmPostNum }"/>" class="form-control" placeholder="우편번호"   aria-label="Recipient's username" aria-describedby="button-addon2" required>
 																<button class="btn btn-outline-secondary" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
 																	<i class="fa-solid fa-magnifying-glass"></i>
 																</button>
@@ -308,26 +355,26 @@ input-group-text {
 															</div>
 														</div>
 														<div class="input-group" style="padding-top: 5px;">
-															<input type="text" class="form-control" id="ifmmResidence" name="ifmmResidence" placeholder="주소" aria-label="Recipient's username" aria-describedby="button-addon2" required>
+															<input type="text" class="form-control" id="ifmmResidence" name="ifmmResidence" value="<c:out value="${list.ifmmResidence }"/>"  placeholder="주소" aria-label="Recipient's username" aria-describedby="button-addon2" required>
 														</div>
 														<div class="input-group" style="padding-top: 5px;">
-															<input type="text" class="form-control" id="ifmmDetailedAddress" name="ifmmDetailedAddress" placeholder="상세주소" aria-label="Recipient's username" aria-describedby="button-addon2" required> <input type="text" class="form-control" id="ifmmReference" name="ifmmReference" placeholder="참고항목" aria-label="Recipient's username" aria-describedby="button-addon2" required>
+															<input type="text" class="form-control" id="ifmmDetailedAddress" name="ifmmDetailedAddress" value="<c:out value="${list.ifmmDetailedAddress }"/>"  placeholder="상세주소" aria-label="Recipient's username" aria-describedby="button-addon2" required> 
+															<input type="text" class="form-control" id="ifmmReference" name="ifmmReference" value="<c:out value="${list.ifmmReference }"/>" placeholder="참고항목" aria-label="Recipient's username" aria-describedby="button-addon2" required>
 														</div>
-														<input type="text" class="form-control" id="ifmmAddress" name="ifmmAddress">
+														<input type="hidden" class="form-control" id="ifmmAddress" name="ifmmAddress" value="<c:out value="${list.ifmmAddress }"/>" >
 													</div>
 												</div>
 											</div>
 
 											<div class="text-center">
-												<button type="submit" class="btn btn-primary">Save Changes</button>
+												<button type="button" id="btnSave" class="btn btn-success" >Save Changes</button>
 											</div>
 										</form>
 										<!-- End Profile Edit Form -->
 									</div>
+									<!-- 세번째 화면 비밀번호 변경------------------------------------------------------ ------------------------------- -->
 									<div class="tab-pane fade pt-3" id="profile-change-password">
-										<!-- Change Password Form ------------------------------- -->
-										<form>
-
+										<!-- <form> -->
 											<div class="row mb-3">
 												<label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
 												<div class="col-md-8 col-lg-9">
@@ -352,7 +399,7 @@ input-group-text {
 											<div class="text-center">
 												<button type="submit" id="btnSave" class="btn btn-primary">Change Password</button>
 											</div>
-										</form>
+										<!-- </form> -->
 										<!-- End Change Password Form -->
 
 									</div>
@@ -469,16 +516,7 @@ input-group-text {
 	var form = $("form[name = form]");
 	
 	$("#btnSave").on("click", function(){
-		if (seq.val() == "0" || seq.val() == ""){
-	   		// insert
-	   		/* if (validationInst() == false) return false; */
-	   		form.attr("action", goUrlInst).submit();
-	   	} else {
-	   		// update
-	   		/* keyName.val(atob(keyName.val())); */
-	   		/* if (validationUpdt() == false) return false; */
-	   		form.attr("action", goUrlUpdt).submit();
-	   	}
+   		form.attr("action", goUrlUpdt).submit();
 	}); 
 	</script>
 
@@ -493,7 +531,7 @@ input-group-text {
 		ifmmEmailDomain.addEventListener('focusout', callback);
 
 		function callback() {
-			if (Domain.value == null || Domain.value == '') {
+			if (Domain.value == null && Domain.value == '') {
 				let str = Email.value + '@' + ifmmEmailDomain.value;
 				document.getElementById('ifmmEmail').value = str;
 			} else {

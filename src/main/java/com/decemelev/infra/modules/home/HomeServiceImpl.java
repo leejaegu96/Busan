@@ -36,6 +36,7 @@ public class HomeServiceImpl implements HomeService{
 	@Override
 	public int update(Home dto) throws Exception {
 		int result = dao.update(dto);
+		System.out.println(result);
 		return result;
 	}
 	@Override

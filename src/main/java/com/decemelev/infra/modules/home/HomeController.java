@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
@@ -92,13 +93,14 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "homeUpdt")
-	public String homeUpdt(Home dto, Model model) throws Exception {
-		
+	public String homeUpdt(Home dto, Model model, RedirectAttributes redirectAttributes) throws Exception {
+		System.out.println("업데이트 가즈아!");
 		int result = service.update(dto);
-		model.addAttribute("item", model);
+		
+		model.addAttribute("list", model);
 		System.out.println("Controller update Result : " + result);
 		
-		return "redirect:/home/homeUpdt";
+		return "redirect:/home/mypage";
 	}
 	
 	

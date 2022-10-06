@@ -69,15 +69,14 @@ public class CodeServiceImpl implements CodeService {
 	public void selectListCachedCodeArrayList() throws Exception {
 		List<Code> codeListFromDb = (ArrayList<Code>) dao.selectListCachedCodeArrayList();
 		codeListFromDb = (ArrayList<Code>) dao.selectListCachedCodeArrayList();
+		System.out.println(codeListFromDb + "쿠키 나와라1!");
 		Code.cachedCodeArrayList.clear(); 
 		Code.cachedCodeArrayList.addAll(codeListFromDb);
 		System.out.println("cachedCodeArrayList: " + Code.cachedCodeArrayList.size() + " chached !");
 	}
 	
 	public static List<Code> selectListCachedCode(String infrCodeGroup_ifcgSeq) throws Exception {
-		System.out.println("여기 옴1?");
 		List<Code> rt = new ArrayList<Code>();
-		System.out.println("여기 옴2?");
 		for(Code codeRow : Code.cachedCodeArrayList) {
 			if(codeRow.getInfrCodeGroup_ifcgSeq().equals(infrCodeGroup_ifcgSeq)) {
 				rt.add(codeRow);

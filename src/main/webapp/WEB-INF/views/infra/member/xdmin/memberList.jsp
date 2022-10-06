@@ -367,6 +367,8 @@
 													</thead>
 													<tbody id="my_tbody">
 														<c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('1')}" />
+														<c:set var="listCodeCarrier" value="${CodeServiceImpl.selectListCachedCode('2')}" />
+														<c:set var="listCodeDomain" value="${CodeServiceImpl.selectListCachedCode('3')}" />
 														<c:choose>
 															<c:when test="${fn:length(list) eq 0}">
 																<tr>
@@ -386,18 +388,28 @@
 																		<td><c:out value="${list.ifmmId }" /></td>
 																		<td><a href="javascript:goForm(<c:out value="${list.ifmmSeq }"/>)" class="text-decoration-none"><c:out value="${list.ifmmName }" /></a> <%-- <c:out value="${list.ifmmName }"/> --%></td>
 																		<td><c:out value="${list.ifmmEmail }" /></td>
-																		<td><c:out value="${list.ifmmEmailDomain }" /></td>
 																		<td>
-																			<%-- 
-																	<c:out value="${list.ifmmGender }"/>
-																	 --%> <c:forEach items="${listCodeGender}" var="listGender" varStatus="statusGender">
+																			<c:forEach items="${listCodeDomain}" var="listDomain" varStatus="statusDomain">
+																				<c:if test="${list.ifmmEmailDomain eq listDomain.ifcdSeq}">
+																					<c:out value="${listDomain.ifcdName }" />
+																				</c:if>
+																			</c:forEach>
+																		</td>
+																		<td>
+																		 	<c:forEach items="${listCodeGender}" var="listGender" varStatus="statusGender">
 																				<c:if test="${list.ifmmGender eq listGender.ifcdSeq}">
 																					<c:out value="${listGender.ifcdName }" />
 																				</c:if>
 																			</c:forEach>
 																		</td>
 																		<td><fmt:formatDate value="${list.ifmmDob }" pattern="yyyy-MM-dd" /></td>
-																		<td><c:out value="${list.ifmmPhoneCarrier }" /></td>
+																		<td>
+																			<c:forEach items="${listCodeCarrier}" var="listCarrier" varStatus="statusGender">
+																				<c:if test="${list.ifmmPhoneCarrier eq listCarrier.ifcdSeq}">
+																					<c:out value="${listCarrier.ifcdName }" />
+																				</c:if>
+																			</c:forEach>
+																		</td>
 																		<td><c:out value="${list.ifmmPhone }" /></td>
 																		<td><c:out value="${list.ifmmMailNY }" /></td>
 																		<td><c:out value="${list.ifmmSmsNY }" /></td>

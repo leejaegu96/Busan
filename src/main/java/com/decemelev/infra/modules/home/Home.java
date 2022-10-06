@@ -46,8 +46,22 @@ public class Home {
 	private String ifmmDetailedAddress;
 	private String ifmmReference;
 	
+	private String ifcdName;
+	private String ifcdSeq;
 	
 
+	public String getIfcdSeq() {
+		return ifcdSeq;
+	}
+	public void setIfcdSeq(String ifcdSeq) {
+		this.ifcdSeq = ifcdSeq;
+	}
+	public String getIfcdName() {
+		return ifcdName;
+	}
+	public void setIfcdName(String ifcdName) {
+		this.ifcdName = ifcdName;
+	}
 	public String getIfmmSeq() {
 		return ifmmSeq;
 	}
