@@ -213,7 +213,9 @@
 		</div>
 
 		<!-- Scripts -->
+			<!-- 
 			<script src="../resources/assets/js/jquery.min.js"></script>
+			 -->
 			<script src="../resources/assets/js/jquery.dropotron.min.js"></script>
 			<script src="../resources/assets/js/jquery.scrollex.min.js"></script>
 			<script src="../resources/assets/js/browser.min.js"></script>

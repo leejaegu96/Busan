@@ -41,6 +41,31 @@
 		color: white;
 		cursor: pointer;
 	}
+	#preview {
+	    width: 200px;
+	    height: 200px; 
+	    border-radius: 70%;
+	    overflow: hidden;
+	}
+	#btn-upload {
+	  width: 150px;
+	  height: 30px;
+	  background: #fff;
+	  border: 1px solid rgb(77,77,77);
+	  border-radius: 10px;
+	  font-weight: 500;
+	  cursor: pointer;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  &:hover {
+	    background: rgb(77,77,77);
+	    color: #fff;
+	  }
+	}
+	#file {
+	  display: none;
+	}
 </style>
 </head>
 
@@ -131,15 +156,16 @@
 											<div class="row mb-3">
 												<label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
 												<div class="col-md-8 col-lg-9">
-													<div class="row" style="padding: 5px;">
-														<div class="col-9">
-															<input type="file" class="form-control" id="upload_file" accept="image/*" required=true>
-														</div>
-														<div class="d-gird col-3 ">
-															<button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal">미리보기</button>
-														</div>
-													</div>
-
+													<div id="preview"></div><br>
+													<label for="file">
+													  <div id="btn-upload">UPLOAD</div>
+													</label>
+													<input type="file" name="file" id="file" class="upload-box upload-plus" accept="image/*">
+												    
+												    <div class="file-edit-icon">
+												      <a href="#" class="preview-edit">수정</a>
+												      <a href="#" class="preview-de">삭제</a>
+												    </div>
 												</div>
 											</div>
 
@@ -277,19 +303,15 @@
 											<div class="row mb-3">
 												<label for="ifmmUploadedImage" class="col-md-4 col-lg-3 col-form-label">이미지 첨부</label>
 												<div class="col-md-8 col-lg-9">
-													<input class="form-control form-control-sm" id="ifmmUploadedImage" name="ifmmUploadedImage" type="file" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedImage', 1, 0, 1, 0, 0, 1);">
-										 			<div class="addScroll">
-														<div style="display: inline-block; height: 95px;">
-															<img src="/resources/common/image/default_111.jpg" class="rounded" width= "85px" height="85px">
-															<div style="position: relative; top:-85px; left:5px"><span style="color: red;">X</span></div>
-														</div>
+													<input class="form-control form-control-sm" id="ifmmUploadedImage1" name="ifmmUploadedImage1" type="file" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedImage1', 1, 0, 1, 0, 0, 1);">
+										 			<div class="addScroll" id="ifmmUploadedImage1View">
 										 			</div>
 												</div>
 											</div>
 											<div class="row mb-3">
 												<label for="ifmmUploadedFile" class="col-md-4 col-lg-3 col-form-label">이미지 첨부</label>
 												<div class="col-md-8 col-lg-9">
-													<input class="form-control form-control-sm" id="ifmmUploadedFile" name="ifmmUploadedFile" type="file" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedFile', 2, 0, 2, 0, 0, 2);" >
+													<input class="form-control form-control-sm" id="ifmmUploadedFile1" name="ifmmUploadedFil1e" type="file" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedFile1', 2, 0, 2, 0, 0, 2);" >
 													<div class="addScroll">
 														<ul id="ulFile2" class="list-group">
 														</ul>
@@ -437,7 +459,32 @@
 		});
 	});
 	</script>
-
+	
+	<script>
+	//파일 미리보기
+	function handleFileSelect(event) {
+    var input = this;
+    console.log(input.files)
+    if (input.files && input.files.length) {
+        var reader = new FileReader();
+        this.enabled = false
+        reader.onload = (function (e) {
+        console.log(e)
+            $("#preview").html(['<img class="thumb" src="', e.target.result, '" title="', escape(e.name), '"/>'].join(''))
+        });
+        reader.readAsDataURL(input.files[0]);
+    }
+	}
+	$('#file').change(handleFileSelect);
+	$('.file-edit-icon').on('click', '.preview-de', function () {
+	    $("#preview").empty()
+	    $("#file").val("");
+	});
+	$('.preview-edit').click( function() {
+	  $("#file").click();
+	} );
+	</script>
+	
 	<script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 		mapOption = {
@@ -599,6 +646,175 @@
 			$("#ifmaLatArray0").val('');
 			$("#ifmaLngArray0").val('');
 		});
+	</script>
+	<script type="text/javascript">
+	upload = function(objName, seq, allowedMaxTotalFileNumber, allowedExtdiv, allowedEachFileSize, allowedTotalFileSize, uiType) {
+//		objName 과 seq 는 jsp 내에서 유일 하여야 함.
+//		memberProfileImage: 1
+//		memberImage: 2
+//		memberFile : 3
+		
+		var totalFileSize = 0;
+		var obj = $("#" + objName +"")[0].files;	
+		var fileCount = obj.length;
+		
+		allowedMaxTotalFileNumber = allowedMaxTotalFileNumber == 0 ? MAX_TOTAL_FILE_NUMBER : allowedMaxTotalFileNumber;
+		allowedEachFileSize = allowedEachFileSize == 0 ? MAX_EACH_FILE_SIZE : allowedEachFileSize;
+		allowedTotalFileSize = allowedTotalFileSize == 0 ? MAX_TOTAL_FILE_SIZE : allowedTotalFileSize;
+		
+		if(checkUploadedTotalFileNumber(obj, allowedMaxTotalFileNumber, fileCount) == false) { return false; }
+		
+		for (var i = 0 ; i < fileCount ; i++) {
+			if(checkUploadedExt($("#" + objName +"")[0].files[i].name, seq, allowedExtdiv) == false) { return false; }
+			if(checkUploadedEachFileSize($("#" + objName +"")[0].files[i], seq, allowedEachFileSize) == false) { return false; }
+			totalFileSize += $("#" + objName +"")[0].files[i].size;
+		}
+		if(checkUploadedTotalFileSize(seq, totalFileSize, allowedTotalFileSize) == false) { return false; }
+		
+		if (uiType == 1) {
+/* 			
+			$("#ulFile" + seq).children().remove();
+			
+			for (var i = 0 ; i < fileCount ; i++) {
+				addUploadLi(seq, i, $("#" + objName +"")[0].files[i].name);
+			}
+ */			
+			for (var i = 0 ; i < fileCount ; i++) {
+				
+	 			var divImage = "";
+	 			divImage += '<div style="display: inline-block; height: 95px;">';
+				/* divImage += '	<img src="/resources/common/image/default_111.jpg" class="rounded" width= "85px" height="85px">'; */
+				divImage += '	<img id="aaa'+i+'" src="" class="rounded" width= "85px" height="85px">';
+				divImage += '	<div style="position: relative; top:-85px; left:5px"><span style="color: red;">X</span></div>';
+				divImage += '</div> ';
+				
+				$("#ifmmUploadedImage1View").append(divImage);
+				
+				var fileReader = new FileReader();
+				 fileReader.readAsDataURL($("#" + objName +"")[0].files[i]);
+				alert($("#" + objName +"")[0].files[i]);
+				 fileReader.onload = function () {
+				 alert(i + " : " + fileReader.result);
+					 $("#aaa"+i).attr("src", fileReader.result);		/* #-> */
+				 }
+			}			
+ 			
+		} else if(uiType == 2) {
+			$("#ulFile" + seq).children().remove();
+			
+			for (var i = 0 ; i < fileCount ; i++) {
+				addUploadLi(seq, i, $("#" + objName +"")[0].files[i].name);
+			}
+		} else if (uiType == 3) {
+			var fileReader = new FileReader();
+			 fileReader.readAsDataURL($("#" + objName +"")[0].files[0]);
+			
+			 fileReader.onload = function () {
+				 $("#imgProfile").attr("src", fileReader.result);		/* #-> */
+			 }		
+		} else {
+			return false;
+		}
+		return false;
+	}
+	
+	
+	addUploadLi = function (seq, index, name){
+		
+		var ul_list = $("#ulFile0");
+		
+		li = '<li id="li_'+seq+'_'+index+'" class="list-group-item d-flex justify-content-between align-items-center">';
+		li = li + name;
+		li = li + '<span class="badge bg-danger rounded-pill" onClick="delLi('+ seq +','+ index +')"><i class="fa-solid fa-x" style="cursor: pointer;"></i></span>';
+		li = li + '</li>';
+		
+		$("#ulFile"+seq).append(li);
+	}
+	
+	
+	delLi = function(seq, index) {
+		$("#li_"+seq+"_"+index).remove();
+	}
+	divSearchControl = function() {
+	    var screenWidth = $(window).width();
+	    if (screenWidth < BOOTSTRAP5_SM_DIMENSIONS) {
+	        $('#divSearch').hide();
+	        $('#iSearchControlUp').hide();
+	        $('#iSearchControlDown').show();
+	    } else {
+	        // by pass
+	    }
+	}
+	 
+	 
+	$('#divSearchControl').on('click', function() {
+	    if ($('#divSearch').is(':visible')) {
+	         $('#divSearch').hide();
+	         $('#iSearchControlUp').hide();
+	         $('#iSearchControlDown').show();
+	    } else {
+	         $('#divSearch').show();
+	         $('#iSearchControlUp').show();
+	         $('#iSearchControlDown').hide();
+	    }
+	 });
+
+
+	checkUploadedTotalFileNumber = function(obj, allowedMaxTotalFileNumber, fileCount) {
+		if(allowedMaxTotalFileNumber < fileCount){
+			alert("전체 파일 갯수는 "+ allowedMaxTotalFileNumber +"개 까지 허용됩니다.");
+//			$("#file"+seq).val("");
+//			obj.val("");
+			return false;
+		}
+	}
+
+
+	checkUploadedExt = function(objName, seq, div) {
+		var ext = objName.split('.').pop().toLowerCase();
+		var extArray = eval("extArray" + div);
+		
+		if(extArray.indexOf(ext) == -1) {
+			alert("허용된 확장자가 아닙니다.");
+//			$("#file"+seq).val("");
+			return false;
+		}
+	}
+
+
+	checkUploadedEachFileSize = function(obj, seq, allowedEachFileSize) {
+
+		if(obj.size > allowedEachFileSize){
+			alert("각 첨부 파일 사이즈는 "+kbToMb(allowedEachFileSize)+"MB 이내로 등록 가능합니다.");
+			$("#file"+seq).val("");
+			return false;
+		}
+	}
+
+
+	checkUploadedTotalFileSize = function(seq, totalSize, allowedTotalFileSize) {
+		if(totalSize > allowedTotalFileSize){
+			alert("전체 용량은 "+kbToMb(allowedTotalFileSize)+"M를 넘을 수 없습니다.");
+			$("#file"+seq).val("");
+			return false;
+		}
+	}
+	const BOOTSTRAP5_SM_DIMENSIONS = "576";
+
+	const URL_INDEX_ADMIN = "/index/indexView";
+	const URL_LOGIN_FORM = "/member/loginForm";
+	const URL_CHANGE_PWD_FORM = "/member/changePwdForm";
+
+	const MAX_EACH_FILE_SIZE = 5 * 1024 * 1024;		//	5M
+	const MAX_TOTAL_FILE_SIZE = 25 * 1024 * 1024;	//	25M
+	const MAX_TOTAL_FILE_NUMBER = 5;				//	5
+
+	function kbToMb(bytes) {
+	    var e = Math.floor(Math.log(bytes)/Math.log(1024));
+
+	    if(e == "-Infinity") return 0;
+	    else return (bytes/Math.pow(1024, Math.floor(e))).toFixed(2).slice(0, -3);
+	}
 	</script>
 
 
