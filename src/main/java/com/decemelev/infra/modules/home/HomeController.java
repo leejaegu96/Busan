@@ -76,7 +76,7 @@ public class HomeController {
 		return "infra/home/user/translate";
 	}
 	
-	public String sessSeq = ""; 
+	public String sessSeq = "";
 	@RequestMapping(value = "mypage")
 	public String mypage(@ModelAttribute("vo") HomeVo vo, Model model, HttpServletRequest httpServletRequest) throws Exception {
 		
