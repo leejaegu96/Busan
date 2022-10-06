@@ -123,7 +123,7 @@ $("#btnLogin").on("click", function(){
 		,success: function(response) {
 			if( $("#ifmmId").val() == "dlworn123") {
 				if(response.rt == "success") {
-					location.href = "/login/selectForm";
+					location.href = "/";
 				} else {
 					alert("회원없음");
 				}

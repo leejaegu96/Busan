@@ -67,7 +67,7 @@ img, svg {
 
 .rounded-circle {
 	border-radius: 50% !important;
-	max-width: 100px;
+	max-width: 150px;
 	padding-bottom: 30px;
 }
 
@@ -77,6 +77,51 @@ table {
 
 input-group-text {
 	height: 48px;
+}
+
+#btn-upload {
+  width: 150px;
+  height: 30px;
+  background: #fff;
+  border: 1px solid rgb(77,77,77);
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    background: rgb(77,77,77);
+    color: #fff;
+  }
+}
+
+#file {
+  display: none;
+}
+#preview {
+    width: 150px;
+    height: 150px; 
+    border-radius: 70%;
+    overflow: hidden;
+}
+
+.thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.remove_img_preview {
+    position:relative;
+    top:-25px;
+    right:5px;
+    background:black;
+    color:white;
+    border-radius:50px;
+    font-size:0.9em;
+    padding: 0 0.3em 0;
+    text-align:center;
+    cursor:pointer;
 }
 </style>
 </head>
@@ -91,6 +136,18 @@ input-group-text {
 			</h3>
 			<nav id="nav">
 				<ul>
+					<li>
+						<c:choose>
+							<c:when test="${sessSeq eq null}">
+							</c:when>
+							<c:when test="${sessSeq eq 144}">
+								<span style="color: #959ADA; font-weight:bolder;"><c:out value="${sessName }"/></span> 관리자님
+							</c:when>
+							<c:otherwise>
+								<span style="color: #959ADA; font-weight:bolder;"><c:out value="${sessName }"/></span>님
+							</c:otherwise>
+						</c:choose>
+					</li>
 					<li><a href="home" class="button" style="cursor: pointer; background-color: #444444;">Home</a></li>
 					<c:choose>
 						<c:when test="${sessSeq eq null}">
@@ -133,8 +190,13 @@ input-group-text {
 							<div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
 								<img src="../resources/assets/images/logo/recruit.png" alt="Profile" class="rounded-circle">
-								<h2>Lee Jaegu</h2>
-								<h3>Student</h3>
+								<h2><c:out value="${list.ifmmName }"/></h2>
+								<h3>
+									<c:choose>
+										<c:when test="${sessSeq eq 144}"> ADMIN </c:when> 
+										<c:otherwise> USER </c:otherwise>
+									</c:choose>
+								</h3>
 								<div class="social-links mt-2">
 									<a href="#" class="twitter"><i class="bi bi-twitter"></i></a> <a href="#" class="facebook"><i class="bi bi-facebook"></i></a> <a href="#" class="instagram"><i class="bi bi-instagram"></i></a> <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
 								</div>
@@ -169,54 +231,61 @@ input-group-text {
 										<!-- 첫번쩨 화면---------------------------------------------------------------------------------------------------- -->
 										<h3 class="card-title">Profile Details</h3>
 										<br>
-										
-										<input type="hidden" name="ifmmSeq" value="<c:out value="${list.ifmmSeq }"/>" />
-										
-										<div class="row mb-3">
-											<label for="Name" class="col-md-4 col-lg-3 col-form-label">Name</label>
-											<div class="col-md-8 col-lg-9">
-												<label for="Name" class="col-lg-9 col-md-8" style="padding-top: 5px;" name="ifmmName" <c:out value="${list.ifmmName }"/> > <c:out value="${list.ifmmName }"/> </label>
+										<form>
+											<c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('1')}" />
+											<input type="hidden" name="ifmmSeq" value="<c:out value="${list.ifmmSeq }"/>" />
+											
+											<div class="row mb-3">
+												<label for="Name" class="col-md-4 col-lg-3 col-form-label">Name</label>
+												<div class="col-md-8 col-lg-9">
+													<label for="Name" class="col-lg-9 col-md-8" style="padding-top: 5px;" name="ifmmName"> <c:out value="${list.ifmmName }"/> </label>
+												</div>
 											</div>
-										</div>
-										
-										<div class="row mb-3">
-											<label for="Name" class="col-md-4 col-lg-3 col-form-label">Gender</label>
-											<div class="col-md-8 col-lg-9">
-												<label for="Name" class="col-lg-9 col-md-8" style="padding-top: 5px;"> <c:out value="${list.ifmmGender }"/> </label>
+											
+											<div class="row mb-3">
+												<label for="Name" class="col-md-4 col-lg-3 col-form-label">Gender</label>
+												<div class="col-md-8 col-lg-9">
+													<label for="Name" class="col-lg-9 col-md-8" style="padding-top: 5px;"> 
+														<%-- <c:if test="${list.ifmmGender eq listGender.ifcdSeq }"> <c:out value="${listGender.ifcdName }" /> </c:if> --%>
+														<c:out value="${ listCodeGender[list.ifmmGender-1].ifcdName }"/>
+													</label>
+												</div>
 											</div>
-										</div>
-										
-										<div class="row mb-3">
-											<label for="Name" class="col-md-4 col-lg-3 col-form-label">Date Of Birth</label>
-											<div class="col-md-8 col-lg-9">
-												<label for="Name" class="col-lg-9 col-md-8" style="padding-top: 5px;"> <c:out value="${list.ifmmDob }"/> </label>
+											
+											<div class="row mb-3">
+												<label for="Name" class="col-md-4 col-lg-3 col-form-label">Date Of Birth</label>
+												<div class="col-md-8 col-lg-9">
+													<label for="Name" class="col-lg-9 col-md-8" style="padding-top: 5px;"> <c:out value="${list.ifmmDob }"/> </label>
+												</div>
 											</div>
-										</div>
-										
-										
-
-										<div class="row mb-3">
-											<label for="Name" class="col-md-4 col-lg-3 col-form-label">Email</label>
-											<div class="col-md-8 col-lg-9">
-												<label for="Name" class="col-lg-9 col-md-8" style="padding-top: 5px;" > <c:out value="${list.ifmmEmail }"/> </label>
+											
+											
+	
+											<div class="row mb-3">
+												<label for="Name" class="col-md-4 col-lg-3 col-form-label">Email</label>
+												<div class="col-md-8 col-lg-9">
+													<label for="Name" class="col-lg-9 col-md-8" style="padding-top: 5px;" > <c:out value="${list.ifmmEmail }"/> </label>
+												</div>
 											</div>
-										</div>
-										
-										
-
-										<div class="row mb-3">
-											<label for="Name" class="col-md-4 col-lg-3 col-form-label">Phone</label>
-											<div class="col-md-8 col-lg-9">
-												<label for="Name" class="col-lg-9 col-md-8" style="padding-top: 5px;" > <c:out value="${list.ifmmPhone }"/> </label>
+											
+											
+	
+											<div class="row mb-3">
+												<label for="Name" class="col-md-4 col-lg-3 col-form-label">Phone</label>
+												<div class="col-md-8 col-lg-9">
+													<label for="Name" class="col-lg-9 col-md-8" style="padding-top: 5px;" > <c:out value="${list.ifmmPhone }"/> </label>
+												</div>
 											</div>
-										</div>
-
-										<div class="row mb-3">
-											<label for="Name" class="col-md-4 col-lg-3 col-form-label">Address</label>
-											<div class="col-md-8 col-lg-9">
-												<label for="Name" class="col-lg-9 col-md-8" style="padding-top: 5px;"> <c:out value="${list.ifmmPostNum }"/> <br><br> <c:out value="${list.ifmmAddress }"/> </label>
+	
+											<div class="row mb-3">
+												<label for="Name" class="col-md-4 col-lg-3 col-form-label">Address</label>
+												<div class="col-md-8 col-lg-9">
+													<label for="Name" class="col-lg-9 col-md-8" style="padding-top: 5px;"> 
+													<c:out value="${list.ifmmPostNum }"/> <br><br> 
+													<c:out value="${list.ifmmAddress }"/> </label>
+												</div>
 											</div>
-										</div>
+										</form>
 
 									</div>
 
@@ -234,7 +303,24 @@ input-group-text {
 											<div class="row mb-3">
 												<label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
 												<div class="col-md-8 col-lg-9">
-													<img src="../resources/assets/images/logo/recruit.png" alt="Profile" class="rounded-circle">
+													<!-- <img src="../resources/assets/images/logo/recruit.png" alt="Profile" id="preview" class="rounded-circle"> -->
+													<!-- <img src="../resources/assets/images/logo/recruit.png" id="View" class="rounded-circle">
+													<label for="file">
+													  <div id="btn-upload">UPLOAD</div>
+													</label>
+													<input type="file" name="file" id="myFile" /> -->
+													
+													<div id="preview"></div><br>
+													<label for="file">
+													  <div id="btn-upload">UPLOAD</div>
+													</label>
+													<input type="file" name="file" id="file" class="upload-box upload-plus" accept="image/*">
+												    
+												    <div class="file-edit-icon">
+												      <a href="#" class="preview-edit">수정</a>
+												      <a href="#" class="preview-de">삭제</a>
+												    </div>
+												    
 												</div>
 											</div>
 
@@ -296,7 +382,7 @@ input-group-text {
 														</select>
 													</div>
 													
-													<input type="text" class="form-control" id="ifmmEmail" name="ifmmEmail" value="<c:out value="${list.ifmmEmail }"/>" >
+													<input type="hidden" class="form-control" id="ifmmEmail" name="ifmmEmail" value="<c:out value="${list.ifmmEmail }"/>" >
 													<div class="input-group">
 														<input class="form-text" type="hidden" name="ifmmMailNy" value="0"> 
 														<input class="form-text" type="checkbox" name="ifmmMailNy" value="1" <c:if test="${list.ifmmMailNy eq 1 }"> checked </c:if> > 
@@ -507,7 +593,28 @@ input-group-text {
 				});
 	</script>
 	<script>
-	
+	//파일 미리보기
+	function handleFileSelect(event) {
+    var input = this;
+    console.log(input.files)
+    if (input.files && input.files.length) {
+        var reader = new FileReader();
+        this.enabled = false
+        reader.onload = (function (e) {
+        console.log(e)
+            $("#preview").html(['<img class="thumb" src="', e.target.result, '" title="', escape(e.name), '"/>'].join(''))
+        });
+        reader.readAsDataURL(input.files[0]);
+    }
+	}
+	$('#file').change(handleFileSelect);
+	$('.file-edit-icon').on('click', '.preview-de', function () {
+	    $("#preview").empty()
+	    $("#file").val("");
+	});
+	$('.preview-edit').click( function() {
+	  $("#file").click();
+	} );
 	</script>
 	<script type="text/javascript">
 	

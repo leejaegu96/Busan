@@ -102,6 +102,18 @@ body {
 					<h3 style="color: white;font-size: 20px; margin-top:15px; margin-left:20px; height: 52px; cursor:pointer;" onClick="location.href='home'"><i class="fa-solid fa-book-open"></i>&nbsp;E-WORD</h3>
 					<nav id="nav">
 						<ul>
+							<li>
+								<c:choose>
+									<c:when test="${sessSeq eq null}">
+									</c:when>
+									<c:when test="${sessSeq eq 144}">
+										<span style="color: #959ADA; font-weight:bolder;"><c:out value="${sessName }"/></span> 관리자님
+									</c:when>
+									<c:otherwise>
+										<span style="color: #959ADA; font-weight:bolder;"><c:out value="${sessName }"/></span>님
+									</c:otherwise>
+								</c:choose>
+							</li>
 							<li><a href="home" class="button" style="cursor:pointer; background-color: #444444;">Home</a></li>
 							<c:choose>
 								<c:when test="${sessSeq eq null}">
