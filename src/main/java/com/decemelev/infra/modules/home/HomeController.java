@@ -82,6 +82,12 @@ public class HomeController {
 	@RequestMapping(value = "mypage")
 	public String mypage(@ModelAttribute("vo") HomeVo vo, Model model, HttpServletRequest httpServletRequest) throws Exception {
 		
+		List<Home> list1 = service.selectList();
+		model.addAttribute("list", list1);
+		
+		List<Home> item = service.selectContents();
+		model.addAttribute("item", item);
+		
 		HttpSession httpSession =  httpServletRequest.getSession();
 		sessSeq = (String) httpSession.getAttribute("sessSeq");
 		

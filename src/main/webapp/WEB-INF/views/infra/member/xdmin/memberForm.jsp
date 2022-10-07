@@ -318,6 +318,26 @@
 													</div>
 												</div>
 											</div>
+											<div class="row mb-3">
+												<label for="ifmmUploadedFile" class="col-md-4 col-lg-3 col-form-label">이미지 첨부</label>
+												<div class="col-md-8 col-lg-9">
+													<input type="file" multiple="multiple" name="img12" id="img12">
+												</div>
+											</div>
+											<div class="row mb-3">
+												<label for="ifmmUploadedFile" class="col-md-4 col-lg-3 col-form-label">파일 첨부</label>
+												<div class="col-md-8 col-lg-9">
+													<input type="file" name="img1" id="img1">
+												</div>
+											</div>
+											<div class="row mb-3">
+												<label for="ifmmUploadedFile" class="col-md-4 col-lg-3 col-form-label">확인!</label>
+												<div class="col-md-8 col-lg-9">
+													<button type="button" onclick="upload('img12', 1, 0, 3, 0, 0, 1)">파일 확인</button>
+												</div>
+											</div>
+											
+											
 											<!-- 이미지 파일 업로드 끝---------------------------------------------- -->
 											<div class="row" id="InputPadding">
 												<div class="col-6" style="text-align: left;">
@@ -458,6 +478,52 @@
 			
 		});
 	});
+	</script>
+	
+	<script type="text/javascript">
+	//파일 체크하는 버튼
+	/* 
+	validationInst = function() {
+		var obj = document.getElementById("img").files;
+		var obj1 = document.getElementById("img1").files;
+		var a = 0;
+		for(var i=0; i<obj.length; i++) {
+			a += obj[i].size;
+		}
+		
+		// ext
+		alert(obj);
+		
+		
+		// 갯수
+		alert(obj.length);
+		
+		// 용량 개별
+		for(var i=0; i<obj.length; i++) {
+			alert(obj[i].name + " : " + obj[i].size);
+		}
+		
+		// 용량 전체
+		if(a > (20*1024) ){
+			alert("파일 용량 10MB를 초과하였습니다.");
+			return false;
+		} else {
+			alert("obj 전체 사이즈 값 :" + a);
+		}
+		
+		/* 
+		for(var i=0; i<obj.length; i++) {
+			alert(obj[i].name + " : " + obj[i].size);
+		}
+		alert(obj1);
+		alert(obj1.length);
+		
+		for(var i=0; i<obj1.length; i++) {
+			alert(obj1[i].name + " : " + obj1[i].size);
+		}
+		 */
+		
+	
 	</script>
 	
 	<script>
@@ -653,7 +719,11 @@
 //		memberProfileImage: 1
 //		memberImage: 2
 //		memberFile : 3
+		const MAX_EACH_FILE_SIZE = 5 * 1024 * 1024;		//	5M
+		const MAX_TOTAL_FILE_SIZE = 25 * 1024 * 1024;	//	25M
+		const MAX_TOTAL_FILE_NUMBER = 5;
 		
+		alert('asdf');
 		var totalFileSize = 0;
 		var obj = $("#" + objName +"")[0].files;	
 		var fileCount = obj.length;
@@ -662,8 +732,48 @@
 		allowedEachFileSize = allowedEachFileSize == 0 ? MAX_EACH_FILE_SIZE : allowedEachFileSize;
 		allowedTotalFileSize = allowedTotalFileSize == 0 ? MAX_TOTAL_FILE_SIZE : allowedTotalFileSize;
 		
-		if(checkUploadedTotalFileNumber(obj, allowedMaxTotalFileNumber, fileCount) == false) { return false; }
+		checkUploadedTotalFileNumber = function(obj, allowedMaxTotalFileNumber, fileCount) {
+			if(allowedMaxTotalFileNumber < fileCount){
+				alert("전체 파일 갯수는 "+ allowedMaxTotalFileNumber +"개 까지 허용됩니다.");
+//				$("#file"+seq).val("");
+//				obj.val("");
+				return false;
+			}
+		}
+
+
+		checkUploadedExt = function(objName, seq, div) {
+			var ext = objName.split('.').pop().toLowerCase();
+			var extArray = eval("extArray" + div);
+			
+			if(extArray.indexOf(ext) == -1) {
+				alert("허용된 확장자가 아닙니다.");
+//				$("#file"+seq).val("");
+				return false;
+			}
+		}
+
+
+		checkUploadedEachFileSize = function(obj, seq, allowedEachFileSize) {
+
+			if(obj.size > allowedEachFileSize){
+				alert("각 첨부 파일 사이즈는 "+kbToMb(allowedEachFileSize)+"MB 이내로 등록 가능합니다.");
+				$("#file"+seq).val("");
+				return false;
+			}
+		}
+
+
+		checkUploadedTotalFileSize = function(seq, totalSize, allowedTotalFileSize) {
+			if(totalSize > allowedTotalFileSize){
+				alert("전체 용량은 "+kbToMb(allowedTotalFileSize)+"M를 넘을 수 없습니다.");
+				$("#file"+seq).val("");
+				return false;
+			}
+		}
 		
+		if(checkUploadedTotalFileNumber(obj, allowedMaxTotalFileNumber, fileCount) == false) { return false; }
+
 		for (var i = 0 ; i < fileCount ; i++) {
 			if(checkUploadedExt($("#" + objName +"")[0].files[i].name, seq, allowedExtdiv) == false) { return false; }
 			if(checkUploadedEachFileSize($("#" + objName +"")[0].files[i], seq, allowedEachFileSize) == false) { return false; }
@@ -672,18 +782,11 @@
 		if(checkUploadedTotalFileSize(seq, totalFileSize, allowedTotalFileSize) == false) { return false; }
 		
 		if (uiType == 1) {
-/* 			
-			$("#ulFile" + seq).children().remove();
-			
-			for (var i = 0 ; i < fileCount ; i++) {
-				addUploadLi(seq, i, $("#" + objName +"")[0].files[i].name);
-			}
- */			
+
 			for (var i = 0 ; i < fileCount ; i++) {
 				
 	 			var divImage = "";
 	 			divImage += '<div style="display: inline-block; height: 95px;">';
-				/* divImage += '	<img src="/resources/common/image/default_111.jpg" class="rounded" width= "85px" height="85px">'; */
 				divImage += '	<img id="aaa'+i+'" src="" class="rounded" width= "85px" height="85px">';
 				divImage += '	<div style="position: relative; top:-85px; left:5px"><span style="color: red;">X</span></div>';
 				divImage += '</div> ';
@@ -695,7 +798,7 @@
 				alert($("#" + objName +"")[0].files[i]);
 				 fileReader.onload = function () {
 				 alert(i + " : " + fileReader.result);
-					 $("#aaa"+i).attr("src", fileReader.result);		/* #-> */
+					 $("#aaa"+i).attr("src", fileReader.result);		
 				 }
 			}			
  			
@@ -710,7 +813,7 @@
 			 fileReader.readAsDataURL($("#" + objName +"")[0].files[0]);
 			
 			 fileReader.onload = function () {
-				 $("#imgProfile").attr("src", fileReader.result);		/* #-> */
+				 $("#imgProfile").attr("src", fileReader.result);		
 			 }		
 		} else {
 			return false;
@@ -759,62 +862,6 @@
 	    }
 	 });
 
-
-	checkUploadedTotalFileNumber = function(obj, allowedMaxTotalFileNumber, fileCount) {
-		if(allowedMaxTotalFileNumber < fileCount){
-			alert("전체 파일 갯수는 "+ allowedMaxTotalFileNumber +"개 까지 허용됩니다.");
-//			$("#file"+seq).val("");
-//			obj.val("");
-			return false;
-		}
-	}
-
-
-	checkUploadedExt = function(objName, seq, div) {
-		var ext = objName.split('.').pop().toLowerCase();
-		var extArray = eval("extArray" + div);
-		
-		if(extArray.indexOf(ext) == -1) {
-			alert("허용된 확장자가 아닙니다.");
-//			$("#file"+seq).val("");
-			return false;
-		}
-	}
-
-
-	checkUploadedEachFileSize = function(obj, seq, allowedEachFileSize) {
-
-		if(obj.size > allowedEachFileSize){
-			alert("각 첨부 파일 사이즈는 "+kbToMb(allowedEachFileSize)+"MB 이내로 등록 가능합니다.");
-			$("#file"+seq).val("");
-			return false;
-		}
-	}
-
-
-	checkUploadedTotalFileSize = function(seq, totalSize, allowedTotalFileSize) {
-		if(totalSize > allowedTotalFileSize){
-			alert("전체 용량은 "+kbToMb(allowedTotalFileSize)+"M를 넘을 수 없습니다.");
-			$("#file"+seq).val("");
-			return false;
-		}
-	}
-	const BOOTSTRAP5_SM_DIMENSIONS = "576";
-
-	const URL_INDEX_ADMIN = "/index/indexView";
-	const URL_LOGIN_FORM = "/member/loginForm";
-	const URL_CHANGE_PWD_FORM = "/member/changePwdForm";
-
-	const MAX_EACH_FILE_SIZE = 5 * 1024 * 1024;		//	5M
-	const MAX_TOTAL_FILE_SIZE = 25 * 1024 * 1024;	//	25M
-	const MAX_TOTAL_FILE_NUMBER = 5;				//	5
-
-	function kbToMb(bytes) {
-	    var e = Math.floor(Math.log(bytes)/Math.log(1024));
-
-	    if(e == "-Infinity") return 0;
-	    else return (bytes/Math.pow(1024, Math.floor(e))).toFixed(2).slice(0, -3);
-	}
 	</script>
 
 

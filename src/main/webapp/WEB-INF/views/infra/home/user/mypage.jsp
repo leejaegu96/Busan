@@ -29,36 +29,33 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<style>
+.ui-datepicker{ font-size: 15px; width: 400px; }
+.ui-datepicker select.ui-datepicker-month{ width:30%; font-size: 15px; }
+.ui-datepicker select.ui-datepicker-year{ width:40%; font-size: 15px; }
+</style>
 <script type="text/javascript">
-	$(document).ready(
-			function() {
-				$.datepicker.setDefaults($.datepicker.regional['ko']);
-				$("#ifmmDob")
-						.datepicker(
-								{
-									changeMonth : true,
-									changeYear : true,
-									nextText : '다음 달',
-									prevText : '이전 달',
-									dayNames : [ '일요일', '월요일', '화요일', '수요일',
-											'목요일', '금요일', '토요일' ],
-									dayNamesMin : [ '일', '월', '화', '수', '목',
-											'금', '토' ],
-									monthNamesShort : [ '1월', '2월', '3월', '4월',
-											'5월', '6월', '7월', '8월', '9월',
-											'10월', '11월', '12월' ],
-									monthNames : [ '1월', '2월', '3월', '4월',
-											'5월', '6월', '7월', '8월', '9월',
-											'10월', '11월', '12월' ],
-									dateFormat : "yy-mm-dd",
-									maxDate : 0, // 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)
-									onClose : function(selectedDate) {
-										//시작일(startDate) datepicker가 닫힐때
-										//종료일(endDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
-									}
+   $(document).ready(function () {
+       $.datepicker.setDefaults($.datepicker.regional['ko']); 
+       $( "#datepicker" ).datepicker({
+            changeMonth: true, 
+            changeYear: true,
+            nextText: '다음 달',
+            prevText: '이전 달', 
+            dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+            dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], 
+            monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+            monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+            dateFormat: "yy-mm-dd",
+            maxDate: 0,
+            minDate: new Date('2022-07-25'),
+            maxDate: new Date('2022-07-27'),
+       	// 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)
+            onClose: function( selectedDate ) {    
+            }    
 
-								});
-			});
+       });
+   });
 </script>
 <style type="text/css">
 img, svg {
@@ -211,23 +208,82 @@ input-group-text {
 							<div class="card-body pt-3">
 								<!-- Bordered Tabs -->
 								<ul class="nav nav-tabs nav-tabs-bordered">
-
+									
 									<li class="nav-item">
-										<button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
+										<button class="nav-link active" data-bs-toggle="tab" data-bs-target="#My-Word">My-Word</button>
 									</li>
-
+									
+									<li class="nav-item">
+										<button class="nav-link " data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
+									</li>
+									
 									<li class="nav-item">
 										<button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
 									</li>
-
+									
 									<li class="nav-item">
 										<button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
 									</li>
 
 								</ul>
 								<div class="tab-content pt-2">
+									
+									<!-- 두번째 폼--------------------------------------------------------------------------- -->
+									
+									<div class="tab-pane fade show active My-Word pt-3" id="My-Word">
+										<form>
+											
+											<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+											  <div class="carousel-inner">
+											  	<h3>Today's Word</h3><br>
+											  	
+											  	<div class="carousel-item active" data-bs-interval="1000000">
+											      <div style="max-width:450px; width:100%; height:500px; height:100%; text-align:left; margin:auto; text-align:center; background-color: #666666;">
+												    <img alt="" src="../resources/assets/images/samples/study.jpg" style="height:200px; width:400px; padding:10px;">
+												    
+													  <input type="text" class="form-control" id="datepicker" placeholder="Choice Date!!" style="text-align:center; color:black;">
+												  </div>
+											    </div>
+											  	
+											  	<c:forEach items="${list1}" var="list1" varStatus="status">
+											  	
+											    <div class="carousel-item" data-bs-interval="10000">
+											      <div style="max-width:450px; width:100%; height:500px; height:100%; text-align:left; margin:auto; background-color: #666666;">
+												    
+												    <h4>
+												    	<input type="hidden" id="sdwSeq" name="sdwSeq">
+											    		<c:out value="${list1.sdwWord }"/> &nbsp; <i class="fa-solid fa-volume-high"></i>
+												    </h4><br>
+												    
+												    <c:forEach items="${item}" var="item" varStatus="status">
+												    <span style="line-height:200%;">
+												    	<c:if test="${list1.sdwWord == item.sdwWord }">
+												    	<span style="color:Blue; font-style: italic;" value="${list1.sdwSeq }">${item.sdwmPartOfSpeech}</span> &nbsp; <span style="color:white;"value="${list1.sdwSeq }">${item.sdwmContents}</span> <br>
+												    	<span value="${list1.sdwSeq }">${item.sdweContents}</span> <br> <span value="${list1.sdwSeq }">${item.sdweTranslate}</span><br>
+												    	</c:if>
+												    </span>
+												    </c:forEach>
+												  </div>
+											    </div>
+											    
+											    </c:forEach>
+											    
+											  </div>
+											  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev" >
+											    <span class="carousel-control-prev-icon" aria-hidden="true" style="float:top;"></span>
+											    <span class="visually-hidden">Previous</span>
+											  </button>
+											  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+											    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+											    <span class="visually-hidden">Next</span>
+											  </button>
+											</div>
+											
+										</form>
+									</div>
+									<!-- 두번째 폼 끝--------------------------------------------------------------------------- -->
 
-									<div class="tab-pane fade show active profile-overview" id="profile-overview">
+									<div class="tab-pane fade profile-overview" id="profile-overview">
 										<!-- 첫번쩨 화면---------------------------------------------------------------------------------------------------- -->
 										<h3 class="card-title">Profile Details</h3>
 										<br>
@@ -288,10 +344,12 @@ input-group-text {
 										</form>
 
 									</div>
-
+									
+									
+									
 									<div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
-										<!-- 두번쩨 화면(수정폼)---------------------------------------------------------------------------------------------------- -->
+										<!-- 세번쩨 화면(수정폼)---------------------------------------------------------------------------------------------------- -->
 										<form id="form" name="form" method="post">
 										
 											<c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('1')}" />
@@ -458,7 +516,7 @@ input-group-text {
 										</form>
 										<!-- End Profile Edit Form -->
 									</div>
-									<!-- 세번째 화면 비밀번호 변경------------------------------------------------------ ------------------------------- -->
+									<!-- 네번째 화면 비밀번호 변경------------------------------------------------------ ------------------------------- -->
 									<div class="tab-pane fade pt-3" id="profile-change-password">
 										<form id="pwdForm" name="pwdForm" method="post">
 											<input type="hidden" name="ifmmSeq" value="<c:out value="${list.ifmmSeq }"/>" />
