@@ -27,6 +27,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.decemelev.infra.common.util.UtilSecurity;
+
 
 @Controller
 @RequestMapping(value="/home/")
@@ -102,6 +104,34 @@ public class HomeController {
 		
 		return "redirect:/home/mypage";
 	}
+	@RequestMapping(value = "homePwdUpdt")
+	public String homePwdUpdt(Home dto, Model model, RedirectAttributes redirectAttributes) throws Exception {
+		System.out.println("업데이트 가즈아!");
+		dto.setIfmmPassword(UtilSecurity.encryptSha256(dto.getIfmmPassword()));
+		int result = service.pwdUpdate(dto);
+		
+		model.addAttribute("list", model);
+		System.out.println("Controller pwdUpdate Result : " + result);
+		
+		return "redirect:/login/login";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="checkPwd")
+	public Map<String, Object> checkId(Home dto) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		dto.setIfmmPassword(UtilSecurity.encryptSha256(dto.getIfmmPassword()));
+		int result = service.selectOnePwdCheck(dto);
+		if(result > 0) {
+			returnMap.put("rt", "success");
+		} else {
+			returnMap.put("rt", "fail");
+		}
+		System.out.println("returnMap : " + returnMap);
+		return returnMap;
+	}
+	
 	
 	
 	@ResponseBody

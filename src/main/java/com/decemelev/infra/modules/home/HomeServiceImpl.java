@@ -40,9 +40,21 @@ public class HomeServiceImpl implements HomeService{
 		return result;
 	}
 	@Override
+	public int pwdUpdate(Home dto) throws Exception {
+		int result = dao.pwdUpdate(dto);
+		System.out.println(result);
+		return result;
+	}
+	@Override
 	public Home memberList(HomeVo vo) throws Exception {
 		Home list = dao.memberList(vo);
 		return list;
+	}
+	@Override
+	public int selectOnePwdCheck(Home dto) throws Exception {
+		int result = dao.selectOnePwdCheck(dto);
+		System.out.println("service selectOnePwdCheck result: " + result);
+		return result;
 	}
 	
 	

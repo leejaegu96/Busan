@@ -95,4 +95,20 @@
 			AND ifmmSeq = #{ifmmSeq}
 	</update>
 	
+	<update id="pwdUpdate">
+		UPDATE infrMember
+		SET
+			ifmmPassword = #{ifmmPassword}
+		WHERE 1=1
+			AND ifmmSeq = #{ifmmSeq}
+	</update>
+	
+	<select id="selectOnePwdCheck" resultType="Integer">
+		SELECT
+			count(*)
+		FROM infrMember a
+		WHERE 1=1
+			AND ifmmPassword = #{ifmmPassword}
+	</select>
+	
 </mapper>	

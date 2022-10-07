@@ -42,9 +42,16 @@ public class HomeDao {
 		return sqlSession.update(namespace + ".update", dto);
 	}
 	
+	public int pwdUpdate(Home dto) {
+		return sqlSession.update(namespace + ".pwdUpdate", dto);
+	}
+	
 	public Home memberList(HomeVo vo) {
 		Home list = sqlSession.selectOne(namespace + ".memberList", vo);
 		return list;
+	}
+	public int selectOnePwdCheck(Home dto) {
+		return sqlSession.selectOne(namespace + ".selectOnePwdCheck", dto);
 	}
 	
 	

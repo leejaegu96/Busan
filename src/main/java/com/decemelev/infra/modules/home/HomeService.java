@@ -11,6 +11,9 @@ public interface HomeService {
 	
 	public Home memberList(HomeVo vo) throws Exception;
 	public int update(Home dto) throws Exception;
+	public int pwdUpdate(Home dto) throws Exception;
+	
+	public int selectOnePwdCheck(Home dto) throws Exception;
 	
 	
 }

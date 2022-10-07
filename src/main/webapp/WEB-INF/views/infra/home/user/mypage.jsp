@@ -384,9 +384,9 @@ input-group-text {
 													
 													<input type="hidden" class="form-control" id="ifmmEmail" name="ifmmEmail" value="<c:out value="${list.ifmmEmail }"/>" >
 													<div class="input-group">
-														<input class="form-text" type="hidden" name="ifmmMailNy" value="0"> 
+														<input class="form-text" type="hidden" name="ifmmMailNy" value="0" <c:if test="${list.ifmmMailNy eq 0 }"> </c:if> > 
 														<input class="form-text" type="checkbox" name="ifmmMailNy" value="1" <c:if test="${list.ifmmMailNy eq 1 }"> checked </c:if> > 
-														<label class="form-text" for="ifmmMailNy" style="margin: auto; margin-left: 0;"> E-mail을 통한 소식/정보 수신을 동의하시겠습니까? </label>
+														<label class="form-text" style="margin: auto; margin-left: 0;"> E-mail을 통한 소식/정보 수신을 동의하시겠습니까? </label>
 													</div>
 												</div>
 											</div>
@@ -418,8 +418,8 @@ input-group-text {
 													<input type="hidden" id="ifmmPhone" name="ifmmPhone" class="form-control" value="<c:out value="${list.ifmmPhone }"/>" >
 													
 													<div class="input-group">
-														<input class="form-text" type="hidden" name="ifmmSmsNy" value="0" > 
-														<input class="form-text" type="checkbox" name="ifmmSmsNy" value="1" <c:if test="${list.ifmmSmsNy eq 1 }"> checked </c:if>> 
+														<input class="form-text" type="hidden" name="ifmmSmsNy" value="0" <c:if test="${list.ifmmSmsNy eq 0 }"> </c:if> > 
+														<input class="form-text" type="checkbox" name="ifmmSmsNy" value="1" <c:if test="${list.ifmmSmsNy eq 1 }"> checked </c:if> > 
 														<label class="form-text" for="ifmmSmsNy" style="margin: auto; margin-left: 0;"> SMS을 통한 소식/정보 수신을 동의하시겠습니까? </label>
 													</div>
 												</div>
@@ -460,32 +460,39 @@ input-group-text {
 									</div>
 									<!-- 세번째 화면 비밀번호 변경------------------------------------------------------ ------------------------------- -->
 									<div class="tab-pane fade pt-3" id="profile-change-password">
-										<!-- <form> -->
+										<form id="pwdForm" name="pwdForm" method="post">
+											<input type="hidden" name="ifmmSeq" value="<c:out value="${list.ifmmSeq }"/>" />
 											<div class="row mb-3">
 												<label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
 												<div class="col-md-8 col-lg-9">
-													<input name="password" type="password" class="form-control" id="currentPassword">
+													<input type="hidden" id="ifmmPwdAllowedNy" name="ifmmPwdAllowedNy" value="0">
+													<input type="password" class="form-control" id="ifmmPassword">
+													<div class="invalid-feedback" id="ifmmPwdFeedback"></div>
 												</div>
 											</div>
 
 											<div class="row mb-3">
 												<label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
 												<div class="col-md-8 col-lg-9">
-													<input name="newpassword" type="password" class="form-control" id="newPassword">
+													<input type="hidden" id="newPwdAllowedNy" name="newPwdAllowedNy" value="0">
+													<input name="ifmmPassword" type="password" class="form-control" id="newPassword">
+													<div class="invalid-feedback" id="newPwdFeedback"></div>
 												</div>
 											</div>
 
 											<div class="row mb-3">
 												<label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
 												<div class="col-md-8 col-lg-9">
-													<input name="renewpassword" type="password" class="form-control" id="renewPassword">
+													<input type="hidden" id="renewPwdAllowedNy" name="renewPwdAllowedNy" value="0">
+													<input name="ifmmPasswordCheck" type="password" class="form-control" id="renewPassword">
+													<div class="invalid-feedback" id="renewPwdFeedback"></div>
 												</div>
 											</div>
 
 											<div class="text-center">
-												<button type="submit" id="btnSave" class="btn btn-primary">Change Password</button>
+												<button type="button" id="btnPwdSave" class="btn btn-success" >Change Password</button>
 											</div>
-										<!-- </form> -->
+										</form>
 										<!-- End Change Password Form -->
 
 									</div>
@@ -592,6 +599,112 @@ input-group-text {
 					});
 				});
 	</script>
+	<script type="text/javascript">
+	$("#ifmmPassword").on("focusout", function(){
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			/* ,dataType:"json" */
+			,url: "/home/checkPwd"
+			/* ,data : $("#formLogin").serialize() */
+			,data : { "ifmmPassword" : $("#ifmmPassword").val() }
+			,success: function(response) {
+				if(response.rt == "success") {
+					document.getElementById("ifmmPassword").classList.add('is-valid');
+					document.getElementById("ifmmPassword").classList.remove('is-invalid');
+					document.getElementById("ifmmPwdFeedback").classList.remove('invalid-feedback');
+					document.getElementById("ifmmPwdFeedback").classList.add('valid-feedback');
+					document.getElementById("ifmmPwdFeedback").innerText = "현재 비밀번호와 동일합니다.";
+					
+					document.getElementById("ifmmPwdAllowedNy").value = 1;
+					
+				} else {
+					document.getElementById("ifmmPassword").classList.add('is-invalid');
+					
+					document.getElementById("ifmmPwdFeedback").classList.remove('valid-feedback');
+					document.getElementById("ifmmPwdFeedback").classList.add('invalid-feedback');
+					document.getElementById("ifmmPwdFeedback").innerText = "현재 비밀번호와 다릅니다.";
+					
+					document.getElementById("ifmmPwdAllowedNy").value = 0;
+					
+				}
+			}
+			
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+			
+		});
+	});
+	
+	</script>
+	<script type="text/javascript">
+	// 패스워드 확인
+		$("#newPassword").on("focusout", function(){
+			var pw = $("#newPassword").val();
+			var num = pw.search(/[0-9]/g);
+			var eng = pw.search(/[a-z]/ig);
+			var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+			
+			
+			
+			if(pw.length < 10 || pw.length > 20){
+				document.getElementById("newPassword").classList.add('is-invalid');
+				document.getElementById("newPwdFeedback").classList.remove('valid-feedback');
+				document.getElementById("newPwdFeedback").classList.add('invalid-feedback');
+				document.getElementById("newPwdFeedback").innerText = "10자리 ~ 20자리 이내로 입력해주세요.";
+				document.getElementById("newPwdAllowedNy").value = 0;
+				return false;
+			}else if(pw.search(/\s/) != -1){
+				document.getElementById("newPassword").classList.add('is-invalid');
+				document.getElementById("newPwdFeedback").classList.remove('valid-feedback');
+				document.getElementById("newPwdFeedback").classList.add('invalid-feedback');
+				document.getElementById("newPwdFeedback").innerText = "비밀번호는 공백 없이 입력해주세요.";
+				document.getElementById("newPwdAllowedNy").value = 0;
+				return false;
+			}else if( (num < 0 && eng < 0) || (eng < 0 && spe < 0) || (spe < 0 && num < 0) ){
+				document.getElementById("newPassword").classList.add('is-invalid');
+				document.getElementById("newPwdFeedback").classList.remove('valid-feedback');
+				document.getElementById("newPwdFeedback").classList.add('invalid-feedback');
+				document.getElementById("newPwdFeedback").innerText = "영문,숫자, 특수문자 중 2가지 이상을 혼합하여 입력해주세요.";
+				document.getElementById("newPwdAllowedNy").value = 0;
+				return false;
+			} else if($('#newPassword').val() == $('#ifmmPassword').val()){
+				document.getElementById("newPassword").classList.add('is-invalid');
+				document.getElementById("newPwdFeedback").classList.remove('valid-feedback');
+				document.getElementById("newPwdFeedback").classList.add('invalid-feedback');
+				document.getElementById("newPwdFeedback").innerText = "이전 비밀번호와 동일합니다.";
+				document.getElementById("newPwdAllowedNy").value = 0;
+				return false;
+	        } else {
+				document.getElementById("newPassword").classList.add('is-valid');
+				document.getElementById("newPassword").classList.remove('is-invalid');
+				document.getElementById("newPwdFeedback").classList.remove('invalid-feedback');
+				document.getElementById("newPwdFeedback").classList.add('valid-feedback');
+				document.getElementById("newPwdFeedback").innerText = "사용 가능 합니다.";
+				document.getElementById("newPwdAllowedNy").value = 1;
+			}
+		});
+		$("#renewPassword").on("focusout", function(){
+			if($('#renewPassword').val() != $('#newPassword').val()){
+				document.getElementById("renewPassword").classList.add('is-invalid');
+				document.getElementById("renewPwdFeedback").classList.remove('valid-feedback');
+				document.getElementById("renewPwdFeedback").classList.add('invalid-feedback');
+				document.getElementById("renewPwdFeedback").innerText = "비밀번호가 일치하지 않습니다.";
+				document.getElementById("renewPwdAllowedNy").value = 0;
+	        } else{
+	        	document.getElementById("renewPassword").classList.add('is-valid');
+				document.getElementById("renewPassword").classList.remove('is-invalid');
+				document.getElementById("renewPwdFeedback").classList.remove('invalid-feedback');
+				document.getElementById("renewPwdFeedback").classList.add('valid-feedback');
+				document.getElementById("renewPwdFeedback").innerText = "비밀번호가 일치합니다.";
+				document.getElementById("renewPwdAllowedNy").value = 1;
+	        }
+		});
+	</script>
+	
+	
 	<script>
 	//파일 미리보기
 	function handleFileSelect(event) {
@@ -619,12 +732,27 @@ input-group-text {
 	<script type="text/javascript">
 	
 	var goUrlUpdt = "/home/homeUpdt";
+	var goPwdUrlUpdt = "/home/homePwdUpdt";
 	
 	var form = $("form[name = form]");
+	var pwdForm = $("form[name = pwdForm]");
 	
 	$("#btnSave").on("click", function(){
    		form.attr("action", goUrlUpdt).submit();
 	}); 
+	$("#btnPwdSave").on("click", function(){
+		pwdForm.attr("action", goPwdUrlUpdt).submit();
+	}); 
+	
+	
+	$("#btnAddressClear").on("click", function() {
+		$("#ifmmPostNum").val('');
+		$("#ifmmResidence").val('');
+		$("#ifmmDetailedAddress").val('');
+		$("#ifmmReference").val('');
+		$("#ifmaLatArray0").val('');
+		$("#ifmaLngArray0").val('');
+	});
 	</script>
 
 	<script type="text/javascript">

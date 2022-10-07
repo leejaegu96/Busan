@@ -35,6 +35,7 @@
 			<exclude-mapping path="/login/logoutProc" /> 
 			<exclude-mapping path="/home/home" />
 			<exclude-mapping path="/home/homeUpdt" />
+			<exclude-mapping path="/home/checkPwd" />
 			<beans:bean id="checkLoginSessionInterception" class="com.decemelev.infra.common.interceptor.CheckLoginSessionInterception"/>
 		</interceptor>
 	</interceptors>	

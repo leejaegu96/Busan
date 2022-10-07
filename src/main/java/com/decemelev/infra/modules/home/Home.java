@@ -128,6 +128,8 @@ public class Home {
 	public void setIfmmDelNy(Integer ifmmDelNy) {
 		this.ifmmDelNy = ifmmDelNy;
 	}
+	
+	
 	public Integer getIfmmMailNy() {
 		return ifmmMailNy;
 	}
