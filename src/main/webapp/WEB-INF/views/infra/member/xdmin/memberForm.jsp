@@ -305,11 +305,13 @@
 												<div class="col-md-8 col-lg-9">
 													<input class="form-control form-control-sm" id="ifmmUploadedImage1" name="ifmmUploadedImage1" type="file" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedImage1', 1, 0, 1, 0, 0, 1);">
 										 			<div class="addScroll" id="ifmmUploadedImage1View">
+										 				<ul id="ulFile1" class="list-group">
+														</ul>
 										 			</div>
 												</div>
 											</div>
 											<div class="row mb-3">
-												<label for="ifmmUploadedFile" class="col-md-4 col-lg-3 col-form-label">이미지 첨부</label>
+												<label for="ifmmUploadedFile" class="col-md-4 col-lg-3 col-form-label">파일 첨부</label>
 												<div class="col-md-8 col-lg-9">
 													<input class="form-control form-control-sm" id="ifmmUploadedFile1" name="ifmmUploadedFil1e" type="file" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedFile1', 2, 0, 2, 0, 0, 2);" >
 													<div class="addScroll">
@@ -719,11 +721,41 @@
 //		memberProfileImage: 1
 //		memberImage: 2
 //		memberFile : 3
+		
 		const MAX_EACH_FILE_SIZE = 5 * 1024 * 1024;		//	5M
 		const MAX_TOTAL_FILE_SIZE = 25 * 1024 * 1024;	//	25M
 		const MAX_TOTAL_FILE_NUMBER = 5;
 		
-		alert('asdf');
+		var extArray1 = new Array();
+		extArray1 = ["jpg","gif","png","jpeg","bmp","tif"];
+
+		// 문서관련
+		var extArray2 = new Array();
+		extArray2 = ["txt","pdf","hwp","doc","docx","xls","xlsx","ppt","pptx","html"];
+
+		// 이하는 커스텀
+		var extArray3 = new Array();
+		extArray3 = ["jpg","gif","png","jpeg","bmp","tif","txt","pdf","hwp","doc","docx","xls","xlsx","ppt","pptx","html"];
+
+		var extArray4 = new Array();
+		extArray4 = ["jpg","gif","png","jpeg","bmp","tif","txt","pdf","hwp","doc","docx","xls","xlsx","ppt","pptx","html"];
+
+		var extArray5 = new Array();
+		extArray5 = ["jpg","gif","png","jpeg","bmp","tif","txt","pdf","hwp","doc","docx","xls","xlsx","ppt","pptx","html"];
+
+		var extArray6 = new Array();
+		extArray6 = ["jpg","gif","png","jpeg","bmp","tif","txt","pdf","hwp","doc","docx","xls","xlsx","ppt","pptx","html"];
+
+		var extArray7 = new Array();
+		extArray7 = ["jpg","gif","png","jpeg","bmp","tif","txt","pdf","hwp","doc","docx","xls","xlsx","ppt","pptx","html"];
+
+		var extArray8 = new Array();
+		extArray8 = ["jpg","gif","png","jpeg","bmp","tif","txt","pdf","hwp","doc","docx","xls","xlsx","ppt","pptx","html"];
+
+		var extArray9 = new Array();
+		extArray9 = ["jpg","gif","png","jpeg","bmp","tif","txt","pdf","hwp","doc","docx","xls","xlsx","ppt","pptx","html"];
+
+		
 		var totalFileSize = 0;
 		var obj = $("#" + objName +"")[0].files;	
 		var fileCount = obj.length;
@@ -787,6 +819,7 @@
 				
 	 			var divImage = "";
 	 			divImage += '<div style="display: inline-block; height: 95px;">';
+				/* divImage += '	<img src="/resources/common/image/default_111.jpg" class="rounded" width= "85px" height="85px">'; */
 				divImage += '	<img id="aaa'+i+'" src="" class="rounded" width= "85px" height="85px">';
 				divImage += '	<div style="position: relative; top:-85px; left:5px"><span style="color: red;">X</span></div>';
 				divImage += '</div> ';
@@ -797,8 +830,18 @@
 				 fileReader.readAsDataURL($("#" + objName +"")[0].files[i]);
 				alert($("#" + objName +"")[0].files[i]);
 				 fileReader.onload = function () {
-				 alert(i + " : " + fileReader.result);
-					 $("#aaa"+i).attr("src", fileReader.result);		
+				 /* alert(i + " : " + fileReader.result); */
+				 alert($("#aaa"+i+""));
+				 
+				 if(i == 0) {
+					 $("#aaa0").attr("src", fileReader.result);		/* #-> */
+				 } else if (i == 1) {
+					 $("#aaa0").attr("src", fileReader.result);		/* #-> */
+				 } else {
+					 
+				 }
+					 /* $("#aaa"+i+"").attr("src", fileReader.result);	 */	/* #-> */
+					 /* $("#aaa1").attr("src", fileReader.result); */		/* #-> */ 
 				 }
 			}			
  			
@@ -813,7 +856,7 @@
 			 fileReader.readAsDataURL($("#" + objName +"")[0].files[0]);
 			
 			 fileReader.onload = function () {
-				 $("#imgProfile").attr("src", fileReader.result);		
+				 $("#imgProfile").attr("src", fileReader.result);		/* #-> */
 			 }		
 		} else {
 			return false;
@@ -838,29 +881,6 @@
 	delLi = function(seq, index) {
 		$("#li_"+seq+"_"+index).remove();
 	}
-	divSearchControl = function() {
-	    var screenWidth = $(window).width();
-	    if (screenWidth < BOOTSTRAP5_SM_DIMENSIONS) {
-	        $('#divSearch').hide();
-	        $('#iSearchControlUp').hide();
-	        $('#iSearchControlDown').show();
-	    } else {
-	        // by pass
-	    }
-	}
-	 
-	 
-	$('#divSearchControl').on('click', function() {
-	    if ($('#divSearch').is(':visible')) {
-	         $('#divSearch').hide();
-	         $('#iSearchControlUp').hide();
-	         $('#iSearchControlDown').show();
-	    } else {
-	         $('#divSearch').show();
-	         $('#iSearchControlUp').show();
-	         $('#iSearchControlDown').hide();
-	    }
-	 });
 
 	</script>
 
