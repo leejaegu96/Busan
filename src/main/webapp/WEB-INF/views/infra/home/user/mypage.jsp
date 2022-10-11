@@ -188,8 +188,24 @@ input-group-text {
 
 						<div class="card">
 							<div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-
+								<!-- 
 								<img src="../resources/assets/images/logo/recruit.png" alt="Profile" class="rounded-circle">
+								 -->
+<!-- 프로필 사진--------------------------------------------------------------------------------------- -->
+								<%-- 
+								<c:choose>
+									<c:when test="${fn:length(listUploaded) eq 0 }">
+										<img id="imgProfile" src="/resources/assets/images/faces/default_100_100.png" class="rounded-circle mx-auto d-block" width="100" height="100">
+									</c:when>
+									<c:otherwise>
+										<c:forEach items="${listUploaded}" var="listUploaded" varStatus="statusUploaded">
+											<c:if test="${listUploaded.type eq '1' }">
+												<img id="imgProfile" src="<c:out value="${listUploaded.path }"/><c:out value="${listUploaded.uuidName }"/>" class="rounded-circle mx-auto d-block" width="100" height="100">
+											</c:if>
+										</c:forEach>
+									</c:otherwise>
+								</c:choose>
+								 --%>
 								<h2><c:out value="${list.ifmmName }"/></h2>
 								<h3>
 									<c:choose>
@@ -197,6 +213,7 @@ input-group-text {
 										<c:otherwise> USER </c:otherwise>
 									</c:choose>
 								</h3>
+								<span><c:out value="${list.ifmmSeq }"/></span>
 								<div class="social-links mt-2">
 									<a href="#" class="twitter"><i class="bi bi-twitter"></i></a> <a href="#" class="facebook"><i class="bi bi-facebook"></i></a> <a href="#" class="instagram"><i class="bi bi-instagram"></i></a> <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
 								</div>
@@ -231,7 +248,7 @@ input-group-text {
 								</ul>
 								<div class="tab-content pt-2">
 									
-									<!-- 두번째 폼--------------------------------------------------------------------------- -->
+<!-- 오늘의 단어--------------------------------------------------------------------------- -->
 									
 									<div class="tab-pane fade show active My-Word pt-3" id="My-Word">
 										<form>
@@ -287,11 +304,12 @@ input-group-text {
 									<!-- 두번째 폼 끝--------------------------------------------------------------------------- -->
 
 									<div class="tab-pane fade profile-overview" id="profile-overview">
-										<!-- 첫번쩨 화면---------------------------------------------------------------------------------------------------- -->
+<!-- 미리보기---------------------------------------------------------------------------------------------------- -->
 										<h3 class="card-title">Profile Details</h3>
 										<br>
 										<form>
 											<c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('1')}" />
+											
 											<input type="hidden" name="ifmmSeq" value="<c:out value="${list.ifmmSeq }"/>" />
 											
 											<div class="row mb-3">
@@ -352,8 +370,8 @@ input-group-text {
 									
 									<div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
-										<!-- 세번쩨 화면(수정폼)---------------------------------------------------------------------------------------------------- -->
-										<form id="form" name="form" method="post">
+<!-- 수정폼---------------------------------------------------------------------------------------------------- -->
+										<form id="form" name="form" method="post" enctype="multipart/form-data">
 										
 											<c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('1')}" />
 											<c:set var="listCodeCarrier" value="${CodeServiceImpl.selectListCachedCode('2')}" />
@@ -364,26 +382,7 @@ input-group-text {
 											<div class="row mb-3">
 												<label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
 												<div class="col-md-8 col-lg-9 text-center" >
-													<!-- <img src="../resources/assets/images/logo/recruit.png" alt="Profile" id="preview" class="rounded-circle"> -->
-													<!-- <img src="../resources/assets/images/logo/recruit.png" id="View" class="rounded-circle">
-													<label for="file">
-													  <div id="btn-upload">UPLOAD</div>
-													</label>
-													<input type="file" name="file" id="myFile" /> -->
-													<!-- 
-													<div id="preview"></div><br>
-													<label for="file">
-													  <div id="btn-upload">UPLOAD</div>
-													</label>
-													<input type="file" name="file" id="file" class="upload-box upload-plus" accept="image/*">
-												    
-												    <div class="file-edit-icon">
-												      <a href="#" class="preview-edit">수정</a>
-												      <a href="#" class="preview-de">삭제</a>
-												    </div>
-												     -->
-												     <img id="imgProfile" src="/resources/assets/images/faces/default_100_100.png" class="rounded-circle mx-auto d-block" width="100" height="100">
-												     <%-- 
+<!-- 프로필------------------------------------------------------------------------------------------------- -->
 													<c:choose>
 														<c:when test="${fn:length(listUploaded) eq 0 }">
 															<img id="imgProfile" src="/resources/assets/images/faces/default_100_100.png" class="rounded-circle mx-auto d-block" width="100" height="100">
@@ -396,12 +395,11 @@ input-group-text {
 															</c:forEach>
 														</c:otherwise>
 													</c:choose>
-													 --%>
 													<br>
 													<label for="ifmmUploadedProfileImage" >
-													  <div id="btn-upload" style="text-align:center; margin: auto;">UPLOAD!!</div>
+														<span id="btn-upload" style="text-align:center; margin:auto;">UPLOAD</span>
 													</label>
- 													<input class="form-control form-control-sm" id="ifmmUploadedProfileImage" name="ifmmUploadedProfileImage" type="file" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedProfileImage', 0, 1, 1, 0, 0, 3);">
+													<input class="form-control form-control-sm" id="ifmmUploadedProfileImage" name="ifmmUploadedProfileImage" type="file" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedProfileImage', 0, 1, 1, 0, 0, 3);">
 												</div>
 											</div>
 
@@ -539,10 +537,12 @@ input-group-text {
 										</form>
 										<!-- End Profile Edit Form -->
 									</div>
-									<!-- 네번째 화면 비밀번호 변경------------------------------------------------------ ------------------------------- -->
+<!-- 화면 비밀번호 변경------------------------------------------------------ ------------------------------- -->
 									<div class="tab-pane fade pt-3" id="profile-change-password">
 										<form id="pwdForm" name="pwdForm" method="post">
+											
 											<input type="hidden" name="ifmmSeq" value="<c:out value="${list.ifmmSeq }"/>" />
+											
 											<div class="row mb-3">
 												<label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
 												<div class="col-md-8 col-lg-9">

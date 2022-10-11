@@ -15,5 +15,7 @@ public interface HomeService {
 	
 	public int selectOnePwdCheck(Home dto) throws Exception;
 	
+	List<Home> selectListUploaded(HomeVo vo) throws Exception; 
+	
 	
 }

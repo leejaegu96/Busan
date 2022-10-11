@@ -171,7 +171,18 @@
 											<div class="row mb-3">
 												<label for="about" class="col-md-4 col-lg-3 col-form-label">Profile</label>
 												<div class="col-md-8 col-lg-9 text-center"  >
-													<img id="imgProfile" src="/resources/assets/images/faces/default_100_100.png" class="rounded-circle mx-auto d-block" width="100" height="100">
+													<c:choose>
+														<c:when test="${fn:length(listUploaded) eq 0 }">
+															<img id="imgProfile" src="/resources/assets/images/faces/default_100_100.png" class="rounded-circle mx-auto d-block" width="100" height="100">
+														</c:when>
+														<c:otherwise>
+															<c:forEach items="${listUploaded}" var="listUploaded" varStatus="statusUploaded">
+																<c:if test="${listUploaded.type eq '1' }">
+																	<img id="imgProfile" src="<c:out value="${listUploaded.path }"/><c:out value="${listUploaded.uuidName }"/>" class="rounded-circle mx-auto d-block" width="100" height="100">
+																</c:if>
+															</c:forEach>
+														</c:otherwise>
+													</c:choose>
 													<br>
 													<label for="ifmmUploadedProfileImage" >
 														<span id="btn-upload" style="text-align:center; margin:auto;">UPLOAD</span>

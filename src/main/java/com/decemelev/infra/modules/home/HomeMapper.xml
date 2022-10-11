@@ -111,4 +111,20 @@
 			AND ifmmPassword = #{ifmmPassword}
 	</select>
 	
+	<select id="selectListUploaded" resultMap="resultMapObj">
+		SELECT 
+			seq
+			,type
+			,defaultNy
+			,path
+			,originalName
+			,uuidName
+		FROM infrMemberUploaded
+		WHERE 1=1
+			AND delNy = 0
+			AND pseq = #{mainKey}
+		ORDER BY
+			type, sort
+	</select>
+	
 </mapper>	

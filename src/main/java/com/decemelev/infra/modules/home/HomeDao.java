@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 
+
 @Repository
 public class HomeDao {
 
@@ -54,5 +55,6 @@ public class HomeDao {
 		return sqlSession.selectOne(namespace + ".selectOnePwdCheck", dto);
 	}
 	
+	public List<Home> selectListUploaded(HomeVo vo){ return sqlSession.selectList(namespace + ".selectListUploaded", vo); }
 	
 }

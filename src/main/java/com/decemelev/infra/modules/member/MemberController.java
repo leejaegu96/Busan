@@ -52,6 +52,7 @@ public class MemberController {
 		System.out.println("vo.getIfmmSeq(): " + vo.getIfmmSeq());
 		Member result = service.selectOne(vo);
 		model.addAttribute("item", result);
+		model.addAttribute("listUploaded", service.selectListUploaded(vo));
 		
 		return "infra/member/xdmin/memberForm";
 	}

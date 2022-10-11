@@ -96,6 +96,7 @@ public class HomeController {
 		Home list = service.memberList(vo);
 		model.addAttribute("list", list);
 		
+		model.addAttribute("listUploaded", service.selectListUploaded(vo));
 		
 		return "infra/home/user/mypage";
 	}
@@ -105,7 +106,7 @@ public class HomeController {
 		System.out.println("업데이트 가즈아!");
 		int result = service.update(dto);
 		
-		model.addAttribute("list", model);
+		model.addAttribute("list", result);
 		System.out.println("Controller update Result : " + result);
 		
 		return "redirect:/home/mypage";

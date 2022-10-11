@@ -94,6 +94,11 @@ public class MemberServiceImpl implements MemberService {
 		System.out.println("service selectOneIdCheck result: " + result);
 		return result;
 	}
+	
+	@Override
+	public List<Member> selectListUploaded(MemberVo vo) throws Exception {
+		return dao.selectListUploaded(vo);
+	}
 	/*
 	 * @Override public int signUp(Member dto) throws Exception { int result =
 	 * dao.signUp(dto); return result; }

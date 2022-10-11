@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+
 @Service
 public class HomeServiceImpl implements HomeService{
 	
@@ -57,5 +58,8 @@ public class HomeServiceImpl implements HomeService{
 		return result;
 	}
 	
-	
+	@Override
+	public List<Home> selectListUploaded(HomeVo vo) throws Exception {
+		return dao.selectListUploaded(vo);
+	}
 }
