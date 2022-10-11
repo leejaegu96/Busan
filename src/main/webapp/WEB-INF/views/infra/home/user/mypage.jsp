@@ -188,11 +188,12 @@ input-group-text {
 
 						<div class="card">
 							<div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+								
+<!-- 프로필 사진--------------------------------------------------------------------------------------- -->
 								<!-- 
 								<img src="../resources/assets/images/logo/recruit.png" alt="Profile" class="rounded-circle">
 								 -->
-<!-- 프로필 사진--------------------------------------------------------------------------------------- -->
-								<%-- 
+								
 								<c:choose>
 									<c:when test="${fn:length(listUploaded) eq 0 }">
 										<img id="imgProfile" src="/resources/assets/images/faces/default_100_100.png" class="rounded-circle mx-auto d-block" width="100" height="100">
@@ -205,7 +206,7 @@ input-group-text {
 										</c:forEach>
 									</c:otherwise>
 								</c:choose>
-								 --%>
+								
 								<h2><c:out value="${list.ifmmName }"/></h2>
 								<h3>
 									<c:choose>

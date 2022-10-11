@@ -1,6 +1,8 @@
 package com.decemelev.infra.modules.home;
 
-public class Home {
+import com.decemelev.infra.common.base.Base;
+
+public class Home extends Base {
 	
 	private String sddSeq;
 	private String sddDateChoice;
