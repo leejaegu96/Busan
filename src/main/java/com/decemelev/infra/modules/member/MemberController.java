@@ -3,6 +3,7 @@ package com.decemelev.infra.modules.member;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.ServiceConfigurationError;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -76,8 +77,9 @@ public class MemberController {
 		
 		int result = service.update(dto);
 		System.out.println("Controller update Result : " + result);
+		
 		redirectAttributes.addFlashAttribute("vo",vo);
-		model.addAttribute("item", model);
+		model.addAttribute("item", result);
 		
 		System.out.println("업데이트 !");
 		 return "redirect:/member/memberList"; 

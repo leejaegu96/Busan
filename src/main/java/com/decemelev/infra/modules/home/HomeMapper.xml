@@ -127,4 +127,20 @@
 			type, sort
 	</select>
 	
+	<update id="uploadedUpdate">
+		UPDATE infrMemberUploaded
+		SET
+			type = #{type}
+			,defaultNy = #{defaultNy}
+			,sort = #{sort}
+			,path = #{path}
+			,originalName = #{originalName}
+			,uuidName = #{uuidName}
+			,ext = #{ext}
+			,size = #{size}
+		WHERE 1=1
+			AND delNy = 0
+			AND pseq = #{ifmmSeq}
+	</update>
+	
 </mapper>	

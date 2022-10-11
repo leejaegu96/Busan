@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 
 
+
 @Repository
 public class HomeDao {
 
@@ -56,5 +57,9 @@ public class HomeDao {
 	}
 	
 	public List<Home> selectListUploaded(HomeVo vo){ return sqlSession.selectList(namespace + ".selectListUploaded", vo); }
+	
+	public int insertUploaded(Home dto) { return sqlSession.insert("Base" + ".insertUploaded", dto); }
+	
+	public int uploadedUpdate(Home dto){ return sqlSession.update(namespace + ".uploadedUpdate", dto); }
 	
 }

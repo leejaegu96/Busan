@@ -1,5 +1,7 @@
 package com.decemelev.infra.modules.home;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.decemelev.infra.common.base.Base;
 
 public class Home extends Base {
@@ -51,7 +53,17 @@ public class Home extends Base {
 	private String ifcdName;
 	private String ifcdSeq;
 	
+	private MultipartFile[] ifmmUploadedProfileImage;
+	
+	
+	
 
+	public MultipartFile[] getIfmmUploadedProfileImage() {
+		return ifmmUploadedProfileImage;
+	}
+	public void setIfmmUploadedProfileImage(MultipartFile[] ifmmUploadedProfileImage) {
+		this.ifmmUploadedProfileImage = ifmmUploadedProfileImage;
+	}
 	public String getIfcdSeq() {
 		return ifcdSeq;
 	}

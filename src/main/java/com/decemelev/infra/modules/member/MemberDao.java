@@ -50,6 +50,8 @@ public class MemberDao {
 	
 	public List<Member> selectListUploaded(MemberVo vo){ return sqlSession.selectList(namespace + ".selectListUploaded", vo); }
 	
+	public int uploadedUpdate(Member dto){ return sqlSession.update(namespace + ".uploadedUpdate", dto); }
+	
 	/*
 	 * public int signUp(Member dto) { return sqlSession.selectOne(namespace +
 	 * ".signUp", dto); }

@@ -71,6 +71,39 @@ public class MemberServiceImpl implements MemberService {
 	public int update(Member dto) throws Exception {
 		System.out.println("업 서 출");
 		int result = dao.update(dto);
+		
+		for(MultipartFile multipartFile : dto.getIfmmUploadedProfileImage() ) {
+    		
+			System.out.println(!multipartFile.isEmpty());
+			
+    		if(!multipartFile.isEmpty() == true) {
+
+    			String pathModule = this.getClass().getSimpleName().toString().toLowerCase().replace("serviceimpl", "");
+	    		UtilUpload.upload(multipartFile, pathModule, dto);
+	    		
+	    		dto.setTableName("infrMemberUploaded");
+	    		dto.setType(1);
+	    		dto.setDefaultNy(1);
+	    		dto.setSort(1);
+	    		dto.setPseq(dto.getIfmmSeq());
+
+				dao.uploadedUpdate(dto);
+				
+    		} else {
+
+    			String pathModule = this.getClass().getSimpleName().toString().toLowerCase().replace("serviceimpl", "");
+	    		UtilUpload.upload(multipartFile, pathModule, dto);
+	    		
+	    		dto.setTableName("infrMemberUploaded");
+	    		dto.setType(1);
+	    		dto.setDefaultNy(1);
+	    		dto.setSort(1);
+	    		dto.setPseq(dto.getIfmmSeq());
+
+				dao.insertUploaded(dto);
+    		}
+    	}
+		
 		System.out.println("업 서 도");
 		System.out.println("service update result: " + result);
 		return result;
@@ -99,6 +132,9 @@ public class MemberServiceImpl implements MemberService {
 	public List<Member> selectListUploaded(MemberVo vo) throws Exception {
 		return dao.selectListUploaded(vo);
 	}
+	
+	
+	
 	/*
 	 * @Override public int signUp(Member dto) throws Exception { int result =
 	 * dao.signUp(dto); return result; }

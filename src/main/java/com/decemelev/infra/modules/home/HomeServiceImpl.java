@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.decemelev.infra.common.util.UtilUpload;
 
 
 
@@ -37,6 +40,39 @@ public class HomeServiceImpl implements HomeService{
 	@Override
 	public int update(Home dto) throws Exception {
 		int result = dao.update(dto);
+		
+		for(MultipartFile multipartFile : dto.getIfmmUploadedProfileImage() ) {
+    		
+			System.out.println(!multipartFile.isEmpty());
+			 
+    		if(!multipartFile.isEmpty() == true) {
+
+    			String pathModule = this.getClass().getSimpleName().toString().toLowerCase().replace("serviceimpl", "");
+	    		UtilUpload.upload1(multipartFile, pathModule, dto);
+	    		
+	    		dto.setTableName("infrMemberUploaded");
+	    		dto.setType(1);
+	    		dto.setDefaultNy(1);
+	    		dto.setSort(1);
+	    		dto.setPseq(dto.getIfmmSeq());
+
+				dao.uploadedUpdate(dto);
+				
+    		} else {
+
+    			String pathModule = this.getClass().getSimpleName().toString().toLowerCase().replace("serviceimpl", "");
+	    		UtilUpload.upload1(multipartFile, pathModule, dto);
+	    		
+	    		dto.setTableName("infrMemberUploaded");
+	    		dto.setType(1);
+	    		dto.setDefaultNy(1);
+	    		dto.setSort(1);
+	    		dto.setPseq(dto.getIfmmSeq());
+
+				dao.insertUploaded(dto);
+    		}
+    	}
+		
 		System.out.println(result);
 		return result;
 	}

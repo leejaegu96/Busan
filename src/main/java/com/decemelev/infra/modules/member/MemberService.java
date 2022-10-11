@@ -18,4 +18,5 @@ public interface MemberService {
 	public int selectOneIdCheck(Member dto) throws Exception;
 	
 	List<Member> selectListUploaded(MemberVo vo) throws Exception; 
+	
 }
