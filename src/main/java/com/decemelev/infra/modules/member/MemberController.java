@@ -4,13 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -57,15 +56,15 @@ public class MemberController {
 		return "infra/member/xdmin/memberForm";
 	}
 	
-	@SuppressWarnings(value = {"all"})
-	@RequestMapping(value = "memberInst")
+	/* @SuppressWarnings(value = {"all"}) */
+	@RequestMapping(value = "memberInst", method = RequestMethod.POST)
 	public String memberInst(MemberVo vo, Member dto, RedirectAttributes redirectAttributes) throws Exception {
 		
 		service.insert(dto);
 		
 		vo.setIfmmSeq(dto.getIfmmSeq());
 		
-		redirectAttributes.addFlashAttribute("vo",vo);
+		redirectAttributes.addFlashAttribute("vo",vo); 
 		
 		return "redirect:/member/memberList";
 		

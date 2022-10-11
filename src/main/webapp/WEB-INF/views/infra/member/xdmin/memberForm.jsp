@@ -58,13 +58,28 @@
 	  display: flex;
 	  align-items: center;
 	  justify-content: center;
+	  margin: auto;
 	  &:hover {
 	    background: rgb(77,77,77);
 	    color: #fff;
 	  }
 	}
+	
 	#file {
 	  display: none;
+	}
+	#preview {
+	    width: 150px;
+	    height: 150px; 
+	    border-radius: 70%;
+	    overflow: hidden;
+	}
+	
+	.rounded-circle {
+	    width: 150px;
+	    height: 150px; 
+	    border-radius: 100%;
+	    overflow: hidden;
 	}
 </style>
 </head>
@@ -145,7 +160,7 @@
 
 									<div class="card-body">
 
-										<form id="form" name="form" method="post">
+										<form id="form" name="form" method="post" enctype="multipart/form-data">
 											<!-- *Vo.jsp s -->
 											<%@include file="memberVo.jsp"%>
 											<!-- #-> -->
@@ -154,21 +169,16 @@
 											<input type="hidden" name="ifmmSeq" value="<c:out value="${vo.ifmmSeq }"/>" />
 											 --%>
 											<div class="row mb-3">
-												<label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
-												<div class="col-md-8 col-lg-9">
-													<div id="preview"></div><br>
-													<label for="file">
-													  <div id="btn-upload">UPLOAD</div>
+												<label for="about" class="col-md-4 col-lg-3 col-form-label">Profile</label>
+												<div class="col-md-8 col-lg-9 text-center"  >
+													<img id="imgProfile" src="/resources/assets/images/faces/default_100_100.png" class="rounded-circle mx-auto d-block" width="100" height="100">
+													<br>
+													<label for="ifmmUploadedProfileImage" >
+														<span id="btn-upload" style="text-align:center; margin:auto;">UPLOAD</span>
 													</label>
-													<input type="file" name="file" id="file" class="upload-box upload-plus" accept="image/*">
-												    
-												    <div class="file-edit-icon">
-												      <a href="#" class="preview-edit">수정</a>
-												      <a href="#" class="preview-de">삭제</a>
-												    </div>
+													<input class="form-control form-control-sm" id="ifmmUploadedProfileImage" name="ifmmUploadedProfileImage" type="file" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedProfileImage', 0, 1, 1, 0, 0, 3);">
 												</div>
 											</div>
-
 											<div class="row mb-3">
 												<label for="about" class="col-md-4 col-lg-3 col-form-label">About</label>
 												<div class="col-md-8 col-lg-9">
@@ -191,11 +201,20 @@
 											</div>
 
 											<div class="row mb-3">
+												<label for="Name" class="col-md-4 col-lg-3 col-form-label">Password</label>
+												<div class="col-md-8 col-lg-9">
+													<input type="text" class="form-control" id="ifmmPassword" name="ifmmPassword" value="<c:out value="${item.ifmmPassword }"/>">
+												</div>
+											</div>
+											
+											<div class="row mb-3">
 												<label for="Name" class="col-md-4 col-lg-3 col-form-label">Name</label>
 												<div class="col-md-8 col-lg-9">
 													<input type="text" class="form-control" id="ifmmName" name="ifmmName" value="<c:out value="${item.ifmmName }"/>">
 												</div>
 											</div>
+											
+											
 
 											<div class="row mb-3">
 												<label for="Gender" class="col-md-4 col-lg-3 col-form-label">Gender</label>
@@ -561,7 +580,6 @@
 		// 지도의 확대 레벨
 		};
 		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
 		// 지도가 이동, 확대, 축소로 인해 중심좌표가 변경되면 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
 		kakao.maps.event.addListener(map, 'center_changed', function() {
 			// 지도의  레벨을 얻어옵니다
@@ -612,29 +630,22 @@
 								}
 								// 조합된 참고항목을 해당 필드에 넣는다.
 								document.getElementById("sample6_extraAddress").value = extraAddr;
-
 							} else {
 								document.getElementById("sample6_extraAddress").value = '';
 							}
-
 							// 우편번호와 주소 정보를 해당 필드에 넣는다.
 							document.getElementById('sample6_postcode').value = data.zonecode;
 							document.getElementById("sample6_address").value = addr;
-
 							/* lat and lng from address s */
-
 							// 주소-좌표 변환 객체를 생성
 							var geocoder = new daum.maps.services.Geocoder();
-
 							// 주소로 좌표를 검색
 							geocoder
 									.addressSearch(
 											addr,
 											function(result, status) {
-
 												// 정상적으로 검색이 완료됐으면,
 												if (status == daum.maps.services.Status.OK) {
-
 													document
 															.getElementById("ifmaLatArray0").value = result[0].y;
 													document
@@ -642,7 +653,6 @@
 												}
 											});
 							/* lat and lng from address e */
-
 							// 커서를 상세주소 필드로 이동한다.
 							document.getElementById("sample6_detailAddress")
 									.focus();
@@ -657,14 +667,10 @@
 		var goUrlUpdt = "/member/memberUpdt"; /* #-> */
 		var goUrlUele = "/member/memberUele"; /* #-> */
 		var goUrlDele = "/member/memberDele"; /* #-> */
-
 		var mainKey = $("input:hidden[name=mainKey]");
-
 		var seq = $("input:hidden[name=ifmmSeq]"); /* #-> */
-
 		var form = $("form[name = form]");
 		var formVo = $("form[name=formVo]");
-
 		$("#btnSave").on("click", function() {
 			if (seq.val() == "0" || seq.val() == "") {
 				// insert
@@ -677,11 +683,9 @@
 				form.attr("action", goUrlUpdt).submit();
 			}
 		});
-
 		$("#btnList").on("click", function() {
 			formVo.attr("action", goUrlList).submit();
 		});
-
 		$("#btnDelete").on("click", function() {
 			$("input:hidden[name=exDeleteType]").val(2);
 			$(".modal-title").text("확 인");
@@ -689,7 +693,6 @@
 			$("#btnModalUelete").hide();
 			$("#btnModalDelete").show();
 		});
-
 		$("#btnUelete").on("click", function() {
 			$("input:hidden[name=exDeleteType]").val(1);
 			$(".modal-title").text("확 인");
@@ -697,15 +700,12 @@
 			$("#btnModalUelete").show();
 			$("#btnModalDelete").hide();
 		});
-
 		$("#btnModalDelete").on("click", function() {
 			form.attr("action", goUrlDele).submit();
 		});
-
 		$("#btnModalUelete").on("click", function() {
 			form.attr("action", goUrlUele).submit();
 		});
-
 		$("#btnAddressClear").on("click", function() {
 			$("#sample6_postcode").val('');
 			$("#sample6_address").val('');
@@ -728,33 +728,24 @@
 		
 		var extArray1 = new Array();
 		extArray1 = ["jpg","gif","png","jpeg","bmp","tif"];
-
 		// 문서관련
 		var extArray2 = new Array();
 		extArray2 = ["txt","pdf","hwp","doc","docx","xls","xlsx","ppt","pptx","html"];
-
 		// 이하는 커스텀
 		var extArray3 = new Array();
 		extArray3 = ["jpg","gif","png","jpeg","bmp","tif","txt","pdf","hwp","doc","docx","xls","xlsx","ppt","pptx","html"];
-
 		var extArray4 = new Array();
 		extArray4 = ["jpg","gif","png","jpeg","bmp","tif","txt","pdf","hwp","doc","docx","xls","xlsx","ppt","pptx","html"];
-
 		var extArray5 = new Array();
 		extArray5 = ["jpg","gif","png","jpeg","bmp","tif","txt","pdf","hwp","doc","docx","xls","xlsx","ppt","pptx","html"];
-
 		var extArray6 = new Array();
 		extArray6 = ["jpg","gif","png","jpeg","bmp","tif","txt","pdf","hwp","doc","docx","xls","xlsx","ppt","pptx","html"];
-
 		var extArray7 = new Array();
 		extArray7 = ["jpg","gif","png","jpeg","bmp","tif","txt","pdf","hwp","doc","docx","xls","xlsx","ppt","pptx","html"];
-
 		var extArray8 = new Array();
 		extArray8 = ["jpg","gif","png","jpeg","bmp","tif","txt","pdf","hwp","doc","docx","xls","xlsx","ppt","pptx","html"];
-
 		var extArray9 = new Array();
 		extArray9 = ["jpg","gif","png","jpeg","bmp","tif","txt","pdf","hwp","doc","docx","xls","xlsx","ppt","pptx","html"];
-
 		
 		var totalFileSize = 0;
 		var obj = $("#" + objName +"")[0].files;	
@@ -772,8 +763,6 @@
 				return false;
 			}
 		}
-
-
 		checkUploadedExt = function(objName, seq, div) {
 			var ext = objName.split('.').pop().toLowerCase();
 			var extArray = eval("extArray" + div);
@@ -784,18 +773,13 @@
 				return false;
 			}
 		}
-
-
 		checkUploadedEachFileSize = function(obj, seq, allowedEachFileSize) {
-
 			if(obj.size > allowedEachFileSize){
 				alert("각 첨부 파일 사이즈는 "+kbToMb(allowedEachFileSize)+"MB 이내로 등록 가능합니다.");
 				$("#file"+seq).val("");
 				return false;
 			}
 		}
-
-
 		checkUploadedTotalFileSize = function(seq, totalSize, allowedTotalFileSize) {
 			if(totalSize > allowedTotalFileSize){
 				alert("전체 용량은 "+kbToMb(allowedTotalFileSize)+"M를 넘을 수 없습니다.");
@@ -805,7 +789,6 @@
 		}
 		
 		if(checkUploadedTotalFileNumber(obj, allowedMaxTotalFileNumber, fileCount) == false) { return false; }
-
 		for (var i = 0 ; i < fileCount ; i++) {
 			if(checkUploadedExt($("#" + objName +"")[0].files[i].name, seq, allowedExtdiv) == false) { return false; }
 			if(checkUploadedEachFileSize($("#" + objName +"")[0].files[i], seq, allowedEachFileSize) == false) { return false; }
@@ -814,7 +797,6 @@
 		if(checkUploadedTotalFileSize(seq, totalFileSize, allowedTotalFileSize) == false) { return false; }
 		
 		if (uiType == 1) {
-
 			for (var i = 0 ; i < fileCount ; i++) {
 				
 	 			var divImage = "";
@@ -881,7 +863,6 @@
 	delLi = function(seq, index) {
 		$("#li_"+seq+"_"+index).remove();
 	}
-
 	</script>
 
 

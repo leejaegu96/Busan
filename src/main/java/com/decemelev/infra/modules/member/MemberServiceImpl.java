@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.decemelev.infra.common.util.UtilUpload;
 
 
 @Service
@@ -26,7 +29,25 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public int insert(Member dto) throws Exception {
-		int result = dao.insert(dto);
+		int result = dao.insert(dto); 
+		
+		for(MultipartFile multipartFile : dto.getIfmmUploadedProfileImage() ) {
+    		
+    		if(!multipartFile.isEmpty()) {
+
+    			String pathModule = this.getClass().getSimpleName().toString().toLowerCase().replace("serviceimpl", "");
+	    		UtilUpload.upload(multipartFile, pathModule, dto);
+	    		
+	    		dto.setTableName("infrMemberUploaded");
+	    		dto.setType(1);
+	    		dto.setDefaultNy(1);
+	    		dto.setSort(1);
+	    		dto.setPseq(dto.getIfmmSeq());
+
+				dao.insertUploaded(dto);
+    		}
+    	}
+		
 		System.out.println("service insert result: " + result);
 		return result;
 	}

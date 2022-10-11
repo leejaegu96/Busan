@@ -31,7 +31,7 @@ public class MemberDao {
 		System.out.println("dao result: " + result);
 		return result;
 	}
-	
+	 
 	public int insert(Member dto) {
 		int result = sqlSession.insert(namespace + ".insert", dto);
 		System.out.println("dao insert result: " + result);
@@ -46,6 +46,7 @@ public class MemberDao {
 	
 	public int selectOneIdCheck(Member dto) { return sqlSession.selectOne(namespace + ".selectOneIdCheck", dto);}
 	
+	public int insertUploaded(Member dto) { return sqlSession.insert("Base" + ".insertUploaded", dto); }
 	
 	/*
 	 * public int signUp(Member dto) { return sqlSession.selectOne(namespace +

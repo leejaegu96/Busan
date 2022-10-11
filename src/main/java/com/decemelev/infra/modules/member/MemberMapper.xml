@@ -46,10 +46,12 @@
 		INSERT INTO infrMember (
 			ifmmName
 			,ifmmId
+			,ifmmPassword
 			)
-		VALUES (
+		VALUES(
 			#{ifmmName}
 			,#{ifmmId}
+			,#{ifmmPassword}
 		)
 		<selectKey resultType="String" keyProperty="ifmmSeq" order="AFTER">
 			SELECT last_insert_id()
