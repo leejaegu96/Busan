@@ -17,6 +17,35 @@
     <link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
     <link rel="stylesheet" href="../resources/assets/css/login.css">
 	
+	<style type="text/css">
+	#btn-upload {
+	  width: 150px;
+	  height: 30px;
+	  background: #fff;
+	  border: 1px solid rgb(77,77,77);
+	  border-radius: 10px;
+	  font-weight: 500;
+	  cursor: pointer;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  margin: auto;
+	  &:hover {
+	    background: rgb(77,77,77);
+	    color: #fff;
+	  }
+	}
+	
+	#file {
+	  display: none;
+	}
+	#preview {
+	    width: 150px;
+	    height: 150px; 
+	    border-radius: 70%;
+	    overflow: hidden;
+	}
+	</style>
 		
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -53,7 +82,33 @@
 		<div class="container-login150">
 			<div class="wrap-login150">
 				<h4 class="mb-3">Create your learner account</h4>
-		          <form id="form" name="form" method="post">
+		          <form id="form" name="form" method="post" enctype="multipart/form-data">
+		            <div class="row">
+		              <div class="col-md-12 mb-3 text-center">
+		                <label for="ifmmId">Profile</label>
+		                <div class="col text-center"  >
+		                	<img id="imgProfile" src="/resources/assets/images/faces/default_100_100.png" class="rounded-circle mx-auto d-block" width="100" height="100">
+		                	<%-- 
+							<c:choose>
+								<c:when test="${fn:length(listUploaded) eq 0 }">
+									<img id="imgProfile" src="/resources/assets/images/faces/default_100_100.png" class="rounded-circle mx-auto d-block" width="100" height="100">
+								</c:when>
+								<c:otherwise>
+									<c:forEach items="${listUploaded}" var="listUploaded" varStatus="statusUploaded">
+										<c:if test="${listUploaded.type eq '1' }">
+											<img id="imgProfile" src="<c:out value="${listUploaded.path }"/><c:out value="${listUploaded.uuidName }"/>" class="rounded-circle mx-auto d-block" width="100" height="100">
+										</c:if>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
+							 --%>
+							<br>
+							<label for="ifmmUploadedProfileImage" >
+								<span id="btn-upload" style="text-align:center; margin:auto;">UPLOAD</span>
+							</label>
+							<input class="form-control form-control-sm" id="ifmmUploadedProfileImage" name="ifmmUploadedProfileImage" type="file" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedProfileImage', 0, 1, 1, 0, 0, 3);">
+		              </div>
+		            </div>
 		            <div class="row">
 		              <div class="col-md-6 mb-3">
 		                <label for="ifmmId">Id</label>
@@ -192,7 +247,7 @@
 						<input type="text" class="form-control" id="ifmmAddress" name="ifmmAddress">
 				  	  </div>
 		            </div>
-		            
+		            <!-- 
 		            <div class="mb-3">
 		              <label for="address">Profile</label>
 		              <div class="row">
@@ -204,7 +259,7 @@
 						  </div>
 					  </div>
 		            </div>
-		
+					 -->
 		            <hr class="mb-4">
    					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
@@ -564,5 +619,154 @@ function sample6_execDaumPostcode() {
         }
     }).open();
 }
+</script>
+<script type="text/javascript">
+	upload = function(objName, seq, allowedMaxTotalFileNumber, allowedExtdiv, allowedEachFileSize, allowedTotalFileSize, uiType) {
+//		objName 과 seq 는 jsp 내에서 유일 하여야 함.
+//		memberProfileImage: 1
+//		memberImage: 2
+//		memberFile : 3
+		
+		const MAX_EACH_FILE_SIZE = 5 * 1024 * 1024;		//	5M
+		const MAX_TOTAL_FILE_SIZE = 25 * 1024 * 1024;	//	25M
+		const MAX_TOTAL_FILE_NUMBER = 5;
+		
+		var extArray1 = new Array();
+		extArray1 = ["jpg","gif","png","jpeg","bmp","tif"];
+		// 문서관련
+		var extArray2 = new Array();
+		extArray2 = ["txt","pdf","hwp","doc","docx","xls","xlsx","ppt","pptx","html"];
+		// 이하는 커스텀
+		var extArray3 = new Array();
+		extArray3 = ["jpg","gif","png","jpeg","bmp","tif","txt","pdf","hwp","doc","docx","xls","xlsx","ppt","pptx","html"];
+		var extArray4 = new Array();
+		extArray4 = ["jpg","gif","png","jpeg","bmp","tif","txt","pdf","hwp","doc","docx","xls","xlsx","ppt","pptx","html"];
+		var extArray5 = new Array();
+		extArray5 = ["jpg","gif","png","jpeg","bmp","tif","txt","pdf","hwp","doc","docx","xls","xlsx","ppt","pptx","html"];
+		var extArray6 = new Array();
+		extArray6 = ["jpg","gif","png","jpeg","bmp","tif","txt","pdf","hwp","doc","docx","xls","xlsx","ppt","pptx","html"];
+		var extArray7 = new Array();
+		extArray7 = ["jpg","gif","png","jpeg","bmp","tif","txt","pdf","hwp","doc","docx","xls","xlsx","ppt","pptx","html"];
+		var extArray8 = new Array();
+		extArray8 = ["jpg","gif","png","jpeg","bmp","tif","txt","pdf","hwp","doc","docx","xls","xlsx","ppt","pptx","html"];
+		var extArray9 = new Array();
+		extArray9 = ["jpg","gif","png","jpeg","bmp","tif","txt","pdf","hwp","doc","docx","xls","xlsx","ppt","pptx","html"];
+		
+		var totalFileSize = 0;
+		var obj = $("#" + objName +"")[0].files;	
+		var fileCount = obj.length;
+		
+		allowedMaxTotalFileNumber = allowedMaxTotalFileNumber == 0 ? MAX_TOTAL_FILE_NUMBER : allowedMaxTotalFileNumber;
+		allowedEachFileSize = allowedEachFileSize == 0 ? MAX_EACH_FILE_SIZE : allowedEachFileSize;
+		allowedTotalFileSize = allowedTotalFileSize == 0 ? MAX_TOTAL_FILE_SIZE : allowedTotalFileSize;
+		
+		checkUploadedTotalFileNumber = function(obj, allowedMaxTotalFileNumber, fileCount) {
+			if(allowedMaxTotalFileNumber < fileCount){
+				alert("전체 파일 갯수는 "+ allowedMaxTotalFileNumber +"개 까지 허용됩니다.");
+//				$("#file"+seq).val("");
+//				obj.val("");
+				return false;
+			}
+		}
+		checkUploadedExt = function(objName, seq, div) {
+			var ext = objName.split('.').pop().toLowerCase();
+			var extArray = eval("extArray" + div);
+			
+			if(extArray.indexOf(ext) == -1) {
+				alert("허용된 확장자가 아닙니다.");
+//				$("#file"+seq).val("");
+				return false;
+			}
+		}
+		checkUploadedEachFileSize = function(obj, seq, allowedEachFileSize) {
+			if(obj.size > allowedEachFileSize){
+				alert("각 첨부 파일 사이즈는 "+kbToMb(allowedEachFileSize)+"MB 이내로 등록 가능합니다.");
+				$("#file"+seq).val("");
+				return false;
+			}
+		}
+		checkUploadedTotalFileSize = function(seq, totalSize, allowedTotalFileSize) {
+			if(totalSize > allowedTotalFileSize){
+				alert("전체 용량은 "+kbToMb(allowedTotalFileSize)+"M를 넘을 수 없습니다.");
+				$("#file"+seq).val("");
+				return false;
+			}
+		}
+		
+		if(checkUploadedTotalFileNumber(obj, allowedMaxTotalFileNumber, fileCount) == false) { return false; }
+		for (var i = 0 ; i < fileCount ; i++) {
+			if(checkUploadedExt($("#" + objName +"")[0].files[i].name, seq, allowedExtdiv) == false) { return false; }
+			if(checkUploadedEachFileSize($("#" + objName +"")[0].files[i], seq, allowedEachFileSize) == false) { return false; }
+			totalFileSize += $("#" + objName +"")[0].files[i].size;
+		}
+		if(checkUploadedTotalFileSize(seq, totalFileSize, allowedTotalFileSize) == false) { return false; }
+		
+		if (uiType == 1) {
+			for (var i = 0 ; i < fileCount ; i++) {
+				
+	 			var divImage = "";
+	 			divImage += '<div style="display: inline-block; height: 95px;">';
+				/* divImage += '	<img src="/resources/common/image/default_111.jpg" class="rounded" width= "85px" height="85px">'; */
+				divImage += '	<img id="aaa'+i+'" src="" class="rounded" width= "85px" height="85px">';
+				divImage += '	<div style="position: relative; top:-85px; left:5px"><span style="color: red;">X</span></div>';
+				divImage += '</div> ';
+				
+				$("#ifmmUploadedImage1View").append(divImage);
+				
+				var fileReader = new FileReader();
+				 fileReader.readAsDataURL($("#" + objName +"")[0].files[i]);
+				alert($("#" + objName +"")[0].files[i]);
+				 fileReader.onload = function () {
+				 /* alert(i + " : " + fileReader.result); */
+				 alert($("#aaa"+i+""));
+				 
+				 if(i == 0) {
+					 $("#aaa0").attr("src", fileReader.result);		/* #-> */
+				 } else if (i == 1) {
+					 $("#aaa0").attr("src", fileReader.result);		/* #-> */
+				 } else {
+					 
+				 }
+					 /* $("#aaa"+i+"").attr("src", fileReader.result);	 */	/* #-> */
+					 /* $("#aaa1").attr("src", fileReader.result); */		/* #-> */ 
+				 }
+			}			
+ 			
+		} else if(uiType == 2) {
+			$("#ulFile" + seq).children().remove();
+			
+			for (var i = 0 ; i < fileCount ; i++) {
+				addUploadLi(seq, i, $("#" + objName +"")[0].files[i].name);
+			}
+		} else if (uiType == 3) {
+			var fileReader = new FileReader();
+			 fileReader.readAsDataURL($("#" + objName +"")[0].files[0]);
+			
+			 fileReader.onload = function () {
+				 $("#imgProfile").attr("src", fileReader.result);		/* #-> */
+			 }		
+		} else {
+			return false;
+		}
+		return false;
+	}
+	
+	
+	addUploadLi = function (seq, index, name){
+		
+		var ul_list = $("#ulFile0");
+		
+		li = '<li id="li_'+seq+'_'+index+'" class="list-group-item d-flex justify-content-between align-items-center">';
+		li = li + name;
+		li = li + '<span class="badge bg-danger rounded-pill" onClick="delLi('+ seq +','+ index +')"><i class="fa-solid fa-x" style="cursor: pointer;"></i></span>';
+		li = li + '</li>';
+		
+		$("#ulFile"+seq).append(li);
+	}
+	
+	
+	delLi = function(seq, index) {
+		$("#li_"+seq+"_"+index).remove();
+	}
 </script>
 </html>

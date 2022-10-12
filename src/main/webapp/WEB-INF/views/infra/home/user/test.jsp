@@ -261,7 +261,7 @@ body {
 			</script>
 			
 			<script type="text/javascript">
-			
+			// 퀴즈 -------------------------------------------------------------------------------------------------------------------------------
 			function Action2 ()
 			{
 				var answer = document.getElementById('answer').value;

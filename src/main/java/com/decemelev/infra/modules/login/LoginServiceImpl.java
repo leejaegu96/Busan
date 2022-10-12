@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.decemelev.infra.common.util.UtilDateTime;
 import com.decemelev.infra.common.util.UtilSecurity;
+import com.decemelev.infra.common.util.UtilUpload;
 
 
 @Service
@@ -27,6 +29,24 @@ public class LoginServiceImpl implements LoginService {
     	dto.setIfmmName(dto.getIfmmName());
 		/* dto.setIfmmPwdModDate(UtilDateTime.nowDate()); */
 		int result = dao.insert(dto);
+		
+		for(MultipartFile multipartFile : dto.getIfmmUploadedProfileImage() ) {
+    		
+    		if(!multipartFile.isEmpty()) {
+
+    			String pathModule = this.getClass().getSimpleName().toString().toLowerCase().replace("serviceimpl", "");
+	    		UtilUpload.uploadLogin(multipartFile, pathModule, dto);
+	    		
+	    		dto.setTableName("infrMemberUploaded");
+	    		dto.setType(1);
+	    		dto.setDefaultNy(1);
+	    		dto.setSort(1);
+	    		dto.setPseq(dto.getIfmmSeq());
+
+				dao.insertUploaded(dto);
+    		}
+    	}
+		
 		System.out.println("service insert result: " + result);
 		return result;
 	}

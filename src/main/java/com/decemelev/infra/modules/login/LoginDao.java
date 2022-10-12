@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 
 
+
 @Repository
 public class LoginDao {
 	
@@ -41,4 +42,6 @@ public class LoginDao {
 	public Login selectOneLogin1(Login dto) {
 		return sqlSession.selectOne(namespace + ".selectOneLogin1", dto);
 	}
+	
+	public int insertUploaded(Login dto) { return sqlSession.insert("Base" + ".insertUploaded", dto); }
 }

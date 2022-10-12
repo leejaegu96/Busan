@@ -1,8 +1,11 @@
 package com.decemelev.infra.modules.login;
 
-import java.util.Date;
 
-public class Login {
+import org.springframework.web.multipart.MultipartFile;
+
+import com.decemelev.infra.common.base.Base;
+
+public class Login extends Base {
 	
 	private String ifmmSeq;
 	private String ifmmName;
@@ -23,6 +26,7 @@ public class Login {
 	private String ifmmDetailedAddress;
 	private String ifmmReference;
 	
+	private MultipartFile[] ifmmUploadedProfileImage;
 	
 	
 	
@@ -30,6 +34,12 @@ public class Login {
 	
 	
 	
+	public MultipartFile[] getIfmmUploadedProfileImage() {
+		return ifmmUploadedProfileImage;
+	}
+	public void setIfmmUploadedProfileImage(MultipartFile[] ifmmUploadedProfileImage) {
+		this.ifmmUploadedProfileImage = ifmmUploadedProfileImage;
+	}
 	public String getIfmmPostNum() {
 		return ifmmPostNum;
 	}
