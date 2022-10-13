@@ -21,78 +21,11 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 		<link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
 		<link rel="stylesheet" href="../resources/assets/css/main.css" />
-		<style type="text/css">
-
-body {
-   font-size: 18px;
-}
-
-.grid {
-   padding: 10px 50px 30px;
-   margin: 50px auto;
-   width: 600px;
-   background: #fff;
-   border: 2px solid #eed0dc;
-   border-radius: 20px;
-   box-shadow: 5px 5px 5px #cbcbcb;
-}
-
-.grid h1 {
-   color: #333;
-   font-size: 2.4em;
-   text-align: center;
-   ;
-}
-
-#question {
-   padding: 10px 2em;
-   background: salmon;
-   border-radius: 15px;
-   font-size: 24px;
-   color: #fff;
-}
-
-#quiz {
-   text-align: center;
-}
-
-#progress {
-   font-size: 20px;
-   color: #2b2b2b;
-}
-
-.buttons {
-   padding: 30px 20px;
-   border: 2px solid #eed0dc;
-   border-radius: 20px;
-}
-
-.btn {
-   margin: 10px 40px 20px 0;
-   padding: 10px;
-   width: 200px;
-   font-size: 16px;
-   color: #333;
-   background: #eed0dc;
-   border: 1px solid #ffe3ed;
-   border-radius: 15px;
-   cursor: pointer;
-   transition: all .2s;
-}
-
-.btn:nth-child(2n) {
-   margin-right: 0;
-}
-
-.btn:hover {
-   background: #c34c74;
-   color: #fff;
-}
-
-  
-
+		<link rel="stylesheet" href="../resources/assets/css/test.css" />
 		
-	</style>
+		<!-- <link href="https://webfontworld.github.io/DungGeunMo/DungGeunMo.css" rel="stylesheet"> -->
+    	<link href="https://webfontworld.github.io/NexonMabinogi/MabinogiClassic.css" rel="stylesheet">
+    	
 	</head>
 	<body>
 		<div id="page-wrapper">
@@ -150,31 +83,124 @@ body {
 					<header>
 						<h2>TEST</h2>
 						<p>Test your skills based on what you've learned</p>
+						<div id="result1" style="text-align:center;"> </div> 
 					</header>
 					<div class="row">
 						<div class="col-12">
-
-							<!-- Text -->
-							<section class="box">
-								<div class="grid">
-								   <h1>TEST</h1>
-								   <div class="quiz-container" id="quiz">
-								      <p id="question"></p>
-								      <div class="buttons">
-								         <button class="btn"></button>
-								         <button class="btn"></button>
-								         <button class="btn"></button>
-								         <button class="btn"></button>
-								      </div>
+						
+							<main id="main">
 								
-								      <footer>
-								        <p id="progress">진행 정보</p>
-								      </footer>
-								   </div>
+							    <div class="row" style="height:480px;">
+							    	<div class="col-6">
+								        <div class="quiz">
+								            <span class="quiz__type"></span>
+								            <h2 class="quiz__question">
+								                <span class="number"></span>
+								                <div class="ask"></div>
+								                <div class="ask1"></div>
+								            </h2>
+								            <div class="quiz__view">
+								                <div class="true">정답🐾</div>
+								                <div class="false">오답 입니다!</div>
+								                <input type="checkbox" class="test" id="testCk1" name="testCk">
+								            </div>
+								            <div class="quiz__answer">
+								                <input type="text" class="input" placeholder="정답을 적어주세요!">
+								                <button class="confirm">정답 확인하기</button>
+								                <div class="result"></div>
+								            </div>
+								        </div>
+								    </div>
+								    <div class="col-6">
+								        <div class="quiz">
+								            <span class="quiz__type"></span>
+								            <h2 class="quiz__question">
+								                <span class="number"></span>
+								                <div class="ask"></div>
+								                <div class="ask1"></div>
+								            </h2>
+								            <div class="quiz__view">
+								                <div class="true">정답🐾</div>
+								                <div class="false">오답 입니다!</div>
+								                <input type="checkbox" class="test" id="testCk2" name="testCk">
+								            </div>
+								            <div class="quiz__answer">
+								                <input type="text" class="input" placeholder="정답을 적어주세요!">
+								                <button class="confirm">정답 확인하기</button>
+								                <div class="result"></div>
+								            </div>
+								        </div>
+							        </div>
+							    </div>
+							    <div class="row" style="height:480px;">
+							    	<div class="col-6">
+								        <div class="quiz">
+								            <span class="quiz__type"></span>
+								            <h2 class="quiz__question">
+								                <span class="number"></span>
+								                <div class="ask"></div>
+								                <div class="ask1"></div>
+								            </h2>
+								            <div class="quiz__view">
+								                <div class="true">정답🐾</div>
+								                <div class="false">오답 입니다!</div>
+								                <input type="checkbox" class="test" id="testCk3" name="testCk">
+								            </div>
+								            <div class="quiz__answer">
+								                <input type="text" class="input" placeholder="정답을 적어주세요!">
+								                <button class="confirm">정답 확인하기</button>
+								                <div class="result"></div>
+								            </div>
+								        </div>
+								    </div>
+								    <div class="col-6">
+								        <div class="quiz">
+								            <span class="quiz__type"></span>
+								            <h2 class="quiz__question">
+								                <span class="number"></span>
+								                <div class="ask"></div>
+								                <div class="ask1"></div>
+								            </h2>
+								            <div class="quiz__view">
+								                <div class="true">정답🐾</div>
+								                <div class="false">오답 입니다!</div>
+								                <input type="checkbox" class="test" id="testCk4" name="testCk">
+								            </div>
+								            <div class="quiz__answer">
+								                <input type="text" class="input" placeholder="정답을 적어주세요!">
+								                <button class="confirm">정답 확인하기</button>
+								                <div class="result"></div>
+								            </div>
+								        </div>
+								    </div>
 								</div>
-							</section>
-							<input class="form-control" id="answer" value="">
-							<button onclick="Action2();">ddd</button>
+								<div class="row" style="height:480px;">
+									<div class="col-6" style="margin:auto;">
+								        <div class="quiz">
+								            <span class="quiz__type"></span>
+								            <h2 class="quiz__question">
+								                <span class="number"></span>
+								                <div class="ask"></div>
+								                <div class="ask1"></div>
+								            </h2>
+								            <div class="quiz__view">
+								                <div class="true">정답🐾</div>
+								                <div class="false">오답 입니다!</div>
+								                <input type="checkbox" class="test" id="testCk5" name="testCk">
+								            </div>
+								            <div class="quiz__answer">
+								                <input type="text" class="input" placeholder="정답을 적어주세요!">
+								                <button class="confirm">정답 확인하기</button>
+								                <div class="result"></div>
+								            </div>
+								        </div>
+								    </div>
+							    </div>
+							    <br><br><br><br>
+    							
+							</main>
+							
+							
 						</div>
 					</div>
 					
@@ -197,187 +223,271 @@ body {
 		</div>
 
 		<!-- Scripts -->
-			<script src="../resources/assets/js/jquery.min.js"></script>
-			<script src="../resources/assets/js/jquery.dropotron.min.js"></script>
-			<script src="../resources/assets/js/jquery.scrollex.min.js"></script>
-			<script src="../resources/assets/js/browser.min.js"></script>
-			<script src="../resources/assets/js/breakpoints.min.js"></script>
-			<script src="../resources/assets/js/util.js"></script>
-			
-			<script src="https://kit.fontawesome.com/20c294a34b.js" crossorigin="anonymous"></script>
-			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
-			
-			<script src="../resources/assets/js/main2.js"></script>
-			<div id="navButton"><a href="#navPanel" class="toggle"></a></div>
-			<div id="navPanel">
-				<nav>
-					<c:choose>
-						<c:when test="${sessSeq eq null}">
-							<!--로그인 전 화면  -->
-						    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='home'" >Home</a>
-						    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='/login/signUp'" >Sign Up</a>
-						    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='/login/login'" >Login</a>
-						    
-						</c:when>
-						<c:when test="${sessSeq eq 144}">
-							<!--관리자 로그인 후 화면  -->
-						    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='home'" >Home</a>
-						    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='mypage'" >Mypage</a>
-						    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='/member/memberList'" >Admin</a>
-						</c:when>
-						<c:otherwise>
-							<!--로그인 후 화면  -->
-						    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='home'" >Home</a>
-						    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='test'" >Test</a>
-						    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='rank'" >Rank</a>
-						    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='translate'" >Translate</a>
-						    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='mypage'" >Mypage</a>
-						 </c:otherwise>
-					</c:choose>
-					
-				</nav>
-			</div>
-			
-			<script type="text/javascript">
-			$("#btnLogout").on("click", function(){
-				$.ajax({
-					async: true 
-					,cache: false
-					,type: "post"
-					,url: "/login/logoutProc"
-					,data: {}
-					,success: function(response) {
-						if(response.rt == "success") {
-							location.href = "/home/home";
-						} else {
-							// by pass
-						}
+		<script src="../resources/assets/js/jquery.min.js"></script>
+		<script src="../resources/assets/js/jquery.dropotron.min.js"></script>
+		<script src="../resources/assets/js/jquery.scrollex.min.js"></script>
+		<script src="../resources/assets/js/browser.min.js"></script>
+		<script src="../resources/assets/js/breakpoints.min.js"></script>
+		<script src="../resources/assets/js/util.js"></script>
+		
+		<script src="https://kit.fontawesome.com/20c294a34b.js" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+		
+		<script src="../resources/assets/js/main2.js"></script>
+		<div id="navButton"><a href="#navPanel" class="toggle"></a></div>
+		<div id="navPanel">
+			<nav>
+				<c:choose>
+					<c:when test="${sessSeq eq null}">
+						<!--로그인 전 화면  -->
+					    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='home'" >Home</a>
+					    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='/login/signUp'" >Sign Up</a>
+					    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='/login/login'" >Login</a>
+					    
+					</c:when>
+					<c:when test="${sessSeq eq 144}">
+						<!--관리자 로그인 후 화면  -->
+					    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='home'" >Home</a>
+					    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='mypage'" >Mypage</a>
+					    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='/member/memberList'" >Admin</a>
+					</c:when>
+					<c:otherwise>
+						<!--로그인 후 화면  -->
+					    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='home'" >Home</a>
+					    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='test'" >Test</a>
+					    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='rank'" >Rank</a>
+					    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='translate'" >Translate</a>
+					    <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor:pointer" onClick="location.href='mypage'" >Mypage</a>
+					 </c:otherwise>
+				</c:choose>
+				
+			</nav>
+		</div>
+		
+		<script type="text/javascript">
+		$("#btnLogout").on("click", function(){
+			$.ajax({
+				async: true 
+				,cache: false
+				,type: "post"
+				,url: "/login/logoutProc"
+				,data: {}
+				,success: function(response) {
+					if(response.rt == "success") {
+						location.href = "/home/home";
+					} else {
+						// by pass
 					}
-					,error : function(jqXHR, textStatus, errorThrown){
-						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-					}
-				});
-			});
-			</script>
-			
-			<script type="text/javascript">
-			// 퀴즈 -------------------------------------------------------------------------------------------------------------------------------
-			function Action2 ()
-			{
-				var answer = document.getElementById('answer').value;
-				if(answer == "happend") {
-					alert('정답입니다.');
-				}else {
-					alert('틀렸습니다! 정답은' + quiz.questions[quiz.questionIndex].answer + '입니다!');
 				}
-			}
-			
-			
-			 const submitBtn = document.getElementById('submit');
-			 const previousBtn = document.getElementById('previous');
-			 const nextBtn = document.getElementById('next');
-			 
-			 
-			
-			// 문제 객체(생성자 함수)
-			function Question(text, choice, answer) {
-			   this.text = text; // 질문 텍스트
-			   this.choice = choice; // 선택할 답들(배열)
-			   this.answer = answer; // 정답 정보
-			}
-
-			// 퀴즈 정보 객체
-			function Quiz(questions) {
-			   this.score = 0; // 점수
-			   this.questions = questions; // 문제
-			   this.questionIndex = 0; // 문제 번호
-			}
-
-			// 정답 확인 메서드
-			Quiz.prototype.correctAnswer = function(answer) {
-			   return answer == this.questions[this.questionIndex].answer;
-			}
-
-			var questions = [
-			   new Question('얼굴이 왜 그래?<br><br> What _________ to your face?', ['happened', 'happy', 'wrong', 'right'], 'happened'),
-			   new Question('충치 치료했어.<br><br> I had to ____ a cavity filled today.', ['got','rescue','go','get'], 'get'),
-			   new Question('아팠어?<br><br> Did it _____?', ['ok', 'hurt', 'right', 'wrong'], 'hurt'),
-			   new Question('말도 마.<br><br> I don t _____ want to talk about it.', ['even', 'talk', 'know', 'quick'], 'even')
-			];
-
-			// 퀴즈 객체 생성
-			var quiz = new Quiz(questions);
-
-			// 문제 출력 함수
-			function updateQuiz() {
-			   var question = document.getElementById('question');
-			   var idx = quiz.questionIndex + 1;
-			   var choice = document.querySelectorAll('.btn');
-
-			   // 문제 출력
-			   question.innerHTML = 'Q' + idx + ') ' + quiz.questions[quiz.questionIndex].text;
-
-			   // 선택 출력
-			   for (var i = 0; i < 4; i++) {
-			      choice[i].innerHTML = quiz.questions[quiz.questionIndex].choice[i];
-			   }
-
-			   progress();
-			}
-
-			function progress() {
-			   var progress = document.getElementById('progress');
-			   progress.innerHTML = '문제 ' + (quiz.questionIndex + 1) + '/ ' + quiz.questions.length;
-			}
-
-			var btn = document.querySelectorAll('.btn');
-
-			// 입력 및 정답 확인 함수
-			function checkAnswer(i) {
-			   btn[i].addEventListener('click', function() {
-			      var answer = btn[i].innerText;
-
-			      if (quiz.correctAnswer(answer)) {
-			         alert('정답입니다!');
-			         quiz.score++;
-			      } else {
-			         alert('틀렸습니다! 정답은' + quiz.questions[quiz.questionIndex].answer + '입니다!');
-			      }
-
-			      if (quiz.questionIndex < quiz.questions.length - 1) {
-			         quiz.questionIndex++;
-			         updateQuiz();
-			      } else {
-			         result();
-			      }
-			   });
-			}
-
-			function result() {
-			   var quizDiv = document.getElementById('quiz');
-			   var per = parseInt((quiz.score * 400) / quiz.questions.length);
-			   for(var i = 0; i < 4; i++) {
-				   var txt = '<h3>결과</h3>' + '<h3 id="score">당신의 점수: ' + quiz.score + '/' + quiz.questions.length + '&nbsp;&nbsp;&nbsp;' + per + '점' + '</h3>' + '<div id="question">' + '<br>' + quiz.questions[quiz.questionIndex].text + '<br>' + quiz.questions[quiz.questionIndex].answer + '</div>'
-			   }
-			   
-			   ;
-
-			   
-
-			   quizDiv.innerHTML = txt;
-
-			   question
-			   
-			}
-
-			for (var i = 0; i < btn.length; i++) {
-			   checkAnswer(i);
-			}
-
-			updateQuiz();
-
-    		
-			</script>
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+		});
+		</script>
+		
+		<script>
+		 // 선택자
+		    const quizType = document.querySelectorAll(".quiz__type");                     // 퀴즈 종류
+		    const quizNumber = document.querySelectorAll(".quiz__question .number");       // 퀴즈 번호
+		    const quizAsk = document.querySelectorAll(".quiz__question .ask");             // 퀴즈 질문
+		    const quizAsk1 = document.querySelectorAll(".quiz__question .ask1");             // 퀴즈 질문
+		    const quizconfirm = document.querySelectorAll(".quiz__answer .confirm");       // 정답 확인 버튼
+		    const quizResult = document.querySelectorAll(".quiz__answer .result");         // 정답 결과
+		    const quizInput = document.querySelectorAll(".quiz__answer .input");           // 사용자 정답
+		    const quizView = document.querySelectorAll(".quiz__view");                 // 댕댕이
+		    
+		    const list = document.querySelectorAll(".quiz__view .test"); 
+		    
+		
+		    // 문제정보
+		    const quizInfo = [
+		        {
+		            answerType:"웹디자인기능사 2015년 4회",
+		            answerNum: "1",
+		            answerAsk: "클라이언트의 웹 브라우저가 웹 서버와 접속할 때 사용하는 통신 규약으로 맞는 것은?",
+		            answerAsk1: "클라이언트의 웹 브라우저가 웹 서버와 접속할 때 사용하는 통신 규약으로 맞는 것은?",
+		            answerResult: "HTTP"
+		        },
+		        {
+		            answerType:"웹디자인기능사 2015년 4회",
+		            answerNum: "2",
+		            answerAsk: "고해상도의 원본 이미지의 포맷을 변경해서 저장하였을 경우 다음 중 파일용량이 가장 큰 것은?",
+		            answerAsk1: "고해상도의 원본 이미지의 포맷을 변경해서 저장하였을 경우 다음 중 파일용량이 가장 큰 것은?",
+		            answerResult: "BMP"
+		        },
+		        {
+		            answerType:"웹디자인기능사 2015년 4회",
+		            answerNum: "3",
+		            answerAsk: "자연에서 쉽게 찾을 수 있고, 온화함이 있지만 때로는 단조로움을 주는 디자인 원리는?",
+		            answerAsk1: "자연에서 쉽게 찾을 수 있고, 온화함이 있지만 때로는 단조로움을 주는 디자인 원리는?",
+		            answerResult: "유사조화"
+		        },
+		        {
+		            answerType:"웹디자인기능사 2015년 4회",
+		            answerNum: "4",
+		            answerAsk: "이미지를 구성하는 최소 단위는?",
+		            answerAsk1: "이미지를 구성하는 최소 단위는?",
+		            answerResult: "픽셀"
+		        },
+		        {
+		            answerType:"웹디자인기능사 2015년 4회",
+		            answerNum: "5",
+		            answerAsk: "자연에서 쉽게 찾을 수 있고, 온화함이 있지만 때로는 단조로움을 주는 디자인 원리는?",
+		            answerAsk1: "자연에서 쉽게 찾을 수 있고, 온화함이 있지만 때로는 단조로움을 주는 디자인 원리는?",
+		            answerResult: "유사조화"
+		        },
+		    ]
+		
+		    // 문제출력
+		        // 1번문제
+		    // quizType[0].textContent = quizInfo[0].answerType;
+		    // quizNumber[0].textContent = quizInfo[0].answerNum + ". ";
+		    // quizAsk[0].textContent = quizInfo[0].answerAsk;
+		    // quizResult[0].textContent = quizInfo[0].answerResult;
+		        // 2번문제
+		    // quizType[1].textContent = quizInfo[1].answerType;
+		    // quizNumber[1].textContent = quizInfo[1].answerNum + ". ";
+		    // quizAsk[1].textContent = quizInfo[1].answerAsk;
+		    // quizResult[1].textContent = quizInfo[1].answerResult;
+		        // 3번문제
+		    // quizType[2].textContent = quizInfo[2].answerType;
+		    // quizNumber[2].textContent = quizInfo[2].answerNum + ". ";
+		    // quizAsk[2].textContent = quizInfo[2].answerAsk;
+		    // quizResult[2].textContent = quizInfo[2].answerResult;
+		        // 4번문제
+		    // quizType[3].textContent = quizInfo[3].answerType;
+		    // quizNumber[3].textContent = quizInfo[3].answerNum + ". ";
+		    // quizAsk[3].textContent = quizInfo[3].answerAsk;
+		    // quizResult[3].textContent = quizInfo[3].answerResult;
+		
+		    // 문제출력 for문으로 변경
+		    // for(let i = 0; i<=3; i++){
+		//         quizType[i].textContent = quizInfo[i].answerType;
+		//         quizNumber[i].textContent = quizInfo[i].answerNum + ". ";
+		//         quizAsk[i].textContent = quizInfo[i].answerAsk;
+		//         quizResult[i].textContent = quizInfo[i].answerResult;
+		    // }
+		
+		    // forEach문
+		    quizInfo.forEach((e, i) => {
+		        quizType[i].textContent = quizInfo[i].answerType;
+		        quizNumber[i].textContent = quizInfo[i].answerNum + ". ";
+		        quizAsk[i].textContent = quizInfo[i].answerAsk;
+		        quizAsk1[i].textContent = quizInfo[i].answerAsk1;
+		        quizResult[i].textContent = quizInfo[i].answerResult;
+		    })
+		
+		    // 정답숨기기
+		    // quizResult[0].style.display = "none";
+		    // quizResult[1].style.display = "none";
+		    // quizResult[2].style.display = "none";
+		    // quizResult[3].style.display = "none";
+		
+		    // for
+		    // for(let i = 0; i<quizInfo.length; i++){
+		//         quizResult[i].style.display = "none";
+		    // }
+		    quizInfo.forEach((e, i) => {
+		        quizResult[i].style.display = "none";
+		    });
+		
+		    // 정답 확인   
+		    // quizconfirm.addEventListener("click",() => {
+		//         alert("gd") 
+		    // }); //2번과다르게 이번파일은 버튼이여러개가있어서 얘한테 알려주지않으면 몰라서 오류남
+		    // quizconfirm.forEach((btn) => {          //forEach로 버튼이 4개임을 확인시켜줌
+		//         btn.addEventListener("click", () => {
+		//             alert("d");
+		//         })
+		    // }); //btn에 confirm을 가져오는데 현재파일은4개니깐4번반복, 버튼클릭(confirm)에 클릭이벤트시 발생하는 실행문을 4번반복시킴
+		
+		    quizconfirm.forEach((btn, num) => {          
+		        btn.addEventListener("click", () => {
+		            
+		            // 사용자 정답
+		            const userWord = quizInput[num].value;
+		            // console.log(userWord);
+		            // 사용자 정답 비교
+		            if(userWord == quizInfo[num].answerResult){
+		                // 정답
+		                // alert("정답");
+		                quizView[num].classList.add("like");
+		                quizconfirm[num].style.display="none";
+		                
+		                /* document.getElementById("testCk").checked = true; */
+		                
+		                if(num==0){
+		                	document.getElementById("testCk1").checked = true; // HTTP
+		                } else if(num==1){
+		                	document.getElementById("testCk2").checked = true; // BMP
+		                } else if(num==2){
+		                	document.getElementById("testCk3").checked = true; // 유사조화
+		                } else if(num==3){
+		                	document.getElementById("testCk4").checked = true; // 픽셀
+		                } else {
+		                	document.getElementById("testCk5").checked = true; // 유사조화
+		                } 
+		                
+		                
+		            }else {
+		                // 오답
+		                // alert("오답")
+		                quizView[num].classList.add("dislike");
+		                quizconfirm[num].style.display="none";
+		                quizResult[num].style.display = "block";
+		                quizInput[num].style.display = "none";
+		            }
+		        })
+		    });
+		    
+		    quizconfirm.forEach((btn, num) => {          
+		        btn.addEventListener("focusout", () => {
+		            
+		            // 사용자 정답
+		            const userWord = quizInput[num].value;
+		            // console.log(userWord);
+		            // 사용자 정답 비교
+		            if(userWord == quizInfo[num].answerResult){
+		            	
+		            	
+		                
+		                let cnt = 0;
+		                for(let i=0; i<list.length;i++){
+		                	if(list[i].checked === true){
+		                		cnt++;
+		                	}
+		                }
+		            	
+		                console.log(cnt);
+		                
+		                var result_test = document.getElementById('result1');
+		                
+		                result_test.innerHTML = `<h3 style="color:#333;"> ${quizInfo.length} 개중에서 ${cnt}개 맞추셨습니다.</h3><button type="button">제출</button>`;
+		                
+		            }else {
+		            	
+		            	let cnt = 0;
+		                for(let i=0; i<list.length;i++){
+		                	if(list[i].checked === true){
+		                		cnt++;
+		                	}
+		                }
+		            	
+		                console.log(cnt);
+		                
+		                var result_test = document.getElementById('result1');
+		                
+		                result_test.innerHTML = `<h3 style="color:#333;"> ${quizInfo.length} 개중에서 ${cnt}개 맞추셨습니다.</h3><button type="button">제출</button>`;
+		            	
+		            }
+		        })
+		    });
+		    
+		    
+		    
+				
+	    </script>
 			
 
 	</body>
