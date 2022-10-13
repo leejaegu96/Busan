@@ -174,6 +174,7 @@
 								        </div>
 								    </div>
 								</div>
+								<!-- 
 								<div class="row" style="height:480px;">
 									<div class="col-6" style="margin:auto;">
 								        <div class="quiz">
@@ -196,6 +197,7 @@
 								        </div>
 								    </div>
 							    </div>
+							     -->
 							    <br><br><br><br>
     							
 							</main>
@@ -303,11 +305,11 @@
 				 <c:forEach items="${test}" var="test" >
 					<c:if test="${test.sddDateChoice == '2022-07-26'}" >
 						{
-							answerType:${test.sddDateChoice},
-			            	answerNum: ${test.sdqNumber},
-				            answerAsk: ${test.sdqKo},
-				            answerAsk1: ${test.sdqEng},
-				            answerResult: ${test.sdqAnswer}
+							answerType: "  ${test.sddDateChoice}  ",
+			            	answerNum: "  ${test.sdqNumber}  ",
+				            answerAsk: "  ${test.sdqKo}  ",
+				            answerAsk1: "  ${test.sdqEng}  ",
+				            answerResult: "${test.sdqAnswer}"
 						},
 					</c:if>
 				 </c:forEach>
@@ -349,9 +351,9 @@
 		                	document.getElementById("testCk3").checked = true; // 유사조화
 		                } else if(num==3){
 		                	document.getElementById("testCk4").checked = true; // 픽셀
-		                } else {
+		                } /* else {
 		                	document.getElementById("testCk5").checked = true; // 유사조화
-		                } 
+		                }  */
 		                
 		                
 		            }else {
