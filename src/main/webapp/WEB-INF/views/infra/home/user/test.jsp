@@ -83,7 +83,7 @@
 					<header>
 						<h2>TEST</h2>
 						<p>Test your skills based on what you've learned</p>
-						<div id="result1" style="text-align:center;"> </div> 
+						<div id="result1" style="text-align:center; font-size:20px; font-style: bold;"> </div> 
 					</header>
 					<div class="row">
 						<div class="col-12">
@@ -102,7 +102,7 @@
 								            <div class="quiz__view">
 								                <div class="true">정답🐾</div>
 								                <div class="false">오답 입니다!</div>
-								                <input type="checkbox" class="test" id="testCk1" name="testCk">
+								                <input type="hidden" class="test" id="testCk1" name="testCk">
 								            </div>
 								            <div class="quiz__answer">
 								                <input type="text" class="input" placeholder="정답을 적어주세요!">
@@ -122,7 +122,7 @@
 								            <div class="quiz__view">
 								                <div class="true">정답🐾</div>
 								                <div class="false">오답 입니다!</div>
-								                <input type="checkbox" class="test" id="testCk2" name="testCk">
+								                <input type="hidden" class="test" id="testCk2" name="testCk">
 								            </div>
 								            <div class="quiz__answer">
 								                <input type="text" class="input" placeholder="정답을 적어주세요!">
@@ -144,7 +144,7 @@
 								            <div class="quiz__view">
 								                <div class="true">정답🐾</div>
 								                <div class="false">오답 입니다!</div>
-								                <input type="checkbox" class="test" id="testCk3" name="testCk">
+								                <input type="hidden" class="test" id="testCk3" name="testCk">
 								            </div>
 								            <div class="quiz__answer">
 								                <input type="text" class="input" placeholder="정답을 적어주세요!">
@@ -164,7 +164,7 @@
 								            <div class="quiz__view">
 								                <div class="true">정답🐾</div>
 								                <div class="false">오답 입니다!</div>
-								                <input type="checkbox" class="test" id="testCk4" name="testCk">
+								                <input type="hidden" class="test" id="testCk4" name="testCk">
 								            </div>
 								            <div class="quiz__answer">
 								                <input type="text" class="input" placeholder="정답을 적어주세요!">
@@ -186,7 +186,7 @@
 								            <div class="quiz__view">
 								                <div class="true">정답🐾</div>
 								                <div class="false">오답 입니다!</div>
-								                <input type="checkbox" class="test" id="testCk5" name="testCk">
+								                <input type="hidden" class="test" id="testCk5" name="testCk">
 								            </div>
 								            <div class="quiz__answer">
 								                <input type="text" class="input" placeholder="정답을 적어주세요!">
@@ -299,77 +299,20 @@
 		    
 		    const list = document.querySelectorAll(".quiz__view .test"); 
 		    
-		
-		    // 문제정보
-		    const quizInfo = [
-		        {
-		            answerType:"웹디자인기능사 2015년 4회",
-		            answerNum: "1",
-		            answerAsk: "클라이언트의 웹 브라우저가 웹 서버와 접속할 때 사용하는 통신 규약으로 맞는 것은?",
-		            answerAsk1: "클라이언트의 웹 브라우저가 웹 서버와 접속할 때 사용하는 통신 규약으로 맞는 것은?",
-		            answerResult: "HTTP"
-		        },
-		        {
-		            answerType:"웹디자인기능사 2015년 4회",
-		            answerNum: "2",
-		            answerAsk: "고해상도의 원본 이미지의 포맷을 변경해서 저장하였을 경우 다음 중 파일용량이 가장 큰 것은?",
-		            answerAsk1: "고해상도의 원본 이미지의 포맷을 변경해서 저장하였을 경우 다음 중 파일용량이 가장 큰 것은?",
-		            answerResult: "BMP"
-		        },
-		        {
-		            answerType:"웹디자인기능사 2015년 4회",
-		            answerNum: "3",
-		            answerAsk: "자연에서 쉽게 찾을 수 있고, 온화함이 있지만 때로는 단조로움을 주는 디자인 원리는?",
-		            answerAsk1: "자연에서 쉽게 찾을 수 있고, 온화함이 있지만 때로는 단조로움을 주는 디자인 원리는?",
-		            answerResult: "유사조화"
-		        },
-		        {
-		            answerType:"웹디자인기능사 2015년 4회",
-		            answerNum: "4",
-		            answerAsk: "이미지를 구성하는 최소 단위는?",
-		            answerAsk1: "이미지를 구성하는 최소 단위는?",
-		            answerResult: "픽셀"
-		        },
-		        {
-		            answerType:"웹디자인기능사 2015년 4회",
-		            answerNum: "5",
-		            answerAsk: "자연에서 쉽게 찾을 수 있고, 온화함이 있지만 때로는 단조로움을 주는 디자인 원리는?",
-		            answerAsk1: "자연에서 쉽게 찾을 수 있고, 온화함이 있지만 때로는 단조로움을 주는 디자인 원리는?",
-		            answerResult: "유사조화"
-		        },
+			 const quizInfo = [
+				 <c:forEach items="${test}" var="test" >
+					<c:if test="${test.sddDateChoice == '2022-07-26'}" >
+						{
+							answerType:${test.sddDateChoice},
+			            	answerNum: ${test.sdqNumber},
+				            answerAsk: ${test.sdqKo},
+				            answerAsk1: ${test.sdqEng},
+				            answerResult: ${test.sdqAnswer}
+						},
+					</c:if>
+				 </c:forEach>
 		    ]
-		
-		    // 문제출력
-		        // 1번문제
-		    // quizType[0].textContent = quizInfo[0].answerType;
-		    // quizNumber[0].textContent = quizInfo[0].answerNum + ". ";
-		    // quizAsk[0].textContent = quizInfo[0].answerAsk;
-		    // quizResult[0].textContent = quizInfo[0].answerResult;
-		        // 2번문제
-		    // quizType[1].textContent = quizInfo[1].answerType;
-		    // quizNumber[1].textContent = quizInfo[1].answerNum + ". ";
-		    // quizAsk[1].textContent = quizInfo[1].answerAsk;
-		    // quizResult[1].textContent = quizInfo[1].answerResult;
-		        // 3번문제
-		    // quizType[2].textContent = quizInfo[2].answerType;
-		    // quizNumber[2].textContent = quizInfo[2].answerNum + ". ";
-		    // quizAsk[2].textContent = quizInfo[2].answerAsk;
-		    // quizResult[2].textContent = quizInfo[2].answerResult;
-		        // 4번문제
-		    // quizType[3].textContent = quizInfo[3].answerType;
-		    // quizNumber[3].textContent = quizInfo[3].answerNum + ". ";
-		    // quizAsk[3].textContent = quizInfo[3].answerAsk;
-		    // quizResult[3].textContent = quizInfo[3].answerResult;
-		
-		    // 문제출력 for문으로 변경
-		    // for(let i = 0; i<=3; i++){
-		//         quizType[i].textContent = quizInfo[i].answerType;
-		//         quizNumber[i].textContent = quizInfo[i].answerNum + ". ";
-		//         quizAsk[i].textContent = quizInfo[i].answerAsk;
-		//         quizResult[i].textContent = quizInfo[i].answerResult;
-		    // }
-		
-		    // forEach문
+			 
 		    quizInfo.forEach((e, i) => {
 		        quizType[i].textContent = quizInfo[i].answerType;
 		        quizNumber[i].textContent = quizInfo[i].answerNum + ". ";
@@ -378,29 +321,10 @@
 		        quizResult[i].textContent = quizInfo[i].answerResult;
 		    })
 		
-		    // 정답숨기기
-		    // quizResult[0].style.display = "none";
-		    // quizResult[1].style.display = "none";
-		    // quizResult[2].style.display = "none";
-		    // quizResult[3].style.display = "none";
-		
-		    // for
-		    // for(let i = 0; i<quizInfo.length; i++){
-		//         quizResult[i].style.display = "none";
-		    // }
 		    quizInfo.forEach((e, i) => {
 		        quizResult[i].style.display = "none";
 		    });
 		
-		    // 정답 확인   
-		    // quizconfirm.addEventListener("click",() => {
-		//         alert("gd") 
-		    // }); //2번과다르게 이번파일은 버튼이여러개가있어서 얘한테 알려주지않으면 몰라서 오류남
-		    // quizconfirm.forEach((btn) => {          //forEach로 버튼이 4개임을 확인시켜줌
-		//         btn.addEventListener("click", () => {
-		//             alert("d");
-		//         })
-		    // }); //btn에 confirm을 가져오는데 현재파일은4개니깐4번반복, 버튼클릭(confirm)에 클릭이벤트시 발생하는 실행문을 4번반복시킴
 		
 		    quizconfirm.forEach((btn, num) => {          
 		        btn.addEventListener("click", () => {
@@ -461,9 +385,10 @@
 		            	
 		                console.log(cnt);
 		                
+		                var score = list.length;
 		                var result_test = document.getElementById('result1');
 		                
-		                result_test.innerHTML = `<h3 style="color:#333;"> ${quizInfo.length} 개중에서 ${cnt}개 맞추셨습니다.</h3><button type="button">제출</button>`;
+		                result_test.innerHTML = score + '개중에서 ' + cnt + '개 맞추셨습니다.';
 		                
 		            }else {
 		            	
@@ -476,9 +401,10 @@
 		            	
 		                console.log(cnt);
 		                
+		                var score = list.length;
 		                var result_test = document.getElementById('result1');
 		                
-		                result_test.innerHTML = `<h3 style="color:#333;"> ${quizInfo.length} 개중에서 ${cnt}개 맞추셨습니다.</h3><button type="button">제출</button>`;
+		                result_test.innerHTML = score + '개중에서 ' + cnt + '개 맞추셨습니다.';
 		            	
 		            }
 		        })

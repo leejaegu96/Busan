@@ -115,8 +115,9 @@ a {
     text-align: center;
     position: absolute;
     margin: auto;
-    top: 120px;
+    top: 110px;
     opacity: 0;
+    left:5%;
 }
 .quiz__view .false {
     width: 100px;
@@ -127,8 +128,9 @@ a {
     text-align: center;
     position: absolute;
     margin: auto;
-    top: 110px;
+    top: 100px;
     opacity: 0;
+    right:5%;
 }
 .quiz__view.like .true {
     opacity: 1;
