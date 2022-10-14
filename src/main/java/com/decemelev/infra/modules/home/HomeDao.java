@@ -35,6 +35,8 @@ public class HomeDao {
 		return test;
 	}
 	
+	
+	
 	public List<Home> selectRank() {
 		List<Home> rank = sqlSession.selectList("com.decemelev.infra.modules.home.HomeMapper.selectRank", "");
 		return rank;

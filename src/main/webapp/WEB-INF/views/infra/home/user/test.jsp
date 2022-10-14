@@ -25,7 +25,37 @@
 		
 		<!-- <link href="https://webfontworld.github.io/DungGeunMo/DungGeunMo.css" rel="stylesheet"> -->
     	<link href="https://webfontworld.github.io/NexonMabinogi/MabinogiClassic.css" rel="stylesheet">
-    	
+    	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+		<style>
+		.ui-datepicker{ font-size: 15px; width: 400px; }
+		.ui-datepicker select.ui-datepicker-month{ width:30%; font-size: 15px; }
+		.ui-datepicker select.ui-datepicker-year{ width:40%; font-size: 15px; }
+		</style>
+		<script type="text/javascript">
+		   $(document).ready(function () {
+		       $.datepicker.setDefaults($.datepicker.regional['ko']); 
+		       $( "#datepicker" ).datepicker({
+		            changeMonth: true, 
+		            changeYear: true,
+		            nextText: '다음 달',
+		            prevText: '이전 달', 
+		            dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+		            dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], 
+		            monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+		            monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+		            dateFormat: "yy-mm-dd",
+		            maxDate: 0,
+		            minDate: new Date('2022-07-25'),
+		            maxDate: new Date('2022-07-27'),
+		       	// 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)
+		            onClose: function( selectedDate ) {    
+		            }    
+		
+		       });
+		   });
+		</script>
 	</head>
 	<body>
 		<div id="page-wrapper">
@@ -83,6 +113,7 @@
 					<header>
 						<h2>TEST</h2>
 						<p>Test your skills based on what you've learned</p>
+						<input type="text" class="form-control" id="datepicker" placeholder="Choice Date!!" style="text-align:center; color:black;" onChange="chDate()"><br>
 						<div id="result1" style="text-align:center; font-size:20px; font-style: bold;"> </div> 
 					</header>
 					<div class="row">
@@ -174,7 +205,7 @@
 								        </div>
 								    </div>
 								</div>
-								<!-- 
+								
 								<div class="row" style="height:480px;">
 									<div class="col-6" style="margin:auto;">
 								        <div class="quiz">
@@ -197,7 +228,7 @@
 								        </div>
 								    </div>
 							    </div>
-							     -->
+							    
 							    <br><br><br><br>
     							
 							</main>
@@ -225,7 +256,9 @@
 		</div>
 
 		<!-- Scripts -->
+		<!-- 
 		<script src="../resources/assets/js/jquery.min.js"></script>
+		 -->
 		<script src="../resources/assets/js/jquery.dropotron.min.js"></script>
 		<script src="../resources/assets/js/jquery.scrollex.min.js"></script>
 		<script src="../resources/assets/js/browser.min.js"></script>
@@ -290,131 +323,142 @@
 		
 		<script>
 		 // 선택자
-		    const quizType = document.querySelectorAll(".quiz__type");                     // 퀴즈 종류
-		    const quizNumber = document.querySelectorAll(".quiz__question .number");       // 퀴즈 번호
-		    const quizAsk = document.querySelectorAll(".quiz__question .ask");             // 퀴즈 질문
-		    const quizAsk1 = document.querySelectorAll(".quiz__question .ask1");             // 퀴즈 질문
-		    const quizconfirm = document.querySelectorAll(".quiz__answer .confirm");       // 정답 확인 버튼
-		    const quizResult = document.querySelectorAll(".quiz__answer .result");         // 정답 결과
-		    const quizInput = document.querySelectorAll(".quiz__answer .input");           // 사용자 정답
-		    const quizView = document.querySelectorAll(".quiz__view");                 // 댕댕이
-		    
-		    const list = document.querySelectorAll(".quiz__view .test"); 
-		    
-			 const quizInfo = [
-				 <c:forEach items="${test}" var="test" >
-					<c:if test="${test.sddDateChoice == '2022-07-26'}" >
-						{
-							answerType: "  ${test.sddDateChoice}  ",
-			            	answerNum: "  ${test.sdqNumber}  ",
-				            answerAsk: "  ${test.sdqKo}  ",
-				            answerAsk1: "  ${test.sdqEng}  ",
-				            answerResult: "${test.sdqAnswer}"
-						},
-					</c:if>
-				 </c:forEach>
-		    ]
-			 
-		    quizInfo.forEach((e, i) => {
-		        quizType[i].textContent = quizInfo[i].answerType;
-		        quizNumber[i].textContent = quizInfo[i].answerNum + ". ";
-		        quizAsk[i].textContent = quizInfo[i].answerAsk;
-		        quizAsk1[i].textContent = quizInfo[i].answerAsk1;
-		        quizResult[i].textContent = quizInfo[i].answerResult;
-		    })
-		
-		    quizInfo.forEach((e, i) => {
-		        quizResult[i].style.display = "none";
-		    });
-		
-		
-		    quizconfirm.forEach((btn, num) => {          
-		        btn.addEventListener("click", () => {
-		            
-		            // 사용자 정답
-		            const userWord = quizInput[num].value;
-		            // console.log(userWord);
-		            // 사용자 정답 비교
-		            if(userWord == quizInfo[num].answerResult){
-		                // 정답
-		                // alert("정답");
-		                quizView[num].classList.add("like");
-		                quizconfirm[num].style.display="none";
-		                
-		                /* document.getElementById("testCk").checked = true; */
-		                
-		                if(num==0){
-		                	document.getElementById("testCk1").checked = true; // HTTP
-		                } else if(num==1){
-		                	document.getElementById("testCk2").checked = true; // BMP
-		                } else if(num==2){
-		                	document.getElementById("testCk3").checked = true; // 유사조화
-		                } else if(num==3){
-		                	document.getElementById("testCk4").checked = true; // 픽셀
-		                } /* else {
-		                	document.getElementById("testCk5").checked = true; // 유사조화
-		                }  */
-		                
-		                
-		            }else {
-		                // 오답
-		                // alert("오답")
-		                quizView[num].classList.add("dislike");
-		                quizconfirm[num].style.display="none";
-		                quizResult[num].style.display = "block";
-		                quizInput[num].style.display = "none";
-		            }
-		        })
-		    });
-		    
-		    quizconfirm.forEach((btn, num) => {          
-		        btn.addEventListener("focusout", () => {
-		            
-		            // 사용자 정답
-		            const userWord = quizInput[num].value;
-		            // console.log(userWord);
-		            // 사용자 정답 비교
-		            if(userWord == quizInfo[num].answerResult){
-		            	
-		            	
-		                
-		                let cnt = 0;
-		                for(let i=0; i<list.length;i++){
-		                	if(list[i].checked === true){
-		                		cnt++;
-		                	}
-		                }
-		            	
-		                console.log(cnt);
-		                
-		                var score = list.length;
-		                var result_test = document.getElementById('result1');
-		                
-		                result_test.innerHTML = score + '개중에서 ' + cnt + '개 맞추셨습니다.';
-		                
-		            }else {
-		            	
-		            	let cnt = 0;
-		                for(let i=0; i<list.length;i++){
-		                	if(list[i].checked === true){
-		                		cnt++;
-		                	}
-		                }
-		            	
-		                console.log(cnt);
-		                
-		                var score = list.length;
-		                var result_test = document.getElementById('result1');
-		                
-		                result_test.innerHTML = score + '개중에서 ' + cnt + '개 맞추셨습니다.';
-		            	
-		            }
-		        })
-		    });
 		    
 		    
 		    
+		    function chDate(){
+		    	const quizType = document.querySelectorAll(".quiz__type");                     // 퀴즈 종류
+			    const quizNumber = document.querySelectorAll(".quiz__question .number");       // 퀴즈 번호
+			    const quizAsk = document.querySelectorAll(".quiz__question .ask");             // 퀴즈 질문
+			    const quizAsk1 = document.querySelectorAll(".quiz__question .ask1");             // 퀴즈 질문
+			    const quizconfirm = document.querySelectorAll(".quiz__answer .confirm");       // 정답 확인 버튼
+			    const quizResult = document.querySelectorAll(".quiz__answer .result");         // 정답 결과
+			    const quizInput = document.querySelectorAll(".quiz__answer .input");           // 사용자 정답
+			    const quizView = document.querySelectorAll(".quiz__view");                 // 댕댕이
+			    
+			    const list = document.querySelectorAll(".quiz__view .test");
+			    
+		    	var date = document.getElementById('datepicker').value;
+		    	alert(date);
+		    	
+		    	<c:set var="date" value="date"/>
+		    	/* 2022-07-25 */
+		    	
+		    	const quizInfo = [
+					 <c:forEach items="${test}" var="test" >
+						<c:if test="${test.sddDateChoice == '2022-07-25'}" >
+							{
+								answerType: "${test.sddDateChoice}",
+				            	answerNum: "${test.sdwNum}",
+					            answerAsk: "${test.sdweTranslate}",
+					            answerAsk1: "${test.first}________${test.second}",
+					            answerResult: "${test.sdwWord}"
+							},
+						</c:if>
+					 </c:forEach>
+			    ]
 				
+			    quizInfo.forEach((e, i) => {
+			        quizType[i].textContent = quizInfo[i].answerType;
+			        quizNumber[i].textContent = quizInfo[i].answerNum + ". ";
+			        quizAsk[i].textContent = quizInfo[i].answerAsk;
+			        quizAsk1[i].textContent = quizInfo[i].answerAsk1;
+			        quizResult[i].textContent = quizInfo[i].answerResult;
+			    })
+			
+			    quizInfo.forEach((e, i) => {
+			        quizResult[i].style.display = "none";
+			    });
+			
+			
+			    quizconfirm.forEach((btn, num) => {          
+			        btn.addEventListener("click", () => {
+			            
+			            // 사용자 정답
+			            const userWord = quizInput[num].value;
+			            // console.log(userWord);
+			            // 사용자 정답 비교
+			            if(userWord == quizInfo[num].answerResult){
+			                // 정답
+			                // alert("정답");
+			                quizView[num].classList.add("like");
+			                quizconfirm[num].style.display="none";
+			                
+			                /* document.getElementById("testCk").checked = true; */
+			                
+			                if(num==0){
+			                	document.getElementById("testCk1").checked = true; // HTTP
+			                } else if(num==1){
+			                	document.getElementById("testCk2").checked = true; // BMP
+			                } else if(num==2){
+			                	document.getElementById("testCk3").checked = true; // 유사조화
+			                } else if(num==3){
+			                	document.getElementById("testCk4").checked = true; // 픽셀
+			                } else {
+			                	document.getElementById("testCk5").checked = true; // 유사조화
+			                } 
+			                
+			                
+			            }else {
+			                // 오답
+			                // alert("오답")
+			                quizView[num].classList.add("dislike");
+			                quizconfirm[num].style.display="none";
+			                quizResult[num].style.display = "block";
+			                quizInput[num].style.display = "none";
+			            }
+			        })
+			    });
+			    
+			    quizconfirm.forEach((btn, num) => {          
+			        btn.addEventListener("focusout", () => {
+			            
+			            // 사용자 정답
+			            const userWord = quizInput[num].value;
+			            // console.log(userWord);
+			            // 사용자 정답 비교
+			            if(userWord == quizInfo[num].answerResult){
+			            	
+			            	
+			                
+			                let cnt = 0;
+			                for(let i=0; i<list.length;i++){
+			                	if(list[i].checked === true){
+			                		cnt++;
+			                	}
+			                }
+			            	
+			                console.log(cnt);
+			                
+			                var score = list.length;
+			                var result_test = document.getElementById('result1');
+			                
+			                result_test.innerHTML = score + '개중에서 ' + cnt + '개 맞추셨습니다.';
+			                
+			            }else {
+			            	
+			            	let cnt = 0;
+			                for(let i=0; i<list.length;i++){
+			                	if(list[i].checked === true){
+			                		cnt++;
+			                	}
+			                }
+			            	
+			                console.log(cnt);
+			                
+			                var score = list.length;
+			                var result_test = document.getElementById('result1');
+			                
+			                result_test.innerHTML = score + '개중에서 ' + cnt + '개 맞추셨습니다.';
+			            	
+			            }
+			        })
+			    });
+		    	
+		    }
+		    
+		    
+		    
 	    </script>
 			
 

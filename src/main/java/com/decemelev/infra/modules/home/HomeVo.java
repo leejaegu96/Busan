@@ -4,6 +4,9 @@ public class HomeVo {
 	
 	private String mainKey;
 	private String ifmmSeq;
+	
+	
+	
 
 	public String getIfmmSeq() {
 		return ifmmSeq;

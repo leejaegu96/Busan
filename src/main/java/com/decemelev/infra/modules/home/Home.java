@@ -11,6 +11,7 @@ public class Home extends Base {
 	
 	private String sdwSeq;
 	private String sdwWord;
+	private Integer sdwNum;
 	private String sdDate_sddSeq;
 	
 	private String sdwmSeq;
@@ -21,12 +22,18 @@ public class Home extends Base {
 	private String sdweSeq;
 	private String sdweContents;
 	private String sdweTranslate;
+	private Integer sdweDefaultNy;
+	private String first;
+	private String second;
+	private String answer;
+	
 	
 	private String sdqSeq;
 	private Integer sdqNumber;
 	private String sdqKo;
 	private String sdqEng;
 	private String sdqAnswer;
+	
 
 	private String infrMember_ifmmSeq;
 	private String ifmmName;
@@ -57,7 +64,38 @@ public class Home extends Base {
 	
 	
 	
-
+	
+	public Integer getSdwNum() {
+		return sdwNum;
+	}
+	public void setSdwNum(Integer sdwNum) {
+		this.sdwNum = sdwNum;
+	}
+	public String getFirst() {
+		return first;
+	}
+	public void setFirst(String first) {
+		this.first = first;
+	}
+	public String getSecond() {
+		return second;
+	}
+	public void setSecond(String second) {
+		this.second = second;
+	}
+	public String getAnswer() {
+		return answer;
+	}
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
+	
+	public Integer getSdweDefaultNy() {
+		return sdweDefaultNy;
+	}
+	public void setSdweDefaultNy(Integer sdweDefaultNy) {
+		this.sdweDefaultNy = sdweDefaultNy;
+	}
 	public MultipartFile[] getIfmmUploadedProfileImage() {
 		return ifmmUploadedProfileImage;
 	}
