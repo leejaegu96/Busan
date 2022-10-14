@@ -31,6 +31,13 @@ public class HomeServiceImpl implements HomeService{
 		List<Home> test = dao.selectTest();
 		return test;
 	}
+	
+	@Override
+	public Home testDate(Home dto) throws Exception {
+		Home result = dao.testDate(dto);
+		System.out.println("service testDate result: " + result);
+		return result;
+	}
 
 	@Override
 	public List<Home> selectRank() throws Exception {

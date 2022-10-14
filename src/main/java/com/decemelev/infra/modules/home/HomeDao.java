@@ -34,7 +34,10 @@ public class HomeDao {
 		List<Home> test = sqlSession.selectList("com.decemelev.infra.modules.home.HomeMapper.selectTest", "");
 		return test;
 	}
-	
+	public Home testDate(Home dto) {
+		return sqlSession.selectOne(namespace + ".testDate", dto);
+	}
+
 	
 	
 	public List<Home> selectRank() {

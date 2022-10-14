@@ -62,6 +62,23 @@ public class HomeController {
 		
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="testDate")
+	public Map<String, Object> testDate(Home dto) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		Home result = service.testDate(dto);
+		if(result != null) {
+			returnMap.put("rt", "success");
+			returnMap.put("tt", result);
+		} else {
+			returnMap.put("rt", "fail");
+		}
+		System.out.println("returnMap : " + returnMap);
+		return returnMap;
+	}
+	
+	
 	@RequestMapping(value = "rank")
 	public String rank(Model model) throws Exception {
 		

@@ -51,6 +51,13 @@
 		    AND d.sdweDefaultNy = 1
 
 	</select>
+	<select id="testDate" resultMap="resultMapObj">
+		SELECT
+			a.sddDateChoice
+		FROM sdDate a
+		WHERE 1=1
+			AND a.sddDateChoice = #{sddDateChoice}
+	</select>
 
 	<select id="selectRank" resultMap="resultMapObj">
 		select
@@ -144,5 +151,7 @@
 			AND delNy = 0
 			AND pseq = #{ifmmSeq}
 	</update>
+	
+	
 	
 </mapper>	
