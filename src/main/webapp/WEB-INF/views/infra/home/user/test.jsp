@@ -159,6 +159,7 @@
 					
 
 			<!-- Footer -->
+				<!-- 
 				<footer id="footer">
 					<ul class="icons">
 						<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
@@ -172,7 +173,7 @@
 						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 					</ul>
 				</footer>
-
+				 -->
 		</div>
 
 		<!-- Scripts -->
@@ -403,8 +404,8 @@
 		
 		let tp=document.getElementById("testPart");
 		
-		tp.innerHTML += '<div class="row">';
-		tp.innerHTML += '<div class="col-6">';
+		tp.innerHTML += '<div class="row" style="height:480px;">';
+		tp.innerHTML += '<div class="col-6" style="margin:auto;">';
 		tp.innerHTML +=     '<div class="quiz">';
 		tp.innerHTML +=         '<span class="quiz__type"></span>';
 		tp.innerHTML +=         '<h2 class="quiz__question">';
@@ -425,7 +426,30 @@
 		tp.innerHTML +=     '</div>';
 		tp.innerHTML += '</div>';
 		tp.innerHTML += '</div>';
-	    
+	    /* 
+		<div class="row" style="height:480px;">
+			<div class="col-6" style="margin:auto;">
+		        <div class="quiz">
+		            <span class="quiz__type"></span>
+		            <h2 class="quiz__question">
+		                <span class="number"></span>
+		                <div class="ask"></div>
+		                <div class="ask1"></div>
+		            </h2>
+		            <div class="quiz__view">
+		                <div class="true">정답🐾</div>
+		                <div class="false">오답 입니다!</div>
+		                <input type="hidden" class="test" id="testCk5" name="testCk">
+		            </div>
+		            <div class="quiz__answer">
+		                <input type="text" class="input" placeholder="정답을 적어주세요!">
+		                <button class="confirm">정답 확인하기</button>
+		                <div class="result"></div>
+		            </div>
+		        </div>
+		    </div>
+	    </div>
+		 */
 	    </script>
 			
 
