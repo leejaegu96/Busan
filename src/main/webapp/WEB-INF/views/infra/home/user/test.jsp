@@ -123,112 +123,31 @@
 							<main id="main">
 								
 							    <div class="row" style="height:480px;">
-							    	<div class="col-6">
-								        <div class="quiz">
-								            <span class="quiz__type"></span>
-								            <h2 class="quiz__question">
-								                <span class="number"></span>
-								                <div class="ask"></div>
-								                <div class="ask1"></div>
-								            </h2>
-								            <div class="quiz__view">
-								                <div class="true">정답🐾</div>
-								                <div class="false">오답 입니다!</div>
-								                <input type="hidden" class="test" id="testCk1" name="testCk">
-								            </div>
-								            <div class="quiz__answer">
-								                <input type="text" class="input" placeholder="정답을 적어주세요!">
-								                <button class="confirm">정답 확인하기</button>
-								                <div class="result"></div>
-								            </div>
-								        </div>
+							    	
+							    	<div id="testPart"></div>
+							    	
+							    	<div class="row" style="height:480px;">
+										<div class="col-6" style="margin:auto;">
+									        <div class="quiz">
+									            <span class="quiz__type"></span>
+									            <h2 class="quiz__question">
+									                <span class="number"></span>
+									                <div class="ask"></div>
+									                <div class="ask1"></div>
+									            </h2>
+									            <div class="quiz__view">
+									                <div class="true">정답🐾</div>
+									                <div class="false">오답 입니다!</div>
+									                <input type="hidden" class="test" id="testCk5" name="testCk">
+									            </div>
+									            <div class="quiz__answer">
+									                <input type="text" class="input" placeholder="정답을 적어주세요!">
+									                <button class="confirm">정답 확인하기</button>
+									                <div class="result"></div>
+									            </div>
+									        </div>
+									    </div>
 								    </div>
-								    <div class="col-6">
-								        <div class="quiz">
-								            <span class="quiz__type"></span>
-								            <h2 class="quiz__question">
-								                <span class="number"></span>
-								                <div class="ask"></div>
-								                <div class="ask1"></div>
-								            </h2>
-								            <div class="quiz__view">
-								                <div class="true">정답🐾</div>
-								                <div class="false">오답 입니다!</div>
-								                <input type="hidden" class="test" id="testCk2" name="testCk">
-								            </div>
-								            <div class="quiz__answer">
-								                <input type="text" class="input" placeholder="정답을 적어주세요!">
-								                <button class="confirm">정답 확인하기</button>
-								                <div class="result"></div>
-								            </div>
-								        </div>
-							        </div>
-							    </div>
-							    <div class="row" style="height:480px;">
-							    	<div class="col-6">
-								        <div class="quiz">
-								            <span class="quiz__type"></span>
-								            <h2 class="quiz__question">
-								                <span class="number"></span>
-								                <div class="ask"></div>
-								                <div class="ask1"></div>
-								            </h2>
-								            <div class="quiz__view">
-								                <div class="true">정답🐾</div>
-								                <div class="false">오답 입니다!</div>
-								                <input type="hidden" class="test" id="testCk3" name="testCk">
-								            </div>
-								            <div class="quiz__answer">
-								                <input type="text" class="input" placeholder="정답을 적어주세요!">
-								                <button class="confirm">정답 확인하기</button>
-								                <div class="result"></div>
-								            </div>
-								        </div>
-								    </div>
-								    <div class="col-6">
-								        <div class="quiz">
-								            <span class="quiz__type"></span>
-								            <h2 class="quiz__question">
-								                <span class="number"></span>
-								                <div class="ask"></div>
-								                <div class="ask1"></div>
-								            </h2>
-								            <div class="quiz__view">
-								                <div class="true">정답🐾</div>
-								                <div class="false">오답 입니다!</div>
-								                <input type="hidden" class="test" id="testCk4" name="testCk">
-								            </div>
-								            <div class="quiz__answer">
-								                <input type="text" class="input" placeholder="정답을 적어주세요!">
-								                <button class="confirm">정답 확인하기</button>
-								                <div class="result"></div>
-								            </div>
-								        </div>
-								    </div>
-								</div>
-								
-								<div class="row" style="height:480px;">
-									<div class="col-6" style="margin:auto;">
-								        <div class="quiz">
-								            <span class="quiz__type"></span>
-								            <h2 class="quiz__question">
-								                <span class="number"></span>
-								                <div class="ask"></div>
-								                <div class="ask1"></div>
-								            </h2>
-								            <div class="quiz__view">
-								                <div class="true">정답🐾</div>
-								                <div class="false">오답 입니다!</div>
-								                <input type="hidden" class="test" id="testCk5" name="testCk">
-								            </div>
-								            <div class="quiz__answer">
-								                <input type="text" class="input" placeholder="정답을 적어주세요!">
-								                <button class="confirm">정답 확인하기</button>
-								                <div class="result"></div>
-								            </div>
-								        </div>
-								    </div>
-							    </div>
 							    
 							    <br><br><br><br>
     							
@@ -322,6 +241,7 @@
 		});
 		</script>
 		<!-- 날짜 선택 ------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+		<!-- 
 		<script type="text/javascript">
 		$("#datepicker").on("change", function(){
 			$.ajax({
@@ -343,7 +263,7 @@
 					    const quizconfirm = document.querySelectorAll(".quiz__answer .confirm");       // 정답 확인 버튼
 					    const quizResult = document.querySelectorAll(".quiz__answer .result");         // 정답 결과
 					    const quizInput = document.querySelectorAll(".quiz__answer .input");           // 사용자 정답
-					    const quizView = document.querySelectorAll(".quiz__view");                 // 댕댕이
+					    const quizView = document.querySelectorAll(".quiz__view");                 // 
 					    
 					    const list = document.querySelectorAll(".quiz__view .test");
 					    
@@ -352,7 +272,7 @@
 				    	
 				    	const quizInfo = [
 							 <c:forEach items="${test}" var="test" >
-								<c:if test="${test.sddDateChoice == 'tt.sddDateChoice' }" >
+								<c:if test="${test.sddDateChoice == '2022-07-25' }" >
 									{
 										answerType: "${test.sddDateChoice}",
 						            	answerNum: "${test.sdwNum}",
@@ -478,17 +398,34 @@
 		});
 		
 		</script>
-		
+		 -->
 		<script>
-		 // 선택자
-		    
-		    
-		    
-		    	
-		    	
-		    
-		    
-		    
+		
+		let tp=document.getElementById("testPart");
+		
+		tp.innerHTML += '<div class="row">';
+		tp.innerHTML += '<div class="col-6">';
+		tp.innerHTML +=     '<div class="quiz">';
+		tp.innerHTML +=         '<span class="quiz__type"></span>';
+		tp.innerHTML +=         '<h2 class="quiz__question">';
+		tp.innerHTML +=             '<span class="number"></span>';
+		tp.innerHTML +=             '<div class="ask"></div>';
+		tp.innerHTML +=             '<div class="ask1"></div>';
+		tp.innerHTML +=         '</h2>';
+		tp.innerHTML +=         '<div class="quiz__view">';
+		tp.innerHTML +=             '<div class="true">정답🐾</div>';
+		tp.innerHTML +=             '<div class="false">오답 입니다!</div>';
+		tp.innerHTML +=             '<input type="hidden" class="test" id="testCk5" name="testCk">';
+		tp.innerHTML +=         '</div>';
+		tp.innerHTML +=         '<div class="quiz__answer">';
+		tp.innerHTML +=             '<input type="text" class="input" placeholder="정답을 적어주세요!">';
+		tp.innerHTML +=             '<button class="confirm">정답 확인하기</button>';
+		tp.innerHTML +=             '<div class="result"></div>';
+		tp.innerHTML +=         '</div>';
+		tp.innerHTML +=     '</div>';
+		tp.innerHTML += '</div>';
+		tp.innerHTML += '</div>';
+	    
 	    </script>
 			
 
