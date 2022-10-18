@@ -227,8 +227,35 @@
 				,data : { "sddDateChoice" : $("#datepicker").val() }
 				,success: function(response) {
 					if(response.rt == "success") {
-						
+						console.log(response);
+						document.getElementById('testChoice').innerHTML = "";
+						for(let i=0; i<response.tt.length; i++){
+							console.log(response.tt[i]);
+							let listHTML = "";
+							listHTML += '<div class="col-6" style="margin:auto;">';
+							listHTML += '<div class="quiz">';
+							listHTML += '<span class="quiz__type">'+ response.tt[i].sddDateChoice +'</span>';
+							listHTML += '<h2 class="quiz__question">';
+							listHTML += '<span class="number">'+ response.tt[i].sdwNum +'</span>';
+							listHTML += '<div class="ask" >'+ response.tt[i].first + '____________' + response.tt[i].second +'</div>';
+							listHTML += '<div class="ask1" >'+ response.tt[i].sdweTranslate +'</div>';
+							listHTML += '</h2>';
+							listHTML += '<div class="quiz__view">';
+							listHTML += '<div class="true">정답🐾</div>';
+							listHTML += '<div class="false">오답 입니다!</div>';
+							listHTML += '<input type="hidden" class="test" id="testCk'+response.tt[i].sdwNum+'" name="testCk">';
+							listHTML += '</div>';
+							listHTML += '<div class="quiz__answer">';
+							listHTML += '<input type="text" class="input" placeholder="정답을 적어주세요!">';
+							listHTML += '<button class="confirm">정답 확인하기</button>';
+							listHTML += '<div class="result"></div>';
+							listHTML += '</div>';
+							listHTML += '</div>';
+							listHTML += '</div>';
 							
+							document.getElementById('testChoice').innerHTML += listHTML;
+							
+						}
 						
 					} else {
 						// 
@@ -243,6 +270,7 @@
 		});
 		
 		</script>
+		<!-- 
 		<script>
 		let listHTML = "";
 		listHTML += '<span>이게 왜 안나올까요</span>';
@@ -271,7 +299,7 @@
 		
 		document.getElementById('testChoice').innerHTML += listHTML;	
 		</script>
-		
+		 -->
 		<!-- 날짜 선택 ------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 		<script type="text/javascript">
 		
@@ -288,10 +316,9 @@
 	    
     	/* var date = document.getElementById('datepicker').value; */
     	
-    	/* 
     	const quizInfo = [
 				{
-					answerType: quizType,
+					answerType: ,
 	            	answerNum: ,
 		            answerAsk: ,
 		            answerAsk1: ,
@@ -312,7 +339,6 @@
 	    quizInfo.forEach((e, i) => {
 	        quizResult[i].style.display = "none";
 	    });
-		 */
 	    
 	    quizconfirm.forEach((btn, num) => {          
 	        btn.addEventListener("click", () => {
