@@ -49,6 +49,8 @@
 		inner join sdwExample d on d.sdwMean_sdwmSeq=c.sdwmSeq
 		where 1=1 
 		    AND d.sdweDefaultNy = 1
+		    AND b.sddDateChoice = #{sddDateChoice}
+		    
 
 	</select>
 	<select id="testDate" resultMap="resultMapObj">

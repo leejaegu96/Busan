@@ -24,7 +24,6 @@ public class HomeDao {
 		List<Home> list = sqlSession.selectList("com.decemelev.infra.modules.home.HomeMapper.selectList", "");
 		return list;
 	}
-	
 	public List<Home> selectContents() {
 		List<Home> list = sqlSession.selectList("com.decemelev.infra.modules.home.HomeMapper.selectContents", "");
 		return list;
@@ -32,6 +31,10 @@ public class HomeDao {
 	
 	public List<Home> selectTest() {
 		List<Home> test = sqlSession.selectList("com.decemelev.infra.modules.home.HomeMapper.selectTest", "");
+		return test;
+	}
+	public List<Home> selectTest(Home dto) {
+		List<Home> test = sqlSession.selectList("com.decemelev.infra.modules.home.HomeMapper.selectTest", dto);
 		return test;
 	}
 	public Home testDate(Home dto) {

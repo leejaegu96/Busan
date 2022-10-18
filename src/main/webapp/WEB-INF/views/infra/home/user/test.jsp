@@ -121,36 +121,9 @@
 						<div class="col-12">
 						
 							<main id="main">
-								
-							    <div class="row" style="height:480px;">
-							    	
-							    	<div id="testPart"></div>
-							    	
-							    	<div class="row" style="height:480px;">
-										<div class="col-6" style="margin:auto;">
-									        <div class="quiz">
-									            <span class="quiz__type"></span>
-									            <h2 class="quiz__question">
-									                <span class="number"></span>
-									                <div class="ask"></div>
-									                <div class="ask1"></div>
-									            </h2>
-									            <div class="quiz__view">
-									                <div class="true">정답🐾</div>
-									                <div class="false">오답 입니다!</div>
-									                <input type="hidden" class="test" id="testCk5" name="testCk">
-									            </div>
-									            <div class="quiz__answer">
-									                <input type="text" class="input" placeholder="정답을 적어주세요!">
-									                <button class="confirm">정답 확인하기</button>
-									                <div class="result"></div>
-									            </div>
-									        </div>
-									    </div>
-								    </div>
-							    
-							    <br><br><br><br>
-    							
+								<div class="row" style="height:480px;">
+									<div id="testChoice"></div>
+								</div>
 							</main>
 							
 							
@@ -241,8 +214,7 @@
 			});
 		});
 		</script>
-		<!-- 날짜 선택 ------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
-		<!-- 
+		
 		<script type="text/javascript">
 		$("#datepicker").on("change", function(){
 			$.ajax({
@@ -255,139 +227,35 @@
 				,data : { "sddDateChoice" : $("#datepicker").val() }
 				,success: function(response) {
 					if(response.rt == "success") {
-						console.log(response.tt.sddDateChoice);
 						
-						const quizType = document.querySelectorAll(".quiz__type");                     // 퀴즈 종류
-					    const quizNumber = document.querySelectorAll(".quiz__question .number");       // 퀴즈 번호
-					    const quizAsk = document.querySelectorAll(".quiz__question .ask");             // 퀴즈 질문
-					    const quizAsk1 = document.querySelectorAll(".quiz__question .ask1");             // 퀴즈 질문
-					    const quizconfirm = document.querySelectorAll(".quiz__answer .confirm");       // 정답 확인 버튼
-					    const quizResult = document.querySelectorAll(".quiz__answer .result");         // 정답 결과
-					    const quizInput = document.querySelectorAll(".quiz__answer .input");           // 사용자 정답
-					    const quizView = document.querySelectorAll(".quiz__view");                 // 
-					    
-					    const list = document.querySelectorAll(".quiz__view .test");
-					    
-				    	/* var date = document.getElementById('datepicker').value; */
-				    	
-				    	
-				    	const quizInfo = [
-							 <c:forEach items="${test}" var="test" >
-								<c:if test="${test.sddDateChoice == '2022-07-25' }" >
-									{
-										answerType: "${test.sddDateChoice}",
-						            	answerNum: "${test.sdwNum}",
-							            answerAsk: "${test.sdweTranslate}",
-							            answerAsk1: "${test.first}________${test.second}",
-							            answerResult: "${test.sdwWord}"
-									},
-								</c:if>
-							 </c:forEach>
-					    ]
-				    	console.log(typeof quizInfo);
-				    	
-				    	
-					    quizInfo.forEach((e, i) => {
-					        quizType[i].textContent = quizInfo[i].answerType;
-					        quizNumber[i].textContent = quizInfo[i].answerNum + ". ";
-					        quizAsk[i].textContent = quizInfo[i].answerAsk;
-					        quizAsk1[i].textContent = quizInfo[i].answerAsk1;
-					        quizResult[i].textContent = quizInfo[i].answerResult;
-					    })
-					
-					    quizInfo.forEach((e, i) => {
-					        quizResult[i].style.display = "none";
-					    });
-					
-					
-					    quizconfirm.forEach((btn, num) => {          
-					        btn.addEventListener("click", () => {
-					            
-					            // 사용자 정답
-					            const userWord = quizInput[num].value;
-					            // console.log(userWord);
-					            // 사용자 정답 비교
-					            if(userWord == quizInfo[num].answerResult){
-					                // 정답
-					                // alert("정답");
-					                quizView[num].classList.add("like");
-					                quizconfirm[num].style.display="none";
-					                
-					                /* document.getElementById("testCk").checked = true; */
-					                
-					                if(num==0){
-					                	document.getElementById("testCk1").checked = true; // HTTP
-					                } else if(num==1){
-					                	document.getElementById("testCk2").checked = true; // BMP
-					                } else if(num==2){
-					                	document.getElementById("testCk3").checked = true; // 유사조화
-					                } else if(num==3){
-					                	document.getElementById("testCk4").checked = true; // 픽셀
-					                } else {
-					                	document.getElementById("testCk5").checked = true; // 유사조화
-					                } 
-					                
-					                
-					            }else {
-					                // 오답
-					                // alert("오답")
-					                quizView[num].classList.add("dislike");
-					                quizconfirm[num].style.display="none";
-					                quizResult[num].style.display = "block";
-					                quizInput[num].style.display = "none";
-					            }
-					        })
-					    });
-					    
-					    quizconfirm.forEach((btn, num) => {          
-					        btn.addEventListener("focusout", () => {
-					            
-					            // 사용자 정답
-					            const userWord = quizInput[num].value;
-					            // console.log(userWord);
-					            // 사용자 정답 비교
-					            if(userWord == quizInfo[num].answerResult){
-					            	
-					            	
-					                
-					                let cnt = 0;
-					                for(let i=0; i<list.length;i++){
-					                	if(list[i].checked === true){
-					                		cnt++;
-					                	}
-					                }
-					            	
-					                console.log(cnt);
-					                
-					                var score = list.length;
-					                var result_test = document.getElementById('result1');
-					                
-					                result_test.innerHTML = score + '개중에서 ' + cnt + '개 맞추셨습니다.';
-					                
-					            }else {
-					            	
-					            	let cnt = 0;
-					                for(let i=0; i<list.length;i++){
-					                	if(list[i].checked === true){
-					                		cnt++;
-					                	}
-					                }
-					            	
-					                console.log(cnt);
-					                
-					                var score = list.length;
-					                var result_test = document.getElementById('result1');
-					                
-					                result_test.innerHTML = score + '개중에서 ' + cnt + '개 맞추셨습니다.';
-					            	
-					            }
-					        })
-					    });
+						let listHTML = "";
+						listHTML += '<c:forEach items="${test}" var="test" varStatus="status">';
+						listHTML += '<div class="col-6" style="margin:auto;">';
+						listHTML += '<div class="quiz">';
+						listHTML += '<span class="quiz__type">${test.sddDateChoice}</span>';
+						listHTML += '<h2 class="quiz__question">';
+						listHTML += '<span class="number">${test.sdwNum}</span>';
+						listHTML += '<div class="ask" >${test.first}_________${test.second}</div>';
+						listHTML += '<div class="ask1" >${test.sdweTranslate}</div>';
+						listHTML += '</h2>';
+						listHTML += '<div class="quiz__view">';
+						listHTML += '<div class="true">정답🐾</div>';
+						listHTML += '<div class="false">오답 입니다!</div>';
+						listHTML += '<input type="hidden" class="test" id="testCk'+${status.index}+'" name="testCk">';
+						listHTML += '</div>';
+						listHTML += '<div class="quiz__answer">';
+						listHTML += '<input type="text" class="input" placeholder="정답을 적어주세요!">';
+						listHTML += '<button class="confirm">정답 확인하기</button>';
+						listHTML += '<div class="result"></div>';
+						listHTML += '</div>';
+						listHTML += '</div>';
+						listHTML += '</div>';
+						listHTML += '</c:forEach>';
+						
+						document.getElementById('testChoice').innerHTML += listHTML;		
 						
 					} else {
 						// 
-						
-						
 					}
 				}
 				
@@ -399,56 +267,221 @@
 		});
 		
 		</script>
-		 -->
+		<!-- 날짜 선택 ------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+		<script type="text/javascript">
+		
+		const quizType = document.querySelectorAll(".quiz__type");                     // 퀴즈 종류
+	    const quizNumber = document.querySelectorAll(".quiz__question .number");       // 퀴즈 번호
+	    const quizAsk = document.querySelectorAll(".quiz__question .ask");             // 퀴즈 질문
+	    const quizAsk1 = document.querySelectorAll(".quiz__question .ask1");             // 퀴즈 질문
+	    const quizconfirm = document.querySelectorAll(".quiz__answer .confirm");       // 정답 확인 버튼
+	    const quizResult = document.querySelectorAll(".quiz__answer .result");         // 정답 결과
+	    const quizInput = document.querySelectorAll(".quiz__answer .input");           // 사용자 정답
+	    const quizView = document.querySelectorAll(".quiz__view");                 // 
+	    
+	    const list = document.querySelectorAll(".quiz__view .test");
+	    
+    	/* var date = document.getElementById('datepicker').value; */
+    	
+    	/* 
+    	const quizInfo = [
+				{
+					answerType: quizType,
+	            	answerNum: ,
+		            answerAsk: ,
+		            answerAsk1: ,
+		            answerResult: ,
+				},
+	    ]
+    	console.log(typeof quizInfo);
+    	
+    	
+	    quizInfo.forEach((e, i) => {
+	        quizType[i].textContent = quizInfo[i].answerType;
+	        quizNumber[i].textContent = quizInfo[i].answerNum + ". ";
+	        quizAsk[i].textContent = quizInfo[i].answerAsk;
+	        quizAsk1[i].textContent = quizInfo[i].answerAsk1;
+	        quizResult[i].textContent = quizInfo[i].answerResult;
+	    })
+		
+	    quizInfo.forEach((e, i) => {
+	        quizResult[i].style.display = "none";
+	    });
+		 */
+	    
+	    quizconfirm.forEach((btn, num) => {          
+	        btn.addEventListener("click", () => {
+	            
+	            // 사용자 정답
+	            const userWord = quizInput[num].value;
+	            // console.log(userWord);
+	            // 사용자 정답 비교
+	            if(userWord == quizInfo[num].answerResult){
+	                // 정답
+	                // alert("정답");
+	                quizView[num].classList.add("like");
+	                quizconfirm[num].style.display="none";
+	                
+	                /* document.getElementById("testCk").checked = true; */
+	                
+	                if(num==0){
+	                	document.getElementById("testCk1").checked = true; // HTTP
+	                } else if(num==1){
+	                	document.getElementById("testCk2").checked = true; // BMP
+	                } else if(num==2){
+	                	document.getElementById("testCk3").checked = true; // 유사조화
+	                } else if(num==3){
+	                	document.getElementById("testCk4").checked = true; // 픽셀
+	                } else {
+	                	document.getElementById("testCk5").checked = true; // 유사조화
+	                } 
+	                
+	                
+	            }else {
+	                // 오답
+	                // alert("오답")
+	                quizView[num].classList.add("dislike");
+	                quizconfirm[num].style.display="none";
+	                quizResult[num].style.display = "block";
+	                quizInput[num].style.display = "none";
+	            }
+	        })
+	    });
+	    
+	    quizconfirm.forEach((btn, num) => {          
+	        btn.addEventListener("focusout", () => {
+	            
+	            // 사용자 정답
+	            const userWord = quizInput[num].value;
+	            // console.log(userWord);
+	            // 사용자 정답 비교
+	            if(userWord == quizInfo[num].answerResult){
+	            	
+	            	
+	                
+	                let cnt = 0;
+	                for(let i=0; i<list.length;i++){
+	                	if(list[i].checked === true){
+	                		cnt++;
+	                	}
+	                }
+	            	
+	                console.log(cnt);
+	                
+	                var score = list.length;
+	                var result_test = document.getElementById('result1');
+	                
+	                result_test.innerHTML = score + '개중에서 ' + cnt + '개 맞추셨습니다.';
+	                
+	            }else {
+	            	
+	            	let cnt = 0;
+	                for(let i=0; i<list.length;i++){
+	                	if(list[i].checked === true){
+	                		cnt++;
+	                	}
+	                }
+	            	
+	                console.log(cnt);
+	                
+	                var score = list.length;
+	                var result_test = document.getElementById('result1');
+	                
+	                result_test.innerHTML = score + '개중에서 ' + cnt + '개 맞추셨습니다.';
+	            	
+	            }
+	        })
+	    });
+		</script>
+		
+		
+		<script>
+		/* 
+		let listHTML = "";
+		
+		listHTML += '<c:forEach items="${test}" var="test" varStatus="status">';
+		listHTML += '<div class="col-6" style="margin:auto;">';
+		listHTML += '<div class="quiz">';
+		listHTML += '<span class="quiz__type">${test.sddDateChoice}</span>';
+		listHTML += '<h2 class="quiz__question">';
+		listHTML += '<span class="number">${test.sdwNum}</span>';
+		listHTML += '<div class="ask" >${test.first}_________${test.second}</div>';
+		listHTML += '<div class="ask1" >${test.sdweTranslate}</div>';
+		listHTML += '</h2>';
+		listHTML += '<div class="quiz__view">';
+		listHTML += '<div class="true">정답🐾</div>';
+		listHTML += '<div class="false">오답 입니다!</div>';
+		listHTML += '<input type="hidden" class="test" id="testCk'+${status.index}+'" name="testCk">';
+		listHTML += '</div>';
+		listHTML += '<div class="quiz__answer">';
+		listHTML += '<input type="text" class="input" placeholder="정답을 적어주세요!">';
+		listHTML += '<button class="confirm">정답 확인하기</button>';
+		listHTML += '<div class="result"></div>';
+		listHTML += '</div>';
+		listHTML += '</div>';
+		listHTML += '</div>';
+		listHTML += '</c:forEach>';
+		
+		document.getElementById('testPart').innerHTML +=listHTML;
+		 */
+		</script>
 		<script>
 		
-		let tp=document.getElementById("testPart");
-		
-		tp.innerHTML += '<div class="row" style="height:480px;">';
-		tp.innerHTML += '<div class="col-6" style="margin:auto;">';
-		tp.innerHTML +=     '<div class="quiz">';
-		tp.innerHTML +=         '<span class="quiz__type"></span>';
-		tp.innerHTML +=         '<h2 class="quiz__question">';
-		tp.innerHTML +=             '<span class="number"></span>';
-		tp.innerHTML +=             '<div class="ask"></div>';
-		tp.innerHTML +=             '<div class="ask1"></div>';
-		tp.innerHTML +=         '</h2>';
-		tp.innerHTML +=         '<div class="quiz__view">';
-		tp.innerHTML +=             '<div class="true">정답🐾</div>';
-		tp.innerHTML +=             '<div class="false">오답 입니다!</div>';
-		tp.innerHTML +=             '<input type="hidden" class="test" id="testCk5" name="testCk">';
-		tp.innerHTML +=         '</div>';
-		tp.innerHTML +=         '<div class="quiz__answer">';
-		tp.innerHTML +=             '<input type="text" class="input" placeholder="정답을 적어주세요!">';
-		tp.innerHTML +=             '<button class="confirm">정답 확인하기</button>';
-		tp.innerHTML +=             '<div class="result"></div>';
-		tp.innerHTML +=         '</div>';
-		tp.innerHTML +=     '</div>';
-		tp.innerHTML += '</div>';
-		tp.innerHTML += '</div>';
+			/* 
+			let listHTML = "";
+			
+			listHTML += '<c:forEach items="${test}" var="test" varStatus="status">';
+			listHTML += '<div class="col-6" style="margin:auto;">';
+			listHTML += '<div class="quiz">';
+			listHTML += '<span class="quiz__type">${test.sddDateChoice}</span>';
+			listHTML += '<h2 class="quiz__question">';
+			listHTML += '<span class="number">${test.sdwNum}</span>';
+			listHTML += '<div class="ask" >${test.first}_________${test.second}</div>';
+			listHTML += '<div class="ask1" >${test.sdweTranslate}</div>';
+			listHTML += '</h2>';
+			listHTML += '<div class="quiz__view">';
+			listHTML += '<div class="true">정답🐾</div>';
+			listHTML += '<div class="false">오답 입니다!</div>';
+			listHTML += '<input type="hidden" class="test" id="testCk'+${status.index}+'" name="testCk">';
+			listHTML += '</div>';
+			listHTML += '<div class="quiz__answer">';
+			listHTML += '<input type="text" class="input" placeholder="정답을 적어주세요!">';
+			listHTML += '<button class="confirm">정답 확인하기</button>';
+			listHTML += '<div class="result"></div>';
+			listHTML += '</div>';
+			listHTML += '</div>';
+			listHTML += '</div>';
+			listHTML += '</c:forEach>';
+			
+			document.getElementById('testChoice').innerHTML +=listHTML;
+			 */
 	    /* 
-		<div class="row" style="height:480px;">
-			<div class="col-6" style="margin:auto;">
-		        <div class="quiz">
-		            <span class="quiz__type"></span>
-		            <h2 class="quiz__question">
-		                <span class="number"></span>
-		                <div class="ask"></div>
-		                <div class="ask1"></div>
-		            </h2>
-		            <div class="quiz__view">
-		                <div class="true">정답🐾</div>
-		                <div class="false">오답 입니다!</div>
-		                <input type="hidden" class="test" id="testCk5" name="testCk">
-		            </div>
-		            <div class="quiz__answer">
-		                <input type="text" class="input" placeholder="정답을 적어주세요!">
-		                <button class="confirm">정답 확인하기</button>
-		                <div class="result"></div>
-		            </div>
-		        </div>
-		    </div>
-	    </div>
+	    <c:forEach items="${test}" var="test" >
+			<c:if test="${test.sddDateChoice == '2022-07-25' }" >
+				<div class="row" style="height:480px;">
+					<div class="col-6" style="margin:auto;">
+				        <div class="quiz">
+				            <span class="quiz__type"></span>
+				            <h2 class="quiz__question">
+				                <span class="number"></span>
+				                <div class="ask"></div>
+				                <div class="ask1"></div>
+				            </h2>
+				            <div class="quiz__view">
+				                <div class="true">정답🐾</div>
+				                <div class="false">오답 입니다!</div>
+				                <input type="hidden" class="test" id="testCk5" name="testCk">
+				            </div>
+				            <div class="quiz__answer">
+				                <input type="text" class="input" placeholder="정답을 적어주세요!">
+				                <button class="confirm">정답 확인하기</button>
+				                <div class="result"></div>
+				            </div>
+				        </div>
+				    </div>
+			    </div>
+			 </c:if>
+		</c:forEach>
 		 */
 	    </script>
 			

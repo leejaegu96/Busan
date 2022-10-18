@@ -53,7 +53,7 @@ public class HomeController {
 
 	
 	@RequestMapping(value = "test")
-	public String test(Model model) throws Exception {
+	public String test(Home dto, Model model) throws Exception {
 		
 		List<Home> test = service.selectTest();
 		model.addAttribute("test", test);
@@ -64,10 +64,12 @@ public class HomeController {
 	
 	@ResponseBody
 	@RequestMapping(value="testDate")
-	public Map<String, Object> testDate(Home dto) throws Exception {
+	public Map<String, Object> testDate(Home dto, @RequestParam("sddDateChoice") String sddDateChoice, Model model) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
-		Home result = service.testDate(dto);
+		dto.setSddDateChoice(sddDateChoice);
+		System.out.println("처음: " + sddDateChoice);
+		List<Home> result = service.selectTest(dto);
 		if(result != null) {
 			returnMap.put("rt", "success");
 			returnMap.put("tt", result);
@@ -75,6 +77,8 @@ public class HomeController {
 			returnMap.put("rt", "fail");
 		}
 		System.out.println("returnMap : " + returnMap);
+		System.out.println(sddDateChoice);
+		model.addAttribute("test", result);
 		return returnMap;
 	}
 	

@@ -21,6 +21,7 @@ public class HomeServiceImpl implements HomeService{
 		List<Home> list = dao.selectList();
 		return list;
 	}
+	
 	@Override
 	public List<Home> selectContents() throws Exception {
 		List<Home> item = dao.selectContents();
@@ -29,6 +30,11 @@ public class HomeServiceImpl implements HomeService{
 	@Override
 	public List<Home> selectTest() throws Exception {
 		List<Home> test = dao.selectTest();
+		return test;
+	}
+	@Override
+	public List<Home> selectTest(Home dto) throws Exception {
+		List<Home> test = dao.selectTest(dto);
 		return test;
 	}
 	
