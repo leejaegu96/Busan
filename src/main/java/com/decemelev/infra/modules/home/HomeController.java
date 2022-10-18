@@ -78,7 +78,7 @@ public class HomeController {
 		}
 		System.out.println("returnMap : " + returnMap);
 		System.out.println(sddDateChoice);
-		model.addAttribute("test", result);
+		model.addAttribute("result", result);
 		return returnMap;
 	}
 	
