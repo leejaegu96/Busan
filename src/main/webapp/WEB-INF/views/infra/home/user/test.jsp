@@ -302,7 +302,6 @@
 		 -->
 		<!-- 날짜 선택 ------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 		<script type="text/javascript">
-		
 		const quizType = document.querySelectorAll(".quiz__type");                     // 퀴즈 종류
 	    const quizNumber = document.querySelectorAll(".quiz__question .number");       // 퀴즈 번호
 	    const quizAsk = document.querySelectorAll(".quiz__question .ask");             // 퀴즈 질문
@@ -317,15 +316,41 @@
     	/* var date = document.getElementById('datepicker').value; */
     	
     	const quizInfo = [
-				for(var i=0; i < response.tt.length; i++){
-					{
-						answerType: response.tt[i].sddDateChoice,
-		            	answerNum: response.tt[i].sdwNum,
-			            answerAsk: response.tt[i].first __________ response.tt[i].second,
-			            answerAsk1: response.tt[i].sdweTranslate,
-			            answerResult: response.tt[i].sdwWord,
-					},
-				}
+			/* {
+				answerType: response.tt[0].sddDateChoice,
+            	answerNum: response.tt[0].sdwNum,
+	            answerAsk: response.tt[0].first + '__________' + response.tt[i].second,
+	            answerAsk1: response.tt[0].sdweTranslate,
+	            answerResult: response.tt[0].sdwWord,   
+			},
+			{
+				answerType: response.tt[1].sddDateChoice,
+            	answerNum: response.tt[1].sdwNum,
+	            answerAsk: response.tt[1].first + '__________' + response.tt[i].second,
+	            answerAsk1: response.tt[1].sdweTranslate,
+	            answerResult: response.tt[1].sdwWord,
+			},
+			{
+				answerType: response.tt[2].sddDateChoice,
+            	answerNum: response.tt[2].sdwNum,
+	            answerAsk: response.tt[2].first + '__________' + response.tt[i].second,
+	            answerAsk1: response.tt[2].sdweTranslate,
+	            answerResult: response.tt[2].sdwWord,
+			},
+			{
+				answerType: response.tt[3].sddDateChoice,
+            	answerNum: response.tt[3].sdwNum,
+	            answerAsk: response.tt[3].first + '__________' + response.tt[i].second,
+	            answerAsk1: response.tt[3].sdweTranslate,
+	            answerResult: response.tt[3].sdwWord,
+			},
+			{
+				answerType: response.tt[4].sddDateChoice,
+            	answerNum: response.tt[4].sdwNum,
+	            answerAsk: response.tt[4].first + '__________' + response.tt[i].second,
+	            answerAsk1: response.tt[4].sdweTranslate,
+	            answerResult: response.tt[4].sdwWord,
+			}, */
     			
 	    ]
     	console.log(typeof quizInfo);
