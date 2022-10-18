@@ -317,13 +317,16 @@
     	/* var date = document.getElementById('datepicker').value; */
     	
     	const quizInfo = [
-				{
-					answerType: ,
-	            	answerNum: ,
-		            answerAsk: ,
-		            answerAsk1: ,
-		            answerResult: ,
-				},
+				for(var i=0; i < response.tt.length; i++){
+					{
+						answerType: response.tt[i].sddDateChoice,
+		            	answerNum: response.tt[i].sdwNum,
+			            answerAsk: response.tt[i].first __________ response.tt[i].second,
+			            answerAsk1: response.tt[i].sdweTranslate,
+			            answerResult: response.tt[i].sdwWord,
+					},
+				}
+    			
 	    ]
     	console.log(typeof quizInfo);
     	
