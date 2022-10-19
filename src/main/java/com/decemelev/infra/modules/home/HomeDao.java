@@ -70,4 +70,10 @@ public class HomeDao {
 	
 	public int uploadedUpdate(Home dto){ return sqlSession.update(namespace + ".uploadedUpdate", dto); }
 	
+	
+	public int insert(Home dto) {
+		int result = sqlSession.insert(namespace + ".insert", dto);
+		System.out.println("dao.result :" + result);
+		return result;
+	}
 }

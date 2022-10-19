@@ -43,13 +43,16 @@
 		    ,d.sdweTranslate
 		    ,a.sdwWord
 		    ,b.sddDateChoice
+		    ,e.sdDate_sddSeq
 		from sdWord a
 		inner join sdDate b on b.sddSeq=a.sdDate_sddSeq
 		inner join sdwMean c on c.sdWord_sdwSeq=a.sdwSeq
 		inner join sdwExample d on d.sdwMean_sdwmSeq=c.sdwmSeq
+		inner join sdTotalResult e on e.sdDate_sddSeq=b.sddSeq
 		where 1=1 
 		    AND d.sdweDefaultNy = 1
 		    AND b.sddDateChoice = #{sddDateChoice}
+		group by a.sdwNum
 		    
 
 	</select>
@@ -153,6 +156,19 @@
 			AND delNy = 0
 			AND pseq = #{ifmmSeq}
 	</update>
+	
+	<insert id="insert">
+		INSERT INTO sdTotalResult (
+			infrMember_ifmmSeq
+			,sdtrsTotalScore
+			,sdDate_sddSeq
+		)
+		VALUES (
+			#{ifmmSeq}
+			,#{sdtrsTotalScore}
+			,#{sdDate_sddSeq}
+		)
+	</insert>
 	
 	
 	

@@ -113,23 +113,35 @@
 					<header>
 						<h2>TEST</h2>
 						<p>Test your skills based on what you've learned</p>
-						<!-- 날짜 선택 --------------------------------------------------------------------------------------------------------------------------------------------------- -->
-						<input type="text" class="form-control" id="datepicker" placeholder="Choice Date!!" style="text-align:center; color:black;"><br>
-						<div id="result1" style="text-align:center; font-size:20px; font-style: bold;"> </div> 
 					</header>
+<!-- 폼 시작------------------------------------------------------------------------------------------------------------------------------------------------- -->
+					<form id="form" name="form" method="post">
+						<!-- 날짜 선택 --------------------------------------------------------------------------------------------------------------------------------------------------- -->
+						<div class="row">
+							<div class="col-10">
+								<input type="text" name="ifmmSeq" value="<c:out value="${list.ifmmSeq }"/>" />
+								<div id="testDate"></div>
+								<input type="text" class="form-control" id="datepicker" name ="sddDateChoice" placeholder="Choice Date!!" style="text-align:center; color:black; height:50px;">
+							</div>
+							<div class="col-2">
+								<button type="button" class="btn btn-primary" id="btn" style="height:50px;" >제출하기</button>
+							</div>
+						</div>
+						<br>
+						<div id="result1" style="text-align:center; font-size:20px; font-style: bold;"> </div> <br>
+						<input type="text" id="answer1" name="sdtrsTotalScore">
+					</form>
+<!-- 폼 끝------------------------------------------------------------------------------------------------------------------------------------------------- -->
 					<div class="row">
 						<div class="col-12">
-						
 							<main id="main">
 								<div class="row" style="height:480px;">
 									<div id="testChoice"></div>
 								</div>
 							</main>
-							
-							
 						</div>
 					</div>
-					
+				</section>
 
 			<!-- Footer -->
 				<!-- 
@@ -194,6 +206,16 @@
 		</div>
 		
 		<script type="text/javascript">
+		var goUrlInst = "/home/testInst";
+		
+		var form = $("form[name = form]");
+		
+		$("#btn").on("click", function(){
+			form.attr("action", goUrlInst).submit();
+		}); 
+		</script>
+		
+		<script type="text/javascript">
 		$("#btnLogout").on("click", function(){
 			$.ajax({
 				async: true 
@@ -228,10 +250,17 @@
 				,success: function(response) {
 					if(response.rt == "success") {
 						console.log(response);
+						
+						let listHTML = "";
+						listHTML += '<input type="text" name="sdDate_sddSeq" value="'+ response.tt[0].sdDate_sddSeq +' ">';
+						
+						document.getElementById('testDate').innerHTML += listHTML;
+						
 						document.getElementById('testChoice').innerHTML = "";
 						for(let i=0; i<response.tt.length; i++){
 							console.log(response.tt[i]);
 							let listHTML = "";
+							
 							listHTML += '<div class="col-6" style="margin:auto;">';
 							listHTML += '<div class="quiz">';
 							listHTML += '<span class="quiz__type">'+ response.tt[i].sddDateChoice +'</span>';
@@ -246,14 +275,67 @@
 							listHTML += '<input type="hidden" class="test" id="testCk'+response.tt[i].sdwNum+'" name="testCk">';
 							listHTML += '</div>';
 							listHTML += '<div class="quiz__answer">';
-							listHTML += '<input type="text" class="input" placeholder="정답을 적어주세요!">';
-							listHTML += '<button class="confirm">정답 확인하기</button>';
-							listHTML += '<div class="result"></div>';
+							listHTML += '<input type="text" class="input" id="input'+response.tt[i].sdwNum+'" style="text-align:center;" placeholder="정답을 적어주세요!">';
+							listHTML += '<button class="confirm" id="confirm'+response.tt[i].sdwNum+'">정답 확인하기</button>';
+							listHTML += '<div class="result" style="display:none;"></div>';
 							listHTML += '</div>';
 							listHTML += '</div>';
 							listHTML += '</div>';
 							
 							document.getElementById('testChoice').innerHTML += listHTML;
+							
+						}
+						for(let i=0; i<response.tt.length; i++){
+							document.getElementById("confirm"+response.tt[i].sdwNum).onclick = function () {
+								if(document.getElementById('input'+response.tt[i].sdwNum).value == response.tt[i].sdwWord){
+									document.getElementById('input'+response.tt[i].sdwNum).value= response.tt[i].sdwWord+" 정답 입니다.!!";
+									document.getElementById('input'+response.tt[i].sdwNum).disabled = true;
+									document.getElementById("testCk"+response.tt[i].sdwNum).checked = true;
+									let cnt = 0;
+					                for(let i=0; i<response.tt.length;i++){
+					                	if(document.getElementById("testCk"+response.tt[i].sdwNum).checked == true){
+					                		cnt++;
+					                	}
+					                }
+					            	
+					                console.log(cnt);
+					                
+					                var score = response.tt.length;
+					                var result_test = document.getElementById('result1');
+					                var result_test1 = document.getElementById('answer1');
+					                
+					                result_test.innerHTML = score + '개중에서 ' + cnt + '개 맞추셨습니다.';
+					                result_test1.value = cnt;
+					                /* var btn = document.getElementById("btn");
+					                var asw = document.getElementById("answer1");
+					                btn.addEventListener("click", function() {
+					                	alert(asw.value);  
+					                }, false); */
+								} else {
+									document.getElementById('input'+response.tt[i].sdwNum).value="틀렸습니다! 정답은  "+ response.tt[i].sdwWord+" 입니다.";
+									document.getElementById('input'+response.tt[i].sdwNum).disabled = true;
+									let cnt = 0;
+					                for(let i=0; i<response.tt.length;i++){
+					                	if(document.getElementById("testCk"+response.tt[i].sdwNum).checked == true){
+					                		cnt++;
+					                	}
+					                }
+					            	
+					                console.log(cnt);
+					                
+					                var score = response.tt.length;
+					                var result_test = document.getElementById('result1');
+					                var result_test1 = document.getElementById('answer1');
+					                
+					                result_test.innerHTML = score + '개중에서 ' + cnt + '개 맞추셨습니다.';
+					                result_test1.innerHTML = cnt;
+					                /* var btn = document.getElementById("btn");
+					                var asw = document.getElementById("answer1");
+					                btn.addEventListener("click", function() {
+					                	alert(asw.value);  
+					                }, false); */
+								}
+						    };
 							
 						}
 						
@@ -269,281 +351,8 @@
 			});
 		});
 		
+		
 		</script>
-		<!-- 
-		<script>
-		let listHTML = "";
-		listHTML += '<span>이게 왜 안나올까요</span>';
-		listHTML += '<c:forEach items="${result}" var="result" varStatus="status">';
-		listHTML += '<div class="col-6" style="margin:auto;">';
-		listHTML += '<div class="quiz">';
-		listHTML += '<span class="quiz__type">${result.sddDateChoice}</span>';
-		listHTML += '<h2 class="quiz__question">';
-		listHTML += '<span class="number">${result.sdwNum}</span>';
-		listHTML += '<div class="ask" >${result.first}_________${result.second}</div>';
-		listHTML += '<div class="ask1" >${result.sdweTranslate}</div>';
-		listHTML += '</h2>';
-		listHTML += '<div class="quiz__view">';
-		listHTML += '<div class="true">정답🐾</div>';
-		listHTML += '<div class="false">오답 입니다!</div>';
-		listHTML += '<input type="hidden" class="test" id="testCk'+${status.index}+'" name="testCk">';
-		listHTML += '</div>';
-		listHTML += '<div class="quiz__answer">';
-		listHTML += '<input type="text" class="input" placeholder="정답을 적어주세요!">';
-		listHTML += '<button class="confirm">정답 확인하기</button>';
-		listHTML += '<div class="result"></div>';
-		listHTML += '</div>';
-		listHTML += '</div>';
-		listHTML += '</div>';
-		listHTML += '</c:forEach>';
-		
-		document.getElementById('testChoice').innerHTML += listHTML;	
-		</script>
-		 -->
-		<!-- 날짜 선택 ------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
-		<script type="text/javascript">
-		const quizType = document.querySelectorAll(".quiz__type");                     // 퀴즈 종류
-	    const quizNumber = document.querySelectorAll(".quiz__question .number");       // 퀴즈 번호
-	    const quizAsk = document.querySelectorAll(".quiz__question .ask");             // 퀴즈 질문
-	    const quizAsk1 = document.querySelectorAll(".quiz__question .ask1");             // 퀴즈 질문
-	    const quizconfirm = document.querySelectorAll(".quiz__answer .confirm");       // 정답 확인 버튼
-	    const quizResult = document.querySelectorAll(".quiz__answer .result");         // 정답 결과
-	    const quizInput = document.querySelectorAll(".quiz__answer .input");           // 사용자 정답
-	    const quizView = document.querySelectorAll(".quiz__view");                 // 
-	    
-	    const list = document.querySelectorAll(".quiz__view .test");
-	    
-    	/* var date = document.getElementById('datepicker').value; */
-    	
-    	const quizInfo = [
-			/* {
-				answerType: response.tt[0].sddDateChoice,
-            	answerNum: response.tt[0].sdwNum,
-	            answerAsk: response.tt[0].first + '__________' + response.tt[i].second,
-	            answerAsk1: response.tt[0].sdweTranslate,
-	            answerResult: response.tt[0].sdwWord,   
-			},
-			{
-				answerType: response.tt[1].sddDateChoice,
-            	answerNum: response.tt[1].sdwNum,
-	            answerAsk: response.tt[1].first + '__________' + response.tt[i].second,
-	            answerAsk1: response.tt[1].sdweTranslate,
-	            answerResult: response.tt[1].sdwWord,
-			},
-			{
-				answerType: response.tt[2].sddDateChoice,
-            	answerNum: response.tt[2].sdwNum,
-	            answerAsk: response.tt[2].first + '__________' + response.tt[i].second,
-	            answerAsk1: response.tt[2].sdweTranslate,
-	            answerResult: response.tt[2].sdwWord,
-			},
-			{
-				answerType: response.tt[3].sddDateChoice,
-            	answerNum: response.tt[3].sdwNum,
-	            answerAsk: response.tt[3].first + '__________' + response.tt[i].second,
-	            answerAsk1: response.tt[3].sdweTranslate,
-	            answerResult: response.tt[3].sdwWord,
-			},
-			{
-				answerType: response.tt[4].sddDateChoice,
-            	answerNum: response.tt[4].sdwNum,
-	            answerAsk: response.tt[4].first + '__________' + response.tt[i].second,
-	            answerAsk1: response.tt[4].sdweTranslate,
-	            answerResult: response.tt[4].sdwWord,
-			}, */
-    			
-	    ]
-    	console.log(typeof quizInfo);
-    	
-    	
-	    quizInfo.forEach((e, i) => {
-	        quizType[i].textContent = quizInfo[i].answerType;
-	        quizNumber[i].textContent = quizInfo[i].answerNum + ". ";
-	        quizAsk[i].textContent = quizInfo[i].answerAsk;
-	        quizAsk1[i].textContent = quizInfo[i].answerAsk1;
-	        quizResult[i].textContent = quizInfo[i].answerResult;
-	    })
-		
-	    quizInfo.forEach((e, i) => {
-	        quizResult[i].style.display = "none";
-	    });
-	    
-	    quizconfirm.forEach((btn, num) => {          
-	        btn.addEventListener("click", () => {
-	            
-	            // 사용자 정답
-	            const userWord = quizInput[num].value;
-	            // console.log(userWord);
-	            // 사용자 정답 비교
-	            if(userWord == quizInfo[num].answerResult){
-	                // 정답
-	                // alert("정답");
-	                quizView[num].classList.add("like");
-	                quizconfirm[num].style.display="none";
-	                
-	                /* document.getElementById("testCk").checked = true; */
-	                
-	                if(num==0){
-	                	document.getElementById("testCk1").checked = true; // HTTP
-	                } else if(num==1){
-	                	document.getElementById("testCk2").checked = true; // BMP
-	                } else if(num==2){
-	                	document.getElementById("testCk3").checked = true; // 유사조화
-	                } else if(num==3){
-	                	document.getElementById("testCk4").checked = true; // 픽셀
-	                } else {
-	                	document.getElementById("testCk5").checked = true; // 유사조화
-	                } 
-	                
-	                
-	            }else {
-	                // 오답
-	                // alert("오답")
-	                quizView[num].classList.add("dislike");
-	                quizconfirm[num].style.display="none";
-	                quizResult[num].style.display = "block";
-	                quizInput[num].style.display = "none";
-	            }
-	        })
-	    });
-	    
-	    quizconfirm.forEach((btn, num) => {          
-	        btn.addEventListener("focusout", () => {
-	            
-	            // 사용자 정답
-	            const userWord = quizInput[num].value;
-	            // console.log(userWord);
-	            // 사용자 정답 비교
-	            if(userWord == quizInfo[num].answerResult){
-	            	
-	            	
-	                
-	                let cnt = 0;
-	                for(let i=0; i<list.length;i++){
-	                	if(list[i].checked === true){
-	                		cnt++;
-	                	}
-	                }
-	            	
-	                console.log(cnt);
-	                
-	                var score = list.length;
-	                var result_test = document.getElementById('result1');
-	                
-	                result_test.innerHTML = score + '개중에서 ' + cnt + '개 맞추셨습니다.';
-	                
-	            }else {
-	            	
-	            	let cnt = 0;
-	                for(let i=0; i<list.length;i++){
-	                	if(list[i].checked === true){
-	                		cnt++;
-	                	}
-	                }
-	            	
-	                console.log(cnt);
-	                
-	                var score = list.length;
-	                var result_test = document.getElementById('result1');
-	                
-	                result_test.innerHTML = score + '개중에서 ' + cnt + '개 맞추셨습니다.';
-	            	
-	            }
-	        })
-	    });
-		</script>
-		
-		
-		<script>
-		/* 
-		let listHTML = "";
-		
-		listHTML += '<c:forEach items="${test}" var="test" varStatus="status">';
-		listHTML += '<div class="col-6" style="margin:auto;">';
-		listHTML += '<div class="quiz">';
-		listHTML += '<span class="quiz__type">${test.sddDateChoice}</span>';
-		listHTML += '<h2 class="quiz__question">';
-		listHTML += '<span class="number">${test.sdwNum}</span>';
-		listHTML += '<div class="ask" >${test.first}_________${test.second}</div>';
-		listHTML += '<div class="ask1" >${test.sdweTranslate}</div>';
-		listHTML += '</h2>';
-		listHTML += '<div class="quiz__view">';
-		listHTML += '<div class="true">정답🐾</div>';
-		listHTML += '<div class="false">오답 입니다!</div>';
-		listHTML += '<input type="hidden" class="test" id="testCk'+${status.index}+'" name="testCk">';
-		listHTML += '</div>';
-		listHTML += '<div class="quiz__answer">';
-		listHTML += '<input type="text" class="input" placeholder="정답을 적어주세요!">';
-		listHTML += '<button class="confirm">정답 확인하기</button>';
-		listHTML += '<div class="result"></div>';
-		listHTML += '</div>';
-		listHTML += '</div>';
-		listHTML += '</div>';
-		listHTML += '</c:forEach>';
-		
-		document.getElementById('testPart').innerHTML +=listHTML;
-		 */
-		</script>
-		<script>
-		
-			/* 
-			let listHTML = "";
-			
-			listHTML += '<c:forEach items="${test}" var="test" varStatus="status">';
-			listHTML += '<div class="col-6" style="margin:auto;">';
-			listHTML += '<div class="quiz">';
-			listHTML += '<span class="quiz__type">${test.sddDateChoice}</span>';
-			listHTML += '<h2 class="quiz__question">';
-			listHTML += '<span class="number">${test.sdwNum}</span>';
-			listHTML += '<div class="ask" >${test.first}_________${test.second}</div>';
-			listHTML += '<div class="ask1" >${test.sdweTranslate}</div>';
-			listHTML += '</h2>';
-			listHTML += '<div class="quiz__view">';
-			listHTML += '<div class="true">정답🐾</div>';
-			listHTML += '<div class="false">오답 입니다!</div>';
-			listHTML += '<input type="hidden" class="test" id="testCk'+${status.index}+'" name="testCk">';
-			listHTML += '</div>';
-			listHTML += '<div class="quiz__answer">';
-			listHTML += '<input type="text" class="input" placeholder="정답을 적어주세요!">';
-			listHTML += '<button class="confirm">정답 확인하기</button>';
-			listHTML += '<div class="result"></div>';
-			listHTML += '</div>';
-			listHTML += '</div>';
-			listHTML += '</div>';
-			listHTML += '</c:forEach>';
-			
-			document.getElementById('testChoice').innerHTML +=listHTML;
-			 */
-	    /* 
-	    <c:forEach items="${test}" var="test" >
-			<c:if test="${test.sddDateChoice == '2022-07-25' }" >
-				<div class="row" style="height:480px;">
-					<div class="col-6" style="margin:auto;">
-				        <div class="quiz">
-				            <span class="quiz__type"></span>
-				            <h2 class="quiz__question">
-				                <span class="number"></span>
-				                <div class="ask"></div>
-				                <div class="ask1"></div>
-				            </h2>
-				            <div class="quiz__view">
-				                <div class="true">정답🐾</div>
-				                <div class="false">오답 입니다!</div>
-				                <input type="hidden" class="test" id="testCk5" name="testCk">
-				            </div>
-				            <div class="quiz__answer">
-				                <input type="text" class="input" placeholder="정답을 적어주세요!">
-				                <button class="confirm">정답 확인하기</button>
-				                <div class="result"></div>
-				            </div>
-				        </div>
-				    </div>
-			    </div>
-			 </c:if>
-		</c:forEach>
-		 */
-	    </script>
-			
 
 	</body>
 </html>

@@ -21,5 +21,7 @@ public interface HomeService {
 	
 	List<Home> selectListUploaded(HomeVo vo) throws Exception; 
 	
+	public int insert(Home dto) throws Exception;
+	
 	
 }

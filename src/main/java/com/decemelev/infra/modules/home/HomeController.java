@@ -53,10 +53,18 @@ public class HomeController {
 
 	
 	@RequestMapping(value = "test")
-	public String test(Home dto, Model model) throws Exception {
+	public String test( @ModelAttribute("vo") HomeVo vo, Home dto, Model model, HttpServletRequest httpServletRequest) throws Exception {
 		
 		List<Home> test = service.selectTest();
 		model.addAttribute("test", test);
+		
+		HttpSession httpSession =  httpServletRequest.getSession();
+		sessSeq = (String) httpSession.getAttribute("sessSeq");
+		
+		vo.setMainKey(sessSeq);
+		
+		Home list = service.memberList(vo);
+		model.addAttribute("list", list);
 		
 		return "infra/home/user/test";
 		
@@ -76,6 +84,8 @@ public class HomeController {
 		} else {
 			returnMap.put("rt", "fail");
 		}
+		
+		
 		System.out.println("returnMap : " + returnMap);
 		System.out.println(sddDateChoice);
 		model.addAttribute("result", result);
@@ -160,7 +170,13 @@ public class HomeController {
 		return returnMap;
 	}
 	
-	
+	@RequestMapping(value="testInst")
+	public String testInst(Home dto, RedirectAttributes redirectAttributes) throws Exception{
+		int result = service.insert(dto);
+		
+		System.out.println("controller result: " + result);
+		return "redirect:/home/test";
+	}
 	
 	@ResponseBody
 	@RequestMapping(value = "trans")

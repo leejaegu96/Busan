@@ -112,4 +112,11 @@ public class HomeServiceImpl implements HomeService{
 	public List<Home> selectListUploaded(HomeVo vo) throws Exception {
 		return dao.selectListUploaded(vo);
 	}
+	
+	@Override
+	public int insert(Home dto) throws Exception{
+		int result = dao.insert(dto);
+		System.out.println("service result: "+ result);
+		return result;
+	}
 }
