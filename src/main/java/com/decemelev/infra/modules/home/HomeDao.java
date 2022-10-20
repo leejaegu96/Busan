@@ -47,6 +47,10 @@ public class HomeDao {
 		List<Home> rank = sqlSession.selectList("com.decemelev.infra.modules.home.HomeMapper.selectRank", "");
 		return rank;
 	}
+	public List<Home> selectRank1() {
+		List<Home> rank = sqlSession.selectList("com.decemelev.infra.modules.home.HomeMapper.selectRank1", "");
+		return rank;
+	}
 	
 	public int update(Home dto) {
 		return sqlSession.update(namespace + ".update", dto);

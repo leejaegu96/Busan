@@ -119,7 +119,7 @@
 						<!-- 날짜 선택 --------------------------------------------------------------------------------------------------------------------------------------------------- -->
 						<div class="row">
 							<div class="col-10">
-								<input type="text" name="ifmmSeq" value="<c:out value="${list.ifmmSeq }"/>" />
+								<input type="hidden" name="ifmmSeq" value="<c:out value="${list.ifmmSeq }"/>" />
 								<div id="testDate"></div>
 								<input type="text" class="form-control" id="datepicker" name ="sddDateChoice" placeholder="Choice Date!!" style="text-align:center; color:black; height:50px;">
 							</div>
@@ -129,7 +129,7 @@
 						</div>
 						<br>
 						<div id="result1" style="text-align:center; font-size:20px; font-style: bold;"> </div> <br>
-						<input type="text" id="answer1" name="sdtrsTotalScore">
+						<input type="hidden" id="answer1" name="sdtrsTotalScore">
 					</form>
 <!-- 폼 끝------------------------------------------------------------------------------------------------------------------------------------------------- -->
 					<div class="row">
@@ -252,7 +252,7 @@
 						console.log(response);
 						
 						let listHTML = "";
-						listHTML += '<input type="text" name="sdDate_sddSeq" value="'+ response.tt[0].sdDate_sddSeq +' ">';
+						listHTML += '<input type="hidden" name="sdDate_sddSeq" value="'+response.tt[0].sdDate_sddSeq+'">';
 						
 						document.getElementById('testDate').innerHTML += listHTML;
 						

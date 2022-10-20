@@ -94,10 +94,20 @@ public class HomeController {
 	
 	
 	@RequestMapping(value = "rank")
-	public String rank(Model model) throws Exception {
+	public String rank(@ModelAttribute("vo") HomeVo vo, Model model, HttpServletRequest httpServletRequest) throws Exception {
 		
 		List<Home> rank = service.selectRank();
 		model.addAttribute("rank", rank);
+		List<Home> rank1 = service.selectRank1();
+		model.addAttribute("rank1", rank1);
+		
+		HttpSession httpSession =  httpServletRequest.getSession();
+		sessSeq = (String) httpSession.getAttribute("sessSeq");
+		
+		vo.setMainKey(sessSeq);
+		
+		Home list = service.memberList(vo);
+		model.addAttribute("list", list);
 		
 		return "infra/home/user/rank";
 		
@@ -172,6 +182,7 @@ public class HomeController {
 	
 	@RequestMapping(value="testInst")
 	public String testInst(Home dto, RedirectAttributes redirectAttributes) throws Exception{
+		
 		int result = service.insert(dto);
 		
 		System.out.println("controller result: " + result);

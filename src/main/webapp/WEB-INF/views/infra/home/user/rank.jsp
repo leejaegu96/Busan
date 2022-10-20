@@ -177,36 +177,13 @@ body {
 												    </tr>
 												  </thead>
 												  <tbody>
-												    <tr>
-												      <td>🥇</td>
-												      <td>TOM.CRUSE</td>
-												      <td>3200</td>
-												    </tr>
-												    <tr>
-												      <td>🥈</td>
-												      <td>LEE.JAE</td>
-												      <td>3100</td>
-												    </tr>
-												    <tr>
-												      <td>🥉</td>
-												      <td>CH.BALE</td>
-												      <td>3000</td>
-												    </tr>
-												    <tr>
-												      <td>4</td>
-												      <td>CH.HAM</td>
-												      <td>2800</td>
-												    </tr>
-												    <tr>
-												      <td>5</td>
-												      <td>JU.SUNG</td>
-												      <td>2600</td>
-												    </tr>
-												    <tr>
-												      <td>6</td>
-												      <td>MA.DONG</td>
-												      <td>2500</td>
-												    </tr>
+													<c:forEach items="${rank}" var="rank" varStatus="status">
+														<tr>
+															<td><c:out value="${rank.ranking}" /></td>
+															<td><c:out value="${rank.name}" /></td>
+															<td><c:out value="${rank.sum}" /></td>
+														</tr>
+													</c:forEach>
 												  </tbody>
 												</table>
 											</div>
@@ -226,7 +203,9 @@ body {
 												  <tbody>
 												    <tr>
 												      <td>This Week</td>
-												      <td>2nd</td>
+												      <td>
+												      
+												      </td>
 												    </tr>
 												    <tr>
 												      <td>Last Week</td>
@@ -247,7 +226,7 @@ body {
 												  <thead>
 												    <tr>
 												      <td>DATE</td>
-												      <td>RANK</td>
+												      <td>SCORE</td>
 												    </tr>
 												  </thead>
 												  <tbody>

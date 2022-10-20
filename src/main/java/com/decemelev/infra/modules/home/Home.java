@@ -62,9 +62,28 @@ public class Home extends Base {
 	
 	private MultipartFile[] ifmmUploadedProfileImage;
 	
+	private String name;
+	private String sum;
+	private String ranking;
 	
-	
-	
+	public String getRanking() {
+		return ranking;
+	}
+	public void setRanking(String ranking) {
+		this.ranking = ranking;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getSum() {
+		return sum;
+	}
+	public void setSum(String sum) {
+		this.sum = sum;
+	}
 	public Integer getSdwNum() {
 		return sdwNum;
 	}

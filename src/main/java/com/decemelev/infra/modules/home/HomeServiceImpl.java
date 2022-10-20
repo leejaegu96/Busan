@@ -50,6 +50,11 @@ public class HomeServiceImpl implements HomeService{
 		List<Home> rank = dao.selectRank();
 		return rank;
 	}
+	@Override
+	public List<Home> selectRank1() throws Exception {
+		List<Home> rank = dao.selectRank1();
+		return rank;
+	}
 	
 	@Override
 	public int update(Home dto) throws Exception {

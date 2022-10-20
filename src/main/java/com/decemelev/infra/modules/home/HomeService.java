@@ -12,6 +12,7 @@ public interface HomeService {
 	
 	
 	public List<Home> selectRank() throws Exception;
+	public List<Home> selectRank1() throws Exception;
 	
 	public Home memberList(HomeVo vo) throws Exception;
 	public int update(Home dto) throws Exception;
