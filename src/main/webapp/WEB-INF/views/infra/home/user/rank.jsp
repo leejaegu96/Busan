@@ -191,63 +191,9 @@ body {
 									</div>
 									<div class="col-7">
 										<div>
-											<div>
-												<h3> 🏆️ User Ranking</h3>
-												<table class="table" style="width:100%; height:auto; text-align:center;">
-												  <thead>
-												    <tr>
-												      <td>DATE</td>
-												      <td>RANK</td>
-												    </tr>
-												  </thead>
-												  <tbody>
-												    <tr>
-												      <td>This Week</td>
-												      <td>
-												      
-												      </td>
-												    </tr>
-												    <tr>
-												      <td>Last Week</td>
-												      <td>3rd</td>
-												    </tr>
-												    <tr>
-												      <td>This Month</td>
-												      <td>5th</td>
-												    </tr>
-												    <tr>
-												      <td>Last Month</td>
-												      <td>-</td>
-												    </tr>
-												  </tbody>
-												</table><br><hr>
-												<h3> 🏆️ User Score</h3>
-												<table class="table" style="width:100%; height:auto; text-align:center;">
-												  <thead>
-												    <tr>
-												      <td>DATE</td>
-												      <td>SCORE</td>
-												    </tr>
-												  </thead>
-												  <tbody>
-												    <tr>
-												      <td>This Week</td>
-												      <td>3200</td>
-												    </tr>
-												    <tr>
-												      <td>Last Week</td>
-												      <td>3000</td>
-												    </tr>
-												    <tr>
-												      <td>This Month</td>
-												      <td>2500</td>
-												    </tr>
-												    <tr>
-												      <td>Last Month</td>
-												      <td>-</td>
-												    </tr>
-												  </tbody>
-												</table>
+											<div style="width: 500px; height: 500px;">
+												<!--차트가 그려질 부분-->
+												<canvas id="myChart"></canvas>
 											</div>
 										</div>
 									</div>
@@ -281,6 +227,7 @@ body {
 			<script src="../resources/assets/js/browser.min.js"></script>
 			<script src="../resources/assets/js/breakpoints.min.js"></script>
 			<script src="../resources/assets/js/util.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 			
 			<script src="https://kit.fontawesome.com/20c294a34b.js" crossorigin="anonymous"></script>
 			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
@@ -316,28 +263,89 @@ body {
 				</nav>
 			</div>
 			
-			<script type="text/javascript">
-			$("#btnLogout").on("click", function(){
-				$.ajax({
-					async: true 
-					,cache: false
-					,type: "post"
-					,url: "/login/logoutProc"
-					,data: {}
-					,success: function(response) {
-						if(response.rt == "success") {
-							location.href = "/home/home";
-						} else {
-							// by pass
-						}
-					}
-					,error : function(jqXHR, textStatus, errorThrown){
-						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-					}
-				});
-			});
-			</script>
-			
+<script type="text/javascript">
+$("#btnLogout").on("click", function(){
+	$.ajax({
+		async: true 
+		,cache: false
+		,type: "post"
+		,url: "/login/logoutProc"
+		,data: {}
+		,success: function(response) {
+			if(response.rt == "success") {
+				location.href = "/home/home";
+			} else {
+				// by pass
+			}
+		}
+		,error : function(jqXHR, textStatus, errorThrown){
+			alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+		}
+	});
+});
+</script>
+<script type="text/javascript">
+        var context = document
+            .getElementById('myChart')
+            .getContext('2d');
+        var myChart = new Chart(context, {
+            type: 'bar', // 차트의 형태
+            data: { // 차트에 들어갈 데이터
+                labels: [
+                    //x 축
+                    '1','2','3','4','5','6','7'
+                ],
+                datasets: [
+                    { //데이터
+                        label: 'test1', //차트 제목
+                        fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
+                        data: [
+                            21,19,25,20,23,26,25 //x축 label에 대응되는 데이터 값
+                        ],
+                        backgroundColor: [
+                            //색상
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            //경계선 색상
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1 //경계선 굵기
+                    }/* ,
+                    {
+                        label: 'test2',
+                        fill: false,
+                        data: [
+                            8, 34, 12, 24
+                        ],
+                        backgroundColor: 'rgb(157, 109, 12)',
+                        borderColor: 'rgb(157, 109, 12)'
+                    } */
+                ]
+            },
+            options: {
+                scales: {
+                    yAxes: [
+                        {
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }
+                    ]
+                }
+            }
+        });
+        </script>
 
 	</body>
 </html>
