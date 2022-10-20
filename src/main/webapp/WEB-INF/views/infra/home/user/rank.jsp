@@ -227,6 +227,7 @@ body {
 			<script src="../resources/assets/js/browser.min.js"></script>
 			<script src="../resources/assets/js/breakpoints.min.js"></script>
 			<script src="../resources/assets/js/util.js"></script>
+			
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 			
 			<script src="https://kit.fontawesome.com/20c294a34b.js" crossorigin="anonymous"></script>
