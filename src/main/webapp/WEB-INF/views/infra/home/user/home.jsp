@@ -135,7 +135,7 @@
 						    
 						    <h4>
 						    	<input type="hidden" id="sdwSeq" name="sdwSeq">
-					    		<c:out value="${list.sdwWord }"/> &nbsp; <i class="fa-solid fa-volume-high"></i>
+					    		<input id="text${list.sdwSeq}" value="${list.sdwWord }" style="background: none; font-weight: bold; text-align: center; color:white; height:50px;" readonly> &nbsp; <i class="fa-solid fa-volume-high" id="btn-read${list.sdwSeq}" style="cursor:pointer;"></i>
 						    </h4><br>
 						    
 						    <c:forEach items="${item}" var="item" varStatus="status">
@@ -277,6 +277,42 @@
 				});
 			});
 			</script>
+			<script>
+	        function speak(text, opt_prop) {
+	            if (typeof SpeechSynthesisUtterance === "undefined" || typeof window.speechSynthesis === "undefined") {
+	                alert("이 브라우저는 음성 합성을 지원하지 않습니다.")
+	                return
+	            }
+	            
+	            window.speechSynthesis.cancel() // 현재 읽고있다면 초기화
+	
+	            const prop = opt_prop || {}
+	
+	            const speechMsg = new SpeechSynthesisUtterance()
+	            speechMsg.rate = prop.rate || 0.1 // 속도: 0.1 ~ 10      
+	            speechMsg.pitch = prop.pitch || 0 // 음높이: 0 ~ 2
+	            speechMsg.lang = prop.lang || "ko-KR"
+	            speechMsg.text = text
+	            
+	            // SpeechSynthesisUtterance에 저장된 내용을 바탕으로 음성합성 실행
+	            window.speechSynthesis.speak(speechMsg)
+	        }
+	
+	        // 이벤트 영역
+	        for(let i=1; i<16; i++){
+	        	/* const text = document.getElementById("text"+i)
+		        const btnRead = document.getElementById("btn-read"+i) */
+		
+		        document.getElementById('btn-read'+i).addEventListener("click", e => {
+		            speak(document.getElementById('text'+i).value, {
+		                rate: 1,
+		                pitch: 1.2,
+		                lang: "en-US"
+		            })
+		        })
+	        }
+	        
+	    </script>
 
 	</body>
 </html>
