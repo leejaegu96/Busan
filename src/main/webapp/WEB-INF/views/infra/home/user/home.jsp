@@ -187,7 +187,7 @@
 								<p>We dream of a world where we can communicate without language barriers.</p>
 							</section>
 							<section>
-								<span class="icon solid major fa-bookmark accent5"></span>
+								<span class="icon solid major fa-bookmark accent5" onClick="location.href='word'"  style="cursor:pointer;"></span>
 								<h3>WORD</h3>
 								<p>Look up a word, Learn it forever!</p>
 							</section>
