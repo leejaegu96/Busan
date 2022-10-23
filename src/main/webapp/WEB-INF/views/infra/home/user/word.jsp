@@ -78,30 +78,32 @@
 		<!-- Main -->
 		<section id="main" class="container">
 			<header>
-				<h2>Translate</h2>
-				<p>We dream of a world where we can communicate without language barriers.</p>
+				<h2>Word</h2>
+				<p>Look up a word, Learn it forever!</p>
 			</header>
-			<center>
-				<div class="main">
-
-					<div class="input-group mb-3">
-						<input type="text" class="form-control" id="input">
-						<input type="button" name="Search" value="Search" onclick="Search()" class="btn btn-outline-secondary btn-primary" type="button">
-						<input type="button" name="Reset" value="Reset" class="btn btn-outline-secondary" type="button" onclick="history.go(0)">
+			<section class="box" style="height:400px;">
+				<center>
+					<div class="main">
+	
+						<div class="input-group mb-3">
+							<input type="text" class="form-control" id="input">
+							<input type="button" name="Search" value="Search" onclick="Search()" class="btn btn-outline-secondary btn-primary" type="button">
+							<input type="button" name="Reset" value="Reset" class="btn btn-outline-secondary" type="button" onclick="history.go(0)">
+						</div>
+	
+						<h1 class="badge rounded-pill bg-primary" id="word" align="left">Searching....</h1>
+						<h4 style="color: #0d6efd !important; font-weight: bold;" align="left">Definition:</h4>
+						<h6 align="left" id="definition1"></h6>
+						<h6 align="left" id="definition2"></h6>
+						&nbsp;<br> &nbsp;<br> &nbsp;<br>
+						<h4 style="color: #0d6efd !important; font-weight: bold;" align="left">Example:</h4>
+						<h6 align="left" id="example1"></h6>
+						<h6 align="left" id="example2"></h6>
+						&nbsp;<br> &nbsp;<br>
+	
 					</div>
-
-					<h1 class="badge rounded-pill bg-primary" id="word" align="left">Searching....</h1>
-					<h4 style="color: #0d6efd !important; font-weight: bold;" align="left">Definition:</h4>
-					<h6 align="left" id="definition1"></h6>
-					<h6 align="left" id="definition2"></h6>
-					&nbsp;<br> &nbsp;<br> &nbsp;<br>
-					<h4 style="color: #0d6efd !important; font-weight: bold;" align="left">Example:</h4>
-					<h6 align="left" id="example1"></h6>
-					<h6 align="left" id="example2"></h6>
-					&nbsp;<br> &nbsp;<br>
-
-				</div>
-			</center>
+				</center>
+			</section>
 
 
 			<!-- Footer -->
@@ -210,15 +212,15 @@
 				}
 				
 				//Output
-				definition1 = '[' + data[0].meanings[0].partOfSpeech + '] ' + data[0].meanings[0].definitions[0].definition;
-				example1 = data[0].meanings[0].definitions[0].example;
+				definition1 = ' [' + data[0].meanings[0].partOfSpeech + '] ' + data[0].meanings[0].definitions[0].definition;
+				example1 = ' ' + data[0].meanings[0].definitions[0].example;
 				document.getElementById('definition1').innerHTML = "1:"
 						+ definition1;
 				document.getElementById('example1').innerHTML = "1:"
 						+ example1;
 
-				definition2 = '[' + data[0].meanings[1].partOfSpeech + '] ' + data[0].meanings[1].definitions[0].definition;
-				example2 = data[0].meanings[1].definitions[0].example;
+				definition2 = ' [' + data[0].meanings[1].partOfSpeech + '] ' + data[0].meanings[1].definitions[0].definition;
+				example2 = ' '+ data[0].meanings[1].definitions[0].example;
 				if (definition2 != null) {
 					document.getElementById('definition2').innerHTML = "2:"
 							+ definition2;
