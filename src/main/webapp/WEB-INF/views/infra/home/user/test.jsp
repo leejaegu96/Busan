@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="rb" uri="http://www.springframework.org/tags"%>
 
 
 <!DOCTYPE HTML>
@@ -13,155 +13,169 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-	<head>
-		<title>Elements - Alpha by HTML5 UP</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-		<link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
-		<link rel="stylesheet" href="../resources/assets/css/main.css" />
-		<link rel="stylesheet" href="../resources/assets/css/test.css" />
-		
-		<!-- <link href="https://webfontworld.github.io/DungGeunMo/DungGeunMo.css" rel="stylesheet"> -->
-    	<link href="https://webfontworld.github.io/NexonMabinogi/MabinogiClassic.css" rel="stylesheet">
-    	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-		<style>
-		.ui-datepicker{ font-size: 15px; width: 400px; }
-		.ui-datepicker select.ui-datepicker-month{ width:30%; font-size: 15px; }
-		.ui-datepicker select.ui-datepicker-year{ width:40%; font-size: 15px; }
-		</style>
-		<script type="text/javascript">
-		   $(document).ready(function () {
-		       $.datepicker.setDefaults($.datepicker.regional['ko']); 
-		       $( "#datepicker" ).datepicker({
-		            changeMonth: true, 
-		            changeYear: true,
-		            nextText: '다음 달',
-		            prevText: '이전 달', 
-		            dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
-		            dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], 
-		            monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-		            monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-		            dateFormat: "yy-mm-dd",
-		            maxDate: 0,
-		            minDate: new Date('2022-07-25'),
-		            maxDate: new Date('2022-07-27'),
-		       	// 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)
-		            onClose: function( selectedDate ) {    
-		            }    
-		
-		       });
-		   });
-		</script>
-	</head>
-	<body>
-		<div id="page-wrapper">
+<head>
+<title>Elements - Alpha by HTML5 UP</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+<link rel="stylesheet" href="../resources/assets/css/main.css" />
+<style>
+.ui-datepicker {
+	font-size: 15px;
+	width: 400px;
+}
 
-			<!-- Header -->
-				<header id="header" >
-					<h3 style="color: white;font-size: 20px; margin-top:15px; margin-left:20px; height: 52px; cursor:pointer;" onClick="location.href='home'"><i class="fa-solid fa-book-open"></i>&nbsp;E-WORD</h3>
-					<nav id="nav">
-						<ul>
-							<li>
-								<c:choose>
-									<c:when test="${sessSeq eq null}">
-									</c:when>
-									<c:when test="${sessSeq eq 144}">
-										<span style="color: #959ADA; font-weight:bolder;"><c:out value="${sessName }"/></span> 관리자님
-									</c:when>
-									<c:otherwise>
-										<span style="color: #959ADA; font-weight:bolder;"><c:out value="${sessName }"/></span>님
-									</c:otherwise>
-								</c:choose>
-							</li>
-							<li><a href="home" class="button" style="cursor:pointer; background-color: #444444;">Home</a></li>
-							<c:choose>
-								<c:when test="${sessSeq eq null}">
-									<!--로그인 전 화면  -->
-								    <li><a href="#" class="button" onClick="location.href='../login/signUp'" style="cursor:pointer; background-color: #444444;">Sign Up</a></li>
-								    <li><a href="#" class="button" onClick="location.href='../login/login'" style="cursor:pointer;">Login</a></li>
-								</c:when>
-								<c:when test="${sessSeq eq 144}">
-									<!--관리자 로그인 후 화면  -->
-									<li><a href="mypage" class="button" style="cursor:pointer; background-color: #444444;">Mypage</a></li>
-								    <li><a href="/member/memberList" class="button" style="cursor:pointer; background-color: #444444;">Admin</a></li>
-								    <li><a href="#" class="button" id="btnLogout" style="cursor:pointer;">Logout</a></li>
-								</c:when>
-								<c:otherwise>
-									<!--로그인 후 화면  -->
-									<li><a href="test" class="button" style="cursor:pointer; background-color: #444444;">Test</a></li>
-									<li><a href="rank" class="button" style="cursor:pointer; background-color: #444444;">Rank</a></li>
-									<li><a href="translate" class="button" style="cursor:pointer; background-color: #444444;">Translate</a></li>
-								    <li><a href="mypage" class="button" style="cursor:pointer; background-color: #444444;">Mypage</a></li>
-								    <li><a href="#" class="button" id="btnLogout" style="cursor:pointer;">Logout</a></li>
-								 </c:otherwise>
-							</c:choose>
-							<!-- 
-							<li><a href="#" class="button" onClick="location.href='../login/login'" style="cursor:pointer;">Login</a></li>
-							<li><a href="#" class="button" id="btnLogout" style="cursor:pointer;">Logout</a></li>
-							 -->
-						</ul>
-					</nav>
-					
-				</header>
+.ui-datepicker select.ui-datepicker-month {
+	width: 30%;
+	font-size: 15px;
+}
 
-			<!-- Main -->
-				<section id="main" class="container">
-					<header>
-						<h2>TEST</h2>
-						<p>Test your skills based on what you've learned</p>
-					</header>
-<!-- 폼 시작------------------------------------------------------------------------------------------------------------------------------------------------- -->
-					<form id="form" name="form" method="post">
-						<!-- 날짜 선택 --------------------------------------------------------------------------------------------------------------------------------------------------- -->
-						<div class="row">
-							<div class="col-10">
-								<input type="hidden" name="ifmmSeq" value="<c:out value="${list.ifmmSeq }"/>" />
-								<div id="testDate"></div>
-								<input type="text" class="form-control" id="datepicker" name ="sddDateChoice" placeholder="Choice Date!!" style="text-align:center; color:black; height:50px;">
-							</div>
-							<div class="col-2">
-								<button type="button" class="btn btn-primary" id="btn" style="height:50px;" >제출하기</button>
-							</div>
-						</div>
-						<br>
-						<div id="result1" style="text-align:center; font-size:20px; font-style: bold;"> </div> <br>
-						<input type="hidden" id="answer1" name="sdtrsTotalScore">
-					</form>
-<!-- 폼 끝------------------------------------------------------------------------------------------------------------------------------------------------- -->
-					<div class="row">
-						<div class="col-12">
-							<main id="main">
-								<div class="row" style="height:480px;">
-									<div id="testChoice"></div>
-								</div>
-							</main>
-						</div>
+.ui-datepicker select.ui-datepicker-year {
+	width: 40%;
+	font-size: 15px;
+}
+</style>
+<script type="text/javascript">
+	$(document).ready(
+			function() {
+				$.datepicker.setDefaults($.datepicker.regional['ko']);
+				$("#datepicker")
+						.datepicker(
+								{
+									changeMonth : true,
+									changeYear : true,
+									nextText : '다음 달',
+									prevText : '이전 달',
+									dayNames : [ '일요일', '월요일', '화요일', '수요일',
+											'목요일', '금요일', '토요일' ],
+									dayNamesMin : [ '일', '월', '화', '수', '목',
+											'금', '토' ],
+									monthNamesShort : [ '1월', '2월', '3월', '4월',
+											'5월', '6월', '7월', '8월', '9월',
+											'10월', '11월', '12월' ],
+									monthNames : [ '1월', '2월', '3월', '4월',
+											'5월', '6월', '7월', '8월', '9월',
+											'10월', '11월', '12월' ],
+									dateFormat : "yy-mm-dd",
+									maxDate : 0,
+									minDate : new Date('2022-07-25'),
+									maxDate : new Date('2022-07-27'),
+									// 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)
+									onClose : function(selectedDate) {
+									}
+
+								});
+			});
+</script>
+</head>
+<body>
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<h3 style="color: white; font-size: 20px; margin-top: 10px; margin-left: 20px; height: 52px; cursor: pointer;" onClick="location.href='home'">
+				<i class="fa-solid fa-book-open"></i>&nbsp;E-WORD
+			</h3>
+			<nav id="nav">
+				<ul>
+					<li><c:choose>
+							<c:when test="${sessSeq eq null}">
+							</c:when>
+							<c:when test="${sessSeq eq 144}">
+								<span style="color: #959ADA; font-weight: bolder;"><c:out value="${sessName }" /></span> 관리자님
+							</c:when>
+							<c:otherwise>
+								<span style="color: #959ADA; font-weight: bolder;"><c:out value="${sessName }" /></span>님
+							</c:otherwise>
+						</c:choose></li>
+					<li><a href="home" class="button" style="cursor: pointer; background-color: #444444;">Home</a></li>
+					<c:choose>
+						<c:when test="${sessSeq eq null}">
+							<!--로그인 전 화면  -->
+							<li><a href="#" class="button" onClick="location.href='../login/signUp'" style="cursor: pointer; background-color: #444444;">Sign Up</a></li>
+							<li><a href="#" class="button" onClick="location.href='../login/login'" style="cursor: pointer;">Login</a></li>
+						</c:when>
+						<c:when test="${sessSeq eq 144}">
+							<!--관리자 로그인 후 화면  -->
+							<li><a href="mypage" class="button" style="cursor: pointer; background-color: #444444;">Mypage</a></li>
+							<li><a href="/member/memberList" class="button" style="cursor: pointer; background-color: #444444;">Admin</a></li>
+							<li><a href="#" class="button" id="btnLogout" style="cursor: pointer;">Logout</a></li>
+						</c:when>
+						<c:otherwise>
+							<!--로그인 후 화면  -->
+							<li><a href="test" class="button" style="cursor: pointer; background-color: #444444;">Test</a></li>
+							<li><a href="rank" class="button" style="cursor: pointer; background-color: #444444;">Rank</a></li>
+							<li><a href="translate" class="button" style="cursor: pointer; background-color: #444444;">Translate</a></li>
+							<li><a href="mypage" class="button" style="cursor: pointer; background-color: #444444;">Mypage</a></li>
+							<li><a href="#" class="button" id="btnLogout" style="cursor: pointer;">Logout</a></li>
+						</c:otherwise>
+					</c:choose>
+					<!-- 
+					<li><a href="#" class="button" onClick="location.href='../login/login'" style="cursor:pointer;">Login</a></li>
+					<li><a href="#" class="button" id="btnLogout" style="cursor:pointer;">Logout</a></li>
+					 -->
+				</ul>
+			</nav>
+
+		</header>
+
+		<!-- Main -->
+		<section id="main" class="container">
+			<header>
+				<h2>TEST</h2>
+				<p>Test your skills based on what you've learned</p>
+			</header>
+			<!-- 폼 시작------------------------------------------------------------------------------------------------------------------------------------------------- -->
+			<form id="form" name="form" method="post">
+				<!-- 날짜 선택 --------------------------------------------------------------------------------------------------------------------------------------------------- -->
+				<div class="row">
+					<div class="col-10">
+						<input type="hidden" name="ifmmSeq" value="<c:out value="${list.ifmmSeq }"/>" />
+						<div id="testDate"></div>
+						<input type="text" class="form-control" id="datepicker" name="sddDateChoice" placeholder="Choice Date!!" style="text-align: center; color: black; height: 50px;">
 					</div>
-				</section>
+					<div class="col-2">
+						<button type="button" class="btn btn-primary" id="btn" style="height: 50px;">제출하기</button>
+					</div>
+				</div>
+				<br>
+				<div id="result1" style="text-align: center; font-size: 20px; font-style: bold;"></div>
+				<br>
+				<input type="hidden" id="answer1" name="sdtrsTotalScore">
+			</form>
+			<!-- 폼 끝------------------------------------------------------------------------------------------------------------------------------------------------- -->
+			<div class="row">
+				<div class="col-12">
+					<main id="main">
+						<div class="row" style="height: 480px;">
+							<div id="testChoice"></div>
+						</div>
+					</main>
+				</div>
+			</div>
+		</section>
 
-			<!-- Footer -->
-				<!-- 
-				<footer id="footer">
-					<ul class="icons">
-						<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-						<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-						<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-						<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-						<li><a href="#" class="icon brands fa-google-plus"><span class="label">Google+</span></a></li>
-					</ul>
-					<ul class="copyright">
-						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-					</ul>
-				</footer>
-				 -->
-		</div>
 
-		<!-- Scripts -->
+		<!-- Footer -->
+		<footer id="footer">
+			<ul class="icons">
+				<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+				<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+				<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+				<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+				<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+				<li><a href="#" class="icon brands fa-google-plus"><span class="label">Google+</span></a></li>
+			</ul>
+			<ul class="copyright">
+				<li>&copy; Untitled. All rights reserved.</li>
+				<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+			</ul>
+		</footer>
+	</div>
+
+	<!-- Scripts -->
 		<!-- 
 		<script src="../resources/assets/js/jquery.min.js"></script>
 		 -->
@@ -353,6 +367,5 @@
 		
 		
 		</script>
-
-	</body>
+</body>
 </html>

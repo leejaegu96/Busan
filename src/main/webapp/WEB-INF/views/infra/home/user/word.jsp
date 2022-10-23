@@ -29,7 +29,7 @@
 
 		<!-- Header -->
 		<header id="header">
-			<h3 style="color: white; font-size: 20px; margin-top: 15px; margin-left: 20px; height: 52px; cursor: pointer;" onClick="location.href='home'">
+			<h3 style="color: white; font-size: 20px; margin-top: 10px; margin-left: 20px; height: 52px; cursor: pointer;" onClick="location.href='home'">
 				<i class="fa-solid fa-book-open"></i>&nbsp;E-WORD
 			</h3>
 			<nav id="nav">
