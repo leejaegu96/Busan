@@ -21,8 +21,62 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
 <link rel="stylesheet" href="../resources/assets/css/main.css" />
+<link rel="stylesheet" href="../resources/assets/css/test.css" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <style type="text/css">
+#colPadding {
+	padding-bottom: 10px;
+}
+
+.ui-datepicker {
+	font-size: 15px;
+	width: 400px;
+}
+
+.ui-datepicker select.ui-datepicker-month {
+	width: 30%;
+	font-size: 15px;
+}
+
+.ui-datepicker select.ui-datepicker-year {
+	width: 40%;
+	font-size: 15px;
+}
 </style>
+<script type="text/javascript">
+	$(document).ready(
+			function() {
+				$.datepicker.setDefaults($.datepicker.regional['ko']);
+				$("#datepicker")
+						.datepicker(
+								{
+									changeMonth : true,
+									changeYear : true,
+									nextText : '다음 달',
+									prevText : '이전 달',
+									dayNames : [ '일요일', '월요일', '화요일', '수요일',
+											'목요일', '금요일', '토요일' ],
+									dayNamesMin : [ '일', '월', '화', '수', '목',
+											'금', '토' ],
+									monthNamesShort : [ '1월', '2월', '3월', '4월',
+											'5월', '6월', '7월', '8월', '9월',
+											'10월', '11월', '12월' ],
+									monthNames : [ '1월', '2월', '3월', '4월',
+											'5월', '6월', '7월', '8월', '9월',
+											'10월', '11월', '12월' ],
+									dateFormat : "yy-mm-dd",
+									maxDate : 0,
+									minDate : new Date('2022-07-25'),
+									maxDate : new Date('2022-07-27'),
+									// 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)
+									onClose : function(selectedDate) {
+									}
+
+								});
+			});
+</script>
 </head>
 <body>
 	<div id="page-wrapper">
@@ -38,10 +92,14 @@
 							<c:when test="${sessSeq eq null}">
 							</c:when>
 							<c:when test="${sessSeq eq 144}">
-								<span style="color: #959ADA; font-weight: bolder;"><c:out value="${sessName }" /></span> 관리자님
+								<span style="color: #959ADA; font-weight: bolder;">
+									<c:out value="${sessName }" />
+								</span> 관리자님
 							</c:when>
 							<c:otherwise>
-								<span style="color: #959ADA; font-weight: bolder;"><c:out value="${sessName }" /></span>님
+								<span style="color: #959ADA; font-weight: bolder;">
+									<c:out value="${sessName }" />
+								</span>님
 							</c:otherwise>
 						</c:choose></li>
 					<li><a href="home" class="button" style="cursor: pointer; background-color: #444444;">Home</a></li>
@@ -80,41 +138,124 @@
 			<header>
 				<h2>Word</h2>
 				<p>Look up a word, Learn it forever!</p>
+				<input type="text" class="form-control" id="datepicker" name="sddDateChoice" placeholder="Choice Date!!" style="text-align: center; color: black; height: 50px;">
 			</header>
-			<section class="box" style="height:400px;">
-				<center>
-					<div class="main">
-	
-						<div class="input-group mb-3">
-							<input type="text" class="form-control" id="input">
-							<input type="button" name="Search" value="Search" onclick="Search()" class="btn btn-outline-secondary btn-primary" type="button">
-							<input type="button" name="Reset" value="Reset" class="btn btn-outline-secondary" type="button" onclick="history.go(0)">
+			<section class="box" style="height: 100%;">
+				<%-- 
+				<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+					<div class="carousel-inner">
+						<h3>Today's Word</h3>
+						<br>
+						
+						<div class="carousel-item active" data-bs-interval="1000000">
+							<div style="max-width: 450px; width: 100%; height: 500px; height: 100%; text-align: left; margin: auto; text-align: center; background-color: #666666;">
+								<img alt="" src="../resources/assets/images/samples/study.jpg" style="height: 200px; width: 400px; padding: 10px;">
+
+								<input type="text" class="form-control" id="datepicker" placeholder="Choice Date!!" style="text-align: center; color: black;">
+							</div>
 						</div>
-	
-						<h1 class="badge rounded-pill bg-primary" id="word" align="left">Searching....</h1>
-						<h4 style="color: #0d6efd !important; font-weight: bold;" align="left">Definition:</h4>
-						<h6 align="left" id="definition1"></h6>
-						<h6 align="left" id="definition2"></h6>
-						&nbsp;<br> &nbsp;<br> &nbsp;<br>
-						<h4 style="color: #0d6efd !important; font-weight: bold;" align="left">Example:</h4>
-						<h6 align="left" id="example1"></h6>
-						<h6 align="left" id="example2"></h6>
-						&nbsp;<br> &nbsp;<br>
-	
+
+						<c:forEach items="${list}" var="list" varStatus="status">
+
+							<div class="carousel-item" data-bs-interval="10000">
+								<div style="max-width: 450px; width: 100%; height: 500px; height: 100%; text-align: left; margin: auto; background-color: #666666;">
+
+									<h4>
+										<input type="hidden" id="sdwSeq" name="sdwSeq">
+										<input id="text${list.sdwSeq}" value="${list.sdwWord }" style="background: none; font-weight: bold; text-align: center; color: white; height: 50px;" readonly>
+										&nbsp; <i class="fa-solid fa-volume-high" id="btn-read${list.sdwSeq}" style="cursor: pointer;"></i>
+									</h4>
+									<br>
+
+									<c:forEach items="${item}" var="item" varStatus="status">
+										<span style="line-height: 200%;"> <c:if test="${list.sdwWord == item.sdwWord }">
+												<span style="color: Blue; font-style: italic;" value="${list.sdwSeq }">${item.sdwmPartOfSpeech}</span> &nbsp; <span style="color: white;" value="${list.sdwSeq }">${item.sdwmContents}</span>
+												<br>
+												<span value="${list.sdwSeq }">${item.sdweContents}</span>
+												<br>
+												<span value="${list.sdwSeq }">${item.sdweTranslate}</span>
+												<br>
+											</c:if>
+										</span>
+									</c:forEach>
+								</div>
+							</div>
+
+						</c:forEach>
+						
 					</div>
-				</center>
+					<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true" style="float: top;"></span> <span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="visually-hidden">Next</span>
+					</button>
+				</div>
+				 --%>
+
+				<div class="row">
+					<c:forEach items="${list}" var="list" varStatus="status">
+						<div class="col-6" style="margin: auto;" id="colPadding"> 
+							<div class="quiz">
+								<span class="quiz__type">2022-07-25</span>
+								<h2 class="quiz__question">
+									<span class="word">${list.sdwWord }</span>
+									<hr style="margin: 10px 0;">
+
+									<div>
+										<c:forEach items="${item}" var="item" varStatus="status">
+											<c:if test="${list.sdwWord == item.sdwWord }">
+												<div class="ask">
+												<span class="content" style="font-weight:bold;" value="${list.sdwSeq }">${item.sdwmNum}. &nbsp;${item.sdwmPartOfSpeech}</span>
+												<span class="content" value="${list.sdwSeq }">&nbsp;${item.sdwmContents}</span><br>
+												</div>
+											</c:if>
+										</c:forEach>
+										<hr style="margin: 10px 0;">
+										<c:forEach items="${item}" var="item" varStatus="status">
+											<c:if test="${list.sdwWord == item.sdwWord }">
+												<div class="ask1">
+												<span class="content" style="font-weight:bold;" >${item.sdwmNum}.&nbsp;</span>
+												<span class="content" value="${list.sdwSeq }">${item.sdweContents}</span><br>
+												<span class="content" value="${list.sdwSeq }">&nbsp;&nbsp;&nbsp;&nbsp;${item.sdweTranslate}</span><br>
+												</div>
+											</c:if>
+										</c:forEach>
+									</div>
+								</h2>
+							</div>
+						</div>
+					</c:forEach>
+
+					<div id="testDate"></div>
+					<div id="testChoice"></div>
+
+				</div>
+
 			</section>
 
 
 			<!-- Footer -->
 			<footer id="footer">
 				<ul class="icons">
-					<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-					<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-					<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-					<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-					<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-					<li><a href="#" class="icon brands fa-google-plus"><span class="label">Google+</span></a></li>
+					<li><a href="#" class="icon brands fa-twitter">
+							<span class="label">Twitter</span>
+						</a></li>
+					<li><a href="#" class="icon brands fa-facebook-f">
+							<span class="label">Facebook</span>
+						</a></li>
+					<li><a href="#" class="icon brands fa-instagram">
+							<span class="label">Instagram</span>
+						</a></li>
+					<li><a href="#" class="icon brands fa-github">
+							<span class="label">Github</span>
+						</a></li>
+					<li><a href="#" class="icon brands fa-dribbble">
+							<span class="label">Dribbble</span>
+						</a></li>
+					<li><a href="#" class="icon brands fa-google-plus">
+							<span class="label">Google+</span>
+						</a></li>
 				</ul>
 				<ul class="copyright">
 					<li>&copy; Untitled. All rights reserved.</li>
@@ -124,7 +265,6 @@
 	</div>
 
 	<!-- Scripts -->
-	<script src="../resources/assets/js/jquery.min.js"></script>
 	<script src="../resources/assets/js/jquery.dropotron.min.js"></script>
 	<script src="../resources/assets/js/jquery.scrollex.min.js"></script>
 	<script src="../resources/assets/js/browser.min.js"></script>
@@ -193,42 +333,140 @@
 	<script type="text/javascript">
 		function Search() {
 			var word = document.getElementById("input").value;
-			let api = `https://api.dictionaryapi.dev/api/v2/entries/en/`+ word;
+			let api = `https://api.dictionaryapi.dev/api/v2/entries/en/` + word;
 
 			fetch(api)
-			.then(function(response) {
-				let data = response.json();
-				return data;
-			})
-			.then(
-				function(data) {
-				console.log(data);
-				//Input
-				document.getElementById('word').innerHTML = word;
-				///If no Definition
-				message = data.message;
-				if (message) {
-					alert(message)
-				}
-				
-				//Output
-				definition1 = ' [' + data[0].meanings[0].partOfSpeech + '] ' + data[0].meanings[0].definitions[0].definition;
-				example1 = ' ' + data[0].meanings[0].definitions[0].example;
-				document.getElementById('definition1').innerHTML = "1:"
-						+ definition1;
-				document.getElementById('example1').innerHTML = "1:"
-						+ example1;
+					.then(function(response) {
+						let data = response.json();
+						return data;
+					})
+					.then(
+							function(data) {
+								console.log(data);
+								//Input
+								document.getElementById('word').innerHTML = word;
+								///If no Definition
+								message = data.message;
+								if (message) {
+									alert(message)
+								}
 
-				definition2 = ' [' + data[0].meanings[1].partOfSpeech + '] ' + data[0].meanings[1].definitions[0].definition;
-				example2 = ' '+ data[0].meanings[1].definitions[0].example;
-				if (definition2 != null) {
-					document.getElementById('definition2').innerHTML = "2:"
-							+ definition2;
-					document.getElementById('example2').innerHTML = "2:"
-							+ example2;
-				}
-			})
+								//Output
+								definition1 = ' ['
+										+ data[0].meanings[0].partOfSpeech
+										+ '] '
+										+ data[0].meanings[0].definitions[0].definition;
+								example1 = ' '
+										+ data[0].meanings[0].definitions[0].example;
+								document.getElementById('definition1').innerHTML = "1:"
+										+ definition1;
+								document.getElementById('example1').innerHTML = "1:"
+										+ example1;
+
+								definition2 = ' ['
+										+ data[0].meanings[1].partOfSpeech
+										+ '] '
+										+ data[0].meanings[1].definitions[0].definition;
+								example2 = ' '
+										+ data[0].meanings[1].definitions[0].example;
+								if (definition2 != null) {
+									document.getElementById('definition2').innerHTML = "2:"
+											+ definition2;
+									document.getElementById('example2').innerHTML = "2:"
+											+ example2;
+								}
+							})
 		}
 	</script>
+	<script type="text/javascript">
+		$("#datepicker")
+				.on(
+						"change",
+						function() {
+							$
+									.ajax({
+										async : true,
+										cache : false,
+										type : "post"
+										/* ,dataType:"json" */
+										,
+										url : "/home/wordDate"
+										/* ,data : $("#formLogin").serialize() */
+										,
+										data : {
+											"sddDateChoice" : $("#datepicker")
+													.val()
+										},
+										success : function(response) {
+											if (response.rt == "success") {
+												console.log(response);
+
+												let listHTML = "";
+												listHTML += '<input type="hidden" name="sdDate_sddSeq" value="'+response.tt[0].sdDate_sddSeq+'">';
+
+												document
+														.getElementById('testDate').innerHTML += listHTML;
+
+												document
+														.getElementById('testChoice').innerHTML = "";
+												for (let i = 0; i < response.tt.length; i++) {
+													console.log(response.tt[i]);
+													let listHTML = "";
+
+													listHTML += '<div class="col-6" style="margin: auto;" id="colPadding">';
+													listHTML += '<div class="quiz">';
+													listHTML += '<span class="quiz__type">'
+															+ response.tt[i].sddDateChoice
+															+ '</span>';
+													listHTML += '<h2 class="quiz__question">';
+													listHTML += '<span class="word">'
+															+ response.tt[i].sdwWord
+															+ '</span>';
+													listHTML += '<div class="ask" >'
+															+ response.tt[i].first
+															+ '____________'
+															+ response.tt[i].second
+															+ '</div>';
+													listHTML += '<div class="ask1" >'
+															+ response.tt[i].sdweTranslate
+															+ '</div>';
+													listHTML += '</h2>';
+													listHTML += '<div class="quiz__view">';
+													listHTML += '<div class="true">정답🐾</div>';
+													listHTML += '<div class="false">오답 입니다!</div>';
+													listHTML += '<input type="hidden" class="test" id="testCk'+response.tt[i].sdwNum+'" name="testCk">';
+													listHTML += '</div>';
+													listHTML += '<div class="quiz__answer">';
+													listHTML += '<input type="text" class="input" id="input'
+															+ response.tt[i].sdwNum
+															+ '" style="text-align:center;" placeholder="정답을 적어주세요!">';
+													listHTML += '<button class="confirm" id="confirm'+response.tt[i].sdwNum+'">정답 확인하기</button>';
+													listHTML += '<div class="result" style="display:none;"></div>';
+													listHTML += '</div>';
+													listHTML += '</div>';
+													listHTML += '</div>';
+
+													document
+															.getElementById('testChoice').innerHTML += listHTML;
+
+												}
+
+											} else {
+												// 
+											}
+										}
+
+										,
+										error : function(jqXHR, textStatus,
+												errorThrown) {
+											alert("ajaxUpdate "
+													+ jqXHR.textStatus + " : "
+													+ jqXHR.errorThrown);
+										}
+
+									});
+						});
+	</script>
+
 </body>
 </html>

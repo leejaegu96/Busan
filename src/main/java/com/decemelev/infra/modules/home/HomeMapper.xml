@@ -22,6 +22,7 @@
 		SELECT
 		a.sdwSeq
 		,a.sdwWord
+		,c.sdwmNum
 		,c.sdwmPartOfSpeech
 		,c.sdwmContents
 		,d.sdweContents

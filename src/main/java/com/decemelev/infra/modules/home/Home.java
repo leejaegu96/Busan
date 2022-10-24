@@ -17,6 +17,7 @@ public class Home extends Base {
 	private String sdwmSeq;
 	private String sdwmPartOfSpeech;
 	private String sdwmContents;
+	private String sdwmNum;
 	private String sdWord_sdwSeq;
 	
 	private String sdweSeq;
@@ -66,6 +67,12 @@ public class Home extends Base {
 	private String sum;
 	private String ranking;
 	
+	public String getSdwmNum() {
+		return sdwmNum;
+	}
+	public void setSdwmNum(String sdwmNum) {
+		this.sdwmNum = sdwmNum;
+	}
 	public String getRanking() {
 		return ranking;
 	}

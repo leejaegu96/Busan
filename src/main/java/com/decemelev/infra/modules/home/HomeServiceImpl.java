@@ -23,8 +23,8 @@ public class HomeServiceImpl implements HomeService{
 	}
 	
 	@Override
-	public List<Home> selectContents() throws Exception {
-		List<Home> item = dao.selectContents();
+	public List<Home> selectContents(Home dto) throws Exception {
+		List<Home> item = dao.selectContents(dto);
 		return item;
 	}
 	@Override

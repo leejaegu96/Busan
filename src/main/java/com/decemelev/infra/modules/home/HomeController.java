@@ -38,12 +38,12 @@ public class HomeController {
 	HomeServiceImpl service;
 	
 	@RequestMapping(value = "home")
-	public String home(Model model) throws Exception {
+	public String home(Home dto, Model model) throws Exception {
 		
 		List<Home> list = service.selectList();
 		model.addAttribute("list", list);
 		
-		List<Home> item = service.selectContents();
+		List<Home> item = service.selectContents(dto);
 		model.addAttribute("item", item);
 		
 		
@@ -85,6 +85,26 @@ public class HomeController {
 			returnMap.put("rt", "fail");
 		}
 		
+		System.out.println("returnMap : " + returnMap);
+		System.out.println(sddDateChoice);
+		model.addAttribute("result", result);
+		return returnMap;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="wordDate")
+	public Map<String, Object> wordDate(Home dto, @RequestParam("sddDateChoice") String sddDateChoice, Model model) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		dto.setSddDateChoice(sddDateChoice);
+		System.out.println("처음: " + sddDateChoice);
+		List<Home> result = service.selectContents(dto);
+		if(result != null) {
+			returnMap.put("rt", "success");
+			returnMap.put("tt", result);
+		} else {
+			returnMap.put("rt", "fail");
+		}
 		
 		System.out.println("returnMap : " + returnMap);
 		System.out.println(sddDateChoice);
@@ -92,6 +112,15 @@ public class HomeController {
 		return returnMap;
 	}
 	
+	@RequestMapping(value = "word")
+	public String word(Home dto, Model model) throws Exception {
+		List<Home> list = service.selectList();
+		model.addAttribute("list", list);
+		
+		List<Home> item = service.selectContents(dto);
+		model.addAttribute("item", item);
+		return "infra/home/user/word";
+	}
 	
 	@RequestMapping(value = "rank")
 	public String rank(@ModelAttribute("vo") HomeVo vo, Model model, HttpServletRequest httpServletRequest) throws Exception {
@@ -119,20 +148,15 @@ public class HomeController {
 		return "infra/home/user/translate";
 	}
 	
-	@RequestMapping(value = "word")
-	public String word(Model model) throws Exception {
-		
-		return "infra/home/user/word";
-	}
 	
 	public String sessSeq = "";
 	@RequestMapping(value = "mypage")
-	public String mypage(@ModelAttribute("vo") HomeVo vo, Model model, HttpServletRequest httpServletRequest) throws Exception {
+	public String mypage(@ModelAttribute("vo") HomeVo vo, Home dto, Model model, HttpServletRequest httpServletRequest) throws Exception {
 		
 		List<Home> list1 = service.selectList();
 		model.addAttribute("list", list1);
 		
-		List<Home> item = service.selectContents();
+		List<Home> item = service.selectContents(dto);
 		model.addAttribute("item", item);
 		
 		HttpSession httpSession =  httpServletRequest.getSession();
