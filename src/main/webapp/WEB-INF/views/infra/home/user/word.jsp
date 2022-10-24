@@ -168,7 +168,8 @@
 									<br>
 
 									<c:forEach items="${item}" var="item" varStatus="status">
-										<span style="line-height: 200%;"> <c:if test="${list.sdwWord == item.sdwWord }">
+										<span style="line-height: 200%;"> 
+											<c:if test="${list.sdwWord == item.sdwWord }">
 												<span style="color: Blue; font-style: italic;" value="${list.sdwSeq }">${item.sdwmPartOfSpeech}</span> &nbsp; <span style="color: white;" value="${list.sdwSeq }">${item.sdwmContents}</span>
 												<br>
 												<span value="${list.sdwSeq }">${item.sdweContents}</span>
@@ -194,20 +195,24 @@
 				 --%>
 
 				<div class="row">
+					<div id="wordChoice"></div>
+					<div id="wordDate"></div>
+					<%-- 
 					<c:forEach items="${list}" var="list" varStatus="status">
-						<div class="col-6" style="margin: auto;" id="colPadding"> 
+					
+						<div class="col-6" style="margin: auto;" id="colPadding">
 							<div class="quiz">
-								<span class="quiz__type">2022-07-25</span>
+								<span class="quiz__type">${list.sddDateChoice }</span>
 								<h2 class="quiz__question">
 									<span class="word">${list.sdwWord }</span>
 									<hr style="margin: 10px 0;">
-
 									<div>
 										<c:forEach items="${item}" var="item" varStatus="status">
 											<c:if test="${list.sdwWord == item.sdwWord }">
 												<div class="ask">
-												<span class="content" style="font-weight:bold;" value="${list.sdwSeq }">${item.sdwmNum}. &nbsp;${item.sdwmPartOfSpeech}</span>
-												<span class="content" value="${list.sdwSeq }">&nbsp;${item.sdwmContents}</span><br>
+													<span class="content" style="font-weight: bold;" value="${list.sdwSeq }">${item.sdwmNum}. &nbsp;${item.sdwmPartOfSpeech}</span>
+													<span class="content" value="${list.sdwSeq }">&nbsp;${item.sdwmContents}</span>
+													<br>
 												</div>
 											</c:if>
 										</c:forEach>
@@ -215,9 +220,11 @@
 										<c:forEach items="${item}" var="item" varStatus="status">
 											<c:if test="${list.sdwWord == item.sdwWord }">
 												<div class="ask1">
-												<span class="content" style="font-weight:bold;" >${item.sdwmNum}.&nbsp;</span>
-												<span class="content" value="${list.sdwSeq }">${item.sdweContents}</span><br>
-												<span class="content" value="${list.sdwSeq }">&nbsp;&nbsp;&nbsp;&nbsp;${item.sdweTranslate}</span><br>
+													<span class="content" style="font-weight: bold;">${item.sdwmNum}.&nbsp;</span>
+													<span class="content" value="${list.sdwSeq }">${item.sdweContents}</span>
+													<br>
+													<span class="content" value="${list.sdwSeq }">&nbsp;&nbsp;&nbsp;&nbsp;${item.sdweTranslate}</span>
+													<br>
 												</div>
 											</c:if>
 										</c:forEach>
@@ -225,11 +232,9 @@
 								</h2>
 							</div>
 						</div>
+						
 					</c:forEach>
-
-					<div id="testDate"></div>
-					<div id="testChoice"></div>
-
+					 --%>
 				</div>
 
 			</section>
@@ -402,52 +407,49 @@
 												console.log(response);
 
 												let listHTML = "";
-												listHTML += '<input type="hidden" name="sdDate_sddSeq" value="'+response.tt[0].sdDate_sddSeq+'">';
 
-												document
-														.getElementById('testDate').innerHTML += listHTML;
+												document.getElementById('wordDate').innerHTML += listHTML;
 
-												document
-														.getElementById('testChoice').innerHTML = "";
+												document.getElementById('wordChoice').innerHTML = "";
 												for (let i = 0; i < response.tt.length; i++) {
 													console.log(response.tt[i]);
 													let listHTML = "";
 
 													listHTML += '<div class="col-6" style="margin: auto;" id="colPadding">';
 													listHTML += '<div class="quiz">';
-													listHTML += '<span class="quiz__type">'
-															+ response.tt[i].sddDateChoice
-															+ '</span>';
+													listHTML += '<span class="quiz__type">'+ response.tt[i].sddDateChoice + '</span>';
 													listHTML += '<h2 class="quiz__question">';
-													listHTML += '<span class="word">'
-															+ response.tt[i].sdwWord
-															+ '</span>';
-													listHTML += '<div class="ask" >'
-															+ response.tt[i].first
-															+ '____________'
-															+ response.tt[i].second
-															+ '</div>';
-													listHTML += '<div class="ask1" >'
-															+ response.tt[i].sdweTranslate
-															+ '</div>';
+													listHTML += '<span class="word">'+ response.tt[i].sdwWord + '</span>';
+													listHTML += '<hr style="margin: 10px 0;">';
+													listHTML += '<div>';
+													for(let i=0; i<response.tt.length; i++){
+														if(response.tt[i].sdwWord = response.tt[i+1].sdwWord){
+															listHTML += '<div class="ask">';
+															listHTML += '<span class="content" style="font-weight: bold;" >' + response.tt[i].sdwmNum + '. ' + '</span>';
+															listHTML += '<span class="content" style="font-weight: bold;">' +  response.tt[i].sdwmPartOfSpeech + '</span>';
+															listHTML += '<span class="content" >' + response.tt[i].sdwmContents + '</span>';
+															listHTML += '<br>';
+															listHTML += '</div>';
+														}
+													}
+													listHTML += '<hr style="margin: 10px 0;">';
+													for(let i=0; i<response.tt.length; i++){
+														if(response.tt[i].sdwWord = response.tt[i+1].sdwWord){
+															listHTML += '<div class="ask1">';
+															listHTML += '<span class="content" >' + response.tt[i].sdwmNum  + '. ' + '</span>';
+															listHTML += '<span class="content" >' + response.tt[i].sdweContents + '</span>';
+															listHTML += '<br>';
+															listHTML += '<span class="content" >' + response.tt[i].sdweTranslate + '</span>';
+															listHTML += '<br>';
+															listHTML += '</div>';
+														}
+													}
+													listHTML += '</div>';
 													listHTML += '</h2>';
-													listHTML += '<div class="quiz__view">';
-													listHTML += '<div class="true">정답🐾</div>';
-													listHTML += '<div class="false">오답 입니다!</div>';
-													listHTML += '<input type="hidden" class="test" id="testCk'+response.tt[i].sdwNum+'" name="testCk">';
-													listHTML += '</div>';
-													listHTML += '<div class="quiz__answer">';
-													listHTML += '<input type="text" class="input" id="input'
-															+ response.tt[i].sdwNum
-															+ '" style="text-align:center;" placeholder="정답을 적어주세요!">';
-													listHTML += '<button class="confirm" id="confirm'+response.tt[i].sdwNum+'">정답 확인하기</button>';
-													listHTML += '<div class="result" style="display:none;"></div>';
-													listHTML += '</div>';
 													listHTML += '</div>';
 													listHTML += '</div>';
 
-													document
-															.getElementById('testChoice').innerHTML += listHTML;
+													document.getElementById('wordChoice').innerHTML += listHTML;
 
 												}
 

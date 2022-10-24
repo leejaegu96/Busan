@@ -13,7 +13,9 @@
 		SELECT
 		a.sdwSeq
 		,a.sdwWord
+		,b.sddDateChoice
 		FROM sdWord a
+		INNER JOIN sdDate b on b.sddSeq=a.sdDate_sddSeq
 		WHERE 1=1
 
 	</select>
@@ -33,6 +35,7 @@
 		INNER JOIN sdwMean c on c.sdWord_sdwSeq=a.sdwSeq
 		INNER JOIN sdwExample d on d.sdwMean_sdwmSeq=c.sdwmSeq
 		WHERE 1=1
+		AND b.sddDateChoice = #{sddDateChoice}
 
 	</select>
 
