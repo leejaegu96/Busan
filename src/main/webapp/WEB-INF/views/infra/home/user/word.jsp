@@ -422,26 +422,32 @@
 													listHTML += '<span class="word">'+ response.tt[i].sdwWord + '</span>';
 													listHTML += '<hr style="margin: 10px 0;">';
 													listHTML += '<div>';
+													alert("1"+response.tt[0].sdwWord);
+													alert("2"+response.tt[1].sdwWord);
 													for(let i=0; i<response.tt.length; i++){
-														if(response.tt[i].sdwWord = response.tt[i+1].sdwWord){
+														if(response.tt[i].sdwWord == response.tt[i++].sdwWord){
 															listHTML += '<div class="ask">';
-															listHTML += '<span class="content" style="font-weight: bold;" >' + response.tt[i].sdwmNum + '. ' + '</span>';
-															listHTML += '<span class="content" style="font-weight: bold;">' +  response.tt[i].sdwmPartOfSpeech + '</span>';
-															listHTML += '<span class="content" >' + response.tt[i].sdwmContents + '</span>';
+															listHTML += '<span class="content" style="font-weight: bold;" value="' + response.tt[i].sdwSeq + '">' + response.tt[i].sdwmNum + '. ' + '</span>';
+															listHTML += '<span class="content" style="font-weight: bold;" value="' + response.tt[i].sdwSeq + '">' +  response.tt[i].sdwmPartOfSpeech + '</span>';
+															listHTML += '<span class="content" value="' + response.tt[i].sdwSeq + '">' + response.tt[i].sdwmContents + '</span>';
 															listHTML += '<br>';
 															listHTML += '</div>';
+														} else {
+															listHTML += '<br>';
 														}
 													}
 													listHTML += '<hr style="margin: 10px 0;">';
 													for(let i=0; i<response.tt.length; i++){
-														if(response.tt[i].sdwWord = response.tt[i+1].sdwWord){
-															listHTML += '<div class="ask1">';
-															listHTML += '<span class="content" >' + response.tt[i].sdwmNum  + '. ' + '</span>';
-															listHTML += '<span class="content" >' + response.tt[i].sdweContents + '</span>';
+														if(response.tt[i].sdwWord == response.tt[i++].sdwWord){
+															listHTML += '<div class="ask1">'; 
+															listHTML += '<span class="content" value="' + response.tt[i].sdwSeq + '">' + response.tt[i].sdwmNum  + '. ' + '</span>';
+															listHTML += '<span class="content" value="' + response.tt[i].sdwSeq + '">' + response.tt[i].sdweContents + '</span>';
 															listHTML += '<br>';
-															listHTML += '<span class="content" >' + response.tt[i].sdweTranslate + '</span>';
+															listHTML += '<span class="content" value="' + response.tt[i].sdwSeq + '">' + response.tt[i].sdweTranslate + '</span>';
 															listHTML += '<br>';
 															listHTML += '</div>';
+														} else {
+															listHTML += '<br>';
 														}
 													}
 													listHTML += '</div>';
