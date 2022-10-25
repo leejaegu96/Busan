@@ -17,7 +17,16 @@
 		FROM sdWord a
 		INNER JOIN sdDate b on b.sddSeq=a.sdDate_sddSeq
 		WHERE 1=1
-
+		AND b.sddDateChoice = #{sddDateChoice}
+	</select>
+	<select id="wordList" resultMap="resultMapObj">
+		SELECT
+		a.sdwSeq
+		,a.sdwWord
+		,b.sddDateChoice
+		FROM sdWord a
+		INNER JOIN sdDate b on b.sddSeq=a.sdDate_sddSeq
+		WHERE 1=1
 	</select>
 	
 	<select id="selectContents" resultMap="resultMapObj">
@@ -36,7 +45,22 @@
 		INNER JOIN sdwExample d on d.sdwMean_sdwmSeq=c.sdwmSeq
 		WHERE 1=1
 		AND b.sddDateChoice = #{sddDateChoice}
-
+	</select>
+	<select id="wordContents" resultMap="resultMapObj">
+		SELECT
+		a.sdwSeq
+		,a.sdwWord
+		,c.sdwmNum
+		,c.sdwmPartOfSpeech
+		,c.sdwmContents
+		,d.sdweContents
+		,d.sdweTranslate
+		,b.sddDateChoice
+		FROM sdWord a
+		INNER JOIN sdDate b on b.sddSeq=a.sdDate_sddSeq
+		INNER JOIN sdwMean c on c.sdWord_sdwSeq=a.sdwSeq
+		INNER JOIN sdwExample d on d.sdwMean_sdwmSeq=c.sdwmSeq
+		WHERE 1=1
 	</select>
 
 	<select id="selectTest" resultMap="resultMapObj">

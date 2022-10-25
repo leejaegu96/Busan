@@ -31,28 +31,46 @@ import com.decemelev.infra.common.util.UtilSecurity;
 
 
 @Controller
-@RequestMapping(value="/home/")
+/* @RequestMapping(value="/home/") */
 public class HomeController {
 	
 	@Autowired
 	HomeServiceImpl service;
 	
-	@RequestMapping(value = "home")
-	public String home(Home dto, Model model) throws Exception {
+	@RequestMapping(value = "/home/home")
+	public String home(Model model) throws Exception {
+		return "infra/home/user/home";
+	}
+	
+	@RequestMapping(value = "/word/wordList")
+	public String wordList(Model model) throws Exception {
 		
-		List<Home> list = service.selectList();
+		List<Home> list = service.wordList();
 		model.addAttribute("list", list);
 		
-		List<Home> item = service.selectContents(dto);
+		List<Home> item = service.wordContents();
 		model.addAttribute("item", item);
 		
+		return "infra/word/xdmin/wordList";
+	}
+	@RequestMapping(value = "/word/wordForm")
+	public String wordForm(Model model) throws Exception {
 		
-		return "infra/home/user/home";
+		return "infra/word/xdmin/wordForm";
+	}
+	@RequestMapping(value = "/test/testList")
+	public String testList(Model model) throws Exception {
 		
+		return "infra/test/xdmin/testList";
+	}
+	@RequestMapping(value = "/test/testForm")
+	public String testForm(Model model) throws Exception {
+		
+		return "infra/test/xdmin/testForm";
 	}
 
 	
-	@RequestMapping(value = "test")
+	@RequestMapping(value = "/home/test")
 	public String test( @ModelAttribute("vo") HomeVo vo, Home dto, Model model, HttpServletRequest httpServletRequest) throws Exception {
 		
 		List<Home> test = service.selectTest();
@@ -71,7 +89,7 @@ public class HomeController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="testDate")
+	@RequestMapping(value="/home/testDate")
 	public Map<String, Object> testDate(Home dto, @RequestParam("sddDateChoice") String sddDateChoice, Model model) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
@@ -92,16 +110,19 @@ public class HomeController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="wordDate")
+	@RequestMapping(value="/home/wordDate")
 	public Map<String, Object> wordDate(Home dto, @RequestParam("sddDateChoice") String sddDateChoice, Model model) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
 		dto.setSddDateChoice(sddDateChoice);
 		System.out.println("처음: " + sddDateChoice);
+		List<Home> list = service.selectList(dto);
+		model.addAttribute("list", list);
 		List<Home> result = service.selectContents(dto);
 		if(result != null) {
 			returnMap.put("rt", "success");
 			returnMap.put("tt", result);
+			returnMap.put("rr", list);
 		} else {
 			returnMap.put("rt", "fail");
 		}
@@ -112,9 +133,9 @@ public class HomeController {
 		return returnMap;
 	}
 	
-	@RequestMapping(value = "word")
+	@RequestMapping(value = "/home/word")
 	public String word(Home dto, Model model) throws Exception {
-		List<Home> list = service.selectList();
+		List<Home> list = service.selectList(dto);
 		model.addAttribute("list", list);
 		
 		List<Home> item = service.selectContents(dto);
@@ -122,7 +143,7 @@ public class HomeController {
 		return "infra/home/user/word";
 	}
 	
-	@RequestMapping(value = "rank")
+	@RequestMapping(value = "/home/rank")
 	public String rank(@ModelAttribute("vo") HomeVo vo, Model model, HttpServletRequest httpServletRequest) throws Exception {
 		
 		List<Home> rank = service.selectRank();
@@ -142,7 +163,7 @@ public class HomeController {
 		
 	}
 	
-	@RequestMapping(value = "translate")
+	@RequestMapping(value = "/home/translate")
 	public String translate(Model model) throws Exception {
 		
 		return "infra/home/user/translate";
@@ -150,10 +171,10 @@ public class HomeController {
 	
 	
 	public String sessSeq = "";
-	@RequestMapping(value = "mypage")
+	@RequestMapping(value = "/home/mypage")
 	public String mypage(@ModelAttribute("vo") HomeVo vo, Home dto, Model model, HttpServletRequest httpServletRequest) throws Exception {
 		
-		List<Home> list1 = service.selectList();
+		List<Home> list1 = service.selectList(dto);
 		model.addAttribute("list", list1);
 		
 		List<Home> item = service.selectContents(dto);
@@ -172,7 +193,7 @@ public class HomeController {
 		return "infra/home/user/mypage";
 	}
 	
-	@RequestMapping(value = "homeUpdt")
+	@RequestMapping(value = "/home/homeUpdt")
 	public String homeUpdt(Home dto, Model model, RedirectAttributes redirectAttributes) throws Exception {
 		System.out.println("업데이트 가즈아!");
 		int result = service.update(dto);
@@ -182,7 +203,7 @@ public class HomeController {
 		
 		return "redirect:/home/mypage";
 	}
-	@RequestMapping(value = "homePwdUpdt")
+	@RequestMapping(value = "/home/homePwdUpdt")
 	public String homePwdUpdt(Home dto, Model model, RedirectAttributes redirectAttributes) throws Exception {
 		System.out.println("업데이트 가즈아!");
 		dto.setIfmmPassword(UtilSecurity.encryptSha256(dto.getIfmmPassword()));
@@ -195,7 +216,7 @@ public class HomeController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="checkPwd")
+	@RequestMapping(value="/home/checkPwd")
 	public Map<String, Object> checkId(Home dto) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
@@ -210,7 +231,7 @@ public class HomeController {
 		return returnMap;
 	}
 	
-	@RequestMapping(value="testInst")
+	@RequestMapping(value="/home/testInst")
 	public String testInst(Home dto, RedirectAttributes redirectAttributes) throws Exception{
 		
 		int result = service.insert(dto);
@@ -220,7 +241,7 @@ public class HomeController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "trans")
+	@RequestMapping(value = "/home/trans")
 	public String trans(@RequestParam("str") String str) throws Exception {
 		
         String clientId = "PV_PfpxB6fnn9cN4JYSe";//애플리케이션 클라이언트 아이디값";

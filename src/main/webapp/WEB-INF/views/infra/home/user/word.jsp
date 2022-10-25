@@ -46,36 +46,27 @@
 }
 </style>
 <script type="text/javascript">
-	$(document).ready(
-			function() {
-				$.datepicker.setDefaults($.datepicker.regional['ko']);
-				$("#datepicker")
-						.datepicker(
-								{
-									changeMonth : true,
-									changeYear : true,
-									nextText : '다음 달',
-									prevText : '이전 달',
-									dayNames : [ '일요일', '월요일', '화요일', '수요일',
-											'목요일', '금요일', '토요일' ],
-									dayNamesMin : [ '일', '월', '화', '수', '목',
-											'금', '토' ],
-									monthNamesShort : [ '1월', '2월', '3월', '4월',
-											'5월', '6월', '7월', '8월', '9월',
-											'10월', '11월', '12월' ],
-									monthNames : [ '1월', '2월', '3월', '4월',
-											'5월', '6월', '7월', '8월', '9월',
-											'10월', '11월', '12월' ],
-									dateFormat : "yy-mm-dd",
-									maxDate : 0,
-									minDate : new Date('2022-07-25'),
-									maxDate : new Date('2022-07-27'),
-									// 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)
-									onClose : function(selectedDate) {
-									}
+	$(document).ready(function() {
+		$.datepicker.setDefaults($.datepicker.regional['ko']);
+		$("#datepicker").datepicker({
+			changeMonth : true,
+			changeYear : true,
+			nextText : '다음 달',
+			prevText : '이전 달',
+			dayNames : [ '일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일' ],
+			dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
+			monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월' ],
+			monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월' ],
+			dateFormat : "yy-mm-dd",
+			maxDate : 0,
+			minDate : new Date('2022-07-25'),
+			maxDate : new Date('2022-07-27'),
+			// 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)
+			onClose : function(selectedDate) {
+			}
 
-								});
-			});
+		});
+	});
 </script>
 </head>
 <body>
@@ -197,6 +188,7 @@
 				<div class="row">
 					<div id="wordChoice"></div>
 					<div id="wordDate"></div>
+				</div>
 					<%-- 
 					<c:forEach items="${list}" var="list" varStatus="status">
 					
@@ -235,7 +227,6 @@
 						
 					</c:forEach>
 					 --%>
-				</div>
 
 			</section>
 
@@ -312,168 +303,133 @@
 		</nav>
 	</div>
 	<script type="text/javascript">
-		$("#btnLogout").on(
-				"click",
-				function() {
-					$.ajax({
-						async : true,
-						cache : false,
-						type : "post",
-						url : "/login/logoutProc",
-						data : {},
-						success : function(response) {
-							if (response.rt == "success") {
-								location.href = "/home/home";
-							} else {
-								// by pass
-							}
-						},
-						error : function(jqXHR, textStatus, errorThrown) {
-							alert("ajaxUpdate " + jqXHR.textStatus + " : "
-									+ jqXHR.errorThrown);
-						}
-					});
-				});
+		$("#btnLogout").on("click", function() {
+			$.ajax({
+				async : true,
+				cache : false,
+				type : "post",
+				url : "/login/logoutProc",
+				data : {},
+				success : function(response) {
+					if (response.rt == "success") {
+						location.href = "/home/home";
+					} else {
+						// by pass
+					}
+				},
+				error : function(jqXHR, textStatus, errorThrown) {
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+		});
 	</script>
 	<script type="text/javascript">
 		function Search() {
 			var word = document.getElementById("input").value;
 			let api = `https://api.dictionaryapi.dev/api/v2/entries/en/` + word;
 
-			fetch(api)
-					.then(function(response) {
-						let data = response.json();
-						return data;
-					})
-					.then(
-							function(data) {
-								console.log(data);
-								//Input
-								document.getElementById('word').innerHTML = word;
-								///If no Definition
-								message = data.message;
-								if (message) {
-									alert(message)
-								}
+			fetch(api).then(function(response) {
+				let data = response.json();
+				return data;
+			}).then(function(data) {
+				console.log(data);
+				//Input
+				document.getElementById('word').innerHTML = word;
+				///If no Definition
+				message = data.message;
+				if (message) {
+					alert(message)
+				}
 
-								//Output
-								definition1 = ' ['
-										+ data[0].meanings[0].partOfSpeech
-										+ '] '
-										+ data[0].meanings[0].definitions[0].definition;
-								example1 = ' '
-										+ data[0].meanings[0].definitions[0].example;
-								document.getElementById('definition1').innerHTML = "1:"
-										+ definition1;
-								document.getElementById('example1').innerHTML = "1:"
-										+ example1;
+				//Output
+				definition1 = ' [' + data[0].meanings[0].partOfSpeech + '] ' + data[0].meanings[0].definitions[0].definition;
+				example1 = ' ' + data[0].meanings[0].definitions[0].example;
+				document.getElementById('definition1').innerHTML = "1:" + definition1;
+				document.getElementById('example1').innerHTML = "1:" + example1;
 
-								definition2 = ' ['
-										+ data[0].meanings[1].partOfSpeech
-										+ '] '
-										+ data[0].meanings[1].definitions[0].definition;
-								example2 = ' '
-										+ data[0].meanings[1].definitions[0].example;
-								if (definition2 != null) {
-									document.getElementById('definition2').innerHTML = "2:"
-											+ definition2;
-									document.getElementById('example2').innerHTML = "2:"
-											+ example2;
-								}
-							})
+				definition2 = ' [' + data[0].meanings[1].partOfSpeech + '] ' + data[0].meanings[1].definitions[0].definition;
+				example2 = ' ' + data[0].meanings[1].definitions[0].example;
+				if (definition2 != null) {
+					document.getElementById('definition2').innerHTML = "2:" + definition2;
+					document.getElementById('example2').innerHTML = "2:" + example2;
+				}
+			})
 		}
 	</script>
 	<script type="text/javascript">
-		$("#datepicker")
-				.on(
-						"change",
-						function() {
-							$
-									.ajax({
-										async : true,
-										cache : false,
-										type : "post"
-										/* ,dataType:"json" */
-										,
-										url : "/home/wordDate"
-										/* ,data : $("#formLogin").serialize() */
-										,
-										data : {
-											"sddDateChoice" : $("#datepicker")
-													.val()
-										},
-										success : function(response) {
-											if (response.rt == "success") {
-												console.log(response);
+		$("#datepicker").on("change", function() {
+			$.ajax({
+				async : true,
+				cache : false,
+				type : "post"
+				/* ,dataType:"json" */
+				,
+				url : "/home/wordDate"
+				/* ,data : $("#formLogin").serialize() */
+				,
+				data : {
+					"sddDateChoice" : $("#datepicker").val()
+				},
+				success : function(response) {
+					if (response.rt == "success") {
+						console.log(response);
 
-												let listHTML = "";
+						let listHTML = "";
 
-												document.getElementById('wordDate').innerHTML += listHTML;
+						document.getElementById('wordDate').innerHTML += listHTML;
 
-												document.getElementById('wordChoice').innerHTML = "";
-												for (let i = 0; i < response.tt.length; i++) {
-													console.log(response.tt[i]);
-													let listHTML = "";
+						document.getElementById('wordChoice').innerHTML = "";
+						
+						for (let i = 0; i < response.rr.length; i++) {
+							console.log("word" + response.rr[i].sdwSeq);
+							console.log("trans" + response.tt[i].sdwSeq);
+							let listHTML = "";
+							listHTML += '<div class="col-6" style="margin: auto;" id="colPadding">';
+							listHTML += '<div class="quiz">';
+							listHTML += '<span class="quiz__type">' + response.rr[i].sddDateChoice + '</span>';
+							listHTML += '<h2 class="quiz__question">';
+							listHTML += '<span class="word">' + response.rr[i].sdwWord + '</span>';
+							listHTML += '<hr style="margin: 10px 0;">';
+							listHTML += '<div>';
+							for (let j = 0; j < response.tt.length; j++) {
+								if (response.rr[i].sdwWord == response.tt[j].sdwWord) {
+									listHTML += '<div class="ask">';
+									listHTML += '<span class="content" style="font-weight: bold;" >' + response.tt[j].sdwmNum + '. ' + '</span>';
+									listHTML += '<span class="content" style="font-weight: bold;" >' + '[' + response.tt[j].sdwmPartOfSpeech + ']' + '&nbsp;' + '</span>';
+									listHTML += '<span class="content" >' + response.tt[j].sdwmContents + '</span>';
+									listHTML += '<br>';
+									listHTML += '</div>';
+								}
+							}
+							listHTML += '<hr style="margin: 10px 0;">';
+							for (let j = 0; j < response.tt.length; j++) {
+								if (response.rr[i].sdwWord == response.tt[j].sdwWord) {
+									
+									listHTML += '<div class="ask1">';
+									listHTML += '<span class="content" >' + response.tt[j].sdwmNum + '. ' + response.tt[j].sdweContents + '</span><br>';
+									listHTML += '<span class="content" >' + '&nbsp;&nbsp;&nbsp;' + response.tt[j].sdweTranslate + '</span>';
+									listHTML += '<br>';
+									listHTML += '</div>';
+								}
+							}
+							listHTML += '</div>';
+							listHTML += '</h2>';
+							listHTML += '</div>';
+							listHTML += '</div>';
+							document.getElementById('wordChoice').innerHTML += listHTML;
+						}
+					} else {
+						// 
+					}
+				}
 
-													listHTML += '<div class="col-6" style="margin: auto;" id="colPadding">';
-													listHTML += '<div class="quiz">';
-													listHTML += '<span class="quiz__type">'+ response.tt[i].sddDateChoice + '</span>';
-													listHTML += '<h2 class="quiz__question">';
-													listHTML += '<span class="word">'+ response.tt[i].sdwWord + '</span>';
-													listHTML += '<hr style="margin: 10px 0;">';
-													listHTML += '<div>';
-													alert("1"+response.tt[0].sdwWord);
-													alert("2"+response.tt[1].sdwWord);
-													for(let i=0; i<response.tt.length; i++){
-														if(response.tt[i].sdwWord == response.tt[i++].sdwWord){
-															listHTML += '<div class="ask">';
-															listHTML += '<span class="content" style="font-weight: bold;" value="' + response.tt[i].sdwSeq + '">' + response.tt[i].sdwmNum + '. ' + '</span>';
-															listHTML += '<span class="content" style="font-weight: bold;" value="' + response.tt[i].sdwSeq + '">' +  response.tt[i].sdwmPartOfSpeech + '</span>';
-															listHTML += '<span class="content" value="' + response.tt[i].sdwSeq + '">' + response.tt[i].sdwmContents + '</span>';
-															listHTML += '<br>';
-															listHTML += '</div>';
-														} else {
-															listHTML += '<br>';
-														}
-													}
-													listHTML += '<hr style="margin: 10px 0;">';
-													for(let i=0; i<response.tt.length; i++){
-														if(response.tt[i].sdwWord == response.tt[i++].sdwWord){
-															listHTML += '<div class="ask1">'; 
-															listHTML += '<span class="content" value="' + response.tt[i].sdwSeq + '">' + response.tt[i].sdwmNum  + '. ' + '</span>';
-															listHTML += '<span class="content" value="' + response.tt[i].sdwSeq + '">' + response.tt[i].sdweContents + '</span>';
-															listHTML += '<br>';
-															listHTML += '<span class="content" value="' + response.tt[i].sdwSeq + '">' + response.tt[i].sdweTranslate + '</span>';
-															listHTML += '<br>';
-															listHTML += '</div>';
-														} else {
-															listHTML += '<br>';
-														}
-													}
-													listHTML += '</div>';
-													listHTML += '</h2>';
-													listHTML += '</div>';
-													listHTML += '</div>';
+				,
+				error : function(jqXHR, textStatus, errorThrown) {
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
 
-													document.getElementById('wordChoice').innerHTML += listHTML;
-
-												}
-
-											} else {
-												// 
-											}
-										}
-
-										,
-										error : function(jqXHR, textStatus,
-												errorThrown) {
-											alert("ajaxUpdate "
-													+ jqXHR.textStatus + " : "
-													+ jqXHR.errorThrown);
-										}
-
-									});
-						});
+			});
+		});
 	</script>
 
 </body>

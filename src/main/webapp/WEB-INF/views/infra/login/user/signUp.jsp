@@ -166,7 +166,7 @@
 							<option value="10" >daum.net</option>
 						</select>
 		              </div>
-		              <input type="text" class="form-control" id="ifmmEmail" name="ifmmEmail" >
+		              <input type="hidden" class="form-control" id="ifmmEmail" name="ifmmEmail" >
 		              <input class="form-text" type="checkbox" name="ifmmMailNy" value="1" >
 		              <input class="form-text" type="hidden" name="ifmmMailNy" value="0" >
 					  <label class="form-text" for="ifmmMailNy" >
@@ -207,7 +207,7 @@
 							<!-- <button class="btn btn-outline-secondary" type="button" id="button-addon2">인증번호 요청</button> -->
 						</div>
 						<div class="invalid-feedback" id="inputPhone2ChkFeedback"></div>
-						<input type="text" id="ifmmPhone" name="ifmmPhone" class="form-control" >
+						<input type="hidden" id="ifmmPhone" name="ifmmPhone" class="form-control" >
 						<!-- 
 						<div class="col-6">
 							<div class="input-group md-3" style="padding-top: 5px;">
@@ -244,7 +244,7 @@
 							<input type="text" class="form-control" id="ifmmDetailedAddress" name="ifmmDetailedAddress" placeholder="상세주소" aria-label="Recipient's username" aria-describedby="button-addon2" required>
 							<input type="text" class="form-control" id="ifmmReference" name="ifmmReference" placeholder="참고항목" aria-label="Recipient's username" aria-describedby="button-addon2" required>
 						</div>
-						<input type="text" class="form-control" id="ifmmAddress" name="ifmmAddress">
+						<input type="hidden" class="form-control" id="ifmmAddress" name="ifmmAddress">
 				  	  </div>
 		            </div>
 		            <!-- 
@@ -516,7 +516,7 @@ $("#btnAddressClear").on("click", function() {
 });
 
 $("#btnSave").on("click", function(){
-	form.attr("action", goUrlInst).submit();
+		form.attr("action", goUrlInst).submit();
 }); 
 
 //Example starter JavaScript for disabling form submissions if there are invalid fields

@@ -5,17 +5,15 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags"%>
 
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Datepicker -->
-<!-- 
-	<script type="text/javascript" src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-	 -->
+<title>E-Word Administrator</title>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -62,19 +60,6 @@
 	});
 </script>
 
-
-<title>E-Word Administrator</title>
-<!-- 
-    <link rel="stylesheet" href="/resources/demos/style.css">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"> 
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	 -->
-
-<!-- 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-     -->
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../resources/assets/css/bootstrap.css">
 
@@ -85,12 +70,6 @@
 <link rel="stylesheet" href="../resources/assets/vendors/bootstrap-icons/bootstrap-icons.css">
 <link rel="stylesheet" href="../resources/assets/css/app.css">
 <link rel="shortcut icon" href="../resources/assets/images/favicon.svg" type="image/x-icon">
-<style type="text/css">
-</style>
-
-
-
-
 </head>
 
 <body>
@@ -121,47 +100,35 @@
 					<ul class="menu">
 						<li class="sidebar-title">Menu</li>
 
-						<li class="sidebar-item ">
-							<a href="../member/memberList" class='sidebar-link'>
+						<li class="sidebar-item "><a href="../member/memberList" class='sidebar-link'>
 								<i class="bi bi-person-badge-fill"></i>
 								<span>MemberList</span>
-							</a>
-						</li>
+							</a></li>
 
-						<li class="sidebar-item active ">
-							<a href="codeGroupList" class='sidebar-link'>
+						<li class="sidebar-item"><a href="../codeGroup/codeGroupList" class='sidebar-link'>
 								<i class="bi bi-grid-fill"></i>
 								<span>CodeGroup</span>
-							</a>
-						</li>
+							</a></li>
 
-						<li class="sidebar-item ">
-							<a href="../code/codeList" class='sidebar-link'>
+						<li class="sidebar-item"><a href="../code/codeList" class='sidebar-link'>
 								<i class="bi bi-grid-fill"></i>
 								<span>Code</span>
-							</a>
-						</li>
+							</a></li>
 
-						<li class="sidebar-item">
-							<a href="../word/wordList" class='sidebar-link'>
+						<li class="sidebar-item active"><a href="../word/wordList" class='sidebar-link'>
 								<i class="fa fa-book"></i>
 								<span>Word</span>
-							</a>
-						</li>
+							</a></li>
 
-						<li class="sidebar-item">
-							<a href="../test/testList" class='sidebar-link'>
+						<li class="sidebar-item"><a href="../test/testList" class='sidebar-link'>
 								<i class="fa fa-chalkboard"></i>
 								<span>Test</span>
-							</a>
-						</li>
+							</a></li>
 
-						<li class="sidebar-item">
-							<a href="/home/home" class='sidebar-link'>
+						<li class="sidebar-item"><a href="/home/home" class='sidebar-link'>
 								<i class="fa-solid fa-house-chimney-user"></i>
 								<span>User Home</span>
-							</a>
-						</li>
+							</a></li>
 					</ul>
 				</div>
 				<button class="sidebar-toggler btn x">
@@ -182,8 +149,7 @@
 						<i class="fa-regular fa-face-laugh"></i>
 					</button>
 					<ul class="dropdown-menu dropdown-menu-end dropdown-menu-start">
-						<li>
-							<a class="dropdown-item" href="#">
+						<li><a class="dropdown-item" href="#">
 								<div class="d-flex">
 									<div class="flex-shrink-0 me-3">
 										<div class="avatar">
@@ -195,49 +161,40 @@
 										<small class="text-muted">Admin</small>
 									</div>
 								</div>
-							</a>
-						</li>
+							</a></li>
 						<li>
 							<div class="dropdown-divider"></div>
 						</li>
-						<li>
-							<a class="dropdown-item" href="">
+						<li><a class="dropdown-item" href="">
 								<i class="bx bx-user me-2"></i>
 								<span class="align-middle">My Profile</span>
-							</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="">
+							</a></li>
+						<li><a class="dropdown-item" href="">
 								<i class="bx bx-cog me-2"></i>
 								<span class="align-middle">Settings</span>
-							</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="">
+							</a></li>
+						<li><a class="dropdown-item" href="">
 								<span class="d-flex align-items-center align-middle">
 									<i class="flex-shrink-0 bx bx-credit-card me-2"></i>
 									<span class="flex-grow-1 align-middle">Billing</span>
 									<span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
 								</span>
-							</a>
-						</li>
+							</a></li>
 						<li>
 							<div class="dropdown-divider"></div>
 						</li>
-						<li>
-							<a class="dropdown-item" id="btnLogout" href="">
+						<li><a class="dropdown-item" id="btnLogout" href="">
 								<i class="bx bx-power-off me-2"></i>
 								<span class="align-middle">Log Out</span>
-							</a>
-						</li>
+							</a></li>
 					</ul>
 				</div>
 			</header>
 
 			<div class="page-heading">
-				<h3>CodeGroup Management</h3>
-				ifcgSeq =
-				<c:out value="${vo.ifcgSeq }" />
+				<h3>Word Management</h3>
+				ifcdSeq =
+				<c:out value="${vo.ifcdSeq }" />
 				<br> shUseNy =
 				<c:out value="${vo.shUseNy }" />
 				<br> shOptionDate =
@@ -247,9 +204,7 @@
 				<br> shValue =
 				<c:out value="${vo.shValue }" />
 				<br>
-
 			</div>
-
 			<div class="page-content">
 				<section class="row">
 					<div class="col-12">
@@ -257,9 +212,9 @@
 							<section class="section">
 								<div class="card">
 									<div class="card-body">
-										<form method="post" name="formList" id="formList" action="/codeGroup/codeGroupList">
+										<form method="post" name="formList" id="formList" action="/code/codeList">
 
-											<input type="hidden" name="ifcgSeq">
+											<input type="hidden" name="ifcdSeq">
 											<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
 											<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>">
 											<input type="hidden" name="checkboxSeqArray">
@@ -268,8 +223,8 @@
 												<div class="col-3">
 													<select id="shUseNy" name="shUseNy" class="form-select">
 														<option value="" <c:if test="${empty vo.shUseNy}">selected</c:if>>사용여부</option>
-														<option value="1" <c:if test="${vo.shUseNy eq 1}">selected</c:if>>Y</option>
 														<option value="0" <c:if test="${vo.shUseNy eq 0}">selected</c:if>>N</option>
+														<option value="1" <c:if test="${vo.shUseNy eq 1}">selected</c:if>>Y</option>
 													</select>
 												</div>
 												<div class="col-3">
@@ -288,13 +243,12 @@
 													<fmt:parseDate var="shDateEnd" value="${vo.shDateEnd}" pattern="yyyy-MM-dd HH:mm:ss" />
 													<input type="text" class="form-control" id="shDateEnd" placeholder="종료일" <fmt:formatDate  value="${vo.shDateEnd}" pattern="yyyy-MM-dd HH:mm:ss"/>>
 												</div>
-
 												<div class="col-3">
 													<select id="shOption" name="shOption" class="form-select" aria-label="Default select example">
 														<option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
-														<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드그룹 코드</option>
-														<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드그룹 이름 (한글)</option>
-														<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드그룹 이름 (영문)</option>
+														<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드</option>
+														<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드 이름 (한글)</option>
+														<option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드 이름 (영문)</option>
 													</select>
 												</div>
 												<div class="col-3">
@@ -304,7 +258,7 @@
 													<button class="btn btn-outline-primary" type="submit" style="margin-right: 5px;">
 														<i class="fa-solid fa-magnifying-glass"></i>
 													</button>
-													<button class="btn btn-outline-danger" type="button" id="btnReset">
+													<button class="btn btn-outline-danger" type="submit">
 														<i class="fa-solid fa-arrow-rotate-left"></i>
 													</button>
 												</div>
@@ -312,8 +266,6 @@
 										</form>
 
 										<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
-
-
 
 											<div class="dataTable-container">
 												<table class="table table-striped" id="table1">
@@ -325,16 +277,15 @@
 																</div>
 															</th>
 															<th>#</th>
-															<th>코드그룹 코드</th>
-															<th>코드그룹 이름(한글)</th>
-															<th>코드그룹 이름(영문)</th>
-															<th>코드 갯수</th>
+															<th style="width: 5%;">단어</th>
+															<th style="width: 25%;">뜻</th>
+															<th style="width: 35%;">예시</th>
+															<th style="width: 10%;">날짜</th>
 															<th>등록일</th>
 															<th>수정일</th>
 														</tr>
 													</thead>
 													<tbody id="my_tbody">
-
 														<c:choose>
 															<c:when test="${fn:length(list) eq 0}">
 																<tr>
@@ -342,43 +293,85 @@
 																</tr>
 															</c:when>
 															<c:otherwise>
-																<c:forEach items="${list}" var="list" varStatus="status">
-																	<tr style="cursor: pointer;" onclick="location.href='/codeGroup/codeGroupForm?ifcgSeq=<c:out value="${list.ifcgSeq }"/>'">
 
+																<c:forEach items="${list}" var="list" varStatus="status">
+																	<tr>
 																		<td>
 																			<div class="form-check">
 																				<input class="form-check-input" type="checkbox" name="chk_box" onclick="check();" value="" id="flexCheckDefault">
 																			</div>
 																		</td>
+																		<td>${status.count }</td>
+																		<td>${list.sdwWord }</td>
 																		<td>
-																			<c:out value="${vo.totalRows - ((vo.thisPage -1) * vo.rowNumToShow + status.index) }" />
+																			<c:forEach items="${item}" var="item" varStatus="status">
+																				<c:if test="${list.sdwWord == item.sdwWord }">
+																					<div class="ask">
+																						<span class="content" style="font-weight: bold;" value="${list.sdwSeq }">${item.sdwmNum}. &nbsp;${item.sdwmPartOfSpeech}</span>
+																						<span class="content" value="${list.sdwSeq }">&nbsp;${item.sdwmContents}</span>
+																						<br>
+																					</div>
+																				</c:if>
+																			</c:forEach>
 																		</td>
 																		<td>
-																			<c:out value="${list.ifcgSeq }" />
+																			<c:forEach items="${item}" var="item" varStatus="status">
+																				<c:if test="${list.sdwWord == item.sdwWord }">
+																					<div class="ask1">
+																						<span class="content" style="font-weight: bold;">${item.sdwmNum}.&nbsp;</span>
+																						<span class="content" value="${list.sdwSeq }">${item.sdweContents}</span>
+																						<br>
+																						<span class="content" value="${list.sdwSeq }">&nbsp;&nbsp;&nbsp;&nbsp;${item.sdweTranslate}</span>
+																						<br>
+																					</div>
+																				</c:if>
+																			</c:forEach>
 																		</td>
-																		<td>
-																			<a href="javascript:goForm(<c:out value="${list.ifcgSeq }"/>)" class="text-decoration-none">
-																				<c:out value="${list.ifcgName }" />
-																			</a>
-																		</td>
-																		<td>
-																			<c:out value="${list.ifcgEngName }" />
-																		</td>
-																		<td>
-																			<c:out value="${list.count }" />
-																		</td>
-																		<td>
-																			<fmt:formatDate value="${list.ifcgRegDate }" pattern="yyyy-MM-dd HH:mm:ss" />
-																		</td>
-																		<td>
-																			<fmt:formatDate value="${list.ifcgModDate }" pattern="yyyy-MM-dd HH:mm:ss" />
-																		</td>
+																		<td>${list.sddDateChoice }</td>
+																		<td></td>
+																		<td></td>
 																	</tr>
 																</c:forEach>
+																<%-- 
+																<c:forEach items="${list}" var="list" varStatus="status">
 
+																	<div class="col-6" style="margin: auto;" id="colPadding">
+																		<div class="quiz">
+																			<span class="quiz__type">${list.sddDateChoice }</span>
+																			<h2 class="quiz__question">
+																				<span class="word">${list.sdwWord }</span>
+																				<hr style="margin: 10px 0;">
+																				<div>
+																					<c:forEach items="${item}" var="item" varStatus="status">
+																						<c:if test="${list.sdwWord == item.sdwWord }">
+																							<div class="ask">
+																								<span class="content" style="font-weight: bold;" value="${list.sdwSeq }">${item.sdwmNum}. &nbsp;${item.sdwmPartOfSpeech}</span>
+																								<span class="content" value="${list.sdwSeq }">&nbsp;${item.sdwmContents}</span>
+																								<br>
+																							</div>
+																						</c:if>
+																					</c:forEach>
+																					<hr style="margin: 10px 0;">
+																					<c:forEach items="${item}" var="item" varStatus="status">
+																						<c:if test="${list.sdwWord == item.sdwWord }">
+																							<div class="ask1">
+																								<span class="content" style="font-weight: bold;">${item.sdwmNum}.&nbsp;</span>
+																								<span class="content" value="${list.sdwSeq }">${item.sdweContents}</span>
+																								<br>
+																								<span class="content" value="${list.sdwSeq }">&nbsp;&nbsp;&nbsp;&nbsp;${item.sdweTranslate}</span>
+																								<br>
+																							</div>
+																						</c:if>
+																					</c:forEach>
+																				</div>
+																			</h2>
+																		</div>
+																	</div>
+
+																</c:forEach>
+																 --%>
 															</c:otherwise>
 														</c:choose>
-
 													</tbody>
 												</table>
 											</div>
@@ -391,6 +384,23 @@
 													<%@include file="../../../common/xdmin/includeV1/pagination.jsp"%>
 													<!-- pagination e -->
 
+
+													<!-- 
+												<nav aria-label="Page navigation example">
+													<ul class="pagination justify-content-center">
+														<li class="page-item">
+															<a class="page-link" href="#">Previous</a>
+														</li>
+														<li class="page-item active"><a class="page-link" href="#">1</a></li>
+														<li class="page-item"><a class="page-link" href="#">2</a></li>
+														<li class="page-item"><a class="page-link" href="#">3</a></li>
+														<li class="page-item"><a class="page-link" href="#">┅</a></li>
+														<li class="page-item">
+															<a class="page-link" href="#">Next</a>
+														</li>
+													</ul>
+												</nav>
+												 -->
 												</div>
 
 												<div class="row">
@@ -450,11 +460,10 @@
 
 							</section>
 						</div>
-
 					</div>
-
 				</section>
 			</div>
+
 			<footer>
 				<div class="footer clearfix mb-0 text-muted">
 					<div class="float-start">
@@ -474,35 +483,36 @@
 			</footer>
 		</div>
 	</div>
+
+
 	<!-- 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-	 -->
-	<!--
-   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>  
+	<script src="../resources/assets/vendors/simple-datatables/simple-datatables.js"></script>
+	<script src="../resources/assets/vendors/apexcharts/apexcharts.js"></script>
+    <script src="../resources/assets/js/pages/dashboard.js"></script>
     <script src="../resources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="../resources/assets/js/bootstrap.bundle.min.js"></script>
-    <script src="../resources/assets/vendors/simple-datatables/simple-datatables.js"></script>
-     -->
-	<script src="https://kit.fontawesome.com/20c294a34b.js" crossorigin="anonymous"></script>
-	<!-- 
-    <script src="../resources/assets/vendors/apexcharts/apexcharts.js"></script>
-    <script src="../resources/assets/js/pages/dashboard.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	 -->
-	<script src="../resources/assets/js/main.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/20c294a34b.js" crossorigin="anonymous"></script>
+	<script src="../resources/assets/js/main.js"></script>
 
 	<script type="text/javascript">
-		var goUrlList = "/codeGroup/codeGroupList";
-		var goUrlForm = "/codeGroup/codeGroupForm";
+		var goUrlList = "/word/wordList";
+		var goUrlForm = "/word/wordForm";
 
-		var seq = $("input:hidden[name=ifcgSeq]");
+		var seq = $("input:hidden[name=ifcdSeq]");
 
 		$('#btnForm').on("click", function() {
 			goForm(0);
 		});
+
+		goList = function(thisPage) {
+			$("input:hidden[name=thisPage]").val(thisPage);
+			form.attr("action", goUrlList).submit();
+		}
 
 		goForm = function(keyValue) {
 			/* if(keyValue != 0) seq.val(btoa(keyValue)); */
@@ -520,7 +530,9 @@
 		$("btnReset").on("click", function() {
 			$(location).attr("href", goUrlList)
 		})
+	</script>
 
+	<script>
 		// Simple Datatable
 		let table1 = document.querySelector('#table1');
 		/* let dataTable = new simpleDatatables.DataTable(table1); */
@@ -568,6 +580,7 @@
 			});
 		});
 	</script>
+
 
 
 

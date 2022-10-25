@@ -17,14 +17,24 @@ public class HomeServiceImpl implements HomeService{
 	HomeDao dao;
 	
 	@Override
-	public List<Home> selectList() throws Exception {
-		List<Home> list = dao.selectList();
+	public List<Home> selectList(Home dto) throws Exception {
+		List<Home> list = dao.selectList(dto);
+		return list;
+	}
+	@Override
+	public List<Home> wordList() throws Exception {
+		List<Home> list = dao.wordList();
 		return list;
 	}
 	
 	@Override
 	public List<Home> selectContents(Home dto) throws Exception {
 		List<Home> item = dao.selectContents(dto);
+		return item;
+	}
+	@Override
+	public List<Home> wordContents() throws Exception {
+		List<Home> item = dao.wordContents();
 		return item;
 	}
 	@Override

@@ -113,10 +113,10 @@
 						<li class="sidebar-item "><a href="../code/codeList" class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>Code</span>
 						</a></li>
 
-						<li class="sidebar-item"><a href="" class='sidebar-link'> <i class="fa fa-book"></i> <span>Word</span>
+						<li class="sidebar-item"><a href="../word/wordList" class='sidebar-link'> <i class="fa fa-book"></i> <span>Word</span>
 						</a></li>
 
-						<li class="sidebar-item"><a href="" class='sidebar-link'> <i class="fa fa-chalkboard"></i> <span>Test</span>
+						<li class="sidebar-item"><a href="../test/testList" class='sidebar-link'> <i class="fa fa-chalkboard"></i> <span>Test</span>
 						</a></li>
 						
 						<li class="sidebar-item"><a href="/home/home" class='sidebar-link'> <i class="fa-solid fa-house-chimney-user"></i> <span>User Home</span>

@@ -20,12 +20,20 @@ public class HomeDao {
 	
 	private static String namespace = "com.decemelev.infra.modules.home.HomeMapper";
 	
-	public List<Home> selectList() {
-		List<Home> list = sqlSession.selectList("com.decemelev.infra.modules.home.HomeMapper.selectList", "");
+	public List<Home> selectList(Home dto) {
+		List<Home> list = sqlSession.selectList("com.decemelev.infra.modules.home.HomeMapper.selectList", dto);
+		return list;
+	}
+	public List<Home> wordList() {
+		List<Home> list = sqlSession.selectList("com.decemelev.infra.modules.home.HomeMapper.wordList", "");
 		return list;
 	}
 	public List<Home> selectContents(Home dto) {
 		List<Home> list = sqlSession.selectList("com.decemelev.infra.modules.home.HomeMapper.selectContents", dto);
+		return list;
+	}
+	public List<Home> wordContents() {
+		List<Home> list = sqlSession.selectList("com.decemelev.infra.modules.home.HomeMapper.wordContents", "");
 		return list;
 	}
 	

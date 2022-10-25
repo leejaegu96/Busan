@@ -26,6 +26,49 @@
 <link rel="stylesheet" href="../resources/assets/css/app.css">
 <link rel="shortcut icon" href="../resources/assets/images/favicon.svg" type="image/x-icon">
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<style>
+.ui-datepicker {
+	font-size: 15px;
+	width: 400px;
+}
+
+.ui-datepicker select.ui-datepicker-month {
+	width: 30%;
+	font-size: 15px;
+}
+
+.ui-datepicker select.ui-datepicker-year {
+	width: 40%;
+	font-size: 15px;
+}
+</style>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$.datepicker.setDefaults($.datepicker.regional['ko']);
+		$("#datepicker").datepicker({
+			changeMonth : true,
+			changeYear : true,
+			nextText : '다음 달',
+			prevText : '이전 달',
+			dayNames : [ '일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일' ],
+			dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
+			monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월' ],
+			monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월' ],
+			dateFormat : "yy-mm-dd",
+			maxDate : 0,
+			minDate : new Date('2022-07-25'),
+			maxDate : new Date('2022-07-28'),
+			// 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)
+			onClose : function(selectedDate) {
+			}
+
+		});
+	});
+</script>
+
 <style type="text/css">
 #InputPadding {
 	padding-top: 20px;
@@ -69,46 +112,34 @@ ul li {
 					<ul class="menu">
 						<li class="sidebar-title">Menu</li>
 
-						<li class="sidebar-item  ">
-							<a href="MemberListForm.html" class='sidebar-link'>
+						<li class="sidebar-item  "><a href="../member/memberList" class='sidebar-link'>
 								<i class="bi bi-person-badge-fill"></i>
 								<span>MemberList</span>
-							</a>
-						</li>
+							</a></li>
 
-						<li class="sidebar-item">
-							<a href="../codeGroup/codeGroupList" class='sidebar-link'>
+						<li class="sidebar-item"><a href="../codeGroup/codeGroupList" class='sidebar-link'>
 								<i class="bi bi-grid-fill"></i>
 								<span>CodeGroup</span>
-							</a>
-						</li>
+							</a></li>
 
-						<li class="sidebar-item active">
-							<a href="codeList" class='sidebar-link'>
+						<li class="sidebar-item "><a href="../code/codeList" class='sidebar-link'>
 								<i class="bi bi-grid-fill"></i>
 								<span>Code</span>
-							</a>
-						</li>
+							</a></li>
 
-						<li class="sidebar-item">
-							<a href="../word/wordList" class='sidebar-link'>
+						<li class="sidebar-item active"><a href="../word/wordList" class='sidebar-link'>
 								<i class="fa fa-book"></i>
 								<span>Word</span>
-							</a>
-						</li>
+							</a></li>
 
-						<li class="sidebar-item">
-							<a href="../test/testList" class='sidebar-link'>
+						<li class="sidebar-item"><a href="../test/testList" class='sidebar-link'>
 								<i class="fa fa-chalkboard"></i>
 								<span>Test</span>
-							</a>
-						</li>
-						<li class="sidebar-item">
-							<a href="/home/home" class='sidebar-link'>
+							</a></li>
+						<li class="sidebar-item"><a href="/home/home" class='sidebar-link'>
 								<i class="fa-solid fa-house-chimney-user"></i>
 								<span>User Home</span>
-							</a>
-						</li>
+							</a></li>
 					</ul>
 				</div>
 				<button class="sidebar-toggler btn x">
@@ -150,7 +181,7 @@ ul li {
 									<div class="card-body">
 										<form id="form" name="form" method="post">
 											<!-- *Vo.jsp s -->
-											<%@include file="codeVo.jsp"%>
+											<%-- <%@include file="wordVo.jsp"%> --%>
 											<!-- #-> -->
 											<!-- *Vo.jsp e -->
 											<%-- 
@@ -159,102 +190,70 @@ ul li {
 											<div class="container-fluid" style="padding-top: 30px;">
 												<div class="row">
 													<div class="col">
-														<span style="font-size: 25px;">Code</span>
+														<span style="font-size: 25px;">Word</span>
 													</div>
 												</div>
 											</div>
 											<div class="container-fluid">
 												<div class="row" id="InputPadding">
 													<div class="col-6">
-														<label class="form-label">코드</label>
-														<input type="text" class="form-control" id="disabledInput" value="<c:out value="${vo.ifcdSeq }"/>" disabled="">
+														<label class="form-label">단어</label>
+														<input type="text" class="form-control" id="disabledInput" value="<c:out value="${vo.ifcdSeq }"/>">
 													</div>
 													<div class="col-6">
-														<label class="form-label">코드 그룹</label>
-														<select name="ifcgSeq" id="ifcgSeq" class="form-select">
-															<c:forEach items="${name}" var="name" varStatus="status">
-																<%-- <option>${name.ifcgName }</option> --%>
-																<option value="${name.ifcgSeq }">${name.ifcgName }</option>
-															</c:forEach>
-														</select>
+														<label class="form-label">날짜</label>
+														<input type="text" class="form-control" id="datepicker" value="<c:out value="${vo.ifcdSeq }"/>">
 													</div>
 												</div>
+
 												<div class="row" id="InputPadding">
 													<div class="col-6">
-														<label class="form-label">코드 이름 (한글)</label>
-														<input type="text" class="form-control" name="ifcdName" value="<c:out value="${item.ifcdName }"/>">
-													</div>
-													<div class="col-6">
-														<label class="form-label">코드 이름 (영문)</label>
-														<input type="text" class="form-control" name="ifcdEngName" value="<c:out value="${item.ifcdEngName }"/>">
-													</div>
-												</div>
-												<div class="row" id="InputPadding">
-													<div class="col-6">
-														<label class="form-label">사용여부</label>
-														<select id="inputState" class="form-select">
-															<option selected disabled>:선택:</option>
-															<option selected>Y</option>
-															<option>N</option>
-														</select>
-													</div>
-													<div class="col-6">
-														<label class="form-label">순서</label>
-														<input type="text" class="form-control" name="ifcdOrder">
+														<button type="button" id="btnPlus" class="btn btn-primary">
+															<i class="fa-solid fa-plus"></i>
+														</button>
+														<button type="button" id="btnMinus" class="btn btn-danger">
+															<i class="fa-solid fa-minus"></i>
+														</button>
 													</div>
 												</div>
-												<div class="row" id="InputPadding">
-													<div class="col-6">
-														<label class="form-label">설명</label>
-														<textarea class="form-control" rows="2"></textarea>
-													</div>
-													<div class="col-6">
-														<label class="form-label">삭제여부</label>
-														<select id="inputState" class="form-select">
-															<option selected disabled>:선택:</option>
-															<option>Y</option>
-															<option selected>N</option>
-														</select>
-													</div>
-												</div>
-												<div class="row" id="InputPadding">
-													<div class="col-6">
-														<label class="form-label">예비1(varchar type)</label>
-														<input type="text" class="form-control" placeholder="영문(대소문자), 숫자">
-													</div>
-													<div class="col-6">
-														<label class="form-label">예비2(varchar type)</label>
-														<input type="text" class="form-control" placeholder="영문(대소문자), 숫자">
-													</div>
-												</div>
-												<div class="row" id="InputPadding">
-													<div class="col-6">
-														<label class="form-label">예비3(varchar type)</label>
-														<input type="text" class="form-control" placeholder="영문(대소문자), 숫자">
-													</div>
-												</div>
-												<div class="row" id="InputPadding">
-													<div class="col-6">
-														<label class="form-label">예비1(int type)</label>
-														<input type="text" class="form-control" placeholder="숫자">
-													</div>
-													<div class="col-6">
-														<label class="form-label">예비2(int type)</label>
-														<input type="text" class="form-control" placeholder="숫자">
+
+												<div id="plusData">
+													<div class="row" id="InputPadding">
+														<div class="col-6">
+															<label class="form-label">정의1</label>
+															<div class="row">
+																<div class="col-4">
+																	<select id="inputState" class="form-select">
+																		<option selected disabled>:선택:</option>
+																		<option value="형용사">형용사</option>
+																		<option value="명사">명사</option>
+																		<option value="동사">동사</option>
+																	</select>
+																</div>
+																<div class="col-8">
+																	<input type="text" class="form-control" name="ifcdName" value="<c:out value="${item.ifcdName }"/>">
+																</div>
+															</div>
+														</div>
+														<div class="col-6">
+															<label class="form-label">예시1</label>
+															<div class="input-group mb-3">
+																<span class="input-group-text" id="basic-addon1">영문</span>
+																<input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+															</div>
+															<div class="input-group mb-3">
+																<span class="input-group-text" id="basic-addon1">해석</span>
+																<input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+															</div>
+														</div>
 													</div>
 												</div>
-												<div class="row" id="InputPadding">
-													<div class="col-6">
-														<label class="form-label">예비3(int type)</label>
-														<input type="text" class="form-control" placeholder="숫자">
-													</div>
-												</div>
+
 												<div class="row" id="InputPadding">
 													<div class="col-6" style="text-align: left;">
 														<button type="button" class="btn btn-secondary" id="btnList">
 															<i class="fa-solid fa-bars"></i>
 														</button>
-
 													</div>
 													<div class="col-6" style="text-align: right;">
 														<button type="button" id="btnDelete" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -307,7 +306,7 @@ ul li {
 										</form>
 										<form name="formVo" id="formVo" method="post">
 											<!-- *Vo.jsp s -->
-											<%@include file="codeVo.jsp"%>
+											<%-- <%@include file="wordVo.jsp"%> --%>
 											<!-- #-> -->
 											<!-- *Vo.jsp e -->
 										</form>
@@ -342,10 +341,11 @@ ul li {
 			</footer>
 		</div>
 	</div>
-
+	<!-- 
 	<script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+	 -->
 	<!-- 
     <script src="../resources/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="../resources/assets/js/bootstrap.bundle.min.js"></script>
@@ -411,45 +411,56 @@ ul li {
 		$("#btnModalUelete").on("click", function() {
 			form.attr("action", goUrlUele).submit();
 		});
-
-		/* 
-		const reader = new FileReader();
-
-		reader.onload = (readerEvent) => {
-		    document.querySelector("#img_section").setAttribute("src", readerEvent.target.result);
-		    //파일을 읽는 이벤트가 발생하면 img_section의 src 속성을 readerEvent의 결과물로 대체함
-		};
-
-		document.querySelector("#upload_file").addEventListener("change", (changeEvent) => {
-		    //upload_file 에 이벤트리스너를 장착
-
-		    const imgFile = changeEvent.target.files[0];
-		    reader.readAsDataURL(imgFile);
-		    //업로드한 이미지의 URL을 reader에 등록
-		})
-
-		const exampleModal = document.getElementById('exampleModal')
-			exampleModal.addEventListener('show.bs.modal', event => {
-			// Button that triggered the modal
-		const button = event.relatedTarget
-			// Extract info from data-bs-* attributes
-		const recipient = button.getAttribute('data-bs-whatever')
-			// If necessary, you could initiate an AJAX request here
-			// and then do the updating in a callback.
-			//
-			// Update the modal's content.
-		const modalTitle = exampleModal.querySelector('.modal-title')
-		const modalBodyInput = exampleModal.querySelector('.modal-body input')
-			
-			modalTitle.textContent = `New message to ${recipient}`
-			modalBodyInput.value = recipient
-		}) 
-		 */
-		function test() {
-			alert("test")
-		}
 	</script>
 
+	<script type="text/javascript">
+		let CountA = 2;
+		$("#btnPlus").on("click", function() {
+			let listHTML = "";
+			listHTML += '<div class="row row'+ CountA +'" id="InputPadding">';
+			listHTML += '<div class="col-6">';
+			listHTML += '<label class="form-label">정의' + CountA + '</label>';
+			listHTML += '<div class="row">';
+			listHTML += '<div class="col-4">';
+			listHTML += '<select id="inputState" class="form-select">';
+			listHTML += '<option selected disabled>:선택:</option>';
+			listHTML += '<option>형용사</option>';
+			listHTML += '<option>명사</option>';
+			listHTML += '<option>동사</option>';
+			listHTML += '</select>';
+			listHTML += '</div>';
+			listHTML += '<div class="col-8">';
+			listHTML += '<input type="text" class="form-control" name="ifcdName" value="<c:out value="${item.ifcdName }"/>">';
+			listHTML += '</div>';
+			listHTML += '</div>';
+			listHTML += '</div>';
+			listHTML += '<div class="col-6">';
+			listHTML += '<label class="form-label">예시' + CountA + '</label>';
+			listHTML += '<div class="input-group mb-3">';
+			listHTML += '<span class="input-group-text" id="basic-addon1">영문</span>';
+			listHTML += '<input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">';
+			listHTML += '</div>';
+			listHTML += '<div class="input-group mb-3">';
+			listHTML += '<span class="input-group-text" id="basic-addon1">해석</span>';
+			listHTML += '<input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">';
+			listHTML += '</div>';
+			listHTML += '</div>';
+			listHTML += '</div>';
+			document.getElementById('plusData').innerHTML += listHTML;
+
+			if (CountA < 4)
+				CountA++;
+			return false;
+		});
+	</script>
+	<script type="text/javascript">
+		$("#btnMinus").on("click", function() {
+			$(".row" + CountA).remove();
+			CountA--;
+			return false;
+			CountA = 2;
+		});
+	</script>
 
 </body>
 
