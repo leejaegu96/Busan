@@ -208,7 +208,7 @@ ul li {
 
 												<div class="row" id="InputPadding">
 													<div class="col-6">
-														<button type="button" id="btnPlus" class="btn btn-primary">
+														<button type="button" id="btnPlus" class="btn btn-primary" onclick="add_textbox()">
 															<i class="fa-solid fa-plus"></i>
 														</button>
 														<button type="button" id="btnMinus" class="btn btn-danger">
