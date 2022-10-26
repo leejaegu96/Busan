@@ -214,7 +214,7 @@ input-group-text {
 										<c:otherwise> USER </c:otherwise>
 									</c:choose>
 								</h3>
-								<span><c:out value="${list.ifmmSeq }"/></span>
+								<span style="color:white;"><c:out value="${list.ifmmSeq }"/></span>
 								<div class="social-links mt-2">
 									<a href="#" class="twitter"><i class="bi bi-twitter"></i></a> <a href="#" class="facebook"><i class="bi bi-facebook"></i></a> <a href="#" class="instagram"><i class="bi bi-instagram"></i></a> <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
 								</div>

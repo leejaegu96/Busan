@@ -29,6 +29,7 @@
 			<mapping path="/**"/>
 			<exclude-mapping path="/resources/**" />
 			<exclude-mapping path="/login/**" />
+			<exclude-mapping path="/" />
 			<exclude-mapping path="/login/checkId" />
 			<exclude-mapping path="/login/signUp" />
 			<exclude-mapping path="/login/loginProc" />

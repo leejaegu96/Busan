@@ -26,61 +26,62 @@
 <link rel="stylesheet" href="../resources/assets/css/app.css">
 <link rel="shortcut icon" href="../resources/assets/images/favicon.svg" type="image/x-icon">
 <style type="text/css">
-	.addScroll{
-		overflow-y:auto;
-		height: 200px;
-		background-color:#E9ECEF;
-		padding-top:5px; 
-		padding-left:5px;
-	}
- 	
-	.input-file-button{
-		padding: 4px 25px;
-		background-color:#FF6600;
-		border-radius: 4px;
-		color: white;
-		cursor: pointer;
-	}
-	#preview {
-	    width: 200px;
-	    height: 200px; 
-	    border-radius: 70%;
-	    overflow: hidden;
-	}
-	#btn-upload {
-	  width: 150px;
-	  height: 30px;
-	  background: #fff;
-	  border: 1px solid rgb(77,77,77);
-	  border-radius: 10px;
-	  font-weight: 500;
-	  cursor: pointer;
-	  display: flex;
-	  align-items: center;
-	  justify-content: center;
-	  margin: auto;
-	  &:hover {
-	    background: rgb(77,77,77);
-	    color: #fff;
-	  }
-	}
-	
-	#file {
-	  display: none;
-	}
-	#preview {
-	    width: 150px;
-	    height: 150px; 
-	    border-radius: 70%;
-	    overflow: hidden;
-	}
-	
-	.rounded-circle {
-	    width: 150px;
-	    height: 150px; 
-	    border-radius: 100%;
-	    overflow: hidden;
-	}
+.addScroll {
+	overflow-y: auto;
+	height: 200px;
+	background-color: #E9ECEF;
+	padding-top: 5px;
+	padding-left: 5px;
+}
+
+.input-file-button {
+	padding: 4px 25px;
+	background-color: #FF6600;
+	border-radius: 4px;
+	color: white;
+	cursor: pointer;
+}
+
+#preview {
+	width: 200px;
+	height: 200px;
+	border-radius: 70%;
+	overflow: hidden;
+}
+
+#btn-upload {
+	width: 150px;
+	height: 30px;
+	background: #fff;
+	border: 1px solid rgb(77, 77, 77);
+	border-radius: 10px;
+	font-weight: 500;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: auto; &: hover { background : rgb( 77, 77, 77);
+	color: #fff;
+}
+
+}
+#file {
+	display: none;
+}
+
+#preview {
+	width: 150px;
+	height: 150px;
+	border-radius: 70%;
+	overflow: hidden;
+}
+
+.rounded-circle {
+	width: 150px;
+	height: 150px;
+	border-radius: 100%;
+	overflow: hidden;
+}
 </style>
 </head>
 
@@ -92,11 +93,19 @@
 					<div class="d-flex justify-content-between">
 						<div class="row" style="text-align: center; width: 300px;">
 							<div class="logo">
-								<a href="MemberListForm.html"><span style="font-size: 30px;"><i class="fa-solid fa-book-open"></i>&nbsp E-Word</span><br> <span style="font-size: 19px;">Administrator</span></a>
+								<a href="memberList">
+									<span style="font-size: 30px;">
+										<i class="fa-solid fa-book-open"></i>&nbsp E-Word
+									</span>
+									<br>
+									<span style="font-size: 19px;">Administrator</span>
+								</a>
 							</div>
 						</div>
 						<div class="toggler">
-							<a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+							<a href="#" class="sidebar-hide d-xl-none d-block">
+								<i class="bi bi-x bi-middle"></i>
+							</a>
 						</div>
 					</div>
 				</div>
@@ -104,23 +113,35 @@
 					<ul class="menu">
 						<li class="sidebar-title">Menu</li>
 
-						<li class="sidebar-item active "><a href="memberList" class='sidebar-link'> <i class="bi bi-person-badge-fill"></i> <span>MemberList</span>
-						</a></li>
+						<li class="sidebar-item active "><a href="memberList" class='sidebar-link'>
+								<i class="bi bi-person-badge-fill"></i>
+								<span>MemberList</span>
+							</a></li>
 
-						<li class="sidebar-item"><a href="../codeGroup/codeGroupList" class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>CodeGroup</span>
-						</a></li>
+						<li class="sidebar-item"><a href="../codeGroup/codeGroupList" class='sidebar-link'>
+								<i class="bi bi-grid-fill"></i>
+								<span>CodeGroup</span>
+							</a></li>
 
-						<li class="sidebar-item "><a href="../code/codeList" class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>Code</span>
-						</a></li>
+						<li class="sidebar-item "><a href="../code/codeList" class='sidebar-link'>
+								<i class="bi bi-grid-fill"></i>
+								<span>Code</span>
+							</a></li>
 
-						<li class="sidebar-item"><a href="../word/wordList" class='sidebar-link'> <i class="fa fa-book"></i> <span>Word</span>
-						</a></li>
+						<li class="sidebar-item"><a href="../word/wordList" class='sidebar-link'>
+								<i class="fa fa-book"></i>
+								<span>Word</span>
+							</a></li>
 
-						<li class="sidebar-item"><a href="../test/testList" class='sidebar-link'> <i class="fa fa-chalkboard"></i> <span>Test</span>
-						</a></li>
-						
-						<li class="sidebar-item"><a href="/home/home" class='sidebar-link'> <i class="fa-solid fa-house-chimney-user"></i> <span>User Home</span>
-						</a></li>
+						<li class="sidebar-item"><a href="../test/testList" class='sidebar-link'>
+								<i class="fa fa-chalkboard"></i>
+								<span>Test</span>
+							</a></li>
+
+						<li class="sidebar-item"><a href="/home/home" class='sidebar-link'>
+								<i class="fa-solid fa-house-chimney-user"></i>
+								<span>User Home</span>
+							</a></li>
 					</ul>
 				</div>
 				<button class="sidebar-toggler btn x">
@@ -133,7 +154,8 @@
 
 		<div id="main">
 			<header class="mb-3">
-				<a href="#" class="burger-btn d-block d-xl-none"> <i class="bi bi-justify fs-3"></i>
+				<a href="#" class="burger-btn d-block d-xl-none">
+					<i class="bi bi-justify fs-3"></i>
 				</a>
 			</header>
 
@@ -170,7 +192,7 @@
 											 --%>
 											<div class="row mb-3">
 												<label for="about" class="col-md-4 col-lg-3 col-form-label">Profile</label>
-												<div class="col-md-8 col-lg-9 text-center"  >
+												<div class="col-md-8 col-lg-9 text-center">
 													<c:choose>
 														<c:when test="${fn:length(listUploaded) eq 0 }">
 															<img id="imgProfile" src="/resources/assets/images/faces/default_100_100.png" class="rounded-circle mx-auto d-block" width="100" height="100">
@@ -184,8 +206,8 @@
 														</c:otherwise>
 													</c:choose>
 													<br>
-													<label for="ifmmUploadedProfileImage" >
-														<span id="btn-upload" style="text-align:center; margin:auto;">UPLOAD</span>
+													<label for="ifmmUploadedProfileImage">
+														<span id="btn-upload" style="text-align: center; margin: auto;">UPLOAD</span>
 													</label>
 													<input class="form-control form-control-sm" id="ifmmUploadedProfileImage" name="ifmmUploadedProfileImage" type="file" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedProfileImage', 0, 1, 1, 0, 0, 3);">
 												</div>
@@ -198,34 +220,38 @@
 											</div>
 
 											<div class="row mb-3">
-												<label for="ifmmId" class="col-md-4 col-lg-3 col-form-label">Id</label> 
+												<label for="ifmmId" class="col-md-4 col-lg-3 col-form-label">Id</label>
 												<input type="hidden" id="ifmmIdAllowedNy" name="ifmmIdAllowedNy" value="0">
 												<div class="col-md-8 col-lg-9">
 													<input type="text" class="form-control" id="ifmmId" name="ifmmId" value="<c:out value="${item.ifmmId}"/>" maxlength="20" placeholder="영대소문자,숫자,특수문자(-_.),4~20자리" <c:if test="${not empty item.ifmmId }"> readonly</c:if>>
 													<div class="invalid-feedback" id="ifmmIdFeedback"></div>
-													
-									                <c:if test="${item.ifmmSeq eq 0 || item.ifmmSeq eq null }">
-												    	<input type="button" id= "idcheck" value="아이디 중복확인" style="margin-top: 10px;">
-												    </c:if>
-											    	
-												</div>
-											</div>
 
-											<div class="row mb-3">
-												<label for="Name" class="col-md-4 col-lg-3 col-form-label">Password</label>
-												<div class="col-md-8 col-lg-9">
-													<input type="text" class="form-control" id="ifmmPassword" name="ifmmPassword" value="<c:out value="${item.ifmmPassword }"/>">
+													<c:if test="${item.ifmmSeq eq 0 || item.ifmmSeq eq null }">
+														<input type="button" id="idcheck" value="아이디 중복확인" style="margin-top: 10px;">
+													</c:if>
+
 												</div>
 											</div>
 											
+											<c:if test="${item.ifmmSeq eq 0 || item.ifmmSeq eq null }">
+											<div class="row mb-3">
+												<label for="Name" class="col-md-4 col-lg-3 col-form-label">Password</label>
+												<div class="col-md-8 col-lg-9">
+													<input type="hidden" id="ifmmPasswordAllowedNy" name="ifmmPasswordAllowedNy" value="0">
+													<input type="password" class="form-control" id="ifmmPassword" name="ifmmPassword" value="<c:out value="${item.ifmmPassword }"/>">
+													<div class="invalid-feedback" id="ifmmPasswordFeedback"></div>
+												</div>
+											</div>
+											</c:if>
+
 											<div class="row mb-3">
 												<label for="Name" class="col-md-4 col-lg-3 col-form-label">Name</label>
 												<div class="col-md-8 col-lg-9">
 													<input type="text" class="form-control" id="ifmmName" name="ifmmName" value="<c:out value="${item.ifmmName }"/>">
 												</div>
 											</div>
-											
-											
+
+
 
 											<div class="row mb-3">
 												<label for="Gender" class="col-md-4 col-lg-3 col-form-label">Gender</label>
@@ -249,7 +275,9 @@
 												<label for="Country" class="col-md-4 col-lg-3 col-form-label">Email</label>
 												<div class="col-md-8 col-lg-9">
 													<div class="input-group">
-														<input type="text" id="inputEmail" class="form-control" value="" aria-label="Username" required=""> <span class="input-group-text">@</span> <select class="form-select" id="validationCustom04">
+														<input type="text" id="inputEmail" class="form-control" value="" aria-label="Username" required="">
+														<span class="input-group-text">@</span>
+														<select class="form-select" id="validationCustom04">
 															<option selected="" value="">naver.com</option>
 															<option>google.com</option>
 															<option>hanmail.net</option>
@@ -274,7 +302,11 @@
 															</option>
 															<option><span>019</span>
 															</option>
-														</select> <span class="input-group-text">-</span> <input type="text" id="inputPhone" class="form-control" value="" required> <span class="input-group-text">-</span> <input type="text" id="inputPhone" class="form-control" value="" required>
+														</select>
+														<span class="input-group-text">-</span>
+														<input type="text" id="inputPhone" class="form-control" value="" required>
+														<span class="input-group-text">-</span>
+														<input type="text" id="inputPhone" class="form-control" value="" required>
 													</div>
 												</div>
 											</div>
@@ -298,10 +330,12 @@
 															<input type="text" class="form-control" id="sample6_address" placeholder="주소" disabled>
 														</div>
 														<div class="input-group" style="padding-top: 5px;">
-															<input type="text" class="form-control" id="sample6_detailAddress" placeholder="상세주소" required> <input type="text" class="form-control" id="sample6_extraAddress" placeholder="참고항목" disabled>
+															<input type="text" class="form-control" id="sample6_detailAddress" placeholder="상세주소" required>
+															<input type="text" class="form-control" id="sample6_extraAddress" placeholder="참고항목" disabled>
 														</div>
 														<div class="input-group" style="padding-top: 5px; padding-bottom: 5px;">
-															<input type="text" class="form-control" id="ifmaLatArray0" placeholder="위도" disabled> <input type="text" class="form-control" id="ifmaLngArray0" placeholder="경도" disabled>
+															<input type="text" class="form-control" id="ifmaLatArray0" placeholder="위도" disabled>
+															<input type="text" class="form-control" id="ifmaLngArray0" placeholder="경도" disabled>
 														</div>
 													</div>
 													<p id="result"></p>
@@ -323,7 +357,7 @@
 											<div class="row mb-3">
 												<label for="ifmmUploadedFile" class="col-md-4 col-lg-3 col-form-label">파일 첨부</label>
 												<div class="col-md-8 col-lg-9">
-													<input class="form-control form-control-sm" id="ifmmUploadedFile" name="ifmmUploadedFile" type="file" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedFile', 2, 0, 2, 0, 0, 2);" >
+													<input class="form-control form-control-sm" id="ifmmUploadedFile" name="ifmmUploadedFile" type="file" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedFile', 2, 0, 2, 0, 0, 2);">
 													<div class="addScroll">
 														<ul id="ulFile2" class="list-group">
 														</ul>
@@ -334,16 +368,16 @@
 												<label for="ifmmUploadedImage" class="col-md-4 col-lg-3 col-form-label">이미지 첨부</label>
 												<div class="col-md-8 col-lg-9">
 													<input class="form-control form-control-sm" id="ifmmUploadedImage1" name="ifmmUploadedImage1" type="file" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedImage1', 1, 0, 1, 0, 0, 1);">
-										 			<div class="addScroll" id="ifmmUploadedImage1View">
-										 				<ul id="ulFile1" class="list-group">
+													<div class="addScroll" id="ifmmUploadedImage1View">
+														<ul id="ulFile1" class="list-group">
 														</ul>
-										 			</div>
+													</div>
 												</div>
 											</div>
 											<div class="row mb-3">
 												<label for="ifmmUploadedFile" class="col-md-4 col-lg-3 col-form-label">파일 첨부</label>
 												<div class="col-md-8 col-lg-9">
-													<input class="form-control form-control-sm" id="ifmmUploadedFile1" name="ifmmUploadedFil1e" type="file" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedFile1', 2, 0, 2, 0, 0, 2);" >
+													<input class="form-control form-control-sm" id="ifmmUploadedFile1" name="ifmmUploadedFil1e" type="file" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedFile1', 2, 0, 2, 0, 0, 2);">
 													<div class="addScroll">
 														<ul id="ulFile2" class="list-group">
 														</ul>
@@ -368,8 +402,8 @@
 													<button type="button" onclick="upload('img12', 1, 0, 3, 0, 0, 1)">파일 확인</button>
 												</div>
 											</div>
-											
-											
+
+
 											<!-- 이미지 파일 업로드 끝---------------------------------------------- -->
 											<div class="row" id="InputPadding">
 												<div class="col-6" style="text-align: left;">
@@ -423,9 +457,9 @@
 													</button>
 												</div>
 											</div>
-											
-											
-											
+
+
+
 										</form>
 
 										<form name="formVo" id="formVo" method="post">
@@ -452,7 +486,12 @@
 					</div>
 					<div class="float-end">
 						<p>
-							Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a href="http://ahmadsaugi.com">A. Saugi</a>
+							Crafted with
+							<span class="text-danger">
+								<i class="bi bi-heart"></i>
+							</span>
+							by
+							<a href="http://ahmadsaugi.com">A. Saugi</a>
 						</p>
 					</div>
 				</div>
@@ -465,12 +504,12 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-		
+
 	<script src="https://kit.fontawesome.com/20c294a34b.js" crossorigin="anonymous"></script>
 	<script src="../resources/assets/js/main.js"></script>
-	
+
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b47c27c3c9651fa1057b04c48b7117fe&libraries=services"></script>
-	
+
 	<script type="text/javascript">
 	$("#idcheck").on("click", function(){
 		$.ajax({
@@ -511,7 +550,7 @@
 		});
 	});
 	</script>
-	
+
 	<script type="text/javascript">
 	//파일 체크하는 버튼
 	/* 
@@ -557,7 +596,7 @@
 		
 	
 	</script>
-	
+
 	<script>
 	//파일 미리보기
 	function handleFileSelect(event) {
@@ -582,7 +621,7 @@
 	  $("#file").click();
 	} );
 	</script>
-	
+
 	<script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 		mapOption = {
@@ -875,7 +914,61 @@
 		$("#li_"+seq+"_"+index).remove();
 	}
 	</script>
-
+	<script type="text/javascript">
+// 패스워드 확인
+	$("#ifmmPassword").on("focusout", function(){
+		var pw = $("#ifmmPassword").val();
+		var num = pw.search(/[0-9]/g);
+		var eng = pw.search(/[a-z]/ig);
+		var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+		
+		if(pw.length < 10 || pw.length > 20){
+			document.getElementById("ifmmPassword").classList.add('is-invalid');
+			document.getElementById("ifmmPasswordFeedback").classList.remove('valid-feedback');
+			document.getElementById("ifmmPasswordFeedback").classList.add('invalid-feedback');
+			document.getElementById("ifmmPasswordFeedback").innerText = "10자리 ~ 20자리 이내로 입력해주세요.";
+			document.getElementById("ifmmPasswordAllowedNy").value = 0;
+			return false;
+		}else if(pw.search(/\s/) != -1){
+			document.getElementById("ifmmPassword").classList.add('is-invalid');
+			document.getElementById("ifmmPasswordFeedback").classList.remove('valid-feedback');
+			document.getElementById("ifmmPasswordFeedback").classList.add('invalid-feedback');
+			document.getElementById("ifmmPasswordFeedback").innerText = "비밀번호는 공백 없이 입력해주세요.";
+			document.getElementById("ifmmPasswordAllowedNy").value = 0;
+			return false;
+		}else if( (num < 0 && eng < 0) || (eng < 0 && spe < 0) || (spe < 0 && num < 0) ){
+			document.getElementById("ifmmPassword").classList.add('is-invalid');
+			document.getElementById("ifmmPasswordFeedback").classList.remove('valid-feedback');
+			document.getElementById("ifmmPasswordFeedback").classList.add('invalid-feedback');
+			document.getElementById("ifmmPasswordFeedback").innerText = "영문,숫자, 특수문자 중 2가지 이상을 혼합하여 입력해주세요.";
+			document.getElementById("ifmmPasswordAllowedNy").value = 0;
+			return false;
+		}else {
+			document.getElementById("ifmmPassword").classList.add('is-valid');
+			document.getElementById("ifmmPassword").classList.remove('is-invalid');
+			document.getElementById("ifmmPasswordFeedback").classList.remove('invalid-feedback');
+			document.getElementById("ifmmPasswordFeedback").classList.add('valid-feedback');
+			document.getElementById("ifmmPasswordFeedback").innerText = "사용 가능 합니다.";
+			document.getElementById("ifmmPasswordAllowedNy").value = 1;
+		}
+	});
+	$("#ifmmPasswordChk").on("focusout", function(){
+		if($('#ifmmPassword').val() != $('#ifmmPasswordChk').val()){
+			document.getElementById("ifmmPasswordChk").classList.add('is-invalid');
+			document.getElementById("ifmmPasswordChkFeedback").classList.remove('valid-feedback');
+			document.getElementById("ifmmPasswordChkFeedback").classList.add('invalid-feedback');
+			document.getElementById("ifmmPasswordChkFeedback").innerText = "비밀번호가 일치하지 않습니다.";
+			document.getElementById("ifmmPasswordChkAllowedNy").value = 0;
+        } else{
+        	document.getElementById("ifmmPasswordChk").classList.add('is-valid');
+			document.getElementById("ifmmPasswordChk").classList.remove('is-invalid');
+			document.getElementById("ifmmPasswordChkFeedback").classList.remove('invalid-feedback');
+			document.getElementById("ifmmPasswordChkFeedback").classList.add('valid-feedback');
+			document.getElementById("ifmmPasswordChkFeedback").innerText = "비밀번호가 일치합니다.";
+			document.getElementById("ifmmPasswordChkAllowedNy").value = 1;
+        }
+	});
+</script>
 
 
 </body>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.decemelev.infra.common.util.UtilSecurity;
 import com.decemelev.infra.common.util.UtilUpload;
 
 
@@ -29,6 +30,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public int insert(Member dto) throws Exception {
+		dto.setIfmmPassword(UtilSecurity.encryptSha256(dto.getIfmmPassword()));
 		int result = dao.insert(dto); 
 		
 		for(MultipartFile multipartFile : dto.getIfmmUploadedProfileImage() ) {

@@ -158,7 +158,7 @@ ul li {
 			</header>
 
 			<div class="page-heading">
-				<h3>CodeForm</h3>
+				<h3>WordForm</h3>
 				ifcdSeq =
 				<c:out value="${vo.ifcdSeq }" />
 				<br> shUseNy =
@@ -198,11 +198,11 @@ ul li {
 												<div class="row" id="InputPadding">
 													<div class="col-6">
 														<label class="form-label">단어</label>
-														<input type="text" class="form-control" id="disabledInput" value="<c:out value="${vo.ifcdSeq }"/>">
+														<input type="text" class="form-control" id="disabledInput" value="<c:out value="${list.sdwWord }"/>">
 													</div>
 													<div class="col-6">
 														<label class="form-label">날짜</label>
-														<input type="text" class="form-control" id="datepicker" value="<c:out value="${vo.ifcdSeq }"/>">
+														<input type="text" class="form-control" id="datepicker" value="<c:out value="${list.sddDateChoice }"/>">
 													</div>
 												</div>
 
@@ -218,35 +218,52 @@ ul li {
 												</div>
 
 												<div id="plusData">
-													<div class="row" id="InputPadding">
-														<div class="col-6">
-															<label class="form-label">정의1</label>
-															<div class="row">
-																<div class="col-4">
-																	<select id="inputState" class="form-select">
-																		<option selected disabled>:선택:</option>
-																		<option value="형용사">형용사</option>
-																		<option value="명사">명사</option>
-																		<option value="동사">동사</option>
-																	</select>
+													<%-- <c:forEach items="${list}" var="list" varStatus="status"> --%>
+														<div class="row" id="InputPadding">
+															<div class="col-6">
+																<label class="form-label">정의1</label>
+																<div class="row">
+																	<div class="col-2" style="padding-right:0;">
+																		<select id="inputState" name="sdwmNum" value="<c:out value="${list.sdwmNum }"/>" class="form-select">
+																			<option selected disabled>#</option>
+																			<option value="1">1</option>
+																			<option value="2">2</option>
+																			<option value="3">3</option>
+																		</select>
+																	</div>
+																	<div class="col-3" style="padding-right:0;">
+																		<select id="inputState" name="sdwmPartOfSpeech" value="<c:out value="${list.sdwmPartOfSpeech }"/>" class="form-select">
+																			<option selected disabled>형태소</option>
+																			<option value="형용사">형용사</option>
+																			<option value="명사">명사</option>
+																			<option value="동사">동사</option>
+																		</select>
+																	</div>
+																	<div class="col-7">
+																		<input type="text" class="form-control" name="sdwmContents" value="<c:out value="${list.sdwmContents }"/>">
+																	</div>
 																</div>
-																<div class="col-8">
-																	<input type="text" class="form-control" name="ifcdName" value="<c:out value="${item.ifcdName }"/>">
+															</div>
+															<div class="col-6">
+																<label class="form-label">예시1</label>
+																<div class="row">
+																	<div class="col-10">
+																		<div class="input-group mb-3">
+																			<span class="input-group-text" id="basic-addon1">영문</span>
+																			<input type="text" class="form-control" name="sdweContents" value="<c:out value="${list.sdweContents }"/>" >
+																		</div>
+																		<div class="input-group mb-3">
+																			<span class="input-group-text" id="basic-addon1">해석</span>
+																			<input type="text" class="form-control" name="sdweTranslate" value="<c:out value="${list.sdweTranslate }"/>" >
+																		</div>
+																	</div>
+																	<div class="col-2">
+																		<input type="button" value="추가" onclick="add_textbox()">
+																	</div>
 																</div>
 															</div>
 														</div>
-														<div class="col-6">
-															<label class="form-label">예시1</label>
-															<div class="input-group mb-3">
-																<span class="input-group-text" id="basic-addon1">영문</span>
-																<input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
-															</div>
-															<div class="input-group mb-3">
-																<span class="input-group-text" id="basic-addon1">해석</span>
-																<input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
-															</div>
-														</div>
-													</div>
+													<%-- </c:forEach> --%>
 												</div>
 
 												<div class="row" id="InputPadding">
@@ -358,7 +375,7 @@ ul li {
 	<script src="../resources/assets/js/main.js"></script>
 
 	<script type="text/javascript">
-		var goUrlList = "/code/codeList"; /* #-> */
+		var goUrlList = "/word/wordList"; /* #-> */
 		var goUrlInst = "/code/codeInst"; /* #-> */
 		var goUrlUpdt = "/code/codeUpdt"; /* #-> */
 		var goUrlUele = "/code/codeUele"; /* #-> */
@@ -412,25 +429,36 @@ ul li {
 			form.attr("action", goUrlUele).submit();
 		});
 	</script>
-
+	<!-- 
 	<script type="text/javascript">
 		let CountA = 2;
 		$("#btnPlus").on("click", function() {
 			let listHTML = "";
-			listHTML += '<div class="row row'+ CountA +'" id="InputPadding">';
+			listHTML += '<div class="row Del'+ CountA +'" id="InputPadding">';
 			listHTML += '<div class="col-6">';
 			listHTML += '<label class="form-label">정의' + CountA + '</label>';
 			listHTML += '<div class="row">';
-			listHTML += '<div class="col-4">';
-			listHTML += '<select id="inputState" class="form-select">';
-			listHTML += '<option selected disabled>:선택:</option>';
-			listHTML += '<option>형용사</option>';
-			listHTML += '<option>명사</option>';
-			listHTML += '<option>동사</option>';
+			
+			listHTML += '<div class="col-2" style="padding-right:0;">';
+			listHTML += '<select id="inputState" name="sdwmNum" value="<c:out value="${list.sdwmNum }"/>" class="form-select">';
+			listHTML += '<option selected disabled>#</option>';
+			listHTML += '<option value="1">1</option>';
+			listHTML += '<option value="2">2</option>';
+			listHTML += '<option value="3">3</option>';
 			listHTML += '</select>';
 			listHTML += '</div>';
-			listHTML += '<div class="col-8">';
-			listHTML += '<input type="text" class="form-control" name="ifcdName" value="<c:out value="${item.ifcdName }"/>">';
+			
+			listHTML += '<div class="col-3" style="padding-right:0;">';
+			listHTML += '<select id="inputState" name="sdwmPartOfSpeech" value="<c:out value="${list.sdwmPartOfSpeech }"/>" class="form-select">';
+			listHTML += '<option selected disabled>형태소</option>';
+			listHTML += '<option value="형용사">형용사</option>';
+			listHTML += '<option value="명사">명사</option>';
+			listHTML += '<option value="동사">동사</option>';
+			listHTML += '</select>';
+			listHTML += '</div>';
+			
+			listHTML += '<div class="col-7">';
+			listHTML += '<input type="text" class="form-control" name="sdwmContents" value="<c:out value="${list.sdwmContents }"/>">';
 			listHTML += '</div>';
 			listHTML += '</div>';
 			listHTML += '</div>';
@@ -438,30 +466,93 @@ ul li {
 			listHTML += '<label class="form-label">예시' + CountA + '</label>';
 			listHTML += '<div class="input-group mb-3">';
 			listHTML += '<span class="input-group-text" id="basic-addon1">영문</span>';
-			listHTML += '<input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">';
+			listHTML += '<input type="text" class="form-control" name="sdweContents" value="<c:out value="${list.sdweContents }"/>" >';
 			listHTML += '</div>';
 			listHTML += '<div class="input-group mb-3">';
 			listHTML += '<span class="input-group-text" id="basic-addon1">해석</span>';
-			listHTML += '<input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">';
+			listHTML += '<input type="text" class="form-control" name="sdweTranslate" value="<c:out value="${list.sdweTranslate }"/>" >';
 			listHTML += '</div>';
 			listHTML += '</div>';
 			listHTML += '</div>';
 			document.getElementById('plusData').innerHTML += listHTML;
 
-			if (CountA < 4)
+			if (CountA < 4 && CountA > 1) {
 				CountA++;
+				if(CountA == 1){}
+			} else if(CountA == 1){
+				CountA = 2;
+			}
 			return false;
 		});
 	</script>
 	<script type="text/javascript">
 		$("#btnMinus").on("click", function() {
-			$(".row" + CountA).remove();
-			CountA--;
-			return false;
-			CountA = 2;
+			if(CountA > 1 && CountA < 5) {
+				$(".Del" + CountA).remove();
+				CountA--;
+			} else {
+				$(".Del" + CountA).remove();
+				CountA++;
+			}
+			
 		});
 	</script>
-
+	 -->
+	<script>
+        const add_textbox = () => {
+            const box = document.getElementById("box");
+            const newP = document.createElement('p');
+            
+            newP.innerHTML += '<div class="row" id="InputPadding">';
+            newP.innerHTML += '<div class="col-6">';
+            newP.innerHTML += '<label class="form-label">정의</label>';
+            newP.innerHTML += '<div class="row">';
+            newP.innerHTML += '<div class="col-2" style="padding-right:0;">';
+            newP.innerHTML += '<select id="inputState" name="sdwmNum" value="<c:out value="${list.sdwmNum }"/>" class="form-select">';
+            newP.innerHTML += '<option selected disabled>#</option>';
+            newP.innerHTML += '<option value="1">1</option>';
+            newP.innerHTML += '<option value="2">2</option>';
+            newP.innerHTML += '<option value="3">3</option>';
+            newP.innerHTML += '</select>';
+            newP.innerHTML += '</div>';
+            newP.innerHTML += '<div class="col-3" style="padding-right:0;">';
+            newP.innerHTML += '<select id="inputState" name="sdwmPartOfSpeech" value="<c:out value="${list.sdwmPartOfSpeech }"/>" class="form-select">';
+            newP.innerHTML += '<option selected disabled>형태소</option>';
+            newP.innerHTML += '<option value="형용사">형용사</option>';
+            newP.innerHTML += '<option value="명사">명사</option>';
+            newP.innerHTML += '<option value="동사">동사</option>';
+            newP.innerHTML += '</select>';
+            newP.innerHTML += '</div>';
+            newP.innerHTML += '<div class="col-7">';
+            newP.innerHTML += '<input type="text" class="form-control" name="sdwmContents" value="<c:out value="${list.sdwmContents }"/>">';
+            newP.innerHTML += '</div>';
+            newP.innerHTML += '</div>';
+            newP.innerHTML += '</div>';
+            newP.innerHTML += '<div class="col-6">';
+            newP.innerHTML += '<label class="form-label">예시</label>';
+            newP.innerHTML += '<div class="row">';
+            newP.innerHTML += '<div class="col-10">';
+            newP.innerHTML += '<div class="input-group mb-3">';
+            newP.innerHTML += '<span class="input-group-text" id="basic-addon1">영문</span>';
+            newP.innerHTML += '<input type="text" class="form-control" name="sdweContents" value="<c:out value="${list.sdweContents }"/>" >';
+            newP.innerHTML += '</div>';
+            newP.innerHTML += '<div class="input-group mb-3">';
+            newP.innerHTML += '<span class="input-group-text" id="basic-addon1">해석</span>';
+            newP.innerHTML += '<input type="text" class="form-control" name="sdweTranslate" value="<c:out value="${list.sdweTranslate }"/>" >';
+            newP.innerHTML += '</div>';
+            newP.innerHTML += '</div>';
+            newP.innerHTML += '<div class="col-2">';
+            newP.innerHTML += '<input type="button" value="삭제" onclick="remove(this)">';
+            newP.innerHTML += '</div>';
+            newP.innerHTML += '</div>';
+            newP.innerHTML += '</div>';
+            newP.innerHTML += '</div>';
+            box.appendChild(newP);
+        }
+        const remove = (obj) => {
+            document.getElementById('box').removeChild(obj.parentNode);
+        }
+    </script>
 </body>
 
 </html>
