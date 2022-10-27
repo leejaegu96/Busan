@@ -544,7 +544,7 @@ ul li {
             listHTML += '<input type="text" class="form-control" name="sdweTranslate" value="<c:out value="${list.sdweTranslate }"/>" >';
             listHTML += '</div>';
             listHTML += '</div>';
-            listHTML += '<div class="col-2">';
+            listHTML += '<div class="col-2">'; 
             listHTML += '<input type="button" value="삭제" onclick="remove()">';
             listHTML += '</div>';
             listHTML += '</div>';
