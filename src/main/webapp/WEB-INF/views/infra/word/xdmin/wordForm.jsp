@@ -217,7 +217,7 @@ ul li {
 													</div>
 												</div>
 
-												<div id="plusData">
+												<div id="box">
 													<%-- <c:forEach items="${list}" var="list" varStatus="status"> --%>
 														<div class="row" id="InputPadding">
 															<div class="col-6">
@@ -502,55 +502,61 @@ ul li {
         const add_textbox = () => {
             const box = document.getElementById("box");
             const newP = document.createElement('p');
+            newP.setAttribute("id", "dom"); 
             
-            newP.innerHTML += '<div class="row" id="InputPadding">';
-            newP.innerHTML += '<div class="col-6">';
-            newP.innerHTML += '<label class="form-label">정의</label>';
-            newP.innerHTML += '<div class="row">';
-            newP.innerHTML += '<div class="col-2" style="padding-right:0;">';
-            newP.innerHTML += '<select id="inputState" name="sdwmNum" value="<c:out value="${list.sdwmNum }"/>" class="form-select">';
-            newP.innerHTML += '<option selected disabled>#</option>';
-            newP.innerHTML += '<option value="1">1</option>';
-            newP.innerHTML += '<option value="2">2</option>';
-            newP.innerHTML += '<option value="3">3</option>';
-            newP.innerHTML += '</select>';
-            newP.innerHTML += '</div>';
-            newP.innerHTML += '<div class="col-3" style="padding-right:0;">';
-            newP.innerHTML += '<select id="inputState" name="sdwmPartOfSpeech" value="<c:out value="${list.sdwmPartOfSpeech }"/>" class="form-select">';
-            newP.innerHTML += '<option selected disabled>형태소</option>';
-            newP.innerHTML += '<option value="형용사">형용사</option>';
-            newP.innerHTML += '<option value="명사">명사</option>';
-            newP.innerHTML += '<option value="동사">동사</option>';
-            newP.innerHTML += '</select>';
-            newP.innerHTML += '</div>';
-            newP.innerHTML += '<div class="col-7">';
-            newP.innerHTML += '<input type="text" class="form-control" name="sdwmContents" value="<c:out value="${list.sdwmContents }"/>">';
-            newP.innerHTML += '</div>';
-            newP.innerHTML += '</div>';
-            newP.innerHTML += '</div>';
-            newP.innerHTML += '<div class="col-6">';
-            newP.innerHTML += '<label class="form-label">예시</label>';
-            newP.innerHTML += '<div class="row">';
-            newP.innerHTML += '<div class="col-10">';
-            newP.innerHTML += '<div class="input-group mb-3">';
-            newP.innerHTML += '<span class="input-group-text" id="basic-addon1">영문</span>';
-            newP.innerHTML += '<input type="text" class="form-control" name="sdweContents" value="<c:out value="${list.sdweContents }"/>" >';
-            newP.innerHTML += '</div>';
-            newP.innerHTML += '<div class="input-group mb-3">';
-            newP.innerHTML += '<span class="input-group-text" id="basic-addon1">해석</span>';
-            newP.innerHTML += '<input type="text" class="form-control" name="sdweTranslate" value="<c:out value="${list.sdweTranslate }"/>" >';
-            newP.innerHTML += '</div>';
-            newP.innerHTML += '</div>';
-            newP.innerHTML += '<div class="col-2">';
-            newP.innerHTML += '<input type="button" value="삭제" onclick="remove(this)">';
-            newP.innerHTML += '</div>';
-            newP.innerHTML += '</div>';
-            newP.innerHTML += '</div>';
-            newP.innerHTML += '</div>';
+            let listHTML = "";
+            listHTML += '';
+            listHTML += '<div class="row" id="InputPadding">';
+            listHTML += '<div class="col-6">';
+            listHTML += '<label class="form-label">정의</label>';
+            listHTML += '<div class="row">';
+            listHTML += '<div class="col-2" style="padding-right:0;">';
+            listHTML += '<select id="inputState" name="sdwmNum" value="<c:out value="${list.sdwmNum }"/>" class="form-select">';
+            listHTML += '<option selected disabled>#</option>';
+            listHTML += '<option value="1">1</option>';
+            listHTML += '<option value="2">2</option>';
+            listHTML += '<option value="3">3</option>';
+            listHTML += '</select>';
+            listHTML += '</div>';
+            listHTML += '<div class="col-3" style="padding-right:0;">';
+            listHTML += '<select id="inputState" name="sdwmPartOfSpeech" value="<c:out value="${list.sdwmPartOfSpeech }"/>" class="form-select">';
+            listHTML += '<option selected disabled>형태소</option>';
+            listHTML += '<option value="형용사">형용사</option>';
+            listHTML += '<option value="명사">명사</option>';
+            listHTML += '<option value="동사">동사</option>';
+            listHTML += '</select>';
+            listHTML += '</div>';
+            listHTML += '<div class="col-7">';
+            listHTML += '<input type="text" class="form-control" name="sdwmContents" value="<c:out value="${list.sdwmContents }"/>">';
+            listHTML += '</div>';
+            listHTML += '</div>';
+            listHTML += '</div>';
+            listHTML += '<div class="col-6">';
+            listHTML += '<label class="form-label">예시</label>';
+            listHTML += '<div class="row">';
+            listHTML += '<div class="col-10">';
+            listHTML += '<div class="input-group mb-3">';
+            listHTML += '<span class="input-group-text" id="basic-addon1">영문</span>';
+            listHTML += '<input type="text" class="form-control" name="sdweContents" value="<c:out value="${list.sdweContents }"/>" >';
+            listHTML += '</div>';
+            listHTML += '<div class="input-group mb-3">';
+            listHTML += '<span class="input-group-text" id="basic-addon1">해석</span>';
+            listHTML += '<input type="text" class="form-control" name="sdweTranslate" value="<c:out value="${list.sdweTranslate }"/>" >';
+            listHTML += '</div>';
+            listHTML += '</div>';
+            listHTML += '<div class="col-2">';
+            listHTML += '<input type="button" value="삭제" onclick="remove()">';
+            listHTML += '</div>';
+            listHTML += '</div>';
+            listHTML += '</div>';
+            listHTML += '</div>';
+
+            newP.innerHTML = listHTML;
+
             box.appendChild(newP);
         }
         const remove = (obj) => {
-            document.getElementById('box').removeChild(obj.parentNode);
+        	box.removeChild(obj.childNode);
         }
     </script>
 </body>
