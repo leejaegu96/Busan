@@ -31,7 +31,7 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <style>
 .ui-datepicker {
-	font-size: 15px;
+	font-size: 15px; 
 	width: 400px;
 }
 
