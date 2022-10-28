@@ -30,9 +30,20 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <style>
-.ui-datepicker{ font-size: 15px; width: 400px; }
-.ui-datepicker select.ui-datepicker-month{ width:30%; font-size: 15px; }
-.ui-datepicker select.ui-datepicker-year{ width:40%; font-size: 15px; }
+.ui-datepicker {
+	font-size: 15px;
+	width: 400px;
+}
+
+.ui-datepicker select.ui-datepicker-month {
+	width: 30%;
+	font-size: 15px;
+}
+
+.ui-datepicker select.ui-datepicker-year {
+	width: 40%;
+	font-size: 15px;
+}
 </style>
 <script type="text/javascript">
    $(document).ready(function () {
@@ -61,6 +72,7 @@
 img, svg {
 	vertical-align: middle;
 }
+
 table {
 	text-align: center;
 }
@@ -70,57 +82,56 @@ input-group-text {
 }
 
 #btn-upload {
-  width: 150px;
-  height: 30px;
-  background: #fff;
-  border: 1px solid rgb(77,77,77);
-  border-radius: 10px;
-  font-weight: 500;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-  &:hover {
-    background: rgb(77,77,77);
-    color: #fff;
-  }
+	width: 150px;
+	height: 30px;
+	background: #fff;
+	border: 1px solid rgb(77, 77, 77);
+	border-radius: 10px;
+	font-weight: 500;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: auto; &: hover { background : rgb( 77, 77, 77);
+	color: #fff;
 }
 
-#file {
-  display: none;
 }
+#file {
+	display: none;
+}
+
 #preview {
-    width: 150px;
-    height: 150px; 
-    border-radius: 70%;
-    overflow: hidden;
+	width: 150px;
+	height: 150px;
+	border-radius: 70%;
+	overflow: hidden;
 }
 
 .rounded-circle {
-    width: 150px;
-    height: 150px; 
-    border-radius: 50%;
-    overflow: hidden;
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	overflow: hidden;
 }
-
 
 .thumb {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
+
 .remove_img_preview {
-    position:relative;
-    top:-25px;
-    right:5px;
-    background:black;
-    color:white;
-    border-radius:50px;
-    font-size:0.9em;
-    padding: 0 0.3em 0;
-    text-align:center;
-    cursor:pointer;
+	position: relative;
+	top: -25px;
+	right: 5px;
+	background: black;
+	color: white;
+	border-radius: 50px;
+	font-size: 0.9em;
+	padding: 0 0.3em 0;
+	text-align: center;
+	cursor: pointer;
 }
 </style>
 </head>
@@ -135,18 +146,16 @@ input-group-text {
 			</h3>
 			<nav id="nav">
 				<ul>
-					<li>
-						<c:choose>
+					<li><c:choose>
 							<c:when test="${sessSeq eq null}">
 							</c:when>
 							<c:when test="${sessSeq eq 144}">
-								<span style="color: #959ADA; font-weight:bolder;"><c:out value="${sessName }"/></span> 관리자님
+								<span style="color: #959ADA; font-weight: bolder;"><c:out value="${sessName }" /></span> 관리자님
 							</c:when>
 							<c:otherwise>
-								<span style="color: #959ADA; font-weight:bolder;"><c:out value="${sessName }"/></span>님
+								<span style="color: #959ADA; font-weight: bolder;"><c:out value="${sessName }" /></span>님
 							</c:otherwise>
-						</c:choose>
-					</li>
+						</c:choose></li>
 					<li><a href="home" class="button" style="cursor: pointer; background-color: #444444;">Home</a></li>
 					<c:choose>
 						<c:when test="${sessSeq eq null}">
@@ -169,7 +178,7 @@ input-group-text {
 							<li><a href="#" class="button" id="btnLogout" style="cursor: pointer;">Logout</a></li>
 						</c:otherwise>
 					</c:choose>
-					
+
 					<!-- 
 					<li><a href="#" class="button" onClick="location.href='../login/login'" style="cursor:pointer;">Login</a></li>
 					<li><a href="#" class="button" id="btnLogout" style="cursor:pointer;">Logout</a></li>
@@ -188,12 +197,12 @@ input-group-text {
 
 						<div class="card">
 							<div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-								
-<!-- 프로필 사진--------------------------------------------------------------------------------------- -->
+
+								<!-- 프로필 사진--------------------------------------------------------------------------------------- -->
 								<!-- 
 								<img src="../resources/assets/images/logo/recruit.png" alt="Profile" class="rounded-circle">
 								 -->
-								
+
 								<c:choose>
 									<c:when test="${fn:length(listUploaded) eq 0 }">
 										<img id="imgProfile" src="/resources/assets/images/faces/default_100_100.png" class="rounded-circle mx-auto d-block" width="100" height="100">
@@ -206,17 +215,30 @@ input-group-text {
 										</c:forEach>
 									</c:otherwise>
 								</c:choose>
-								
-								<h2><c:out value="${list.ifmmName }"/></h2>
+
+								<h2>
+									<c:out value="${list.ifmmName }" />
+								</h2>
 								<h3>
 									<c:choose>
-										<c:when test="${sessSeq eq 144}"> ADMIN </c:when> 
+										<c:when test="${sessSeq eq 144}"> ADMIN </c:when>
 										<c:otherwise> USER </c:otherwise>
 									</c:choose>
 								</h3>
-								<span style="color:white;"><c:out value="${list.ifmmSeq }"/></span>
+								<span style="color: white;"><c:out value="${list.ifmmSeq }" /></span>
 								<div class="social-links mt-2">
-									<a href="#" class="twitter"><i class="bi bi-twitter"></i></a> <a href="#" class="facebook"><i class="bi bi-facebook"></i></a> <a href="#" class="instagram"><i class="bi bi-instagram"></i></a> <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+									<a href="#" class="twitter">
+										<i class="bi bi-twitter"></i>
+									</a>
+									<a href="#" class="facebook">
+										<i class="bi bi-facebook"></i>
+									</a>
+									<a href="#" class="instagram">
+										<i class="bi bi-instagram"></i>
+									</a>
+									<a href="#" class="linkedin">
+										<i class="bi bi-linkedin"></i>
+									</a>
 								</div>
 
 							</div>
@@ -229,161 +251,175 @@ input-group-text {
 							<div class="card-body pt-3">
 								<!-- Bordered Tabs -->
 								<ul class="nav nav-tabs nav-tabs-bordered">
-									
+
 									<li class="nav-item">
 										<button class="nav-link active" data-bs-toggle="tab" data-bs-target="#My-Word">My-Word</button>
 									</li>
-									
+
 									<li class="nav-item">
 										<button class="nav-link " data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
 									</li>
-									
+
 									<li class="nav-item">
 										<button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
 									</li>
-									
+
 									<li class="nav-item">
 										<button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
 									</li>
 
 								</ul>
 								<div class="tab-content pt-2">
-									
-<!-- 오늘의 단어--------------------------------------------------------------------------- -->
-									
+
+									<!-- 오늘의 단어--------------------------------------------------------------------------- -->
+
 									<div class="tab-pane fade show active My-Word pt-3" id="My-Word">
 										<form>
-											
+
 											<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-											  <div class="carousel-inner">
-											  	<h3>Today's Word</h3><br>
-											  	
-											  	<div class="carousel-item active" data-bs-interval="1000000">
-											      <div style="max-width:450px; width:100%; height:500px; height:100%; text-align:left; margin:auto; text-align:center; background-color: #666666;">
-												    <img alt="" src="../resources/assets/images/samples/study.jpg" style="height:200px; width:400px; padding:10px;">
-												    
-													  <input type="text" class="form-control" id="datepicker" placeholder="Choice Date!!" style="text-align:center; color:black;">
-												  </div>
-											    </div>
-											  	
-											  	<c:forEach items="${list1}" var="list1" varStatus="status">
-											  	
-											    <div class="carousel-item" data-bs-interval="10000">
-											      <div style="max-width:450px; width:100%; height:500px; height:100%; text-align:left; margin:auto; background-color: #666666;">
-												    
-												    <h4>
-												    	<input type="hidden" id="sdwSeq" name="sdwSeq">
-											    		<c:out value="${list1.sdwWord }"/> &nbsp; <i class="fa-solid fa-volume-high"></i>
-												    </h4><br>
-												    
-												    <c:forEach items="${item}" var="item" varStatus="status">
-												    <span style="line-height:200%;">
-												    	<c:if test="${list1.sdwWord == item.sdwWord }">
-												    	<span style="color:Blue; font-style: italic;" value="${list1.sdwSeq }">${item.sdwmPartOfSpeech}</span> &nbsp; <span style="color:white;"value="${list1.sdwSeq }">${item.sdwmContents}</span> <br>
-												    	<span value="${list1.sdwSeq }">${item.sdweContents}</span> <br> <span value="${list1.sdwSeq }">${item.sdweTranslate}</span><br>
-												    	</c:if>
-												    </span>
-												    </c:forEach>
-												  </div>
-											    </div>
-											    
-											    </c:forEach>
-											    
-											  </div>
-											  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev" >
-											    <span class="carousel-control-prev-icon" aria-hidden="true" style="float:top;"></span>
-											    <span class="visually-hidden">Previous</span>
-											  </button>
-											  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-											    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-											    <span class="visually-hidden">Next</span>
-											  </button>
+												<div class="carousel-inner">
+													<h3>Today's Word</h3>
+													<br>
+
+													<div class="carousel-item active" data-bs-interval="1000000">
+														<div style="max-width: 450px; width: 100%; height: 500px; height: 100%; text-align: left; margin: auto; text-align: center; background-color: #666666;">
+															<img alt="" src="../resources/assets/images/samples/study.jpg" style="height: 200px; width: 400px; padding: 10px;">
+
+															<input type="text" class="form-control" id="datepicker" placeholder="Choice Date!!" style="text-align: center; color: black;">
+														</div>
+													</div>
+
+													<c:forEach items="${list1}" var="list1" varStatus="status">
+
+														<div class="carousel-item" data-bs-interval="10000">
+															<div style="max-width: 450px; width: 100%; height: 500px; height: 100%; text-align: left; margin: auto; background-color: #666666;">
+
+																<h4>
+																	<input type="hidden" id="sdwSeq" name="sdwSeq">
+																	<c:out value="${list1.sdwWord }" />
+																	&nbsp; <i class="fa-solid fa-volume-high"></i>
+																</h4>
+																<br>
+
+																<c:forEach items="${item}" var="item" varStatus="status">
+																	<span style="line-height: 200%;"> <c:if test="${list1.sdwWord == item.sdwWord }">
+																			<span style="color: Blue; font-style: italic;" value="${list1.sdwSeq }">${item.sdwmPartOfSpeech}</span> &nbsp; <span style="color: white;" value="${list1.sdwSeq }">${item.sdwmContents}</span>
+																			<br>
+																			<span value="${list1.sdwSeq }">${item.sdweContents}</span>
+																			<br>
+																			<span value="${list1.sdwSeq }">${item.sdweTranslate}</span>
+																			<br>
+																		</c:if>
+																	</span>
+																</c:forEach>
+															</div>
+														</div>
+
+													</c:forEach>
+
+												</div>
+												<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+													<span class="carousel-control-prev-icon" aria-hidden="true" style="float: top;"></span> <span class="visually-hidden">Previous</span>
+												</button>
+												<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+													<span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="visually-hidden">Next</span>
+												</button>
 											</div>
-											
+
 										</form>
 									</div>
 									<!-- 두번째 폼 끝--------------------------------------------------------------------------- -->
 
 									<div class="tab-pane fade profile-overview" id="profile-overview">
-<!-- 미리보기---------------------------------------------------------------------------------------------------- -->
+										<!-- 미리보기---------------------------------------------------------------------------------------------------- -->
 										<h3 class="card-title">Profile Details</h3>
 										<br>
 										<form>
 											<c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('1')}" />
-											
+
 											<input type="hidden" name="ifmmSeq" value="<c:out value="${list.ifmmSeq }"/>" />
-											
+
 											<div class="row mb-3">
 												<label for="Name" class="col-md-4 col-lg-3 col-form-label">Name</label>
 												<div class="col-md-8 col-lg-9">
-													<label for="Name" class="col-lg-9 col-md-8" style="padding-top: 5px;" name="ifmmName"> <c:out value="${list.ifmmName }"/> </label>
-												</div>
-											</div>
-											
-											<div class="row mb-3">
-												<label for="Name" class="col-md-4 col-lg-3 col-form-label">Gender</label>
-												<div class="col-md-8 col-lg-9">
-													<label for="Name" class="col-lg-9 col-md-8" style="padding-top: 5px;"> 
-														<%-- <c:if test="${list.ifmmGender eq listGender.ifcdSeq }"> <c:out value="${listGender.ifcdName }" /> </c:if> --%>
-														<c:out value="${ listCodeGender[list.ifmmGender-1].ifcdName }"/>
+													<label for="Name" class="col-lg-9 col-md-8" style="padding-top: 5px;" name="ifmmName">
+														<c:out value="${list.ifmmName }" />
 													</label>
 												</div>
 											</div>
-											
+
+											<div class="row mb-3">
+												<label for="Name" class="col-md-4 col-lg-3 col-form-label">Gender</label>
+												<div class="col-md-8 col-lg-9">
+													<label for="Name" class="col-lg-9 col-md-8" style="padding-top: 5px;">
+														<%-- <c:if test="${list.ifmmGender eq listGender.ifcdSeq }"> <c:out value="${listGender.ifcdName }" /> </c:if> --%>
+														<c:out value="${ listCodeGender[list.ifmmGender-1].ifcdName }" />
+													</label>
+												</div>
+											</div>
+
 											<div class="row mb-3">
 												<label for="Name" class="col-md-4 col-lg-3 col-form-label">Date Of Birth</label>
 												<div class="col-md-8 col-lg-9">
-													<label for="Name" class="col-lg-9 col-md-8" style="padding-top: 5px;"> <c:out value="${list.ifmmDob }"/> </label>
+													<label for="Name" class="col-lg-9 col-md-8" style="padding-top: 5px;">
+														<c:out value="${list.ifmmDob }" />
+													</label>
 												</div>
 											</div>
-											
-											
-	
+
+
+
 											<div class="row mb-3">
 												<label for="Name" class="col-md-4 col-lg-3 col-form-label">Email</label>
 												<div class="col-md-8 col-lg-9">
-													<label for="Name" class="col-lg-9 col-md-8" style="padding-top: 5px;" > <c:out value="${list.ifmmEmail }"/> </label>
+													<label for="Name" class="col-lg-9 col-md-8" style="padding-top: 5px;">
+														<c:out value="${list.ifmmEmail }" />
+													</label>
 												</div>
 											</div>
-											
-											
-	
+
+
+
 											<div class="row mb-3">
 												<label for="Name" class="col-md-4 col-lg-3 col-form-label">Phone</label>
 												<div class="col-md-8 col-lg-9">
-													<label for="Name" class="col-lg-9 col-md-8" style="padding-top: 5px;" > <c:out value="${list.ifmmPhone }"/> </label>
+													<label for="Name" class="col-lg-9 col-md-8" style="padding-top: 5px;">
+														<c:out value="${list.ifmmPhone }" />
+													</label>
 												</div>
 											</div>
-	
+
 											<div class="row mb-3">
 												<label for="Name" class="col-md-4 col-lg-3 col-form-label">Address</label>
 												<div class="col-md-8 col-lg-9">
-													<label for="Name" class="col-lg-9 col-md-8" style="padding-top: 5px;"> 
-													<c:out value="${list.ifmmPostNum }"/> <br><br> 
-													<c:out value="${list.ifmmAddress }"/> </label>
+													<label for="Name" class="col-lg-9 col-md-8" style="padding-top: 5px;">
+														<c:out value="${list.ifmmPostNum }" />
+														<br> <br>
+														<c:out value="${list.ifmmAddress }" />
+													</label>
 												</div>
 											</div>
 										</form>
 
 									</div>
-									
-									
-									
+
+
+
 									<div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
-<!-- 수정폼---------------------------------------------------------------------------------------------------- -->
+										<!-- 수정폼---------------------------------------------------------------------------------------------------- -->
 										<form id="form" name="form" method="post" enctype="multipart/form-data">
-										
+
 											<c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('1')}" />
 											<c:set var="listCodeCarrier" value="${CodeServiceImpl.selectListCachedCode('2')}" />
 											<c:set var="listCodeDomain" value="${CodeServiceImpl.selectListCachedCode('3')}" />
-											
+
 											<input type="hidden" name="ifmmSeq" value="<c:out value="${list.ifmmSeq }"/>" />
-											
+
 											<div class="row mb-3">
 												<label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
-												<div class="col-md-8 col-lg-9 text-center" >
-<!-- 프로필------------------------------------------------------------------------------------------------- -->
+												<div class="col-md-8 col-lg-9 text-center">
+													<!-- 프로필------------------------------------------------------------------------------------------------- -->
 													<c:choose>
 														<c:when test="${fn:length(listUploaded) eq 0 }">
 															<img id="imgProfile" src="/resources/assets/images/faces/default_100_100.png" class="rounded-circle mx-auto d-block" width="100" height="100">
@@ -397,8 +433,8 @@ input-group-text {
 														</c:otherwise>
 													</c:choose>
 													<br>
-													<label for="ifmmUploadedProfileImage" >
-														<span id="btn-upload" style="text-align:center; margin:auto;">UPLOAD</span>
+													<label for="ifmmUploadedProfileImage">
+														<span id="btn-upload" style="text-align: center; margin: auto;">UPLOAD</span>
 													</label>
 													<input class="form-control form-control-sm" id="ifmmUploadedProfileImage" name="ifmmUploadedProfileImage" type="file" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedProfileImage', 0, 1, 1, 0, 0, 3);">
 												</div>
@@ -407,17 +443,17 @@ input-group-text {
 											<div class="row mb-3">
 												<label for="Name" class="col-md-4 col-lg-3 col-form-label">Name</label>
 												<div class="col-md-8 col-lg-9">
-													<input type="text" class="form-control" name="ifmmName" value="<c:out value="${list.ifmmName }"/>" >
+													<input type="text" class="form-control" name="ifmmName" value="<c:out value="${list.ifmmName }"/>">
 												</div>
 											</div>
 
 											<div class="row mb-3">
 												<label for="Gender" class="col-md-4 col-lg-3 col-form-label">Gender</label>
 												<div class="col-md-8 col-lg-9">
-													<select class="form-select" name="ifmmGender" value="<c:out value="${list.ifmmGender }"/>" >
-														
+													<select class="form-select" name="ifmmGender" value="<c:out value="${list.ifmmGender }"/>">
+
 														<c:forEach items="${listCodeGender}" var="listGender" varStatus="status">
-															<option value = "${listGender.ifcdSeq }" <c:if test="${list.ifmmGender eq listGender.ifcdSeq }"> selected </c:if> > 
+															<option value="${listGender.ifcdSeq }" <c:if test="${list.ifmmGender eq listGender.ifcdSeq }"> selected </c:if>>
 																<c:out value="${listGender.ifcdName }" />
 															</option>
 														</c:forEach>
@@ -433,7 +469,7 @@ input-group-text {
 											<div class="row mb-3">
 												<label for="date" class="col-md-4 col-lg-3 col-form-label">Date Of Birth</label>
 												<div class="col-md-8 col-lg-9">
-													<input type="text" class="form-control" id="ifmmDob" name="ifmmDob" value="<c:out value="${list.ifmmDob }"/>" >
+													<input type="text" class="form-control" id="ifmmDob" name="ifmmDob" value="<c:out value="${list.ifmmDob }"/>">
 												</div>
 											</div>
 
@@ -441,13 +477,12 @@ input-group-text {
 												<label for="Country" class="col-md-4 col-lg-3 col-form-label">Email</label>
 												<div class="col-md-8 col-lg-9">
 													<div class="input-group">
-														<input type="text" id="Email" name="Email" class="form-control" placeholder="User email"  value="${fn:split(list.ifmmEmail,'@')[0]}"> 
-														<span class="input-group-text">@</span> 
-														
-														<input type="text" id="Domain" name="Domain" class="form-control" placeholder="Domain" value="${fn:split(list.ifmmEmail,'@')[1]}" >
+														<input type="text" id="Email" name="Email" class="form-control" placeholder="User email" value="${fn:split(list.ifmmEmail,'@')[0]}">
+														<span class="input-group-text">@</span>
+														<input type="text" id="Domain" name="Domain" class="form-control" placeholder="Domain" value="${fn:split(list.ifmmEmail,'@')[1]}">
 														<%-- <input type="text" id="Domain" name="Domain" class="form-control" placeholder="Domain" value="${fn:split(list.ifmmEmail,'@')[1]}" > --%>
-														
-														<select class="form-select" name="ifmmEmailDomain" id="ifmmEmailDomain" >
+
+														<select class="form-select" name="ifmmEmailDomain" id="ifmmEmailDomain">
 															<%-- 
 															<c:forEach items="${listCodeDomain}" var="listDomain" varStatus="status">
 																<option value = "${listDomain.ifcdSeq }" <c:if test="${list.ifmmEmailDomain eq listDomain.ifcdSeq }"> selected </c:if> > 
@@ -461,11 +496,11 @@ input-group-text {
 															<option value="10">daum.net</option>
 														</select>
 													</div>
-													
-													<input type="hidden" class="form-control" id="ifmmEmail" name="ifmmEmail" value="<c:out value="${list.ifmmEmail }"/>" >
+
+													<input type="hidden" class="form-control" id="ifmmEmail" name="ifmmEmail" value="<c:out value="${list.ifmmEmail }"/>">
 													<div class="input-group">
-														<input class="form-text" type="hidden" name="ifmmMailNy" value="0" <c:if test="${list.ifmmMailNy eq 0 }"> </c:if> > 
-														<input class="form-text" type="checkbox" name="ifmmMailNy" value="1" <c:if test="${list.ifmmMailNy eq 1 }"> checked </c:if> > 
+														<input class="form-text" type="hidden" name="ifmmMailNy" value="0" <c:if test="${list.ifmmMailNy eq 0 }"> </c:if>>
+														<input class="form-text" type="checkbox" name="ifmmMailNy" value="1" <c:if test="${list.ifmmMailNy eq 1 }"> checked </c:if>>
 														<label class="form-text" style="margin: auto; margin-left: 0;"> E-mail을 통한 소식/정보 수신을 동의하시겠습니까? </label>
 													</div>
 												</div>
@@ -476,30 +511,29 @@ input-group-text {
 												<div class="col-md-8 col-lg-9">
 													<input type="hidden" id="inputPhone2AllowedNy" name="inputPhone2AllowedNy" value="0">
 													<div class="input-group">
-														<select class="form-select" id="ifmmPhoneCarrier" name="ifmmPhoneCarrier" >
+														<select class="form-select" id="ifmmPhoneCarrier" name="ifmmPhoneCarrier">
 															<c:forEach items="${listCodeCarrier}" var="listCarrier" varStatus="statusGender">
-																<option value = "${list.ifmmPhoneCarrier }" <c:if test="${list.ifmmPhoneCarrier eq listCarrier.ifcdSeq }"> selected </c:if> > 
+																<option value="${list.ifmmPhoneCarrier }" <c:if test="${list.ifmmPhoneCarrier eq listCarrier.ifcdSeq }"> selected </c:if>>
 																	<c:out value="${listCarrier.ifcdName }" />
 																</option>
 															</c:forEach>
-														</select> 
-														<select class="form-select" id="inputPhone1"  value="${fn:substring(list.ifmmPhone,0,3)}" required>
+														</select> <select class="form-select" id="inputPhone1" value="${fn:substring(list.ifmmPhone,0,3)}" required>
 															<option value="010" <c:if test="${fn:substring(list.ifmmPhone,0,3) eq 010 }"> selected </c:if>>010</option>
 															<option value="011" <c:if test="${fn:substring(list.ifmmPhone,0,3) eq 011 }"> selected </c:if>>011</option>
 															<option value="019" <c:if test="${fn:substring(list.ifmmPhone,0,3) eq 019 }"> selected </c:if>>019</option>
-														</select> <span class="input-group-text">-</span> 
-														<input type="text" id="inputPhone2" class="form-control" maxlength='4' onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" value="${fn:substring(list.ifmmPhone,3,7)}"> 
-														<span class="input-group-text">-</span> 
+														</select> <span class="input-group-text">-</span>
+														<input type="text" id="inputPhone2" class="form-control" maxlength='4' onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" value="${fn:substring(list.ifmmPhone,3,7)}">
+														<span class="input-group-text">-</span>
 														<input type="text" id="inputPhone3" class="form-control" maxlength='4' onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" value="${fn:substring(list.ifmmPhone,7,11)}">
 
 														<!-- <button class="btn btn-outline-secondary" type="button" id="button-addon2">인증번호 요청</button> -->
 													</div>
 													<div class="invalid-feedback" id="inputPhone2ChkFeedback"></div>
-													<input type="hidden" id="ifmmPhone" name="ifmmPhone" class="form-control" value="<c:out value="${list.ifmmPhone }"/>" >
-													
+													<input type="hidden" id="ifmmPhone" name="ifmmPhone" class="form-control" value="<c:out value="${list.ifmmPhone }"/>">
+
 													<div class="input-group">
-														<input class="form-text" type="hidden" name="ifmmSmsNy" value="0" <c:if test="${list.ifmmSmsNy eq 0 }"> </c:if> > 
-														<input class="form-text" type="checkbox" name="ifmmSmsNy" value="1" <c:if test="${list.ifmmSmsNy eq 1 }"> checked </c:if> > 
+														<input class="form-text" type="hidden" name="ifmmSmsNy" value="0" <c:if test="${list.ifmmSmsNy eq 0 }"> </c:if>>
+														<input class="form-text" type="checkbox" name="ifmmSmsNy" value="1" <c:if test="${list.ifmmSmsNy eq 1 }"> checked </c:if>>
 														<label class="form-text" for="ifmmSmsNy" style="margin: auto; margin-left: 0;"> SMS을 통한 소식/정보 수신을 동의하시겠습니까? </label>
 													</div>
 												</div>
@@ -511,7 +545,7 @@ input-group-text {
 													<div class="input-group">
 														<div class="col-6">
 															<div class="input-group">
-																<input type="text" id="ifmmPostNum" name="ifmmPostNum" value="<c:out value="${list.ifmmPostNum }"/>" class="form-control" placeholder="우편번호"   aria-label="Recipient's username" aria-describedby="button-addon2" required>
+																<input type="text" id="ifmmPostNum" name="ifmmPostNum" value="<c:out value="${list.ifmmPostNum }"/>" class="form-control" placeholder="우편번호" aria-label="Recipient's username" aria-describedby="button-addon2" required>
 																<button class="btn btn-outline-secondary" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
 																	<i class="fa-solid fa-magnifying-glass"></i>
 																</button>
@@ -521,29 +555,29 @@ input-group-text {
 															</div>
 														</div>
 														<div class="input-group" style="padding-top: 5px;">
-															<input type="text" class="form-control" id="ifmmResidence" name="ifmmResidence" value="<c:out value="${list.ifmmResidence }"/>"  placeholder="주소" aria-label="Recipient's username" aria-describedby="button-addon2" required>
+															<input type="text" class="form-control" id="ifmmResidence" name="ifmmResidence" value="<c:out value="${list.ifmmResidence }"/>" placeholder="주소" aria-label="Recipient's username" aria-describedby="button-addon2" required>
 														</div>
 														<div class="input-group" style="padding-top: 5px;">
-															<input type="text" class="form-control" id="ifmmDetailedAddress" name="ifmmDetailedAddress" value="<c:out value="${list.ifmmDetailedAddress }"/>"  placeholder="상세주소" aria-label="Recipient's username" aria-describedby="button-addon2" required> 
+															<input type="text" class="form-control" id="ifmmDetailedAddress" name="ifmmDetailedAddress" value="<c:out value="${list.ifmmDetailedAddress }"/>" placeholder="상세주소" aria-label="Recipient's username" aria-describedby="button-addon2" required>
 															<input type="text" class="form-control" id="ifmmReference" name="ifmmReference" value="<c:out value="${list.ifmmReference }"/>" placeholder="참고항목" aria-label="Recipient's username" aria-describedby="button-addon2" required>
 														</div>
-														<input type="hidden" class="form-control" id="ifmmAddress" name="ifmmAddress" value="<c:out value="${list.ifmmAddress }"/>" >
+														<input type="hidden" class="form-control" id="ifmmAddress" name="ifmmAddress" value="<c:out value="${list.ifmmAddress }"/>">
 													</div>
 												</div>
 											</div>
 
 											<div class="text-center">
-												<button type="button" id="btnSave" class="btn btn-success" >Save Changes</button>
+												<button type="button" id="btnSave" class="btn btn-success">Save Changes</button>
 											</div>
 										</form>
 										<!-- End Profile Edit Form -->
 									</div>
-<!-- 화면 비밀번호 변경------------------------------------------------------ ------------------------------- -->
+									<!-- 화면 비밀번호 변경------------------------------------------------------ ------------------------------- -->
 									<div class="tab-pane fade pt-3" id="profile-change-password">
 										<form id="pwdForm" name="pwdForm" method="post">
-											
+
 											<input type="hidden" name="ifmmSeq" value="<c:out value="${list.ifmmSeq }"/>" />
-											
+
 											<div class="row mb-3">
 												<label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
 												<div class="col-md-8 col-lg-9">
@@ -572,7 +606,7 @@ input-group-text {
 											</div>
 
 											<div class="text-center">
-												<button type="button" id="btnPwdSave" class="btn btn-success" >Change Password</button>
+												<button type="button" id="btnPwdSave" class="btn btn-success">Change Password</button>
 											</div>
 										</form>
 										<!-- End Change Password Form -->
@@ -595,12 +629,24 @@ input-group-text {
 		<!-- Footer -->
 		<footer id="footer">
 			<ul class="icons">
-				<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-				<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-				<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-				<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-				<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-				<li><a href="#" class="icon brands fa-google-plus"><span class="label">Google+</span></a></li>
+				<li><a href="#" class="icon brands fa-twitter">
+						<span class="label">Twitter</span>
+					</a></li>
+				<li><a href="#" class="icon brands fa-facebook-f">
+						<span class="label">Facebook</span>
+					</a></li>
+				<li><a href="#" class="icon brands fa-instagram">
+						<span class="label">Instagram</span>
+					</a></li>
+				<li><a href="#" class="icon brands fa-github">
+						<span class="label">Github</span>
+					</a></li>
+				<li><a href="#" class="icon brands fa-dribbble">
+						<span class="label">Dribbble</span>
+					</a></li>
+				<li><a href="#" class="icon brands fa-google-plus">
+						<span class="label">Google+</span>
+					</a></li>
 			</ul>
 			<ul class="copyright">
 				<li>&copy; Untitled. All rights reserved.</li>
@@ -656,6 +702,41 @@ input-group-text {
 
 		</nav>
 	</div>
+
+	<script type="text/javascript">
+	
+	var goUrlUpdt = "/home/homeUpdt";
+	var goPwdUrlUpdt = "/home/homePwdUpdt";
+	
+	var form = $("form[name = form]");
+	var pwdForm = $("form[name = pwdForm]");
+	
+	let pwdC = document.getElementById("ifmmPwdAllowedNy").value;
+	let repwdC = document.getElementById("newPwdAllowedNy").value;
+	let newpwdC = document.getElementById("renewPwdAllowedNy").value;
+	
+	$("#btnSave").on("click", function(){
+   		form.attr("action", goUrlUpdt).submit();
+	}); 
+	$("#btnPwdSave").on("click", function(){
+		if(pwdC == 1 && repwdC == 1 && newpwdC == 1) {
+			pwdForm.attr("action", goPwdUrlUpdt).submit();
+		} else {
+			alert('다시 입력해주세요.');
+		}
+	}); 
+	
+	
+	$("#btnAddressClear").on("click", function() {
+		$("#ifmmPostNum").val('');
+		$("#ifmmResidence").val('');
+		$("#ifmmDetailedAddress").val('');
+		$("#ifmmReference").val('');
+		$("#ifmaLatArray0").val('');
+		$("#ifmaLngArray0").val('');
+	});
+	
+	</script>
 
 	<script type="text/javascript">
 		$("#btnLogout").on(
@@ -785,7 +866,7 @@ input-group-text {
 	        }
 		});
 	</script>
-	
+
 	<script>
 	//파일 미리보기
 	/* function handleFileSelect(event) {
@@ -810,32 +891,8 @@ input-group-text {
 	  $("#file").click();
 	} ); */
 	</script>
-	
-	<script type="text/javascript">
-	
-	var goUrlUpdt = "/home/homeUpdt";
-	var goPwdUrlUpdt = "/home/homePwdUpdt";
-	
-	var form = $("form[name = form]");
-	var pwdForm = $("form[name = pwdForm]");
-	
-	$("#btnSave").on("click", function(){
-   		form.attr("action", goUrlUpdt).submit();
-	}); 
-	$("#btnPwdSave").on("click", function(){
-		pwdForm.attr("action", goPwdUrlUpdt).submit();
-	}); 
-	
-	
-	$("#btnAddressClear").on("click", function() {
-		$("#ifmmPostNum").val('');
-		$("#ifmmResidence").val('');
-		$("#ifmmDetailedAddress").val('');
-		$("#ifmmReference").val('');
-		$("#ifmaLatArray0").val('');
-		$("#ifmaLngArray0").val('');
-	});
-	</script>
+
+
 
 	<script type="text/javascript">
 		//이메일
