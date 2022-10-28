@@ -703,40 +703,7 @@ input-group-text {
 		</nav>
 	</div>
 
-	<script type="text/javascript">
 	
-	var goUrlUpdt = "/home/homeUpdt";
-	var goPwdUrlUpdt = "/home/homePwdUpdt";
-	
-	var form = $("form[name = form]");
-	var pwdForm = $("form[name = pwdForm]");
-	
-	let pwdC = document.getElementById("ifmmPwdAllowedNy").value;
-	let repwdC = document.getElementById("newPwdAllowedNy").value;
-	let newpwdC = document.getElementById("renewPwdAllowedNy").value;
-	
-	$("#btnSave").on("click", function(){
-   		form.attr("action", goUrlUpdt).submit();
-	}); 
-	$("#btnPwdSave").on("click", function(){
-		if(pwdC == 1 && repwdC == 1 && newpwdC == 1) {
-			pwdForm.attr("action", goPwdUrlUpdt).submit();
-		} else {
-			alert('다시 입력해주세요.');
-		}
-	}); 
-	
-	
-	$("#btnAddressClear").on("click", function() {
-		$("#ifmmPostNum").val('');
-		$("#ifmmResidence").val('');
-		$("#ifmmDetailedAddress").val('');
-		$("#ifmmReference").val('');
-		$("#ifmaLatArray0").val('');
-		$("#ifmaLngArray0").val('');
-	});
-	
-	</script>
 
 	<script type="text/javascript">
 		$("#btnLogout").on(
@@ -763,6 +730,10 @@ input-group-text {
 				});
 	</script>
 	<script type="text/javascript">
+	let pwdC = 0;
+	let repwdC = 0;
+	let newpwdC = 0;
+	
 	$("#ifmmPassword").on("focusout", function(){
 		$.ajax({
 			async: true 
@@ -780,7 +751,8 @@ input-group-text {
 					document.getElementById("ifmmPwdFeedback").classList.add('valid-feedback');
 					document.getElementById("ifmmPwdFeedback").innerText = "현재 비밀번호와 동일합니다.";
 					
-					document.getElementById("ifmmPwdAllowedNy").value = 1;
+					pwdC = 1;
+					
 					
 				} else {
 					document.getElementById("ifmmPassword").classList.add('is-invalid');
@@ -804,6 +776,7 @@ input-group-text {
 	</script>
 	<script type="text/javascript">
 	// 패스워드 확인
+	
 		$("#newPassword").on("focusout", function(){
 			var pw = $("#newPassword").val();
 			var num = pw.search(/[0-9]/g);
@@ -846,7 +819,8 @@ input-group-text {
 				document.getElementById("newPwdFeedback").classList.remove('invalid-feedback');
 				document.getElementById("newPwdFeedback").classList.add('valid-feedback');
 				document.getElementById("newPwdFeedback").innerText = "사용 가능 합니다.";
-				document.getElementById("newPwdAllowedNy").value = 1;
+				repwdC = 1;
+
 			}
 		});
 		$("#renewPassword").on("focusout", function(){
@@ -862,7 +836,7 @@ input-group-text {
 				document.getElementById("renewPwdFeedback").classList.remove('invalid-feedback');
 				document.getElementById("renewPwdFeedback").classList.add('valid-feedback');
 				document.getElementById("renewPwdFeedback").innerText = "비밀번호가 일치합니다.";
-				document.getElementById("renewPwdAllowedNy").value = 1;
+				newpwdC = 1;
 	        }
 		});
 	</script>
@@ -1164,5 +1138,40 @@ input-group-text {
 		return false;
 	}
 	</script>
+	
+	<script type="text/javascript">
+	
+	var goUrlUpdt = "/home/homeUpdt";
+	var goPwdUrlUpdt = "/home/homePwdUpdt";
+	
+	var form = $("form[name = form]");
+	var pwdForm = $("form[name = pwdForm]");
+	
+	
+	
+	$("#btnSave").on("click", function(){
+   		form.attr("action", goUrlUpdt).submit();
+	}); 
+	$("#btnPwdSave").on("click", function(){
+		
+		if(pwdC === 1 && repwdC === 1 && newpwdC === 1) {
+			pwdForm.attr("action", goPwdUrlUpdt).submit();
+		} else {
+			alert('다시 입력해주세요.');
+		}
+	}); 
+	
+	
+	$("#btnAddressClear").on("click", function() {
+		$("#ifmmPostNum").val('');
+		$("#ifmmResidence").val('');
+		$("#ifmmDetailedAddress").val('');
+		$("#ifmmReference").val('');
+		$("#ifmaLatArray0").val('');
+		$("#ifmaLngArray0").val('');
+	});
+	
+	</script>
+	
 </body>
 </html>
