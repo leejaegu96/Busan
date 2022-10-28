@@ -217,54 +217,54 @@ ul li {
 													</div>
 												</div>
 
-												<div id="box">
-													<%-- <c:forEach items="${list}" var="list" varStatus="status"> --%>
-														<div class="row" id="InputPadding">
-															<div class="col-6">
-																<label class="form-label">정의1</label>
-																<div class="row">
-																	<div class="col-2" style="padding-right:0;">
-																		<select id="inputState" name="sdwmNum" value="<c:out value="${list.sdwmNum }"/>" class="form-select">
-																			<option selected disabled>#</option>
-																			<option value="1">1</option>
-																			<option value="2">2</option>
-																			<option value="3">3</option>
-																		</select>
-																	</div>
-																	<div class="col-3" style="padding-right:0;">
-																		<select id="inputState" name="sdwmPartOfSpeech" value="<c:out value="${list.sdwmPartOfSpeech }"/>" class="form-select">
-																			<option selected disabled>형태소</option>
-																			<option value="형용사">형용사</option>
-																			<option value="명사">명사</option>
-																			<option value="동사">동사</option>
-																		</select>
-																	</div>
-																	<div class="col-7">
-																		<input type="text" class="form-control" name="sdwmContents" value="<c:out value="${list.sdwmContents }"/>">
-																	</div>
+												<%-- <c:forEach items="${list}" var="list" varStatus="status"> --%>
+													<div class="row" id="workPoint">
+														<div class="col-6">
+															<label class="form-label">정의1</label>
+															<div class="row">
+																<div class="col-2" style="padding-right:0;">
+																	<select id="inputState" name="sdwmNum" value="<c:out value="${list.sdwmNum }"/>" class="form-select">
+																		<option selected disabled>#</option>
+																		<option value="1">1</option>
+																		<option value="2">2</option>
+																		<option value="3">3</option>
+																	</select>
 																</div>
-															</div>
-															<div class="col-6">
-																<label class="form-label">예시1</label>
-																<div class="row">
-																	<div class="col-10">
-																		<div class="input-group mb-3">
-																			<span class="input-group-text" id="basic-addon1">영문</span>
-																			<input type="text" class="form-control" name="sdweContents" value="<c:out value="${list.sdweContents }"/>" >
-																		</div>
-																		<div class="input-group mb-3">
-																			<span class="input-group-text" id="basic-addon1">해석</span>
-																			<input type="text" class="form-control" name="sdweTranslate" value="<c:out value="${list.sdweTranslate }"/>" >
-																		</div>
-																	</div>
-																	<div class="col-2">
-																		<input type="button" value="추가" onclick="add_textbox()">
-																	</div>
+																<div class="col-3" style="padding-right:0;">
+																	<select id="inputState" name="sdwmPartOfSpeech" value="<c:out value="${list.sdwmPartOfSpeech }"/>" class="form-select">
+																		<option selected disabled>형태소</option>
+																		<option value="형용사">형용사</option>
+																		<option value="명사">명사</option>
+																		<option value="동사">동사</option>
+																	</select>
+																</div>
+																<div class="col-7">
+																	<input type="text" class="form-control" name="sdwmContents" value="<c:out value="${list.sdwmContents }"/>">
 																</div>
 															</div>
 														</div>
-													<%-- </c:forEach> --%>
-												</div>
+														<div class="col-6">
+															<label class="form-label">예시1</label>
+															<div class="row">
+																<div class="col-10">
+																	<div class="input-group mb-3">
+																		<span class="input-group-text" id="basic-addon1">영문</span>
+																		<input type="text" class="form-control" name="sdweContents" value="<c:out value="${list.sdweContents }"/>" >
+																	</div>
+																	<div class="input-group mb-3">
+																		<span class="input-group-text" id="basic-addon1">해석</span>
+																		<input type="text" class="form-control" name="sdweTranslate" value="<c:out value="${list.sdweTranslate }"/>" >
+																	</div>
+																</div>
+																<div class="col-2">
+																	<button type="button" class="regFrombutton1" onclick="addWork()">
+											                            <i class="fa-solid fa-plus"></i>
+											                        </button>
+																</div>
+															</div>
+														</div>
+													</div>
+												<%-- </c:forEach> --%>
 
 												<div class="row" id="InputPadding">
 													<div class="col-6" style="text-align: left;">
@@ -499,14 +499,11 @@ ul li {
 	</script>
 	 -->
 	<script>
-        const add_textbox = () => {
-            const box = document.getElementById("box");
-            const newP = document.createElement('p');
-            newP.setAttribute("id", "dom"); 
-            
-            let listHTML = "";
+		var count_career = 0;
+        function addWork() {
+            var listHTML = "";
             listHTML += '';
-            listHTML += '<div class="row" id="InputPadding">';
+            listHTML += '<div class="row" id="careerDelete'+ count_career +'">';
             listHTML += '<div class="col-6">';
             listHTML += '<label class="form-label">정의</label>';
             listHTML += '<div class="row">';
@@ -545,18 +542,21 @@ ul li {
             listHTML += '</div>';
             listHTML += '</div>';
             listHTML += '<div class="col-2">'; 
-            listHTML += '<input type="button" value="삭제" onclick="remove()">';
+            listHTML += '<button type="button" class="regFrombutton1" onclick="remove(careerDelete' + count_career + ')">';
+            listHTML += '<i class="fa-solid fa-minus"></i>';
+            listHTML += '</button>';
             listHTML += '</div>';
             listHTML += '</div>';
             listHTML += '</div>';
             listHTML += '</div>';
 
-            newP.innerHTML = listHTML;
-
-            box.appendChild(newP);
+            count_career += 1;
+            
+            $("#workPoint").append(listHTML);
         }
-        const remove = (obj) => {
-        	box.removeChild(obj.childNode);
+        function remove(id) {
+            
+            $(id).remove();
         }
     </script>
 </body>

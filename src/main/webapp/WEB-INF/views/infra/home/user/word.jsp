@@ -22,13 +22,11 @@
 <link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
 <link rel="stylesheet" href="../resources/assets/css/main.css" />
 <link rel="stylesheet" href="../resources/assets/css/test.css" />
+<link rel="stylesheet" href="../resources/assets/css/word.css" />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <style type="text/css">
-#colPadding {
-	padding-bottom: 10px;
-}
 
 .ui-datepicker {
 	font-size: 15px;
@@ -132,101 +130,11 @@
 				<input type="text" class="form-control" id="datepicker" name="sddDateChoice" placeholder="Choice Date!!" style="text-align: center; color: black; height: 50px;">
 			</header>
 			<section class="box" style="height: 100%;">
-				<%-- 
-				<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-					<div class="carousel-inner">
-						<h3>Today's Word</h3>
-						<br>
-						
-						<div class="carousel-item active" data-bs-interval="1000000">
-							<div style="max-width: 450px; width: 100%; height: 500px; height: 100%; text-align: left; margin: auto; text-align: center; background-color: #666666;">
-								<img alt="" src="../resources/assets/images/samples/study.jpg" style="height: 200px; width: 400px; padding: 10px;">
-
-								<input type="text" class="form-control" id="datepicker" placeholder="Choice Date!!" style="text-align: center; color: black;">
-							</div>
-						</div>
-
-						<c:forEach items="${list}" var="list" varStatus="status">
-
-							<div class="carousel-item" data-bs-interval="10000">
-								<div style="max-width: 450px; width: 100%; height: 500px; height: 100%; text-align: left; margin: auto; background-color: #666666;">
-
-									<h4>
-										<input type="hidden" id="sdwSeq" name="sdwSeq">
-										<input id="text${list.sdwSeq}" value="${list.sdwWord }" style="background: none; font-weight: bold; text-align: center; color: white; height: 50px;" readonly>
-										&nbsp; <i class="fa-solid fa-volume-high" id="btn-read${list.sdwSeq}" style="cursor: pointer;"></i>
-									</h4>
-									<br>
-
-									<c:forEach items="${item}" var="item" varStatus="status">
-										<span style="line-height: 200%;"> 
-											<c:if test="${list.sdwWord == item.sdwWord }">
-												<span style="color: Blue; font-style: italic;" value="${list.sdwSeq }">${item.sdwmPartOfSpeech}</span> &nbsp; <span style="color: white;" value="${list.sdwSeq }">${item.sdwmContents}</span>
-												<br>
-												<span value="${list.sdwSeq }">${item.sdweContents}</span>
-												<br>
-												<span value="${list.sdwSeq }">${item.sdweTranslate}</span>
-												<br>
-											</c:if>
-										</span>
-									</c:forEach>
-								</div>
-							</div>
-
-						</c:forEach>
-						
-					</div>
-					<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-						<span class="carousel-control-prev-icon" aria-hidden="true" style="float: top;"></span> <span class="visually-hidden">Previous</span>
-					</button>
-					<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-						<span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="visually-hidden">Next</span>
-					</button>
-				</div>
-				 --%>
 
 				<div class="row">
 					<div id="wordChoice"></div>
 					<div id="wordDate"></div>
 				</div>
-					<%-- 
-					<c:forEach items="${list}" var="list" varStatus="status">
-					
-						<div class="col-6" style="margin: auto;" id="colPadding">
-							<div class="quiz">
-								<span class="quiz__type">${list.sddDateChoice }</span>
-								<h2 class="quiz__question">
-									<span class="word">${list.sdwWord }</span>
-									<hr style="margin: 10px 0;">
-									<div>
-										<c:forEach items="${item}" var="item" varStatus="status">
-											<c:if test="${list.sdwWord == item.sdwWord }">
-												<div class="ask">
-													<span class="content" style="font-weight: bold;" value="${list.sdwSeq }">${item.sdwmNum}. &nbsp;${item.sdwmPartOfSpeech}</span>
-													<span class="content" value="${list.sdwSeq }">&nbsp;${item.sdwmContents}</span>
-													<br>
-												</div>
-											</c:if>
-										</c:forEach>
-										<hr style="margin: 10px 0;">
-										<c:forEach items="${item}" var="item" varStatus="status">
-											<c:if test="${list.sdwWord == item.sdwWord }">
-												<div class="ask1">
-													<span class="content" style="font-weight: bold;">${item.sdwmNum}.&nbsp;</span>
-													<span class="content" value="${list.sdwSeq }">${item.sdweContents}</span>
-													<br>
-													<span class="content" value="${list.sdwSeq }">&nbsp;&nbsp;&nbsp;&nbsp;${item.sdweTranslate}</span>
-													<br>
-												</div>
-											</c:if>
-										</c:forEach>
-									</div>
-								</h2>
-							</div>
-						</div>
-						
-					</c:forEach>
-					 --%>
 
 			</section>
 
@@ -324,39 +232,6 @@
 		});
 	</script>
 	<script type="text/javascript">
-		function Search() {
-			var word = document.getElementById("input").value;
-			let api = `https://api.dictionaryapi.dev/api/v2/entries/en/` + word;
-
-			fetch(api).then(function(response) {
-				let data = response.json();
-				return data;
-			}).then(function(data) {
-				console.log(data);
-				//Input
-				document.getElementById('word').innerHTML = word;
-				///If no Definition
-				message = data.message;
-				if (message) {
-					alert(message)
-				}
-
-				//Output
-				definition1 = ' [' + data[0].meanings[0].partOfSpeech + '] ' + data[0].meanings[0].definitions[0].definition;
-				example1 = ' ' + data[0].meanings[0].definitions[0].example;
-				document.getElementById('definition1').innerHTML = "1:" + definition1;
-				document.getElementById('example1').innerHTML = "1:" + example1;
-
-				definition2 = ' [' + data[0].meanings[1].partOfSpeech + '] ' + data[0].meanings[1].definitions[0].definition;
-				example2 = ' ' + data[0].meanings[1].definitions[0].example;
-				if (definition2 != null) {
-					document.getElementById('definition2').innerHTML = "2:" + definition2;
-					document.getElementById('example2').innerHTML = "2:" + example2;
-				}
-			})
-		}
-	</script>
-	<script type="text/javascript">
 		$("#datepicker").on("change", function() {
 			$.ajax({
 				async : true,
@@ -388,7 +263,7 @@
 							listHTML += '<div class="quiz">';
 							listHTML += '<span class="quiz__type">' + response.rr[i].sddDateChoice + '</span>';
 							listHTML += '<h2 class="quiz__question">';
-							listHTML += '<span class="word">' + response.rr[i].sdwWord + '</span>';
+							listHTML += '<span class="word">' + response.rr[i].sdwWord + '</span> <div style="float:right;"> <input id="heart'+ response.rr[i].sdwSeq +'" type="checkbox" /> <label for="heart'+ response.rr[i].sdwSeq +'">❤</label> </div>';
 							listHTML += '<hr style="margin: 10px 0;">';
 							listHTML += '<div>';
 							for (let j = 0; j < response.tt.length; j++) {
