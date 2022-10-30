@@ -258,6 +258,26 @@
 			,#{sdDate_sddSeq}
 		)
 	</insert>
+	<insert id="likeInsert">
+		INSERT INTO sdFavorite (
+			infrMember_ifmmSeq
+			,sdWord_sdwSeq
+			,sdfDelNY
+		)
+		VALUES (
+			#{ifmmSeq}
+			,#{sdwSeq}
+			,#{0}
+		)
+	</insert>
+	<update id="likeUpdate">
+		UPDATE sdFavorite
+		SET
+			sdfDelNY = 1
+			,infrMember_ifmmSeq = #{ifmmSeq}
+			,sdWord_sdwSeq = #{sdwSeq}
+		WHERE 1=1
+	</update>
 	
 	
 	

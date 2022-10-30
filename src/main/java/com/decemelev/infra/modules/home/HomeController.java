@@ -245,6 +245,22 @@ public class HomeController {
 		System.out.println("controller result: " + result);
 		return "redirect:/home/test";
 	}
+	@RequestMapping(value="/home/likeInsert")
+	public String likeInsert(Home dto, RedirectAttributes redirectAttributes) throws Exception{
+		
+		int result = service.likeInsert(dto);
+		
+		System.out.println("controller result: " + result);
+		return "redirect:/home/word";
+	}
+	@RequestMapping(value="/home/likeUpdate")
+	public String likeUpdate(Home dto, RedirectAttributes redirectAttributes) throws Exception{
+		
+		int result = service.likeUpdate(dto);
+		
+		System.out.println("controller result: " + result);
+		return "redirect:/home/word";
+	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/home/trans")

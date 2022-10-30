@@ -100,4 +100,12 @@ public class HomeDao {
 		System.out.println("dao.result :" + result);
 		return result;
 	}
+	public int likeInsert(Home dto) {
+		int result = sqlSession.insert(namespace + ".likeInsert", dto);
+		System.out.println("dao.result :" + result);
+		return result;
+	}
+	public int likeUpdate(Home dto) {
+		return sqlSession.update(namespace + ".likeUpdate", dto);
+	}
 }

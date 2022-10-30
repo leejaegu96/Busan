@@ -130,12 +130,10 @@
 				<input type="text" class="form-control" id="datepicker" name="sddDateChoice" placeholder="Choice Date!!" style="text-align: center; color: black; height: 50px;">
 			</header>
 			<section class="box" style="height: 100%;">
-
 				<div class="row">
 					<div id="wordChoice"></div>
 					<div id="wordDate"></div>
 				</div>
-
 			</section>
 
 
@@ -259,22 +257,31 @@
 							console.log("word" + response.rr[i].sdwSeq);
 							console.log("trans" + response.tt[i].sdwSeq);
 							let listHTML = "";
+							listHTML += '<form name="form">';
 							listHTML += '<div class="col-6" style="margin: auto;" id="colPadding">';
 							listHTML += '<div class="quiz">';
 							listHTML += '<span class="quiz__type">' + response.rr[i].sddDateChoice + '</span>';
 							listHTML += '<h2 class="quiz__question">';
-							listHTML += '<span class="word">' + response.rr[i].sdwWord + '</span> <div style="float:right;">';
-							listHTML += '<input id="heart'+ response.rr[i].sdwNum +'" type="checkbox" '+ if(response.rr[i].sdwWord==response.yy[i].sdwWord){checked} +' />';
-							listHTML += '<label for="heart'+ response.rr[i].sdwNum +'">❤</label> </div>';
+							listHTML += '<span class="word">' + response.rr[i].sdwWord + '</span>';
+							listHTML += '<div style="float:right;">';
+							for (let k=0; k<response.yy.length; k++) {
+							    if(response.yy[k].sdwWord == response.rr[i].sdwWord){
+							        listHTML += '<input id="heart'+ response.rr[i].sdwNum +'" type="checkbox" checked>';
+							    }else {
+							        listHTML += '<input id="heart'+ response.rr[i].sdwNum +'" type="checkbox">';
+							    }
+							}
+							listHTML += '<label for="heart'+ response.rr[i].sdwNum +'">❤</label>';
+							listHTML += '</div>'; 
 							listHTML += '<hr style="margin: 10px 0;">';
-							listHTML += '<div>';
+							listHTML += '<div>'; 
 							for (let j = 0; j < response.tt.length; j++) {
-								if (response.rr[i].sdwWord == response.tt[j].sdwWord) {
+								if (response.rr[i].sdwWord === response.tt[j].sdwWord) {
 									listHTML += '<div class="ask">';
 									listHTML += '<span class="content" style="font-weight: bold;" >' + response.tt[j].sdwmNum + '. ' + '</span>';
 									listHTML += '<span class="content" style="font-weight: bold;" >' + '[' + response.tt[j].sdwmPartOfSpeech + ']' + '&nbsp;' + '</span>';
 									listHTML += '<span class="content" >' + response.tt[j].sdwmContents + '</span>';
-									listHTML += '<br>';
+									listHTML += '<br>'; 
 									listHTML += '</div>';
 								}
 							}
@@ -293,7 +300,28 @@
 							listHTML += '</h2>';
 							listHTML += '</div>';
 							listHTML += '</div>';
+							listHTML += '</form>';
 							document.getElementById('wordChoice').innerHTML += listHTML;
+							
+							// 인서트 
+							var goUrlInst = "/home/likeInsert"; /* #-> */
+							var goUrlUpdt = "/home/likeUpdate"; /* #-> */
+							var form = $("form[name = form]");
+							var word = document.getElementById('heart'+response.rr[i].sdwNum);
+							
+							$('#heart'+response.rr[i].sdwNum).on("click", function() {
+								if (word.val() == "0" || word.val() == "") {
+									// insert
+									/* if (validationInst() == false) return false; */
+									form.attr("action", goUrlInst).submit();
+								} else {
+									// update
+									/* keyName.val(atob(keyName.val())); */
+									/* if (validationUpdt() == false) return false; */
+									form.attr("action", goUrlUpdt).submit();
+								}
+							});
+							
 						}
 					} else {
 						// 
@@ -307,6 +335,15 @@
 
 			});
 		});
+	</script>
+	<script type="text/javascript">
+	/* function wordLike() {
+    	alert('클릭이벤트 발생');
+    } */
+	</script>
+	<script type="text/javascript">
+	
+	
 	</script>
 
 </body>

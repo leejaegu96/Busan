@@ -149,4 +149,16 @@ public class HomeServiceImpl implements HomeService{
 		System.out.println("service result: "+ result);
 		return result;
 	}
+	@Override
+	public int likeInsert(Home dto) throws Exception{
+		int result = dao.likeInsert(dto);
+		System.out.println("service result: "+ result);
+		return result;
+	}
+	@Override
+	public int likeUpdate(Home dto) throws Exception {
+		int result = dao.likeUpdate(dto);
+		System.out.println(result);
+		return result;
+	}
 }
