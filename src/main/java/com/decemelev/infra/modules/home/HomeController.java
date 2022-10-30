@@ -111,18 +111,24 @@ public class HomeController {
 	
 	@ResponseBody
 	@RequestMapping(value="/home/wordDate")
-	public Map<String, Object> wordDate(Home dto, @RequestParam("sddDateChoice") String sddDateChoice, Model model) throws Exception {
+	public Map<String, Object> wordDate(Home dto, @RequestParam("sddDateChoice") String sddDateChoice, Model model, HttpServletRequest httpServletRequest) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
+		HttpSession httpSession =  httpServletRequest.getSession();
+		sessSeq = (String) httpSession.getAttribute("sessSeq");
+		
+		dto.setMainKey(sessSeq);
 		dto.setSddDateChoice(sddDateChoice);
 		System.out.println("처음: " + sddDateChoice);
 		List<Home> list = service.selectList(dto);
 		model.addAttribute("list", list);
 		List<Home> result = service.selectContents(dto);
+		List<Home> favorite = service.favoriteList(dto);
 		if(result != null) {
 			returnMap.put("rt", "success");
 			returnMap.put("tt", result);
 			returnMap.put("rr", list);
+			returnMap.put("yy", favorite);
 		} else {
 			returnMap.put("rt", "fail");
 		}

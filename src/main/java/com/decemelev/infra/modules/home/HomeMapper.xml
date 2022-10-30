@@ -9,10 +9,26 @@
 	<resultMap id="resultMapObj"
 		type="com.decemelev.infra.modules.home.Home"></resultMap>
 
+	<select id="favoriteList" resultMap="resultMapObj">
+		SELECT
+		a.sdwSeq
+		,a.sdwNum
+		,a.sdwWord
+		,b.sddDateChoice
+	    ,c.sdfDelNY
+	    ,c.infrMember_ifmmSeq
+		FROM sdWord a
+		INNER JOIN sdDate b on b.sddSeq=a.sdDate_sddSeq
+	    INNER JOIN sdFavorite c on c.sdWord_sdwSeq = a.sdwSeq
+		WHERE 1=1
+		AND b.sddDateChoice = #{sddDateChoice}
+		AND c.infrMember_ifmmSeq= #{mainKey}
+	</select>
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT
 		a.sdwSeq
 		,a.sdwWord
+		,a.sdwNum
 		,b.sddDateChoice
 		FROM sdWord a
 		INNER JOIN sdDate b on b.sddSeq=a.sdDate_sddSeq
@@ -84,6 +100,7 @@
 		    ,d.sddDateChoice
 		    ,e.sdwmPartOfSpeech
 		    ,e.sdwmContents
+		    ,e.sdwmNum
 		    ,f.sdweContents
 		    ,f.sdweTranslate
 		from  sdFavorite a

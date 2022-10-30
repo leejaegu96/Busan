@@ -69,7 +69,15 @@ public class Home extends Base {
 	
 	private Integer sdfDelNy;
 	
+	private String mainKey;
 	
+	
+	public String getMainKey() {
+		return mainKey;
+	}
+	public void setMainKey(String mainKey) {
+		this.mainKey = mainKey;
+	}
 	public Integer getSdfDelNy() {
 		return sdfDelNy;
 	}

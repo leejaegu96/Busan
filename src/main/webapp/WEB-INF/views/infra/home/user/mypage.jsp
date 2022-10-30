@@ -75,6 +75,10 @@ img, svg {
 
 table {
 	text-align: center;
+	line-height:2;
+}
+td, th {
+	vertical-align: middle;
 }
 
 input-group-text {
@@ -286,16 +290,16 @@ input-group-text {
 												<table class="table table-striped" id="table1">
 													<thead>
 														<tr>
-															<th>
+															<th style="width: 5%;">
 																<div class="form-check" id="">
 																	<input class="form-check-input" type="checkbox" name="chk_box" onclick="allcheck();" value="" id="flexCheckDefault">
 																</div>
 															</th>
 															<th>#</th>
-															<th style="width: 5%;">단어</th>
-															<th style="width: 25%;">뜻</th>
-															<th style="width: 35%;">예시</th>
-															<th style="width: 10%;">날짜</th>
+															<th style="width: 10%;">단어</th>
+															<th style="width: 30%;">뜻</th>
+															<th style="width: 40%;">예시</th>
+															<th style="width: 15%;">날짜</th>
 														</tr>
 													</thead>
 													<tbody id="my_tbody">
@@ -307,8 +311,8 @@ input-group-text {
 																	</div>
 																</td>
 																<td>${status.count }</td>
-																<td>${list1.sdwWord }</td>
-																<td>
+																<td style="text-align:left;">${list1.sdwWord }</td>
+																<td style="text-align:left;">
 																	<c:forEach items="${item1}" var="item1" varStatus="status">
 																		<c:if test="${list1.sdwWord == item1.sdwWord }">
 																			<div class="ask">
@@ -319,8 +323,8 @@ input-group-text {
 																		</c:if>
 																	</c:forEach>
 																</td>
-																<td>
-																	<c:forEach items="${item1}" var="item" varStatus="status">
+																<td style="text-align:left;">
+																	<c:forEach items="${item1}" var="item1" varStatus="status">
 																		<c:if test="${list1.sdwWord == item1.sdwWord }">
 																			<div class="ask1">
 																				<span class="content" style="font-weight: bold;">${item1.sdwmNum}.&nbsp;</span>
@@ -332,7 +336,7 @@ input-group-text {
 																		</c:if>
 																	</c:forEach>
 																</td>
-																<td>${list1.sddDateChoice }</td>
+																<td style="text-align:left;">${list1.sddDateChoice }</td>
 															</tr>
 														</c:forEach>
 													</tbody>

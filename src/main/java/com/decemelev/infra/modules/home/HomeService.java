@@ -4,6 +4,7 @@ import java.util.List;
 
 public interface HomeService {
 
+	public List<Home> favoriteList(Home dto) throws Exception;
 	public List<Home> selectList(Home dto) throws Exception;
 	public List<Home> wordList() throws Exception;
 	public List<Home> selectContents(Home dto) throws Exception;

@@ -17,6 +17,11 @@ public class HomeServiceImpl implements HomeService{
 	HomeDao dao;
 	
 	@Override
+	public List<Home> favoriteList(Home dto) throws Exception {
+		List<Home> list = dao.favoriteList(dto);
+		return list;
+	}
+	@Override
 	public List<Home> selectList(Home dto) throws Exception {
 		List<Home> list = dao.selectList(dto);
 		return list;
