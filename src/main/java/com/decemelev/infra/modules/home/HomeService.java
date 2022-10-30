@@ -8,6 +8,8 @@ public interface HomeService {
 	public List<Home> wordList() throws Exception;
 	public List<Home> selectContents(Home dto) throws Exception;
 	public List<Home> wordContents() throws Exception;
+	public List<Home> myWordContents(HomeVo vo) throws Exception;
+	public List<Home> myWordList(HomeVo vo) throws Exception;
 	public List<Home> selectTest() throws Exception;
 	public List<Home> selectTest(Home dto) throws Exception;
 	public Home testDate(Home dto) throws Exception;

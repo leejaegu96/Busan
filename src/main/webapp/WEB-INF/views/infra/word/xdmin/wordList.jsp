@@ -19,64 +19,45 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 <script type="text/javascript">
-	$(document).ready(
-			function() {
-				$.datepicker.setDefaults($.datepicker.regional['ko']);
-				$("#shDateStart")
-						.datepicker(
-								{
-									changeMonth : true,
-									changeYear : true,
-									nextText : '다음 달',
-									prevText : '이전 달',
-									dayNames : [ '일요일', '월요일', '화요일', '수요일',
-											'목요일', '금요일', '토요일' ],
-									dayNamesMin : [ '일', '월', '화', '수', '목',
-											'금', '토' ],
-									monthNamesShort : [ '1월', '2월', '3월', '4월',
-											'5월', '6월', '7월', '8월', '9월',
-											'10월', '11월', '12월' ],
-									monthNames : [ '1월', '2월', '3월', '4월',
-											'5월', '6월', '7월', '8월', '9월',
-											'10월', '11월', '12월' ],
-									dateFormat : "yymmdd",
-									maxDate : 0, // 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)
-									onClose : function(selectedDate) {
-										//시작일(startDate) datepicker가 닫힐때
-										//종료일(endDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
-										$("#shDateEnd").datepicker("option",
-												"minDate", selectedDate);
-									}
+    $(document).ready(function() {
+        $.datepicker.setDefaults($.datepicker.regional['ko']);
+        $("#shDateStart").datepicker({
+            changeMonth : true,
+            changeYear : true,
+            nextText : '다음 달',
+            prevText : '이전 달',
+            dayNames : [ '일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일' ],
+            dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
+            monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월' ],
+            monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월' ],
+            dateFormat : "yymmdd",
+            maxDate : 0, // 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)
+            onClose : function(selectedDate) {
+                //시작일(startDate) datepicker가 닫힐때
+                //종료일(endDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
+                $("#shDateEnd").datepicker("option", "minDate", selectedDate);
+            }
 
-								});
-				$("#shDateEnd")
-						.datepicker(
-								{
-									changeMonth : true,
-									changeYear : true,
-									nextText : '다음 달',
-									prevText : '이전 달',
-									dayNames : [ '일요일', '월요일', '화요일', '수요일',
-											'목요일', '금요일', '토요일' ],
-									dayNamesMin : [ '일', '월', '화', '수', '목',
-											'금', '토' ],
-									monthNamesShort : [ '1월', '2월', '3월', '4월',
-											'5월', '6월', '7월', '8월', '9월',
-											'10월', '11월', '12월' ],
-									monthNames : [ '1월', '2월', '3월', '4월',
-											'5월', '6월', '7월', '8월', '9월',
-											'10월', '11월', '12월' ],
-									dateFormat : "yymmdd",
-									maxDate : 0, // 선택할수있는 최대날짜, ( 0 : 오늘 이후 날짜 선택 불가)
-									onClose : function(selectedDate) {
-										// 종료일(endDate) datepicker가 닫힐때
-										// 시작일(startDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 시작일로 지정
-										$("#shDateStart").datepicker("option",
-												"maxDate", selectedDate);
-									}
+        });
+        $("#shDateEnd").datepicker({
+            changeMonth : true,
+            changeYear : true,
+            nextText : '다음 달',
+            prevText : '이전 달',
+            dayNames : [ '일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일' ],
+            dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
+            monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월' ],
+            monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월' ],
+            dateFormat : "yymmdd",
+            maxDate : 0, // 선택할수있는 최대날짜, ( 0 : 오늘 이후 날짜 선택 불가)
+            onClose : function(selectedDate) {
+                // 종료일(endDate) datepicker가 닫힐때
+                // 시작일(startDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 시작일로 지정
+                $("#shDateStart").datepicker("option", "maxDate", selectedDate);
+            }
 
-								});
-			});
+        });
+    });
 </script>
 
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -99,15 +80,13 @@
 					<div class="d-flex justify-content-between">
 						<div class="row" style="text-align: center; width: 300px;">
 							<div class="logo">
-								<a href="../member/memberList">
-									<span style="font-size: 30px;"> <i class="fa-solid fa-book-open"></i>&nbsp E-Word
-									</span> <br> <span style="font-size: 19px;">Administrator</span>
+								<a href="../member/memberList"> <span style="font-size: 30px;"> <i class="fa-solid fa-book-open"></i>&nbsp E-Word
+								</span> <br> <span style="font-size: 19px;">Administrator</span>
 								</a>
 							</div>
 						</div>
 						<div class="toggler">
-							<a href="#" class="sidebar-hide d-xl-none d-block">
-								<i class="bi bi-x bi-middle"></i>
+							<a href="#" class="sidebar-hide d-xl-none d-block"> <i class="bi bi-x bi-middle"></i>
 							</a>
 						</div>
 					</div>
@@ -116,29 +95,23 @@
 					<ul class="menu">
 						<li class="sidebar-title">Menu</li>
 
-						<li class="sidebar-item "><a href="../member/memberList" class='sidebar-link'>
-								<i class="bi bi-person-badge-fill"></i> <span>MemberList</span>
-							</a></li>
+						<li class="sidebar-item "><a href="../member/memberList" class='sidebar-link'> <i class="bi bi-person-badge-fill"></i> <span>MemberList</span>
+						</a></li>
 
-						<li class="sidebar-item"><a href="../codeGroup/codeGroupList" class='sidebar-link'>
-								<i class="bi bi-grid-fill"></i> <span>CodeGroup</span>
-							</a></li>
+						<li class="sidebar-item"><a href="../codeGroup/codeGroupList" class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>CodeGroup</span>
+						</a></li>
 
-						<li class="sidebar-item"><a href="../code/codeList" class='sidebar-link'>
-								<i class="bi bi-grid-fill"></i> <span>Code</span>
-							</a></li>
+						<li class="sidebar-item"><a href="../code/codeList" class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>Code</span>
+						</a></li>
 
-						<li class="sidebar-item active"><a href="../word/wordList" class='sidebar-link'>
-								<i class="fa fa-book"></i> <span>Word</span>
-							</a></li>
+						<li class="sidebar-item active"><a href="../word/wordList" class='sidebar-link'> <i class="fa fa-book"></i> <span>Word</span>
+						</a></li>
 
-						<li class="sidebar-item"><a href="../test/testList" class='sidebar-link'>
-								<i class="fa fa-chalkboard"></i> <span>Test</span>
-							</a></li>
+						<li class="sidebar-item"><a href="../test/testList" class='sidebar-link'> <i class="fa fa-chalkboard"></i> <span>Test</span>
+						</a></li>
 
-						<li class="sidebar-item"><a href="/home/home" class='sidebar-link'>
-								<i class="fa-solid fa-house-chimney-user"></i> <span>User Home</span>
-							</a></li>
+						<li class="sidebar-item"><a href="/home/home" class='sidebar-link'> <i class="fa-solid fa-house-chimney-user"></i> <span>User Home</span>
+						</a></li>
 					</ul>
 				</div>
 				<button class="sidebar-toggler btn x">
@@ -151,8 +124,7 @@
 
 		<div id="main">
 			<header class="mb-3">
-				<a href="#" class="burger-btn d-block d-xl-none">
-					<i class="bi bi-justify fs-3"></i>
+				<a href="#" class="burger-btn d-block d-xl-none"> <i class="bi bi-justify fs-3"></i>
 				</a>
 				<div class="btn-group" style="float: right;">
 					<button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
@@ -170,26 +142,22 @@
 										<span class="fw-semibold d-block">JaeguLee</span> <small class="text-muted">Admin</small>
 									</div>
 								</div>
-							</a></li>
+						</a></li>
 						<li>
 							<div class="dropdown-divider"></div>
 						</li>
-						<li><a class="dropdown-item" href="">
-								<i class="bx bx-user me-2"></i> <span class="align-middle">My Profile</span>
-							</a></li>
-						<li><a class="dropdown-item" href="">
-								<i class="bx bx-cog me-2"></i> <span class="align-middle">Settings</span>
-							</a></li>
-						<li><a class="dropdown-item" href="">
-								<span class="d-flex align-items-center align-middle"> <i class="flex-shrink-0 bx bx-credit-card me-2"></i> <span class="flex-grow-1 align-middle">Billing</span> <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-								</span>
-							</a></li>
+						<li><a class="dropdown-item" href=""> <i class="bx bx-user me-2"></i> <span class="align-middle">My Profile</span>
+						</a></li>
+						<li><a class="dropdown-item" href=""> <i class="bx bx-cog me-2"></i> <span class="align-middle">Settings</span>
+						</a></li>
+						<li><a class="dropdown-item" href=""> <span class="d-flex align-items-center align-middle"> <i class="flex-shrink-0 bx bx-credit-card me-2"></i> <span class="flex-grow-1 align-middle">Billing</span> <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
+							</span>
+						</a></li>
 						<li>
 							<div class="dropdown-divider"></div>
 						</li>
-						<li><a class="dropdown-item" id="btnLogout" href="">
-								<i class="bx bx-power-off me-2"></i> <span class="align-middle">Log Out</span>
-							</a></li>
+						<li><a class="dropdown-item" id="btnLogout" href=""> <i class="bx bx-power-off me-2"></i> <span class="align-middle">Log Out</span>
+						</a></li>
 					</ul>
 				</div>
 			</header>
@@ -217,10 +185,7 @@
 									<div class="card-body">
 										<form method="post" name="formList" id="formList" action="/code/codeList">
 
-											<input type="hidden" name="ifcdSeq">
-											<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
-											<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>">
-											<input type="hidden" name="checkboxSeqArray">
+											<input type="hidden" name="ifcdSeq"> <input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>"> <input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>"> <input type="hidden" name="checkboxSeqArray">
 
 											<div class="row gx-3 gy-2">
 												<div class="col-3">
@@ -306,67 +271,25 @@
 																		</td>
 																		<td>${status.count }</td>
 																		<td>${list.sdwWord }</td>
-																		<td>
-																			<c:forEach items="${item}" var="item" varStatus="status">
+																		<td><c:forEach items="${item}" var="item" varStatus="status">
 																				<c:if test="${list.sdwWord == item.sdwWord }">
 																					<div class="ask">
 																						<span class="content" style="font-weight: bold;" value="${list.sdwSeq }">${item.sdwmNum}. &nbsp;${item.sdwmPartOfSpeech}</span> <span class="content" value="${list.sdwSeq }">&nbsp;${item.sdwmContents}</span> <br>
 																					</div>
 																				</c:if>
-																			</c:forEach>
-																		</td>
-																		<td>
-																			<c:forEach items="${item}" var="item" varStatus="status">
+																			</c:forEach></td>
+																		<td><c:forEach items="${item}" var="item" varStatus="status">
 																				<c:if test="${list.sdwWord == item.sdwWord }">
 																					<div class="ask1">
 																						<span class="content" style="font-weight: bold;">${item.sdwmNum}.&nbsp;</span> <span class="content" value="${list.sdwSeq }">${item.sdweContents}</span> <br> <span class="content" value="${list.sdwSeq }">&nbsp;&nbsp;&nbsp;&nbsp;${item.sdweTranslate}</span> <br>
 																					</div>
 																				</c:if>
-																			</c:forEach>
-																		</td>
+																			</c:forEach></td>
 																		<td>${list.sddDateChoice }</td>
 																		<td></td>
 																		<td></td>
 																	</tr>
 																</c:forEach>
-																<%-- 
-																<c:forEach items="${list}" var="list" varStatus="status">
-
-																	<div class="col-6" style="margin: auto;" id="colPadding">
-																		<div class="quiz">
-																			<span class="quiz__type">${list.sddDateChoice }</span>
-																			<h2 class="quiz__question">
-																				<span class="word">${list.sdwWord }</span>
-																				<hr style="margin: 10px 0;">
-																				<div>
-																					<c:forEach items="${item}" var="item" varStatus="status">
-																						<c:if test="${list.sdwWord == item.sdwWord }">
-																							<div class="ask">
-																								<span class="content" style="font-weight: bold;" value="${list.sdwSeq }">${item.sdwmNum}. &nbsp;${item.sdwmPartOfSpeech}</span>
-																								<span class="content" value="${list.sdwSeq }">&nbsp;${item.sdwmContents}</span>
-																								<br>
-																							</div>
-																						</c:if>
-																					</c:forEach>
-																					<hr style="margin: 10px 0;">
-																					<c:forEach items="${item}" var="item" varStatus="status">
-																						<c:if test="${list.sdwWord == item.sdwWord }">
-																							<div class="ask1">
-																								<span class="content" style="font-weight: bold;">${item.sdwmNum}.&nbsp;</span>
-																								<span class="content" value="${list.sdwSeq }">${item.sdweContents}</span>
-																								<br>
-																								<span class="content" value="${list.sdwSeq }">&nbsp;&nbsp;&nbsp;&nbsp;${item.sdweTranslate}</span>
-																								<br>
-																							</div>
-																						</c:if>
-																					</c:forEach>
-																				</div>
-																			</h2>
-																		</div>
-																	</div>
-
-																</c:forEach>
-																 --%>
 															</c:otherwise>
 														</c:choose>
 													</tbody>
@@ -469,8 +392,7 @@
 					<div class="float-end">
 						<p>
 							Crafted with <span class="text-danger"> <i class="bi bi-heart"></i>
-							</span> by
-							<a href="http://ahmadsaugi.com">A. Saugi</a>
+							</span> by <a href="http://ahmadsaugi.com">A. Saugi</a>
 						</p>
 					</div>
 				</div>
@@ -494,89 +416,86 @@
 	<script src="../resources/assets/js/main.js"></script>
 
 	<script type="text/javascript">
-		var goUrlList = "/word/wordList";
-		var goUrlForm = "/word/wordForm";
+        var goUrlList = "/word/wordList";
+        var goUrlForm = "/word/wordForm";
 
-		var seq = $("input:hidden[name=ifcdSeq]");
+        var seq = $("input:hidden[name=ifcdSeq]");
 
-		$('#btnForm').on("click", function() {
-			goForm(0);
-		});
+        $('#btnForm').on("click", function() {
+            goForm(0);
+        });
 
-		goList = function(thisPage) {
-			$("input:hidden[name=thisPage]").val(thisPage);
-			form.attr("action", goUrlList).submit();
-		}
+        goList = function(thisPage) {
+            $("input:hidden[name=thisPage]").val(thisPage);
+            form.attr("action", goUrlList).submit();
+        }
 
-		goForm = function(keyValue) {
-			/* if(keyValue != 0) seq.val(btoa(keyValue)); */
-			seq.val(keyValue);
-			form.attr("action", goUrlForm).submit();
-		}
+        goForm = function(keyValue) {
+            /* if(keyValue != 0) seq.val(btoa(keyValue)); */
+            seq.val(keyValue);
+            form.attr("action", goUrlForm).submit();
+        }
 
-		var form = $("form[name=formList]");
+        var form = $("form[name=formList]");
 
-		goList = function(thisPage) {
-			$("input:hidden[name=thisPage]").val(thisPage);
-			form.attr("action", goUrlList).submit();
-		}
+        goList = function(thisPage) {
+            $("input:hidden[name=thisPage]").val(thisPage);
+            form.attr("action", goUrlList).submit();
+        }
 
-		$("btnReset").on("click", function() {
-			$(location).attr("href", goUrlList)
-		})
-	</script>
+        $("btnReset").on("click", function() {
+            $(location).attr("href", goUrlList)
+        })
+    </script>
 
 	<script>
-		// Simple Datatable
-		let table1 = document.querySelector('#table1');
-		/* let dataTable = new simpleDatatables.DataTable(table1); */
+        // Simple Datatable
+        let table1 = document.querySelector('#table1');
+        /* let dataTable = new simpleDatatables.DataTable(table1); */
 
-		function allcheck() {
-			var chk_box = document.getElementsByName("chk_box");
-			var checkItem = "";
-			for (var i = 0; i < chk_box.length; i++) {
-				if (chk_box[0].checked == true) {
-					chk_box[i].checked = true;
-				} else {
-					chk_box[i].checked = false;
-				}
-			}
-		}
-		function check() {
-			var chk_box = document.getElementsByName("chk_box");
-			var checkItem = "";
-			for (var i = 0; i < chk_box.length; i++) {
-				if (chk_box[i].checked == false) {
-					checkItem = false;
-				}
-			}
-			chk_box[0].checked = checkItem;
-		}
-	</script>
+        function allcheck() {
+            var chk_box = document.getElementsByName("chk_box");
+            var checkItem = "";
+            for (var i = 0; i < chk_box.length; i++) {
+                if (chk_box[0].checked == true) {
+                    chk_box[i].checked = true;
+                } else {
+                    chk_box[i].checked = false;
+                }
+            }
+        }
+        function check() {
+            var chk_box = document.getElementsByName("chk_box");
+            var checkItem = "";
+            for (var i = 0; i < chk_box.length; i++) {
+                if (chk_box[i].checked == false) {
+                    checkItem = false;
+                }
+            }
+            chk_box[0].checked = checkItem;
+        }
+    </script>
 	<script type="text/javascript">
-		$("#btnLogout").on(
-				"click",
-				function() {
-					$.ajax({
-						async : true,
-						cache : false,
-						type : "post",
-						url : "/login/logoutProc",
-						data : {},
-						success : function(response) {
-							if (response.rt == "success") {
-								location.href = "/login/login";
-							} else {
-								// by pass
-							}
-						},
-						error : function(jqXHR, textStatus, errorThrown) {
-							alert("ajaxUpdate " + jqXHR.textStatus + " : "
-									+ jqXHR.errorThrown);
-						}
-					});
-				});
-	</script>
+        $("#btnLogout").on("click", function() {
+            $.ajax({
+                async : true,
+                cache : false,
+                type : "post",
+                url : "/login/logoutProc",
+                data : {},
+                success : function(response) {
+                    if (response.rt == "success") {
+                        location.href = "/login/login";
+                    } else {
+                        // by pass
+                    }
+                },
+                error : function(jqXHR, textStatus, errorThrown) {
+                    alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+                }
+            });
+        });
+    </script>
 
 
 

@@ -199,6 +199,7 @@ box-shadow: 0 0 16px rgb(221,221,221);
 		<section id="main" class="container">
 			<header>
 				<h2>Translate</h2>
+				<h5>Created using Naver Papago Translation API.</h5>
 				<p>We dream of a world where we can communicate without language
 					barriers.</p>
 			</header>

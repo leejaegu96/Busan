@@ -62,6 +62,39 @@
 		INNER JOIN sdwExample d on d.sdwMean_sdwmSeq=c.sdwmSeq
 		WHERE 1=1
 	</select>
+	<select id="myWordList" resultMap="resultMapObj">
+		SELECT
+		a.sdfDelNY
+		,b.ifmmName
+		,c.sdwWord
+		,d.sddDateChoice
+		FROM sdFavorite a
+		inner join infrMember b on b.ifmmSeq=a.infrMember_ifmmSeq
+		inner join sdWord c on c.sdwSeq=a.sdWord_sdwSeq
+		inner join sdDate d on d.sddSeq=c.sdDate_sddSeq
+		WHERE 1=1
+			and b.ifmmSeq= #{mainKey}
+		group by c.sdwWord
+	</select>
+	<select id="myWordContents" resultMap="resultMapObj">
+		select
+			a.sdfDelNY
+		    ,b.ifmmName
+		    ,c.sdwWord
+		    ,d.sddDateChoice
+		    ,e.sdwmPartOfSpeech
+		    ,e.sdwmContents
+		    ,f.sdweContents
+		    ,f.sdweTranslate
+		from  sdFavorite a
+		inner join infrMember b on b.ifmmSeq=a.infrMember_ifmmSeq
+		inner join sdWord c on c.sdwSeq=a.sdWord_sdwSeq
+		inner join sdDate d on d.sddSeq=c.sdDate_sddSeq
+		inner join sdwMean e on e.sdWord_sdwSeq=c.sdwSeq
+		inner join sdwExample f on f.sdwMean_sdwmSeq=e.sdwmSeq
+		where 1=1
+			and b.ifmmSeq= #{mainKey}
+	</select>
 
 	<select id="selectTest" resultMap="resultMapObj">
 		select

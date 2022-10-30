@@ -211,27 +211,28 @@
 			<section class="box special features">
 				<div class="features-row">
 					<section>
+						<span class="icon solid major fa-bookmark accent5" onClick="location.href='word'" style="cursor: pointer;"></span>
+						<h3>WORD</h3>
+						<p>Look up a word, Learn it forever!</p>
+					</section>
+					<section>
 						<span class="icon solid major fa-file-pen accent2" onClick="location.href='test'" style="cursor: pointer;"></span>
 						<h3>TEST</h3>
 						<p>Test your skills based on what you've learned</p>
 					</section>
+				</div>
+				<div class="features-row">
 					<section>
 						<span class="icon solid major fa-ranking-star accent3" onClick="location.href='rank'" style="cursor: pointer;"></span>
 						<h3>RANKING</h3>
 						<p>Check the test scores you have taken so far</p>
 					</section>
-				</div>
-				<div class="features-row">
 					<section>
 						<span class="icon solid major fa-book-atlas accent4" onClick="location.href='translate'" style="cursor: pointer;"></span>
 						<h3>TRANSLATE</h3>
 						<p>We dream of a world where we can communicate without language barriers.</p>
 					</section>
-					<section>
-						<span class="icon solid major fa-bookmark accent5" onClick="location.href='word'" style="cursor: pointer;"></span>
-						<h3>WORD</h3>
-						<p>Look up a word, Learn it forever!</p>
-					</section>
+					
 				</div>
 			</section>
 		</section>

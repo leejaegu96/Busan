@@ -38,6 +38,16 @@ public class HomeServiceImpl implements HomeService{
 		return item;
 	}
 	@Override
+	public List<Home> myWordContents(HomeVo vo) throws Exception {
+		List<Home> item = dao.myWordContents(vo);
+		return item;
+	}
+	@Override
+	public List<Home> myWordList(HomeVo vo) throws Exception {
+		List<Home> list = dao.myWordList(vo);
+		return list;
+	}
+	@Override
 	public List<Home> selectTest() throws Exception {
 		List<Home> test = dao.selectTest();
 		return test;

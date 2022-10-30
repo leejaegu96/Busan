@@ -67,7 +67,15 @@ public class Home extends Base {
 	private String sum;
 	private String ranking;
 	
+	private Integer sdfDelNy;
 	
+	
+	public Integer getSdfDelNy() {
+		return sdfDelNy;
+	}
+	public void setSdfDelNy(Integer sdfDelNy) {
+		this.sdfDelNy = sdfDelNy;
+	}
 	public Integer getSdwmNum() {
 		return sdwmNum;
 	}

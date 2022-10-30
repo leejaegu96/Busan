@@ -36,6 +36,14 @@ public class HomeDao {
 		List<Home> list = sqlSession.selectList("com.decemelev.infra.modules.home.HomeMapper.wordContents", "");
 		return list;
 	}
+	public List<Home> myWordList(HomeVo vo) {
+		List<Home> list = sqlSession.selectList("com.decemelev.infra.modules.home.HomeMapper.myWordList", vo);
+		return list;
+	}
+	public List<Home> myWordContents(HomeVo vo) {
+		List<Home> list = sqlSession.selectList("com.decemelev.infra.modules.home.HomeMapper.myWordContents", vo);
+		return list;
+	}
 	
 	public List<Home> selectTest() {
 		List<Home> test = sqlSession.selectList("com.decemelev.infra.modules.home.HomeMapper.selectTest", "");

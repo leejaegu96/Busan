@@ -150,10 +150,14 @@ input-group-text {
 							<c:when test="${sessSeq eq null}">
 							</c:when>
 							<c:when test="${sessSeq eq 144}">
-								<span style="color: #959ADA; font-weight: bolder;"><c:out value="${sessName }" /></span> 관리자님
+								<span style="color: #959ADA; font-weight: bolder;">
+									<c:out value="${sessName }" />
+								</span> 관리자님
 							</c:when>
 							<c:otherwise>
-								<span style="color: #959ADA; font-weight: bolder;"><c:out value="${sessName }" /></span>님
+								<span style="color: #959ADA; font-weight: bolder;">
+									<c:out value="${sessName }" />
+								</span>님
 							</c:otherwise>
 						</c:choose></li>
 					<li><a href="home" class="button" style="cursor: pointer; background-color: #444444;">Home</a></li>
@@ -225,7 +229,9 @@ input-group-text {
 										<c:otherwise> USER </c:otherwise>
 									</c:choose>
 								</h3>
-								<span style="color: white;"><c:out value="${list.ifmmSeq }" /></span>
+								<span style="color: white;">
+									<c:out value="${list.ifmmSeq }" />
+								</span>
 								<div class="social-links mt-2">
 									<a href="#" class="twitter">
 										<i class="bi bi-twitter"></i>
@@ -271,61 +277,67 @@ input-group-text {
 								</ul>
 								<div class="tab-content pt-2">
 
-									<!-- 오늘의 단어--------------------------------------------------------------------------- -->
+									<!--  나만의 단어--------------------------------------------------------------------------- -->
 
 									<div class="tab-pane fade show active My-Word pt-3" id="My-Word">
 										<form>
-
-											<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-												<div class="carousel-inner">
-													<h3>Today's Word</h3>
-													<br>
-
-													<div class="carousel-item active" data-bs-interval="1000000">
-														<div style="max-width: 450px; width: 100%; height: 500px; height: 100%; text-align: left; margin: auto; text-align: center; background-color: #666666;">
-															<img alt="" src="../resources/assets/images/samples/study.jpg" style="height: 200px; width: 400px; padding: 10px;">
-
-															<input type="text" class="form-control" id="datepicker" placeholder="Choice Date!!" style="text-align: center; color: black;">
-														</div>
-													</div>
-
-													<c:forEach items="${list1}" var="list1" varStatus="status">
-
-														<div class="carousel-item" data-bs-interval="10000">
-															<div style="max-width: 450px; width: 100%; height: 500px; height: 100%; text-align: left; margin: auto; background-color: #666666;">
-
-																<h4>
-																	<input type="hidden" id="sdwSeq" name="sdwSeq">
-																	<c:out value="${list1.sdwWord }" />
-																	&nbsp; <i class="fa-solid fa-volume-high"></i>
-																</h4>
-																<br>
-
-																<c:forEach items="${item}" var="item" varStatus="status">
-																	<span style="line-height: 200%;"> <c:if test="${list1.sdwWord == item.sdwWord }">
-																			<span style="color: Blue; font-style: italic;" value="${list1.sdwSeq }">${item.sdwmPartOfSpeech}</span> &nbsp; <span style="color: white;" value="${list1.sdwSeq }">${item.sdwmContents}</span>
-																			<br>
-																			<span value="${list1.sdwSeq }">${item.sdweContents}</span>
-																			<br>
-																			<span value="${list1.sdwSeq }">${item.sdweTranslate}</span>
-																			<br>
+											<div class="dataTable-container">
+												<input type="hidden" name="ifmmName" value="${list.ifmmName }">
+												<table class="table table-striped" id="table1">
+													<thead>
+														<tr>
+															<th>
+																<div class="form-check" id="">
+																	<input class="form-check-input" type="checkbox" name="chk_box" onclick="allcheck();" value="" id="flexCheckDefault">
+																</div>
+															</th>
+															<th>#</th>
+															<th style="width: 5%;">단어</th>
+															<th style="width: 25%;">뜻</th>
+															<th style="width: 35%;">예시</th>
+															<th style="width: 10%;">날짜</th>
+														</tr>
+													</thead>
+													<tbody id="my_tbody">
+														<c:forEach items="${list1}" var="list1" varStatus="status">
+															<tr>
+																<td>
+																	<div class="form-check">
+																		<input class="form-check-input" type="checkbox" name="chk_box" onclick="check();" value="" id="flexCheckDefault">
+																	</div>
+																</td>
+																<td>${status.count }</td>
+																<td>${list1.sdwWord }</td>
+																<td>
+																	<c:forEach items="${item1}" var="item1" varStatus="status">
+																		<c:if test="${list1.sdwWord == item1.sdwWord }">
+																			<div class="ask">
+																				<span class="content" style="font-weight: bold;" value="${list1.sdwSeq }">${item1.sdwmNum}. &nbsp;${item1.sdwmPartOfSpeech}</span>
+																				<span class="content" value="${list1.sdwSeq }">&nbsp;${item1.sdwmContents}</span>
+																				<br>
+																			</div>
 																		</c:if>
-																	</span>
-																</c:forEach>
-															</div>
-														</div>
-
-													</c:forEach>
-
-												</div>
-												<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-													<span class="carousel-control-prev-icon" aria-hidden="true" style="float: top;"></span> <span class="visually-hidden">Previous</span>
-												</button>
-												<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-													<span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="visually-hidden">Next</span>
-												</button>
+																	</c:forEach>
+																</td>
+																<td>
+																	<c:forEach items="${item1}" var="item" varStatus="status">
+																		<c:if test="${list1.sdwWord == item1.sdwWord }">
+																			<div class="ask1">
+																				<span class="content" style="font-weight: bold;">${item1.sdwmNum}.&nbsp;</span>
+																				<span class="content" value="${list1.sdwSeq }">${item1.sdweContents}</span>
+																				<br>
+																				<span class="content" value="${list1.sdwSeq }">&nbsp;&nbsp;&nbsp;&nbsp;${item1.sdweTranslate}</span>
+																				<br>
+																			</div>
+																		</c:if>
+																	</c:forEach>
+																</td>
+																<td>${list1.sddDateChoice }</td>
+															</tr>
+														</c:forEach>
+													</tbody>
+												</table>
 											</div>
-
 										</form>
 									</div>
 									<!-- 두번째 폼 끝--------------------------------------------------------------------------- -->
@@ -499,8 +511,7 @@ input-group-text {
 
 													<input type="hidden" class="form-control" id="ifmmEmail" name="ifmmEmail" value="<c:out value="${list.ifmmEmail }"/>">
 													<div class="input-group">
-														<input class="form-text" type="hidden" name="ifmmMailNy" value="0" <c:if test="${list.ifmmMailNy eq 0 }"> </c:if>>
-														<input class="form-text" type="checkbox" name="ifmmMailNy" value="1" <c:if test="${list.ifmmMailNy eq 1 }"> checked </c:if>>
+														<input class="form-text" type="hidden" name="ifmmMailNy" value="0" <c:if test="${list.ifmmMailNy eq 0 }"> </c:if>> <input class="form-text" type="checkbox" name="ifmmMailNy" value="1" <c:if test="${list.ifmmMailNy eq 1 }"> checked </c:if>>
 														<label class="form-text" style="margin: auto; margin-left: 0;"> E-mail을 통한 소식/정보 수신을 동의하시겠습니까? </label>
 													</div>
 												</div>
@@ -521,7 +532,8 @@ input-group-text {
 															<option value="010" <c:if test="${fn:substring(list.ifmmPhone,0,3) eq 010 }"> selected </c:if>>010</option>
 															<option value="011" <c:if test="${fn:substring(list.ifmmPhone,0,3) eq 011 }"> selected </c:if>>011</option>
 															<option value="019" <c:if test="${fn:substring(list.ifmmPhone,0,3) eq 019 }"> selected </c:if>>019</option>
-														</select> <span class="input-group-text">-</span>
+														</select>
+														<span class="input-group-text">-</span>
 														<input type="text" id="inputPhone2" class="form-control" maxlength='4' onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" value="${fn:substring(list.ifmmPhone,3,7)}">
 														<span class="input-group-text">-</span>
 														<input type="text" id="inputPhone3" class="form-control" maxlength='4' onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" value="${fn:substring(list.ifmmPhone,7,11)}">
@@ -532,8 +544,7 @@ input-group-text {
 													<input type="hidden" id="ifmmPhone" name="ifmmPhone" class="form-control" value="<c:out value="${list.ifmmPhone }"/>">
 
 													<div class="input-group">
-														<input class="form-text" type="hidden" name="ifmmSmsNy" value="0" <c:if test="${list.ifmmSmsNy eq 0 }"> </c:if>>
-														<input class="form-text" type="checkbox" name="ifmmSmsNy" value="1" <c:if test="${list.ifmmSmsNy eq 1 }"> checked </c:if>>
+														<input class="form-text" type="hidden" name="ifmmSmsNy" value="0" <c:if test="${list.ifmmSmsNy eq 0 }"> </c:if>> <input class="form-text" type="checkbox" name="ifmmSmsNy" value="1" <c:if test="${list.ifmmSmsNy eq 1 }"> checked </c:if>>
 														<label class="form-text" for="ifmmSmsNy" style="margin: auto; margin-left: 0;"> SMS을 통한 소식/정보 수신을 동의하시겠습니까? </label>
 													</div>
 												</div>
@@ -558,8 +569,7 @@ input-group-text {
 															<input type="text" class="form-control" id="ifmmResidence" name="ifmmResidence" value="<c:out value="${list.ifmmResidence }"/>" placeholder="주소" aria-label="Recipient's username" aria-describedby="button-addon2" required>
 														</div>
 														<div class="input-group" style="padding-top: 5px;">
-															<input type="text" class="form-control" id="ifmmDetailedAddress" name="ifmmDetailedAddress" value="<c:out value="${list.ifmmDetailedAddress }"/>" placeholder="상세주소" aria-label="Recipient's username" aria-describedby="button-addon2" required>
-															<input type="text" class="form-control" id="ifmmReference" name="ifmmReference" value="<c:out value="${list.ifmmReference }"/>" placeholder="참고항목" aria-label="Recipient's username" aria-describedby="button-addon2" required>
+															<input type="text" class="form-control" id="ifmmDetailedAddress" name="ifmmDetailedAddress" value="<c:out value="${list.ifmmDetailedAddress }"/>" placeholder="상세주소" aria-label="Recipient's username" aria-describedby="button-addon2" required> <input type="text" class="form-control" id="ifmmReference" name="ifmmReference" value="<c:out value="${list.ifmmReference }"/>" placeholder="참고항목" aria-label="Recipient's username" aria-describedby="button-addon2" required>
 														</div>
 														<input type="hidden" class="form-control" id="ifmmAddress" name="ifmmAddress" value="<c:out value="${list.ifmmAddress }"/>">
 													</div>
@@ -581,8 +591,7 @@ input-group-text {
 											<div class="row mb-3">
 												<label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
 												<div class="col-md-8 col-lg-9">
-													<input type="hidden" id="ifmmPwdAllowedNy" name="ifmmPwdAllowedNy" value="0">
-													<input type="password" class="form-control" id="ifmmPassword">
+													<input type="hidden" id="ifmmPwdAllowedNy" name="ifmmPwdAllowedNy" value="0"> <input type="password" class="form-control" id="ifmmPassword">
 													<div class="invalid-feedback" id="ifmmPwdFeedback"></div>
 												</div>
 											</div>
@@ -590,8 +599,7 @@ input-group-text {
 											<div class="row mb-3">
 												<label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
 												<div class="col-md-8 col-lg-9">
-													<input type="hidden" id="newPwdAllowedNy" name="newPwdAllowedNy" value="0">
-													<input name="ifmmPassword" type="password" class="form-control" id="newPassword">
+													<input type="hidden" id="newPwdAllowedNy" name="newPwdAllowedNy" value="0"> <input name="ifmmPassword" type="password" class="form-control" id="newPassword">
 													<div class="invalid-feedback" id="newPwdFeedback"></div>
 												</div>
 											</div>
@@ -599,8 +607,7 @@ input-group-text {
 											<div class="row mb-3">
 												<label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
 												<div class="col-md-8 col-lg-9">
-													<input type="hidden" id="renewPwdAllowedNy" name="renewPwdAllowedNy" value="0">
-													<input name="ifmmPasswordCheck" type="password" class="form-control" id="renewPassword">
+													<input type="hidden" id="renewPwdAllowedNy" name="renewPwdAllowedNy" value="0"> <input name="ifmmPasswordCheck" type="password" class="form-control" id="renewPassword">
 													<div class="invalid-feedback" id="renewPwdFeedback"></div>
 												</div>
 											</div>
@@ -703,7 +710,7 @@ input-group-text {
 		</nav>
 	</div>
 
-	
+
 
 	<script type="text/javascript">
 		$("#btnLogout").on(
@@ -1138,7 +1145,7 @@ input-group-text {
 		return false;
 	}
 	</script>
-	
+
 	<script type="text/javascript">
 	
 	var goUrlUpdt = "/home/homeUpdt";
@@ -1172,6 +1179,6 @@ input-group-text {
 	});
 	
 	</script>
-	
+
 </body>
 </html>

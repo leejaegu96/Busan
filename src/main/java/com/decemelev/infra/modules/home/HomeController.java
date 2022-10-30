@@ -174,16 +174,16 @@ public class HomeController {
 	@RequestMapping(value = "/home/mypage")
 	public String mypage(@ModelAttribute("vo") HomeVo vo, Home dto, Model model, HttpServletRequest httpServletRequest) throws Exception {
 		
-		List<Home> list1 = service.selectList(dto);
-		model.addAttribute("list", list1);
-		
-		List<Home> item = service.selectContents(dto);
-		model.addAttribute("item", item);
-		
 		HttpSession httpSession =  httpServletRequest.getSession();
 		sessSeq = (String) httpSession.getAttribute("sessSeq");
 		
 		vo.setMainKey(sessSeq);
+		
+		List<Home> list1 = service.myWordList(vo);
+		model.addAttribute("list1", list1);
+		
+		List<Home> item1 = service.myWordContents(vo);
+		model.addAttribute("item1", item1);
 		
 		Home list = service.memberList(vo);
 		model.addAttribute("list", list);
