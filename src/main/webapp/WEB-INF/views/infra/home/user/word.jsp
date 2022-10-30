@@ -264,7 +264,8 @@
 							listHTML += '<span class="quiz__type">' + response.rr[i].sddDateChoice + '</span>';
 							listHTML += '<h2 class="quiz__question">';
 							listHTML += '<span class="word">' + response.rr[i].sdwWord + '</span> <div style="float:right;">';
-							listHTML += '<input id="heart'+ response.rr[i].sdwNum +'" type="checkbox" '+ if(response.rr[i].sdwWord==response.yy[i].sdwWord){checked} +'/> <label for="heart'+ response.rr[i].sdwNum +'">❤</label> </div>';
+							listHTML += '<input id="heart'+ response.rr[i].sdwNum +'" type="checkbox" '+ if(response.rr[i].sdwWord==response.yy[i].sdwWord){checked} +' />';
+							listHTML += '<label for="heart'+ response.rr[i].sdwNum +'">❤</label> </div>';
 							listHTML += '<hr style="margin: 10px 0;">';
 							listHTML += '<div>';
 							for (let j = 0; j < response.tt.length; j++) {
