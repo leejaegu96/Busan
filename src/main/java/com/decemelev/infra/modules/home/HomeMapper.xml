@@ -265,16 +265,16 @@
 			,sdfDelNY
 		)
 		VALUES (
-			#{ifmmSeq}
+			#{infrMember_ifmmSeq}
 			,#{sdwSeq}
-			,#{0}
+			,0
 		)
 	</insert>
 	<update id="likeUpdate">
 		UPDATE sdFavorite
 		SET
 			sdfDelNY = 1
-			,infrMember_ifmmSeq = #{ifmmSeq}
+			,infrMember_ifmmSeq = #{infrMember_ifmmSeq}
 			,sdWord_sdwSeq = #{sdwSeq}
 		WHERE 1=1
 	</update>

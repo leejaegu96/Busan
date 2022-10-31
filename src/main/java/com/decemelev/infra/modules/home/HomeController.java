@@ -241,6 +241,8 @@ public class HomeController {
 	public String testInst(Home dto, RedirectAttributes redirectAttributes) throws Exception{
 		
 		int result = service.insert(dto);
+		dto.getInfrMember_ifmmSeq();
+		dto.getSdwSeq();
 		
 		System.out.println("controller result: " + result);
 		return "redirect:/home/test";

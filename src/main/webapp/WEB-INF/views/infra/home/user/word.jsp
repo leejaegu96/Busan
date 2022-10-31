@@ -131,8 +131,10 @@
 			</header>
 			<section class="box" style="height: 100%;">
 				<div class="row">
-					<div id="wordChoice"></div>
-					<div id="wordDate"></div>
+					<form id="form" name="form" method="post">
+						<div id="wordChoice"></div>
+						<div id="wordDate"></div>
+					</form>
 				</div>
 			</section>
 
@@ -246,7 +248,7 @@
 				success : function(response) {
 					if (response.rt == "success") {
 						console.log(response);
-
+						
 						let listHTML = "";
 
 						document.getElementById('wordDate').innerHTML += listHTML;
@@ -257,18 +259,19 @@
 							console.log("word" + response.rr[i].sdwSeq);
 							console.log("trans" + response.tt[i].sdwSeq);
 							let listHTML = "";
-							listHTML += '<form name="form">';
+							listHTML += '<input type="text" name="infrMember_ifmmSeq" value="'+ response.yy[0].infrMember_ifmmSeq +'">';
 							listHTML += '<div class="col-6" style="margin: auto;" id="colPadding">';
 							listHTML += '<div class="quiz">';
 							listHTML += '<span class="quiz__type">' + response.rr[i].sddDateChoice + '</span>';
 							listHTML += '<h2 class="quiz__question">';
-							listHTML += '<span class="word">' + response.rr[i].sdwWord + '</span>';
+							listHTML += '<span class="word" style="cursor:pointer;" ondblclick="wordLike'+ response.rr[i].sdwNum +'()">' + response.rr[i].sdwWord + '</span>';
+							listHTML += '<input type="hidden" name="sdwSeq" value="'+ response.rr[i].sdwSeq +'" >';
 							listHTML += '<div style="float:right;">';
 							for (let k=0; k<response.yy.length; k++) {
 							    if(response.yy[k].sdwWord == response.rr[i].sdwWord){
-							        listHTML += '<input id="heart'+ response.rr[i].sdwNum +'" type="checkbox" checked>';
+							        listHTML += '<input id="heart'+ response.rr[i].sdwNum +'" type="checkbox" value="1" onclick="insertWord'+ response.rr[i].sdwNum +'()" checked>';
 							    }else {
-							        listHTML += '<input id="heart'+ response.rr[i].sdwNum +'" type="checkbox">';
+							        listHTML += '<input id="heart'+ response.rr[i].sdwNum +'" type="checkbox" value="0" onclick="insertWord'+ response.rr[i].sdwNum +'()">';
 							    }
 							}
 							listHTML += '<label for="heart'+ response.rr[i].sdwNum +'">❤</label>';
@@ -300,29 +303,11 @@
 							listHTML += '</h2>';
 							listHTML += '</div>';
 							listHTML += '</div>';
-							listHTML += '</form>';
+							
 							document.getElementById('wordChoice').innerHTML += listHTML;
 							
-							// 인서트 
-							var goUrlInst = "/home/likeInsert"; /* #-> */
-							var goUrlUpdt = "/home/likeUpdate"; /* #-> */
-							var form = $("form[name = form]");
-							var word = document.getElementById('heart'+response.rr[i].sdwNum);
-							
-							$('#heart'+response.rr[i].sdwNum).on("click", function() {
-								if (word.val() == "0" || word.val() == "") {
-									// insert
-									/* if (validationInst() == false) return false; */
-									form.attr("action", goUrlInst).submit();
-								} else {
-									// update
-									/* keyName.val(atob(keyName.val())); */
-									/* if (validationUpdt() == false) return false; */
-									form.attr("action", goUrlUpdt).submit();
-								}
-							});
-							
 						}
+						
 					} else {
 						// 
 					}
@@ -335,14 +320,38 @@
 
 			});
 		});
+		
+		
 	</script>
 	<script type="text/javascript">
-	/* function wordLike() {
-    	alert('클릭이벤트 발생');
-    } */
+	var goUrlInst = "/home/likeInsert"; /* #-> */
+	var form = $("form[name = form]");
+	function wordLike2(){
+	    alert("ddd");
+	    form.attr("action", goUrlInst).submit();
+	}
 	</script>
 	<script type="text/javascript">
+	// 인서트 
+	var goUrlInst = "/home/likeInsert"; /* #-> */
+	var goUrlUpdt = "/home/likeUpdate"; /* #-> */
+	var form = $("form[name = form]");
+	var word = document.getElementById('heart2');
 	
+	function insertWord2() {
+	    alert(word.value);
+		if (word.val() == "0" || word.val() == "") {
+			// insert
+			/* if (validationInst() == false) return false; */
+			
+			form.attr("action", goUrlInst).submit();
+		} else {
+			// update
+			/* keyName.val(atob(keyName.val())); */
+			/* if (validationUpdt() == false) return false; */
+			form.attr("action", goUrlUpdt).submit();
+		}
+	};
 	
 	</script>
 
