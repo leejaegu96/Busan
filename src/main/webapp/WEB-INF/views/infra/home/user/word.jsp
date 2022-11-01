@@ -131,10 +131,10 @@
 			</header>
 			<section class="box" style="height: 100%;">
 				<div class="row">
-					<form id="form" name="form" method="post">
+					<!-- <form id="form" name="form" method="post"> -->
 						<div id="wordChoice"></div>
 						<div id="wordDate"></div>
-					</form>
+					<!-- </form> -->
 				</div>
 			</section>
 
@@ -259,13 +259,14 @@
 							console.log("word" + response.rr[i].sdwSeq);
 							console.log("trans" + response.tt[i].sdwSeq);
 							let listHTML = "";
-							listHTML += '<input type="text" name="infrMember_ifmmSeq" value="'+ response.yy[0].infrMember_ifmmSeq +'">';
+							listHTML += '<form name="form'+ response.rr[i].sdwNum +'">';
+							listHTML += '<input type="hidden" id="infrMember_ifmmSeq" name="infrMember_ifmmSeq" value="'+ response.yy[0].infrMember_ifmmSeq +'">';
 							listHTML += '<div class="col-6" style="margin: auto;" id="colPadding">';
 							listHTML += '<div class="quiz">';
 							listHTML += '<span class="quiz__type">' + response.rr[i].sddDateChoice + '</span>';
 							listHTML += '<h2 class="quiz__question">';
-							listHTML += '<span class="word" style="cursor:pointer;" ondblclick="wordLike'+ response.rr[i].sdwNum +'()">' + response.rr[i].sdwWord + '</span>';
-							listHTML += '<input type="hidden" name="sdwSeq" value="'+ response.rr[i].sdwSeq +'" >';
+							listHTML += '<span class="word" style="cursor:pointer;" >' + response.rr[i].sdwWord + '</span>';
+							listHTML += '<input type="hidden" name="sdWord_sdwSeq'+ response.rr[i].sdwNum +'" id="sdWord_sdwSeq'+ response.rr[i].sdwNum +'" value="'+ response.rr[i].sdwSeq +'" >';
 							listHTML += '<div style="float:right;">';
 							for (let k=0; k<response.yy.length; k++) {
 							    if(response.yy[k].sdwWord == response.rr[i].sdwWord){
@@ -303,6 +304,7 @@
 							listHTML += '</h2>';
 							listHTML += '</div>';
 							listHTML += '</div>';
+							listHTML += '</form>';
 							
 							document.getElementById('wordChoice').innerHTML += listHTML;
 							
@@ -311,6 +313,9 @@
 					} else {
 						// 
 					}
+					
+					
+					
 				}
 
 				,
@@ -324,34 +329,114 @@
 		
 	</script>
 	<script type="text/javascript">
-	var goUrlInst = "/home/likeInsert"; /* #-> */
-	var form = $("form[name = form]");
-	function wordLike2(){
-	    alert("ddd");
-	    form.attr("action", goUrlInst).submit();
+	function insertWord1() {
+	    $.ajax({
+	        async:'false',
+	        url:'/home/insertWord',
+	        type:'post',
+	        data:{"infrMember_ifmmSeq": $("#infrMember_ifmmSeq").val() ,"sdWord_sdwSeq" : $("#sdWord_sdwSeq1").val() },
+	        success:(res) => {
+	            console.log(res.rt);
+	            if (res.rt == "success") {
+	                alert("좋아요 등록!");
+	            } else {
+	                alert("이미 좋아요를 누른 단어입니다.");
+	                return false;
+	            }
+	        },
+	        error:(jqXHR) => {
+	            alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+	        }
+	    });
 	}
 	</script>
 	<script type="text/javascript">
-	// 인서트 
-	var goUrlInst = "/home/likeInsert"; /* #-> */
-	var goUrlUpdt = "/home/likeUpdate"; /* #-> */
-	var form = $("form[name = form]");
-	var word = document.getElementById('heart2');
-	
 	function insertWord2() {
-	    alert(word.value);
-		if (word.val() == "0" || word.val() == "") {
-			// insert
-			/* if (validationInst() == false) return false; */
-			
-			form.attr("action", goUrlInst).submit();
-		} else {
-			// update
-			/* keyName.val(atob(keyName.val())); */
-			/* if (validationUpdt() == false) return false; */
-			form.attr("action", goUrlUpdt).submit();
-		}
-	};
+	    $.ajax({
+	        async:'false',
+	        url:'/home/insertWord',
+	        type:'post',
+	        data:{"infrMember_ifmmSeq": $("#infrMember_ifmmSeq").val() ,"sdWord_sdwSeq" : $("#sdWord_sdwSeq2").val() },
+	        success:(res) => {
+	            if (res.rt == "success") {
+	                alert("좋아요 등록!");
+	            } else {
+	                alert("이미 좋아요를 누른 단어입니다.");
+	                return false;
+	            }
+	        },
+	        error:(jqXHR) => {
+	            alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+	        }
+	    });
+	}
+	</script>
+	<script type="text/javascript">
+	function insertWord3() {
+	    $.ajax({
+	        async:'false',
+	        url:'/home/insertWord',
+	        type:'post',
+	        data:{"infrMember_ifmmSeq": $("#infrMember_ifmmSeq").val() ,"sdWord_sdwSeq" : $("#sdWord_sdwSeq3").val() },
+	        success:(res) => {
+	            console.log(res.rt);
+	            if (res.rt == "success") {
+	                alert("좋아요 등록!");
+	            } else {
+	                alert("이미 좋아요를 누른 단어입니다.");
+	                return false;
+	            }
+	        },
+	        error:(jqXHR) => {
+	            alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+	        }
+	    });
+	}
+	</script>
+	<script type="text/javascript">
+	function insertWord4() {
+	    $.ajax({
+	        async:'false',
+	        url:'/home/insertWord',
+	        type:'post',
+	        data:{"infrMember_ifmmSeq": $("#infrMember_ifmmSeq").val() ,"sdWord_sdwSeq" : $("#sdWord_sdwSeq4").val() },
+	        success:(res) => {
+	            if (res.rt == "success") {
+	                alert("좋아요 등록!");
+	            } else {
+	                alert("이미 좋아요를 누른 단어입니다.");
+	                return false;
+	            }
+	        },
+	        error:(jqXHR) => {
+	            alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+	        }
+	    });
+	}
+	</script>
+	<script type="text/javascript">
+	function insertWord5() {
+	    $.ajax({
+	        async:'false',
+	        url:'/home/insertWord',
+	        type:'post',
+	        data:{"infrMember_ifmmSeq": $("#infrMember_ifmmSeq").val() ,"sdWord_sdwSeq" : $("#sdWord_sdwSeq5").val() },
+	        success:(res) => {
+	            if (res.rt == "success") {
+	                alert("좋아요 등록!");
+	            } else {
+	                alert("이미 좋아요를 누른 단어입니다.");
+	                return false;
+	            }
+	        },
+	        error:(jqXHR) => {
+	            alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+	        }
+	    });
+	}
+	</script>
+	<script type="text/javascript">
+	
 	
 	</script>
 

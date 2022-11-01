@@ -4,9 +4,28 @@ public class HomeVo {
 	
 	private String mainKey;
 	private String ifmmSeq;
+	private String sdwSeq;
+	private String sdWord_sdwSeq;
 	
 	
 	
+	
+
+	public String getSdWord_sdwSeq() {
+		return sdWord_sdwSeq;
+	}
+
+	public void setSdWord_sdwSeq(String sdWord_sdwSeq) {
+		this.sdWord_sdwSeq = sdWord_sdwSeq;
+	}
+
+	public String getSdwSeq() {
+		return sdwSeq;
+	}
+
+	public void setSdwSeq(String sdwSeq) {
+		this.sdwSeq = sdwSeq;
+	}
 
 	public String getIfmmSeq() {
 		return ifmmSeq;

@@ -105,6 +105,10 @@ public class HomeDao {
 		System.out.println("dao.result :" + result);
 		return result;
 	}
+	public int selectOneWordCount(HomeVo vo) {
+		return sqlSession.selectOne(namespace + ".selectOneWordCount", vo);
+	}
+	
 	public int likeUpdate(Home dto) {
 		return sqlSession.update(namespace + ".likeUpdate", dto);
 	}

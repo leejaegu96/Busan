@@ -156,6 +156,11 @@ public class HomeServiceImpl implements HomeService{
 		return result;
 	}
 	@Override
+    public int selectOneWordCount(HomeVo vo) throws Exception {
+        return dao.selectOneWordCount(vo);
+    }
+	
+	@Override
 	public int likeUpdate(Home dto) throws Exception {
 		int result = dao.likeUpdate(dto);
 		System.out.println(result);

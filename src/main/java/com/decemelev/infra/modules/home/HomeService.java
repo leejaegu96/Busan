@@ -29,6 +29,7 @@ public interface HomeService {
 	
 	public int insert(Home dto) throws Exception;
 	public int likeInsert(Home dto) throws Exception;
+	public int selectOneWordCount(HomeVo vo) throws Exception;
 	public int likeUpdate(Home dto) throws Exception;
 	
 }

@@ -247,14 +247,32 @@ public class HomeController {
 		System.out.println("controller result: " + result);
 		return "redirect:/home/test";
 	}
-	@RequestMapping(value="/home/likeInsert")
-	public String likeInsert(Home dto, RedirectAttributes redirectAttributes) throws Exception{
+	
+	@ResponseBody
+	@RequestMapping(value="/home/insertWord")
+	public String likeInsert(@ModelAttribute("vo") HomeVo vo,Home dto, @RequestParam("sdWord_sdwSeq") String sdWord_sdwSeq, HttpServletRequest httpServletRequest) throws Exception{
+		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
-		int result = service.likeInsert(dto);
+		HttpSession httpSession =  httpServletRequest.getSession();
+		sessSeq = (String) httpSession.getAttribute("sessSeq");
 		
-		System.out.println("controller result: " + result);
-		return "redirect:/home/word";
+		vo.setMainKey(sessSeq);
+		dto.setSdWord_sdwSeq(sdWord_sdwSeq);
+		int result = service.selectOneWordCount(vo);
+		System.out.println("result :" + result);
+		if (result == 0) {
+			
+			service.likeInsert(dto);
+			returnMap.put("rt", "success");
+		} else {
+			returnMap.put("rt", "fail");
+		}
+		
+		return "returnMap";
 	}
+	
+	
+	
 	@RequestMapping(value="/home/likeUpdate")
 	public String likeUpdate(Home dto, RedirectAttributes redirectAttributes) throws Exception{
 		

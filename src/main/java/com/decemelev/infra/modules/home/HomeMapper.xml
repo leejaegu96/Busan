@@ -266,10 +266,19 @@
 		)
 		VALUES (
 			#{infrMember_ifmmSeq}
-			,#{sdwSeq}
+			,#{sdWord_sdwSeq}
 			,0
 		)
 	</insert>
+	<select id="selectOneWordCount" resultType="Integer">
+		SELECT
+			COUNT(*)
+		FROM sdFavorite
+		WHERE 1=1
+			AND infrMember_ifmmSeq = #{mainKey}
+			AND sdWord_sdwSeq = #{sdWord_sdwSeq}
+	</select>
+	
 	<update id="likeUpdate">
 		UPDATE sdFavorite
 		SET
