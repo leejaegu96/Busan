@@ -250,7 +250,7 @@ public class HomeController {
 	
 	@ResponseBody
 	@RequestMapping(value="/home/insertWord")
-	public String likeInsert(@ModelAttribute("vo") HomeVo vo,Home dto, @RequestParam("sdWord_sdwSeq") String sdWord_sdwSeq, HttpServletRequest httpServletRequest) throws Exception{
+	public Map<String, Object> likeInsert(@ModelAttribute("vo") HomeVo vo,Home dto, @RequestParam("sdWord_sdwSeq") String sdWord_sdwSeq, HttpServletRequest httpServletRequest) throws Exception{
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
 		HttpSession httpSession =  httpServletRequest.getSession();
@@ -261,14 +261,13 @@ public class HomeController {
 		int result = service.selectOneWordCount(vo);
 		System.out.println("result :" + result);
 		if (result == 0) {
-			
 			service.likeInsert(dto);
 			returnMap.put("rt", "success");
 		} else {
 			returnMap.put("rt", "fail");
 		}
 		
-		return "returnMap";
+		return returnMap;
 	}
 	
 	

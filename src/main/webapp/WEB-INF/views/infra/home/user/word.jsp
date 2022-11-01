@@ -260,7 +260,7 @@
 							console.log("trans" + response.tt[i].sdwSeq);
 							let listHTML = "";
 							listHTML += '<form name="form'+ response.rr[i].sdwNum +'">';
-							listHTML += '<input type="hidden" id="infrMember_ifmmSeq" name="infrMember_ifmmSeq" value="'+ response.yy[0].infrMember_ifmmSeq +'">';
+							listHTML += '<input type="hidden" id="infrMember_ifmmSeq" name="infrMember_ifmmSeq" value="'+ ${sessSeq } +'">';
 							listHTML += '<div class="col-6" style="margin: auto;" id="colPadding">';
 							listHTML += '<div class="quiz">';
 							listHTML += '<span class="quiz__type">' + response.rr[i].sddDateChoice + '</span>';
@@ -268,11 +268,15 @@
 							listHTML += '<span class="word" style="cursor:pointer;" >' + response.rr[i].sdwWord + '</span>';
 							listHTML += '<input type="hidden" name="sdWord_sdwSeq'+ response.rr[i].sdwNum +'" id="sdWord_sdwSeq'+ response.rr[i].sdwNum +'" value="'+ response.rr[i].sdwSeq +'" >';
 							listHTML += '<div style="float:right;">';
-							for (let k=0; k<response.yy.length; k++) {
-							    if(response.yy[k].sdwWord == response.rr[i].sdwWord){
-							        listHTML += '<input id="heart'+ response.rr[i].sdwNum +'" type="checkbox" value="1" onclick="insertWord'+ response.rr[i].sdwNum +'()" checked>';
-							    }else {
-							        listHTML += '<input id="heart'+ response.rr[i].sdwNum +'" type="checkbox" value="0" onclick="insertWord'+ response.rr[i].sdwNum +'()">';
+							if(response.yy.length == null || response.yy.length == "0"){
+						        listHTML += '<input id="heart'+ response.rr[i].sdwNum +'" type="checkbox" value="0" onclick="insertWord'+ response.rr[i].sdwNum +'()">';
+							} else {
+							    for (let k=0; k<response.yy.length; k++) {
+							        if(response.yy[k].sdwWord == response.rr[i].sdwWord){
+								        listHTML += '<input id="heart'+ response.rr[i].sdwNum +'" type="checkbox" value="1" onclick="insertWord'+ response.rr[i].sdwNum +'()" checked>';
+								    }else {
+								        listHTML += '<input id="heart'+ response.rr[i].sdwNum +'" type="checkbox" value="0" onclick="insertWord'+ response.rr[i].sdwNum +'()">';
+								    }
 							    }
 							}
 							listHTML += '<label for="heart'+ response.rr[i].sdwNum +'">❤</label>';
@@ -334,10 +338,10 @@
 	        async:'false',
 	        url:'/home/insertWord',
 	        type:'post',
-	        data:{"infrMember_ifmmSeq": $("#infrMember_ifmmSeq").val() ,"sdWord_sdwSeq" : $("#sdWord_sdwSeq1").val() },
+	        data:{"infrMember_ifmmSeq": $("#infrMember_ifmmSeq").val(), "sdWord_sdwSeq" : $("#sdWord_sdwSeq1").val() },
 	        success:(res) => {
 	            console.log(res.rt);
-	            if (res.rt == "success") {
+	            if (res.rt === "success") {
 	                alert("좋아요 등록!");
 	            } else {
 	                alert("이미 좋아요를 누른 단어입니다.");
