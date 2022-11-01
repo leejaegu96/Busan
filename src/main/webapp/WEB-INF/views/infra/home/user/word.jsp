@@ -269,6 +269,15 @@
 							if(response.yy.length == null || response.yy.length == "0"){
 						        listHTML += '<input id="heart'+ response.rr[i].sdwNum +'" type="checkbox" value="0" onclick="insertWord'+ response.rr[i].sdwNum +'()">';
 							} else {
+							    listHTML += '<input id="heart'+ response.rr[i].sdwNum +'" type="checkbox" value="0" onclick="insertWord'+ response.rr[i].sdwNum +'()">';
+							    for (let k=0; k<response.yy.length; k++) {
+							        if(response.yy[k].sdwWord == response.rr[i].sdwWord){
+								        listHTML += '<input id="heart'+ response.rr[i].sdwNum +'" type="checkbox" value="1" onclick="insertWord'+ response.rr[i].sdwNum +'()" checked>';
+								    }else {
+								        // 
+								    }
+							    }
+							    /* 
 							    for (let k=0; k<response.yy.length; k++) {
 							        if(response.yy[k].sdwWord == response.rr[i].sdwWord){
 								        listHTML += '<input id="heart'+ response.rr[i].sdwNum +'" type="checkbox" value="1" onclick="insertWord'+ response.rr[i].sdwNum +'()" checked>';
@@ -276,6 +285,7 @@
 								        listHTML += '<input id="heart'+ response.rr[i].sdwNum +'" type="checkbox" value="0" onclick="insertWord'+ response.rr[i].sdwNum +'()">';
 								    }
 							    }
+							     */
 							}
 							listHTML += '<label for="heart'+ response.rr[i].sdwNum +'">❤</label>';
 							listHTML += '</div>'; 
