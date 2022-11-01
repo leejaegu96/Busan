@@ -256,8 +256,6 @@
 						document.getElementById('wordChoice').innerHTML = "";
 						
 						for (let i = 0; i < response.rr.length; i++) {
-							console.log("word" + response.rr[i].sdwSeq);
-							console.log("trans" + response.tt[i].sdwSeq);
 							let listHTML = "";
 							listHTML += '<form name="form'+ response.rr[i].sdwNum +'">';
 							listHTML += '<input type="hidden" id="infrMember_ifmmSeq" name="infrMember_ifmmSeq" value="'+ ${sessSeq } +'">';
