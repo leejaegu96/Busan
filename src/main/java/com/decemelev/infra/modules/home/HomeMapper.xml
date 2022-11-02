@@ -8,7 +8,15 @@
 
 	<resultMap id="resultMapObj"
 		type="com.decemelev.infra.modules.home.Home"></resultMap>
-
+	
+	<select id="selectWordCount" resultType="Integer">
+		SELECT
+			COUNT(*)
+		FROM sdFavorite
+		WHERE 1=1
+		AND infrMember_ifmmSeq = #{mainKey}
+	</select>
+	
 	<select id="favoriteList" resultMap="resultMapObj">
 		SELECT
 		a.sdwSeq

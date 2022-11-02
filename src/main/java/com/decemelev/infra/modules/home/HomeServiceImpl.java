@@ -17,6 +17,12 @@ public class HomeServiceImpl implements HomeService{
 	HomeDao dao;
 	
 	@Override
+	public int selectWordCount(HomeVo vo) throws Exception {
+		int result = dao.selectWordCount(vo);
+		return result;
+	}
+	
+	@Override
 	public List<Home> favoriteList(Home dto) throws Exception {
 		List<Home> list = dao.favoriteList(dto);
 		return list;

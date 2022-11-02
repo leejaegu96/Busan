@@ -3,7 +3,9 @@ package com.decemelev.infra.modules.home;
 import java.util.List;
 
 public interface HomeService {
-
+	
+	
+	public int selectWordCount(HomeVo vo) throws Exception;
 	public List<Home> favoriteList(Home dto) throws Exception;
 	public List<Home> selectList(Home dto) throws Exception;
 	public List<Home> wordList() throws Exception;

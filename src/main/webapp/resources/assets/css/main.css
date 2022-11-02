@@ -181,7 +181,6 @@ input[type="submit"].disabled, input[type="submit"]:disabled, input[type="reset"
 }
 
 /* Basic */
-@
 -ms-viewport {
 	width: device-width;
 }
@@ -1708,6 +1707,11 @@ code {
 	max-width: calc(100% - 5em);
 	width: 60em;
 }
+.containerMypage {
+	margin: 0 auto;
+	max-width: calc(100% - 5em);
+	width: 85em;
+}
 
 .container.xsmall {
 	width: 15em;
@@ -2305,58 +2309,6 @@ body.landing #page-wrapper {
 	padding-top: 0;
 }
 
-@
--moz-keyframes reveal-header { 0% {
-	top: -5em;
-}
-
-100
-%
-{
-top
-:
-0;
-}
-}
-@
--webkit-keyframes reveal-header { 0% {
-	top: -5em;
-}
-
-100
-%
-{
-top
-:
-0;
-}
-}
-@
--ms-keyframes reveal-header { 0% {
-	top: -5em;
-}
-
-100
-%
-{
-top
-:
-0;
-}
-}
-@
-keyframes reveal-header { 0% {
-	top: -5em;
-}
-
-100
-%
-{
-top
-:
-0;
-}
-}
 #header {
 	background: #444;
 	color: #bbb;

@@ -1,14 +1,13 @@
 package com.decemelev.infra.modules.home;
 
-public class HomeVo {
+import com.decemelev.infra.common.base.BaseVo;
+
+public class HomeVo extends BaseVo{
 	
 	private String mainKey;
 	private String ifmmSeq;
 	private String sdwSeq;
 	private String sdWord_sdwSeq;
-	
-	
-	
 	
 
 	public String getSdWord_sdwSeq() {

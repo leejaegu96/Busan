@@ -75,8 +75,9 @@ img, svg {
 
 table {
 	text-align: center;
-	line-height:2;
+	line-height: 2;
 }
+
 td, th {
 	vertical-align: middle;
 }
@@ -146,44 +147,67 @@ input-group-text {
 
 		<header id="header">
 			<h3 style="color: white; font-size: 20px; margin-top: 10px; margin-left: 20px; height: 52px; cursor: pointer;" onClick="location.href='home'">
-				<i class="fa-solid fa-book-open"></i>&nbsp;E-WORD
+				<i class="fa-solid fa-book-open"></i>
+				&nbsp;E-WORD
 			</h3>
 			<nav id="nav">
 				<ul>
-					<li><c:choose>
+					<li>
+						<c:choose>
 							<c:when test="${sessSeq eq null}">
 							</c:when>
 							<c:when test="${sessSeq eq 144}">
-								<span style="color: #959ADA; font-weight: bolder;">
-									<c:out value="${sessName }" />
+								<span style="color: #959ADA; font-weight: bolder;"> <c:out value="${sessName }" />
 								</span> 관리자님
 							</c:when>
 							<c:otherwise>
-								<span style="color: #959ADA; font-weight: bolder;">
-									<c:out value="${sessName }" />
+								<span style="color: #959ADA; font-weight: bolder;"> <c:out value="${sessName }" />
 								</span>님
 							</c:otherwise>
-						</c:choose></li>
-					<li><a href="home" class="button" style="cursor: pointer; background-color: #444444;">Home</a></li>
+						</c:choose>
+					</li>
+					<li>
+						<a href="home" class="button" style="cursor: pointer; background-color: #444444;">Home</a>
+					</li>
 					<c:choose>
 						<c:when test="${sessSeq eq null}">
 							<!--로그인 전 화면  -->
-							<li><a href="#" class="button" onClick="location.href='../login/signUp'" style="cursor: pointer; background-color: #444444;">Sign Up</a></li>
-							<li><a href="#" class="button" onClick="location.href='../login/login'" style="cursor: pointer;">Login</a></li>
+							<li>
+								<a href="#" class="button" onClick="location.href='../login/signUp'" style="cursor: pointer; background-color: #444444;">Sign Up</a>
+							</li>
+							<li>
+								<a href="#" class="button" onClick="location.href='../login/login'" style="cursor: pointer;">Login</a>
+							</li>
 						</c:when>
 						<c:when test="${sessSeq eq 144}">
 							<!--관리자 로그인 후 화면  -->
-							<li><a href="mypage" class="button" style="cursor: pointer; background-color: #444444;">Mypage</a></li>
-							<li><a href="/member/memberList" class="button" style="cursor: pointer; background-color: #444444;">Admin</a></li>
-							<li><a href="#" class="button" id="btnLogout" style="cursor: pointer;">Logout</a></li>
+							<li>
+								<a href="mypage" class="button" style="cursor: pointer; background-color: #444444;">Mypage</a>
+							</li>
+							<li>
+								<a href="/member/memberList" class="button" style="cursor: pointer; background-color: #444444;">Admin</a>
+							</li>
+							<li>
+								<a href="#" class="button" id="btnLogout" style="cursor: pointer;">Logout</a>
+							</li>
 						</c:when>
 						<c:otherwise>
 							<!--로그인 후 화면  -->
-							<li><a href="test" class="button" style="cursor: pointer; background-color: #444444;">Test</a></li>
-							<li><a href="rank" class="button" style="cursor: pointer; background-color: #444444;">Rank</a></li>
-							<li><a href="translate" class="button" style="cursor: pointer; background-color: #444444;">Translate</a></li>
-							<li><a href="mypage" class="button" style="cursor: pointer; background-color: #444444;">Mypage</a></li>
-							<li><a href="#" class="button" id="btnLogout" style="cursor: pointer;">Logout</a></li>
+							<li>
+								<a href="test" class="button" style="cursor: pointer; background-color: #444444;">Test</a>
+							</li>
+							<li>
+								<a href="rank" class="button" style="cursor: pointer; background-color: #444444;">Rank</a>
+							</li>
+							<li>
+								<a href="translate" class="button" style="cursor: pointer; background-color: #444444;">Translate</a>
+							</li>
+							<li>
+								<a href="mypage" class="button" style="cursor: pointer; background-color: #444444;">Mypage</a>
+							</li>
+							<li>
+								<a href="#" class="button" id="btnLogout" style="cursor: pointer;">Logout</a>
+							</li>
 						</c:otherwise>
 					</c:choose>
 
@@ -197,11 +221,11 @@ input-group-text {
 		</header>
 
 		<!-- Main -->
-		<section id="main" class="container">
+		<section id="main" class="containerMypage">
 			<div class="box">
 
 				<div class="row">
-					<div class="col-xl-4 g-3">
+					<div class="col-xl-3 g-3">
 
 						<div class="card">
 							<div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
@@ -233,8 +257,7 @@ input-group-text {
 										<c:otherwise> USER </c:otherwise>
 									</c:choose>
 								</h3>
-								<span style="color: white;">
-									<c:out value="${list.ifmmSeq }" />
+								<span style="color: white;"> <c:out value="${list.ifmmSeq }" />
 								</span>
 								<div class="social-links mt-2">
 									<a href="#" class="twitter">
@@ -255,7 +278,7 @@ input-group-text {
 						</div>
 
 					</div>
-					<div class="col-xl-8 g-3">
+					<div class="col-xl-9 g-3">
 
 						<div class="card">
 							<div class="card-body pt-3">
@@ -284,7 +307,8 @@ input-group-text {
 									<!--  나만의 단어--------------------------------------------------------------------------- -->
 
 									<div class="tab-pane fade show active My-Word pt-3" id="My-Word">
-										<form>
+										<form name="formList" id="formList" action="/home/mypage">
+											<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>"> <input type="hidden" name="rowNumToShowMypage" value="<c:out value="${vo.rowNumToShowMypage }"/>">
 											<div class="dataTable-container">
 												<input type="hidden" name="ifmmName" value="${list.ifmmName }">
 												<table class="table table-striped" id="table1">
@@ -303,44 +327,143 @@ input-group-text {
 														</tr>
 													</thead>
 													<tbody id="my_tbody">
-														<c:forEach items="${list1}" var="list1" varStatus="status">
-															<tr>
-																<td>
-																	<div class="form-check">
-																		<input class="form-check-input" type="checkbox" name="chk_box" onclick="check();" value="" id="flexCheckDefault">
-																	</div>
-																</td>
-																<td>${status.count }</td>
-																<td style="text-align:left;">${list1.sdwWord }</td>
-																<td style="text-align:left;">
-																	<c:forEach items="${item1}" var="item1" varStatus="status">
-																		<c:if test="${list1.sdwWord == item1.sdwWord }">
-																			<div class="ask">
-																				<span class="content" style="font-weight: bold;" value="${list1.sdwSeq }">${item1.sdwmNum}. &nbsp;${item1.sdwmPartOfSpeech}</span>
-																				<span class="content" value="${list1.sdwSeq }">&nbsp;${item1.sdwmContents}</span>
-																				<br>
+														<c:choose>
+															<c:when test="${fn:length(list1) eq 0}">
+																<tr>
+																	<td class="" colspan="6" style="text-align: center;">There is no data!</td>
+																</tr>
+															</c:when>
+															<c:otherwise>
+																<c:forEach items="${list1}" var="list1" varStatus="status">
+																	<tr>
+																		<td>
+																			<div class="form-check">
+																				<input class="form-check-input" type="checkbox" name="chk_box" onclick="check();" value="">
 																			</div>
-																		</c:if>
-																	</c:forEach>
-																</td>
-																<td style="text-align:left;">
-																	<c:forEach items="${item1}" var="item1" varStatus="status">
-																		<c:if test="${list1.sdwWord == item1.sdwWord }">
-																			<div class="ask1">
-																				<span class="content" style="font-weight: bold;">${item1.sdwmNum}.&nbsp;</span>
-																				<span class="content" value="${list1.sdwSeq }">${item1.sdweContents}</span>
-																				<br>
-																				<span class="content" value="${list1.sdwSeq }">&nbsp;&nbsp;&nbsp;&nbsp;${item1.sdweTranslate}</span>
-																				<br>
-																			</div>
-																		</c:if>
-																	</c:forEach>
-																</td>
-																<td style="text-align:left;">${list1.sddDateChoice }</td>
-															</tr>
-														</c:forEach>
+																		</td>
+																		<td>${status.count }</td>
+																		<td style="text-align: left;">${list1.sdwWord }</td>
+																		<td style="text-align: left;">
+																			<c:forEach items="${item1}" var="item1" varStatus="status">
+																				<c:if test="${list1.sdwWord == item1.sdwWord }">
+																					<div class="ask">
+																						<span class="content" style="font-weight: bold;" value="${list1.sdwSeq }">${item1.sdwmNum}. &nbsp;${item1.sdwmPartOfSpeech}</span> <span class="content" value="${list1.sdwSeq }">&nbsp;${item1.sdwmContents}</span> <br>
+																					</div>
+																				</c:if>
+																			</c:forEach>
+																		</td>
+																		<td style="text-align: left;">
+																			<c:forEach items="${item1}" var="item1" varStatus="status">
+																				<c:if test="${list1.sdwWord == item1.sdwWord }">
+																					<div class="ask1">
+																						<span class="content" style="font-weight: bold;">${item1.sdwmNum}.&nbsp;</span> <span class="content" value="${list1.sdwSeq }">${item1.sdweContents}</span> <br> <span class="content" value="${list1.sdwSeq }">&nbsp;&nbsp;&nbsp;&nbsp;${item1.sdweTranslate}</span> <br>
+																					</div>
+																				</c:if>
+																			</c:forEach>
+																		</td>
+																		<td style="text-align: left;">${list1.sddDateChoice }</td>
+																	</tr>
+																</c:forEach>
+															</c:otherwise>
+														</c:choose>
 													</tbody>
 												</table>
+											</div>
+											<div class="row">
+
+												<div class="col">
+
+													<div class="container-fluid px-0 mt-2">
+														<div class="row">
+															<div class="col">
+																<!-- <ul class="pagination pagination-sm justify-content-center mb-0"> -->
+																<ul class="pagination justify-content-center mb-0">
+																	<!-- <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angles-left"></i></a></li> -->
+																	<c:if test="${vo.startPage gt vo.pageNumToShow}">
+																		<li class="page-item">
+																			<a class="page-link" href="javascript:goList(${vo.startPage - 1})">
+																				<i class="fa-solid fa-angle-left"></i>
+																			</a>
+																		</li>
+																	</c:if>
+																	<c:forEach begin="${vo.startPage}" end="${vo.endPage}" varStatus="i">
+																		<c:choose>
+																			<c:when test="${i.index eq vo.thisPage}">
+																				<li class="page-item active">
+																					<a class="page-link" href="javascript:goList(${i.index})">${i.index}</a>
+																				</li>
+																			</c:when>
+																			<c:otherwise>
+																				<li class="page-item">
+																					<a class="page-link" href="javascript:goList(${i.index})">${i.index}</a>
+																				</li>
+																			</c:otherwise>
+																		</c:choose>
+																	</c:forEach>
+																	<c:if test="${vo.endPage ne vo.totalPages}">
+																		<li class="page-item">
+																			<a class="page-link" href="javascript:goList(${vo.endPage + 1})">
+																				<i class="fa-solid fa-angle-right"></i>
+																			</a>
+																		</li>
+																	</c:if>
+																	<!-- <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angles-right"></i></a></li> -->
+																</ul>
+															</div>
+														</div>
+													</div>
+
+												</div>
+
+												<div class="row">
+
+													<div class="col-6" style="text-align: left;">
+														<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+															<i class="fa-solid fa-square-minus"></i>
+														</button>
+														<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+															<i class="fa-solid fa-xmark"></i>
+														</button>
+														<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+															<div class="modal-dialog">
+																<div class="modal-content">
+																	<div class="modal-header">
+																		<h5 class="modal-title" id="exampleModalLabel2">삭제</h5>
+																		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+																	</div>
+																	<div class="modal-body">정말 삭제하시겠습니까?</div>
+																	<div class="modal-footer">
+																		<button type="button" class="btn btn-danger" data-bs-dismiss="modal" onClick="delete_row();">삭제하기</button>
+																		<button type="button" class="btn btn-primary" data-bs-dismiss="modal">취소하기</button>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+															<div class="modal-dialog">
+																<div class="modal-content">
+																	<div class="modal-header">
+																		<h5 class="modal-title" id="exampleModalLabel">삭제</h5>
+																		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+																	</div>
+																	<div class="modal-body">정말 삭제하시겠습니까?</div>
+																	<div class="modal-footer">
+																		<button type="button" class="btn btn-danger" data-bs-dismiss="modal" onClick="delete_row();">삭제하기</button>
+																		<button type="button" class="btn btn-primary" data-bs-dismiss="modal">취소하기</button>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-6" style="text-align: right;">
+														<button type="button" class="btn btn-success">
+															<i class="fa-solid fa-file-csv"></i>
+														</button>
+														<button type="button" class="btn btn-primary" id="btnForm">
+															<i class="fa-solid fa-square-plus"></i>
+														</button>
+													</div>
+												</div>
 											</div>
 										</form>
 									</div>
@@ -493,9 +616,7 @@ input-group-text {
 												<label for="Country" class="col-md-4 col-lg-3 col-form-label">Email</label>
 												<div class="col-md-8 col-lg-9">
 													<div class="input-group">
-														<input type="text" id="Email" name="Email" class="form-control" placeholder="User email" value="${fn:split(list.ifmmEmail,'@')[0]}">
-														<span class="input-group-text">@</span>
-														<input type="text" id="Domain" name="Domain" class="form-control" placeholder="Domain" value="${fn:split(list.ifmmEmail,'@')[1]}">
+														<input type="text" id="Email" name="Email" class="form-control" placeholder="User email" value="${fn:split(list.ifmmEmail,'@')[0]}"> <span class="input-group-text">@</span> <input type="text" id="Domain" name="Domain" class="form-control" placeholder="Domain" value="${fn:split(list.ifmmEmail,'@')[1]}">
 														<%-- <input type="text" id="Domain" name="Domain" class="form-control" placeholder="Domain" value="${fn:split(list.ifmmEmail,'@')[1]}" > --%>
 
 														<select class="form-select" name="ifmmEmailDomain" id="ifmmEmailDomain">
@@ -536,11 +657,7 @@ input-group-text {
 															<option value="010" <c:if test="${fn:substring(list.ifmmPhone,0,3) eq 010 }"> selected </c:if>>010</option>
 															<option value="011" <c:if test="${fn:substring(list.ifmmPhone,0,3) eq 011 }"> selected </c:if>>011</option>
 															<option value="019" <c:if test="${fn:substring(list.ifmmPhone,0,3) eq 019 }"> selected </c:if>>019</option>
-														</select>
-														<span class="input-group-text">-</span>
-														<input type="text" id="inputPhone2" class="form-control" maxlength='4' onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" value="${fn:substring(list.ifmmPhone,3,7)}">
-														<span class="input-group-text">-</span>
-														<input type="text" id="inputPhone3" class="form-control" maxlength='4' onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" value="${fn:substring(list.ifmmPhone,7,11)}">
+														</select> <span class="input-group-text">-</span> <input type="text" id="inputPhone2" class="form-control" maxlength='4' onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" value="${fn:substring(list.ifmmPhone,3,7)}"> <span class="input-group-text">-</span> <input type="text" id="inputPhone3" class="form-control" maxlength='4' onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" value="${fn:substring(list.ifmmPhone,7,11)}">
 
 														<!-- <button class="btn btn-outline-secondary" type="button" id="button-addon2">인증번호 요청</button> -->
 													</div>
@@ -640,28 +757,43 @@ input-group-text {
 		<!-- Footer -->
 		<footer id="footer">
 			<ul class="icons">
-				<li><a href="#" class="icon brands fa-twitter">
+				<li>
+					<a href="#" class="icon brands fa-twitter">
 						<span class="label">Twitter</span>
-					</a></li>
-				<li><a href="#" class="icon brands fa-facebook-f">
+					</a>
+				</li>
+				<li>
+					<a href="#" class="icon brands fa-facebook-f">
 						<span class="label">Facebook</span>
-					</a></li>
-				<li><a href="#" class="icon brands fa-instagram">
+					</a>
+				</li>
+				<li>
+					<a href="#" class="icon brands fa-instagram">
 						<span class="label">Instagram</span>
-					</a></li>
-				<li><a href="#" class="icon brands fa-github">
+					</a>
+				</li>
+				<li>
+					<a href="#" class="icon brands fa-github">
 						<span class="label">Github</span>
-					</a></li>
-				<li><a href="#" class="icon brands fa-dribbble">
+					</a>
+				</li>
+				<li>
+					<a href="#" class="icon brands fa-dribbble">
 						<span class="label">Dribbble</span>
-					</a></li>
-				<li><a href="#" class="icon brands fa-google-plus">
+					</a>
+				</li>
+				<li>
+					<a href="#" class="icon brands fa-google-plus">
 						<span class="label">Google+</span>
-					</a></li>
+					</a>
+				</li>
 			</ul>
 			<ul class="copyright">
 				<li>&copy; Untitled. All rights reserved.</li>
-				<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+				<li>
+					Design:
+					<a href="http://html5up.net">HTML5 UP</a>
+				</li>
 			</ul>
 		</footer>
 
@@ -1182,6 +1314,42 @@ input-group-text {
 		$("#ifmaLngArray0").val('');
 	});
 	
+	</script>
+
+	<script type="text/javascript">
+		var goUrlList = "/home/mypage";
+		var formMy = $("form[name=formList]");
+
+		goList = function(thisPage) {
+			$("input:hidden[name=thisPage]").val(thisPage);
+			formMy.attr("action", goUrlList).submit();
+		}
+
+		// Simple Datatable
+		let table1 = document.querySelector('#table1');
+		/* let dataTable = new simpleDatatables.DataTable(table1); */
+
+		function allcheck() {
+			var chk_box = document.getElementsByName("chk_box");
+			var checkItem = "";
+			for (var i = 0; i < chk_box.length; i++) {
+				if (chk_box[0].checked == true) {
+					chk_box[i].checked = true;
+				} else {
+					chk_box[i].checked = false;
+				}
+			}
+		}
+		function check() {
+			var chk_box = document.getElementsByName("chk_box");
+			var checkItem = "";
+			for (var i = 0; i < chk_box.length; i++) {
+				if (chk_box[i].checked == false) {
+					checkItem = false;
+				}
+			}
+			chk_box[0].checked = checkItem;
+		}
 	</script>
 
 </body>

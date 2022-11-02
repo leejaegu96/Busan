@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 
 
 
-
 @Repository
 public class HomeDao {
 
@@ -19,6 +18,12 @@ public class HomeDao {
 	private SqlSession sqlSession;
 	
 	private static String namespace = "com.decemelev.infra.modules.home.HomeMapper";
+	
+	public int selectWordCount(HomeVo vo) {
+		int result = sqlSession.selectOne(namespace + ".selectWordCount", vo);
+		System.out.println("dao selectWordCount result :" + result);
+		return result;
+	}
 	
 	public List<Home> favoriteList(Home dto) {
 		List<Home> list = sqlSession.selectList("com.decemelev.infra.modules.home.HomeMapper.favoriteList", dto);

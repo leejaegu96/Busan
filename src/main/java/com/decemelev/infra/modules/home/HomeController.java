@@ -11,6 +11,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +28,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.decemelev.infra.common.util.UtilDateTime;
 import com.decemelev.infra.common.util.UtilSecurity;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 @Controller
@@ -36,6 +39,14 @@ public class HomeController {
 	
 	@Autowired
 	HomeServiceImpl service;
+	
+	public void setSearchAndPaging(HomeVo vo, HttpServletRequest httpServletRequest) throws Exception {
+		HttpSession httpSession =  httpServletRequest.getSession();
+		sessSeq = (String) httpSession.getAttribute("sessSeq");
+		vo.setMainKey(sessSeq);
+		
+		vo.setParamsPagingMypage(service.selectWordCount(vo));
+	}
 	
 	@RequestMapping(value = "/home/home")
 	public String home(Model model) throws Exception {
@@ -184,6 +195,7 @@ public class HomeController {
 		sessSeq = (String) httpSession.getAttribute("sessSeq");
 		
 		vo.setMainKey(sessSeq);
+		setSearchAndPaging(vo, httpServletRequest);
 		
 		List<Home> list1 = service.myWordList(vo);
 		model.addAttribute("list1", list1);
@@ -364,7 +376,143 @@ public class HomeController {
         }
     }
 	
+	@RequestMapping(value = "/home/testCovid2")
+	public String publicCorona1List2(Model model) throws Exception {
+		
+		System.out.println("asdfasdfasdf");
+		
+		String apiUrl = "http://apis.data.go.kr/1790387/covid19CurrentStatusConfirmations/covid19CurrentStatusConfirmationsJson?serviceKey=S3yR1HrG%2BEkUMOE1NiU9xUAIGhQdnbmHLDh8zLm%2Fcmv1HhJiq0k%2Fw4LpOzsL4TO8Q31vVDPYY7IdhHxiJdUimA%3D%3D";
+		
+		URL url = new URL(apiUrl);
+		HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+		httpURLConnection.setRequestMethod("GET");
+		
+		BufferedReader bufferedReader;
+		if (httpURLConnection.getResponseCode() >= 200 && httpURLConnection.getResponseCode() <= 300) {
+			bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+		} else {
+			bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getErrorStream()));
+		}
+		
+		StringBuilder stringBuilder = new StringBuilder();
+		String line;
+		while ((line = bufferedReader.readLine()) != null) {
+			System.out.println("line: " + line);
+			stringBuilder.append(line);
+		}
+
+		bufferedReader.close();
+		httpURLConnection.disconnect();
+
+		System.out.println("stringBuilder.toString(): " + stringBuilder.toString());
+		
+//		json object + array string -> java map
+		
+        ObjectMapper objectMapper = new ObjectMapper();
+        Map<String, Object> map = objectMapper.readValue(stringBuilder.toString(), Map.class);
+        
+        System.out.println("######## Map");
+		for (String key : map.keySet()) {
+			String value = String.valueOf(map.get(key));	// ok
+			System.out.println("[key]:" + key + ", [value]:" + value);
+		}
+		
+		Map<String, Object> result = new HashMap<String, Object>();
+		result = (Map<String, Object>) map.get("result");
+		
+		System.out.println("######## result");
+		for (String key : result.keySet()) {
+			String value = String.valueOf(result.get(key));	// ok
+			System.out.println("[key]:" + key + ", [value]:" + value);
+		}
+		
+		Map<String, Object> body = new HashMap<String, Object>();
+		body = (Map<String, Object>) map.get("body");
+		
+		List<Home> items = new ArrayList<Home>();
+		items = (List<Home>) body.get("items");
+		
+		System.out.println("items.size(): " + items.size());
+		
+		model.addAllAttributes(result);
+		model.addAllAttributes(body);
+		
+		return "infra/home/user/testCovid";
+	}
 	
+	@RequestMapping(value = "/home/testCovid2")
+	public String publicCorona1List(Model model) throws Exception {
+		
+		System.out.println("asdfasdfasdf");
+		
+		String apiUrl = "http://apis.data.go.kr/1471000/CovidDagnsRgntProdExprtStusService/getCovidDagnsRgntProdExprtStusInq?serviceKey=dNLcjyriV9IBD5djvIMsq16GYwW%2F8N%2FCtnCNvRj66yaLV9jXKhipDNCJFDcDzorgqnVsJsz5gmYoibNbAG0sdw%3D%3D&numOfRows=3&pageNo=1&type=json";
+		
+		URL url = new URL(apiUrl);
+		HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+		httpURLConnection.setRequestMethod("GET");
+		
+		BufferedReader bufferedReader;
+		if (httpURLConnection.getResponseCode() >= 200 && httpURLConnection.getResponseCode() <= 300) {
+			bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+		} else {
+			bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getErrorStream()));
+		}
+		
+		StringBuilder stringBuilder = new StringBuilder();
+		String line;
+		while ((line = bufferedReader.readLine()) != null) {
+			System.out.println("line: " + line);
+			stringBuilder.append(line);
+		}
+
+		bufferedReader.close();
+		httpURLConnection.disconnect();
+
+		System.out.println("stringBuilder.toString(): " + stringBuilder.toString());
+		
+//		json object + array string -> java map
+		
+        ObjectMapper objectMapper = new ObjectMapper();
+        Map<String, Object> map = objectMapper.readValue(stringBuilder.toString(), Map.class);
+        
+        System.out.println("######## Map");
+		for (String key : map.keySet()) {
+			String value = String.valueOf(map.get(key));	// ok
+			System.out.println("[key]:" + key + ", [value]:" + value);
+		}
+		
+		Map<String, Object> header = new HashMap<String, Object>();
+		header = (Map<String, Object>) map.get("header");
+		
+		System.out.println("######## Header");
+		for (String key : header.keySet()) {
+			String value = String.valueOf(header.get(key));	// ok
+			System.out.println("[key]:" + key + ", [value]:" + value);
+		}
+		
+//		String aaa = (String) header.get("resultCode");
+		
+//		System.out.println("header.get(\"resultCode\"): " + header.get("resultCode"));
+//		System.out.println("header.get(\"resultMsg\"): " + header.get("resultMsg"));
+		
+		Map<String, Object> body = new HashMap<String, Object>();
+		body = (Map<String, Object>) map.get("body");
+		
+		List<Home> items = new ArrayList<Home>();
+		items = (List<Home>) body.get("items");
+		
+		
+		System.out.println("items.size(): " + items.size());
+		
+//		for(Home item : items) {
+//			System.out.println(item.getMM());
+//		}
+		
+		model.addAllAttributes(header);
+		model.addAllAttributes(body);
+		
+		return "infra/home/user/testCovid";
+	}
 	
 				
 }

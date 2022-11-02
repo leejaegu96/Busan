@@ -6,6 +6,7 @@ public class BaseVo {
 //	paging
 	private int thisPage = 1;									// 현재 페이지
 	private int rowNumToShow = Constants.ROW_NUM_TO_SHOW;		// 화면에 보여줄 데이터 줄 갯수
+	private int rowNumToShowMypage = Constants.ROW_NUM_TO_SHOW_MYPAGE;		// 화면에 보여줄 데이터 줄 갯수
 	private int pageNumToShow = Constants.PAGE_NUM_TO_SHOW;		// 화면에 보여줄 페이징 번호 갯수
 
 	private int totalRows;										// 전체 데이터 갯수
@@ -22,6 +23,16 @@ public class BaseVo {
 
 	
 	
+	
+	
+	public int getRowNumToShowMypage() {
+		return rowNumToShowMypage;
+	}
+
+	public void setRowNumToShowMypage(int rowNumToShowMypage) {
+		this.rowNumToShowMypage = rowNumToShowMypage;
+	}
+
 	public int getEndRnumForMysql() {
 		return endRnumForMysql;
 	}
@@ -164,6 +175,59 @@ public class BaseVo {
 		System.out.println("getThisPage():" + getThisPage());
 		System.out.println("getTotalRows():" + getTotalRows());
 		System.out.println("getRowNumToShow():" + getRowNumToShow());
+		System.out.println("getTotalPages():" + getTotalPages());
+		System.out.println("getStartPage():" + getStartPage());
+		System.out.println("getEndPage():" + getEndPage());		
+		System.out.println("getStartRnumForOracle():" + getStartRnumForOracle());
+		System.out.println("getEndRnumForOracle():" + getEndRnumForOracle());
+		System.out.println("getStartRnumForMysql(): " + getStartRnumForMysql());
+		
+	}
+	
+	public void setParamsPagingMypage(int totalRows) {
+		
+//		setThisPage(3);
+		
+		setTotalRows(totalRows);
+		
+		if (getTotalRows() == 0) {
+			setTotalPages(1);
+		} else {
+			setTotalPages(getTotalRows() / getRowNumToShowMypage());
+		}
+		
+		if (getTotalRows() % getRowNumToShowMypage() > 0) {
+			setTotalPages(getTotalPages() + 1);
+		}
+		
+		if (getTotalPages() < getThisPage()) {
+			setThisPage(getTotalPages());
+		}
+		
+		setStartPage(((getThisPage() - 1) / getPageNumToShow()) * getPageNumToShow() + 1);
+		
+		setEndPage(getStartPage() + getPageNumToShow() - 1);
+		
+		if (getEndPage() > getTotalPages()) {
+			setEndPage(getTotalPages());
+		}
+		
+		setEndRnumForOracle((getRowNumToShowMypage() * getThisPage()));
+		setStartRnumForOracle((getEndRnumForOracle() - getRowNumToShowMypage()) + 1);
+		if (getStartRnumForOracle() < 1) setStartRnumForOracle(1);
+		
+		setEndRnumForMysql((getRowNumToShowMypage() * getThisPage()));
+		
+		if(thisPage == 1) {
+			setStartRnumForMysql(0);
+		} else {
+			setStartRnumForMysql((getRowNumToShowMypage() * (getThisPage()-1)));
+		}
+		
+		
+		System.out.println("getThisPage():" + getThisPage());
+		System.out.println("getTotalRows():" + getTotalRows());
+		System.out.println("getRowNumToShowMypage():" + getRowNumToShowMypage());
 		System.out.println("getTotalPages():" + getTotalPages());
 		System.out.println("getStartPage():" + getStartPage());
 		System.out.println("getEndPage():" + getEndPage());		
