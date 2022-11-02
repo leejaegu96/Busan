@@ -48,6 +48,13 @@ public class HomeController {
 		vo.setParamsPagingMypage(service.selectWordCount(vo));
 	}
 	
+	@RequestMapping(value = "/toast")
+	public String toast(Model model) throws Exception {
+		
+		return "infra/home/user/toast";
+	}
+
+	
 	@RequestMapping(value = "/home/home")
 	public String home(Model model) throws Exception {
 		return "infra/home/user/home";
@@ -375,70 +382,70 @@ public class HomeController {
             throw new RuntimeException("API 응답을 읽는데 실패했습니다.", e);
         }
     }
-	
-	@RequestMapping(value = "/home/testCovid2")
-	public String publicCorona1List2(Model model) throws Exception {
-		
-		System.out.println("asdfasdfasdf");
-		
-		String apiUrl = "http://apis.data.go.kr/1790387/covid19CurrentStatusConfirmations/covid19CurrentStatusConfirmationsJson?serviceKey=S3yR1HrG%2BEkUMOE1NiU9xUAIGhQdnbmHLDh8zLm%2Fcmv1HhJiq0k%2Fw4LpOzsL4TO8Q31vVDPYY7IdhHxiJdUimA%3D%3D";
-		
-		URL url = new URL(apiUrl);
-		HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-		httpURLConnection.setRequestMethod("GET");
-		
-		BufferedReader bufferedReader;
-		if (httpURLConnection.getResponseCode() >= 200 && httpURLConnection.getResponseCode() <= 300) {
-			bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
-		} else {
-			bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getErrorStream()));
-		}
-		
-		StringBuilder stringBuilder = new StringBuilder();
-		String line;
-		while ((line = bufferedReader.readLine()) != null) {
-			System.out.println("line: " + line);
-			stringBuilder.append(line);
-		}
-
-		bufferedReader.close();
-		httpURLConnection.disconnect();
-
-		System.out.println("stringBuilder.toString(): " + stringBuilder.toString());
-		
-//		json object + array string -> java map
-		
-        ObjectMapper objectMapper = new ObjectMapper();
-        Map<String, Object> map = objectMapper.readValue(stringBuilder.toString(), Map.class);
-        
-        System.out.println("######## Map");
-		for (String key : map.keySet()) {
-			String value = String.valueOf(map.get(key));	// ok
-			System.out.println("[key]:" + key + ", [value]:" + value);
-		}
-		
-		Map<String, Object> result = new HashMap<String, Object>();
-		result = (Map<String, Object>) map.get("result");
-		
-		System.out.println("######## result");
-		for (String key : result.keySet()) {
-			String value = String.valueOf(result.get(key));	// ok
-			System.out.println("[key]:" + key + ", [value]:" + value);
-		}
-		
-		Map<String, Object> body = new HashMap<String, Object>();
-		body = (Map<String, Object>) map.get("body");
-		
-		List<Home> items = new ArrayList<Home>();
-		items = (List<Home>) body.get("items");
-		
-		System.out.println("items.size(): " + items.size());
-		
-		model.addAllAttributes(result);
-		model.addAllAttributes(body);
-		
-		return "infra/home/user/testCovid";
-	}
+//	
+//	@RequestMapping(value = "/home/testCovid2")
+//	public String publicCorona1List2(Model model) throws Exception {
+//		
+//		System.out.println("asdfasdfasdf");
+//		
+//		String apiUrl = "http://apis.data.go.kr/1790387/covid19CurrentStatusConfirmations/covid19CurrentStatusConfirmationsJson?serviceKey=S3yR1HrG%2BEkUMOE1NiU9xUAIGhQdnbmHLDh8zLm%2Fcmv1HhJiq0k%2Fw4LpOzsL4TO8Q31vVDPYY7IdhHxiJdUimA%3D%3D";
+//		
+//		URL url = new URL(apiUrl);
+//		HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+//		httpURLConnection.setRequestMethod("GET");
+//		
+//		BufferedReader bufferedReader;
+//		if (httpURLConnection.getResponseCode() >= 200 && httpURLConnection.getResponseCode() <= 300) {
+//			bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+//		} else {
+//			bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getErrorStream()));
+//		}
+//		
+//		StringBuilder stringBuilder = new StringBuilder();
+//		String line;
+//		while ((line = bufferedReader.readLine()) != null) {
+//			System.out.println("line: " + line);
+//			stringBuilder.append(line);
+//		}
+//
+//		bufferedReader.close();
+//		httpURLConnection.disconnect();
+//
+//		System.out.println("stringBuilder.toString(): " + stringBuilder.toString());
+//		
+////		json object + array string -> java map
+//		
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        Map<String, Object> map = objectMapper.readValue(stringBuilder.toString(), Map.class);
+//        
+//        System.out.println("######## Map");
+//		for (String key : map.keySet()) {
+//			String value = String.valueOf(map.get(key));	// ok
+//			System.out.println("[key]:" + key + ", [value]:" + value);
+//		}
+//		
+//		Map<String, Object> result = new HashMap<String, Object>();
+//		result = (Map<String, Object>) map.get("result");
+//		
+//		System.out.println("######## result");
+//		for (String key : result.keySet()) {
+//			String value = String.valueOf(result.get(key));	// ok
+//			System.out.println("[key]:" + key + ", [value]:" + value);
+//		}
+//		
+//		Map<String, Object> body = new HashMap<String, Object>();
+//		body = (Map<String, Object>) map.get("body");
+//		
+//		List<Home> items = new ArrayList<Home>();
+//		items = (List<Home>) body.get("items");
+//		
+//		System.out.println("items.size(): " + items.size());
+//		
+//		model.addAllAttributes(result);
+//		model.addAllAttributes(body);
+//		
+//		return "infra/home/user/testCovid";
+//	}
 	
 	@RequestMapping(value = "/home/testCovid2")
 	public String publicCorona1List(Model model) throws Exception {
