@@ -87,6 +87,7 @@
 		WHERE 1=1
 	</select>
 	<select id="myWordList" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql" />
 		SELECT
 		a.sdfDelNY
 		,b.ifmmName
@@ -99,6 +100,8 @@
 		WHERE 1=1
 			and b.ifmmSeq= #{mainKey}
 		group by c.sdwWord
+		<include refid="Base.orderByLimitForMysql" />
+		<include refid="Base.selectListLowerForMysqlMypage" />
 	</select>
 	<select id="myWordContents" resultMap="resultMapObj">
 		select

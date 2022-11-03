@@ -292,7 +292,7 @@
 									</div>
 									<div class="card-body">
 										<form method="post" name="formList" id="formList" action="/member/memberList">
-
+											<span>Total: ${vo.totalRows }</span>
 											<input type="hidden" name="ifmmSeq"> <input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>"> <input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>"> <input type="hidden" name="checkboxSeqArray">
 
 											<div class="row gx-3 gy-2">
@@ -411,8 +411,8 @@
 																			</c:forEach>
 																		</td>
 																		<td><c:out value="${list.ifmmPhone }" /></td>
-																		<td><c:out value="${list.ifmmMailNY }" /></td>
-																		<td><c:out value="${list.ifmmSmsNY }" /></td>
+																		<td><c:out value="${list.ifmmMailNy }" /></td>
+																		<td><c:out value="${list.ifmmSmsNy }" /></td>
 																	</tr>
 																</c:forEach>
 															</c:otherwise>
@@ -471,7 +471,7 @@
 														</div>
 													</div>
 													<div class="col-6" style="text-align: right;">
-														<button type="button" class="btn btn-success">
+														<button type="button" class="btn btn-success" id="btnExcel">
 															<i class="fa-solid fa-file-csv"></i>
 														</button>
 														<button type="button" class="btn btn-primary" id="btnForm">
@@ -516,13 +516,15 @@
 	<script>
 		var goUrlList = "/member/memberList";
 		var goUrlForm = "/member/memberForm";
+		var excelUri = "/member/excelDownload";
 
 		var seq = $("input:hidden[name=ifmmSeq]");
 
 		$('#btnForm').on("click", function() {
 			goForm(0);
 		});
-
+		
+		
 		goForm = function(keyValue) {
 			/* if(keyValue != 0) seq.val(btoa(keyValue)); */
 			seq.val(keyValue);
@@ -530,7 +532,11 @@
 		}
 
 		var form = $("form[name=formList]");
-
+		
+		$("#btnExcel").click(function() {
+			form.attr("action", excelUri).submit();
+		});
+		
 		goList = function(thisPage) {
 			$("input:hidden[name=thisPage]").val(thisPage);
 			form.attr("action", goUrlList).submit();

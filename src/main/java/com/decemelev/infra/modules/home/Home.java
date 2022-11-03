@@ -72,31 +72,8 @@ public class Home extends Base {
 	private String mainKey;
 	
 	
-	private String cnt1;
-	private String cnt2;
-	private String cnt3;
-	private String cnt4;
-	private String cnt5;
-	private String cnt6;
-	private String cnt7;
-	private String cnt8;
-	private String mmddhh;
-	private String mmdd1;
-	private String mmdd2;
-	private String mmdd3;
-	private String mmdd4;
-	private String mmdd5;
-	private String mmdd6;
-	private String mmdd7;
-	private String mmdd8;
-	private String rate1;
-	private String rate2;
-	private String rate3;
-	private String rate4;
-	private String rate5;
-	private String rate6;
-	private String rate7;
-	private String rate8;
+	
+	
 	private String resultCode;
 	private String resultMsg;
 	private String resultCnt;
@@ -115,8 +92,80 @@ public class Home extends Base {
 	public String KIT_EXPRT_QTY;
 	public String KIT_STOCK_QTY;
 	
+	public String ctime;
+	private String cid;
+	private String cname;
+	private String subject;
+	private String location;
+	private String charge;
+	private String target;
+	private String cover;
+	private String programName;
+	private String intro;
 	
 	
+	
+	
+	public String getCid() {
+		return cid;
+	}
+	public void setCid(String cid) {
+		this.cid = cid;
+	}
+	public String getCname() {
+		return cname;
+	}
+	public void setCname(String cname) {
+		this.cname = cname;
+	}
+	public String getSubject() {
+		return subject;
+	}
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	public String getCharge() {
+		return charge;
+	}
+	public void setCharge(String charge) {
+		this.charge = charge;
+	}
+	public String getTarget() {
+		return target;
+	}
+	public void setTarget(String target) {
+		this.target = target;
+	}
+	public String getCover() {
+		return cover;
+	}
+	public void setCover(String cover) {
+		this.cover = cover;
+	}
+	public String getProgramName() {
+		return programName;
+	}
+	public void setProgramName(String programName) {
+		this.programName = programName;
+	}
+	public String getIntro() {
+		return intro;
+	}
+	public void setIntro(String intro) {
+		this.intro = intro;
+	}
+	public String getCtime() {
+		return ctime;
+	}
+	public void setCtime(String ctime) {
+		this.ctime = ctime;
+	}
 	public Object getHeader() {
 		return header;
 	}
@@ -200,156 +249,6 @@ public class Home extends Base {
 	}
 	public void setResultCnt(String resultCnt) {
 		this.resultCnt = resultCnt;
-	}
-	public String getCnt1() {
-		return cnt1;
-	}
-	public void setCnt1(String cnt1) {
-		this.cnt1 = cnt1;
-	}
-	public String getCnt2() {
-		return cnt2;
-	}
-	public void setCnt2(String cnt2) {
-		this.cnt2 = cnt2;
-	}
-	public String getCnt3() {
-		return cnt3;
-	}
-	public void setCnt3(String cnt3) {
-		this.cnt3 = cnt3;
-	}
-	public String getCnt4() {
-		return cnt4;
-	}
-	public void setCnt4(String cnt4) {
-		this.cnt4 = cnt4;
-	}
-	public String getCnt5() {
-		return cnt5;
-	}
-	public void setCnt5(String cnt5) {
-		this.cnt5 = cnt5;
-	}
-	public String getCnt6() {
-		return cnt6;
-	}
-	public void setCnt6(String cnt6) {
-		this.cnt6 = cnt6;
-	}
-	public String getCnt7() {
-		return cnt7;
-	}
-	public void setCnt7(String cnt7) {
-		this.cnt7 = cnt7;
-	}
-	public String getCnt8() {
-		return cnt8;
-	}
-	public void setCnt8(String cnt8) {
-		this.cnt8 = cnt8;
-	}
-	public String getMmddhh() {
-		return mmddhh;
-	}
-	public void setMmddhh(String mmddhh) {
-		this.mmddhh = mmddhh;
-	}
-	public String getMmdd1() {
-		return mmdd1;
-	}
-	public void setMmdd1(String mmdd1) {
-		this.mmdd1 = mmdd1;
-	}
-	public String getMmdd2() {
-		return mmdd2;
-	}
-	public void setMmdd2(String mmdd2) {
-		this.mmdd2 = mmdd2;
-	}
-	public String getMmdd3() {
-		return mmdd3;
-	}
-	public void setMmdd3(String mmdd3) {
-		this.mmdd3 = mmdd3;
-	}
-	public String getMmdd4() {
-		return mmdd4;
-	}
-	public void setMmdd4(String mmdd4) {
-		this.mmdd4 = mmdd4;
-	}
-	public String getMmdd5() {
-		return mmdd5;
-	}
-	public void setMmdd5(String mmdd5) {
-		this.mmdd5 = mmdd5;
-	}
-	public String getMmdd6() {
-		return mmdd6;
-	}
-	public void setMmdd6(String mmdd6) {
-		this.mmdd6 = mmdd6;
-	}
-	public String getMmdd7() {
-		return mmdd7;
-	}
-	public void setMmdd7(String mmdd7) {
-		this.mmdd7 = mmdd7;
-	}
-	public String getMmdd8() {
-		return mmdd8;
-	}
-	public void setMmdd8(String mmdd8) {
-		this.mmdd8 = mmdd8;
-	}
-	public String getRate1() {
-		return rate1;
-	}
-	public void setRate1(String rate1) {
-		this.rate1 = rate1;
-	}
-	public String getRate2() {
-		return rate2;
-	}
-	public void setRate2(String rate2) {
-		this.rate2 = rate2;
-	}
-	public String getRate3() {
-		return rate3;
-	}
-	public void setRate3(String rate3) {
-		this.rate3 = rate3;
-	}
-	public String getRate4() {
-		return rate4;
-	}
-	public void setRate4(String rate4) {
-		this.rate4 = rate4;
-	}
-	public String getRate5() {
-		return rate5;
-	}
-	public void setRate5(String rate5) {
-		this.rate5 = rate5;
-	}
-	public String getRate6() {
-		return rate6;
-	}
-	public void setRate6(String rate6) {
-		this.rate6 = rate6;
-	}
-	public String getRate7() {
-		return rate7;
-	}
-	public void setRate7(String rate7) {
-		this.rate7 = rate7;
-	}
-	public String getRate8() {
-		return rate8;
-	}
-	public void setRate8(String rate8) {
-		this.rate8 = rate8;
 	}
 	public String getMainKey() {
 		return mainKey;

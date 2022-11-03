@@ -18,6 +18,10 @@
 		) aa
 		limit #{rowNumToShow} offset #{startRnumForMysql}
 	</sql>
+	<sql id="selectListLowerForMysqlMypage">	
+		) aa
+		limit #{rowNumToShowMypage} offset #{startRnumForMysql}
+	</sql>
 	
 	<sql id="insertRegColumn">	
 		,regIp

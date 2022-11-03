@@ -11,6 +11,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.net.http.HttpRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -382,71 +383,99 @@ public class HomeController {
             throw new RuntimeException("API 응답을 읽는데 실패했습니다.", e);
         }
     }
+    
+    
 //	
-//	@RequestMapping(value = "/home/testCovid2")
-//	public String publicCorona1List2(Model model) throws Exception {
-//		
-//		System.out.println("asdfasdfasdf");
-//		
-//		String apiUrl = "http://apis.data.go.kr/1790387/covid19CurrentStatusConfirmations/covid19CurrentStatusConfirmationsJson?serviceKey=S3yR1HrG%2BEkUMOE1NiU9xUAIGhQdnbmHLDh8zLm%2Fcmv1HhJiq0k%2Fw4LpOzsL4TO8Q31vVDPYY7IdhHxiJdUimA%3D%3D";
-//		
-//		URL url = new URL(apiUrl);
-//		HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-//		httpURLConnection.setRequestMethod("GET");
-//		
-//		BufferedReader bufferedReader;
-//		if (httpURLConnection.getResponseCode() >= 200 && httpURLConnection.getResponseCode() <= 300) {
-//			bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
-//		} else {
-//			bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getErrorStream()));
+//  서귀포시 축제정보
+	@RequestMapping(value = "/home/testCovid")
+	public String publicCorona1List2(Model model) throws Exception {
+		
+		System.out.println("asdfasdfasdf");
+		
+		String apiUrl = "https://www.seogwipo.go.kr/festival/program/scheduledata.htm?act=index&format=json";
+		
+		URL url = new URL(apiUrl);
+		HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+		httpURLConnection.setRequestMethod("GET");
+		
+		BufferedReader bufferedReader;
+		if (httpURLConnection.getResponseCode() >= 200 && httpURLConnection.getResponseCode() <= 300) {
+			bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+		} else {
+			bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getErrorStream()));
+		}
+		
+		StringBuilder stringBuilder = new StringBuilder();
+		String line;
+		while ((line = bufferedReader.readLine()) != null) {
+			System.out.println("line: " + line);
+			stringBuilder.append(line);
+		}
+
+		bufferedReader.close();
+		httpURLConnection.disconnect();
+
+		System.out.println("stringBuilder.toString(): " + stringBuilder.toString());
+		
+//		json object + array string -> java map
+		
+        ObjectMapper objectMapper = new ObjectMapper();
+        Map<String, Object> map = objectMapper.readValue(stringBuilder.toString(), Map.class);
+        
+        System.out.println("######## Map");
+		for (String key : map.keySet()) {
+			String value = String.valueOf(map.get(key));	// ok
+			System.out.println("[key]:" + key + ", [value]:" + value);
+		}
+
+//		List<HashMap<String, Object>> header = new ArrayList<HashMap<String, Object>>();
+//		header = (List<HashMap<String, Object>>) map.get("courses");
+////		
+//		System.out.println("######## Header");
+		
+//		for(int i=0; i<map.size(); i++) {
+//			System.out.println("ctimes:" + header.get(i));
 //		}
-//		
-//		StringBuilder stringBuilder = new StringBuilder();
-//		String line;
-//		while ((line = bufferedReader.readLine()) != null) {
-//			System.out.println("line: " + line);
-//			stringBuilder.append(line);
-//		}
-//
-//		bufferedReader.close();
-//		httpURLConnection.disconnect();
-//
-//		System.out.println("stringBuilder.toString(): " + stringBuilder.toString());
-//		
-////		json object + array string -> java map
-//		
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        Map<String, Object> map = objectMapper.readValue(stringBuilder.toString(), Map.class);
-//        
-//        System.out.println("######## Map");
-//		for (String key : map.keySet()) {
-//			String value = String.valueOf(map.get(key));	// ok
+		
+//		for (String key : header.keySet()) {
+//			String value = String.valueOf(header.get(key));	// ok
 //			System.out.println("[key]:" + key + ", [value]:" + value);
 //		}
 //		
-//		Map<String, Object> result = new HashMap<String, Object>();
-//		result = (Map<String, Object>) map.get("result");
-//		
-//		System.out.println("######## result");
-//		for (String key : result.keySet()) {
-//			String value = String.valueOf(result.get(key));	// ok
-//			System.out.println("[key]:" + key + ", [value]:" + value);
-//		}
-//		
+//		String aaa = (String) header.get("resultCode");
+		
+//		System.out.println("header.get(\"resultCode\"): " + header.get("resultCode"));
+//		System.out.println("header.get(\"resultMsg\"): " + header.get("resultMsg"));
+		
 //		Map<String, Object> body = new HashMap<String, Object>();
 //		body = (Map<String, Object>) map.get("body");
-//		
+		
+		
+		
+		
 //		List<Home> items = new ArrayList<Home>();
-//		items = (List<Home>) body.get("items");
-//		
-//		System.out.println("items.size(): " + items.size());
-//		
-//		model.addAllAttributes(result);
+//		items = (List<Home>) map.get("courses");
+		
+		List<HashMap<String, Object>> items = new ArrayList<HashMap<String, Object>>();
+		items = (List<HashMap<String, Object>>) map.get("courses");
+		
+		System.out.println("items: " + items);
+		System.out.println("items.size(): " + items.size());
+		
+//		for(Home item : items) {
+//			System.out.println(item.getMM());
+//		}
+		System.out.println(items.getClass());
+		System.out.println(items.get(0).get("ctime"));
+		
+		model.addAttribute("items", items);
+//		model.addAllAttributes(header);
 //		model.addAllAttributes(body);
-//		
-//		return "infra/home/user/testCovid";
-//	}
+		
+		return "infra/home/user/testCovid";
+	}
 	
+//  선생님 예시
 	@RequestMapping(value = "/home/testCovid2")
 	public String publicCorona1List(Model model) throws Exception {
 		
@@ -518,7 +547,7 @@ public class HomeController {
 		model.addAllAttributes(header);
 		model.addAllAttributes(body);
 		
-		return "infra/home/user/testCovid";
+		return "infra/home/user/testCovid2";
 	}
 	
 				

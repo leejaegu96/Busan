@@ -19,14 +19,26 @@ public class Member extends Base {
 	private Date ifmmDob;
 	private Integer ifmmPhoneCarrier;
 	private String ifmmPhone;
-	private Integer ifmmMailNY;
-	private Integer ifmmSmsNY;
+	private Integer ifmmMailNy;
+	private Integer ifmmSmsNy;
 	private String ifcdName;
 	private Integer ifmmDelNy;
 	
 	private MultipartFile[] ifmmUploadedProfileImage;
 	
 	
+	public Integer getIfmmMailNy() {
+		return ifmmMailNy;
+	}
+	public void setIfmmMailNy(Integer ifmmMailNy) {
+		this.ifmmMailNy = ifmmMailNy;
+	}
+	public Integer getIfmmSmsNy() {
+		return ifmmSmsNy;
+	}
+	public void setIfmmSmsNy(Integer ifmmSmsNy) {
+		this.ifmmSmsNy = ifmmSmsNy;
+	}
 	public MultipartFile[] getIfmmUploadedProfileImage() {
 		return ifmmUploadedProfileImage;
 	}
@@ -92,18 +104,6 @@ public class Member extends Base {
 	}
 	public void setIfmmPhone(String ifmmPhone) {
 		this.ifmmPhone = ifmmPhone;
-	}
-	public Integer getIfmmMailNY() {
-		return ifmmMailNY;
-	}
-	public void setIfmmMailNY(Integer ifmmMailNY) {
-		this.ifmmMailNY = ifmmMailNY;
-	}
-	public Integer getIfmmSmsNY() {
-		return ifmmSmsNY;
-	}
-	public void setIfmmSmsNY(Integer ifmmSmsNY) {
-		this.ifmmSmsNY = ifmmSmsNY;
 	}
 	public String getIfcdName() {
 		return ifcdName;
