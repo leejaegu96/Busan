@@ -50,7 +50,20 @@ public class LoginServiceImpl implements LoginService {
 		System.out.println("service insert result: " + result);
 		return result;
 	}
+	@Override
+	public int kakaoInst(Login dto) throws Exception {
+		int result = dao.kakaoInst(dto);
+		
+		System.out.println("service insert result: " + result);
+		return result;
+	}
 	
+	@Override
+	public Login snsLoginCheck(Login dto) throws Exception {
+		Login result = dao.snsLoginCheck(dto);
+		System.out.println("service snsLoginCheck result: " + result);
+		return result;
+	}
 	@Override
 	public int selectOneIdCheck(Login dto) throws Exception {
 		int result = dao.selectOneIdCheck(dto);

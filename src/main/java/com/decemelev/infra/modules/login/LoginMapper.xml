@@ -35,6 +35,7 @@
 			,ifmmResidence
 			,ifmmDetailedAddress
 			,ifmmReference
+			,ifmmSnsLogin
 		)
 		VALUES (
 			#{ifmmName}
@@ -54,13 +55,46 @@
 			,#{ifmmResidence}
 			,#{ifmmDetailedAddress}
 			,#{ifmmReference}
+			,1
 		)
 		<selectKey resultType="String" keyProperty="ifmmSeq" order="AFTER">
 			SELECT last_insert_id()
 		</selectKey>
-		
+	</insert>
+	<!-- 카카오 로그인 -->
+	<insert id="kakaoInst">
+		INSERT INTO infrMember (
+			ifmmGender
+			,ifmmEmail
+			,ifmmSnsLogin
+			,ifmmName
+			,ifmmId
+		)
+		VALUES (
+			#{gender}
+			,#{email}
+			,2
+			,#{name}
+			,#{snsId}
+		)
+		<selectKey resultType="String" keyProperty="ifmmSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
 	</insert>
 	
+	<select id="snsLoginCheck" resultMap="resultMapObj">
+		SELECT
+			ifmmEmail
+			,ifmmName
+			,ifmmSeq
+			,ifmmId
+			,ifmmSnsLogin
+		FROM infrMember a
+		WHERE 1=1 
+			AND ifmmEmail = #{email}
+			AND ifmmSnsLogin = 2
+	</select>
+	<!-- 카카오 로그인 -->
 	<select id="selectOneIdCheck" resultType="Integer">
 		SELECT
 			count(*)

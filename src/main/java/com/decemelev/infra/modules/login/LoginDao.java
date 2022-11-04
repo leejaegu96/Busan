@@ -27,6 +27,13 @@ public class LoginDao {
 		System.out.println("dao insert result: " + result);
 		return result;
 	}
+	public int kakaoInst(Login dto) {
+		int result = sqlSession.insert(namespace + ".kakaoInst", dto);
+		System.out.println("dao insert result: " + result);
+		return result;
+	}
+	
+	public Login snsLoginCheck(Login dto) { return sqlSession.selectOne(namespace + ".snsLoginCheck", dto);}
 	
 	public int selectOneIdCheck(Login dto) { return sqlSession.selectOne(namespace + ".selectOneIdCheck", dto);}
 	

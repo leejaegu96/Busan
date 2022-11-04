@@ -467,7 +467,7 @@ input-group-text {
 														</div>
 													</div>
 													<div class="col-6" style="text-align: right;">
-														<button type="button" class="btn btn-success">
+														<button type="button" class="btn btn-success" id="btnExcel">
 															<i class="fa-solid fa-file-csv"></i>
 														</button>
 														<button type="button" class="btn btn-primary" id="btnForm">
@@ -619,7 +619,7 @@ input-group-text {
 											<div class="row mb-3">
 												<label for="date" class="col-md-4 col-lg-3 col-form-label">Date Of Birth</label>
 												<div class="col-md-8 col-lg-9">
-													<input type="text" class="form-control" id="ifmmDob" name="ifmmDob" value="<c:out value="${list.ifmmDob }"/>">
+													<input type="text" class="form-control" id="datepicker" name="ifmmDob" value="<c:out value="${list.ifmmDob }"/>">
 												</div>
 											</div>
 
@@ -857,7 +857,14 @@ input-group-text {
 		</nav>
 	</div>
 
-
+	<script type="text/javascript">
+	var excelUri = "/home/excelDownload";
+	var form = $("form[name=formList]");
+	
+	$("#btnExcel").click(function() {
+		form.attr("action", excelUri).submit();
+	});
+	</script>
 
 	<script type="text/javascript">
 		$("#btnLogout").on(

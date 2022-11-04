@@ -25,15 +25,86 @@ public class Login extends Base {
 	private String ifmmResidence;
 	private String ifmmDetailedAddress;
 	private String ifmmReference;
+	private Integer ifmmSnsLogin;
+	
 	
 	private MultipartFile[] ifmmUploadedProfileImage;
 	
+//	카카오 로그인
+	private String token;
+	private String email;
+	private String gender;
+	private String birthday;
+	private String snsId;
+	private String dob;
+	private String name;
+	private String seq;
+	private String id;
 	
 	
 	
 	
 	
-	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getSeq() {
+		return seq;
+	}
+	public void setSeq(String seq) {
+		this.seq = seq;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getSnsId() {
+		return snsId;
+	}
+	public void setSnsId(String snsId) {
+		this.snsId = snsId;
+	}
+	public String getDob() {
+		return dob;
+	}
+	public void setDob(String dob) {
+		this.dob = dob;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	public String getBirthday() {
+		return birthday;
+	}
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
+	public Integer getIfmmSnsLogin() {
+		return ifmmSnsLogin;
+	}
+	public void setIfmmSnsLogin(Integer ifmmSnsLogin) {
+		this.ifmmSnsLogin = ifmmSnsLogin;
+	}
+	public String getToken() {
+		return token;
+	}
+	public void setToken(String token) {
+		this.token = token;
+	}
 	public MultipartFile[] getIfmmUploadedProfileImage() {
 		return ifmmUploadedProfileImage;
 	}

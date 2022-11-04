@@ -115,38 +115,39 @@ public class LoginController {
 		return returnMap;
 	}
 	
-	@ResponseBody
-	@RequestMapping(value = "loginProc1")
-	public Map<String, Object> loginProc1(Login dto, HttpSession httpSession) throws Exception {
-		Map<String, Object> returnMap = new HashMap<String, Object>();
-		dto.setIfmmPassword(UtilSecurity.encryptSha256(dto.getIfmmPassword()));
-		Login rtLogin = service.selectOneId1(dto);
-		System.out.println(rtLogin);
-		
-		if (rtLogin != null) {
-			Login rtLogin2 = service.selectOneLogin1(dto);
-			
-			if(rtLogin2 != null) {
-				httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE); // 60second * 30 = 30minute
-				httpSession.setAttribute("sessSeq", rtLogin2.getIfmmSeq());
-				httpSession.setAttribute("sessEmail", rtLogin2.getIfmmEmail());
-				httpSession.setAttribute("sessName", rtLogin2.getIfmmName());
-				
-				System.out.println("success");
-				returnMap.put("rt", "success");
-			} else {
-				System.out.println("fail");
-				returnMap.put("rt", "fail");
-			}
-		} else {
-			System.out.println("fail");
-			returnMap.put("rt", "fail");
-			
-			
-		}
-		
-		return returnMap;
-	}
+	//강사로그인
+//	@ResponseBody
+//	@RequestMapping(value = "loginProc1")
+//	public Map<String, Object> loginProc1(Login dto, HttpSession httpSession) throws Exception {
+//		Map<String, Object> returnMap = new HashMap<String, Object>();
+//		dto.setIfmmPassword(UtilSecurity.encryptSha256(dto.getIfmmPassword()));
+//		Login rtLogin = service.selectOneId1(dto);
+//		System.out.println(rtLogin);
+//		
+//		if (rtLogin != null) {
+//			Login rtLogin2 = service.selectOneLogin1(dto);
+//			
+//			if(rtLogin2 != null) {
+//				httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE); // 60second * 30 = 30minute
+//				httpSession.setAttribute("sessSeq", rtLogin2.getIfmmSeq());
+//				httpSession.setAttribute("sessEmail", rtLogin2.getIfmmEmail());
+//				httpSession.setAttribute("sessName", rtLogin2.getIfmmName());
+//				
+//				System.out.println("success");
+//				returnMap.put("rt", "success");
+//			} else {
+//				System.out.println("fail");
+//				returnMap.put("rt", "fail");
+//			}
+//		} else {
+//			System.out.println("fail");
+//			returnMap.put("rt", "fail");
+//			
+//			
+//		}
+//		
+//		return returnMap;
+//	}
 	
 	@ResponseBody
 	@RequestMapping(value = "logoutProc")
@@ -157,6 +158,42 @@ public class LoginController {
 		return returnMap;
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "kakaoLoginProc")
+	public Map<String, Object> kakaoLoginProc(Login dto, HttpSession httpSession) throws Exception {
+	    Map<String, Object> returnMap = new HashMap<String, Object>();
+	    
+	    Login kakaoLogin = service.snsLoginCheck(dto);
+		
+		System.out.println("test : " + dto.getToken());
+		
+		if (kakaoLogin == null) {
+			service.kakaoInst(dto);
+			
+			httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE);
+			// session(dto.getSeq(), dto.getId(), dto.getName(), dto.getEmail(), dto.getUser_div(), dto.getSnsImg(), dto.getSns_type(), httpSession);
+            session(dto, httpSession); 
+			returnMap.put("rt", "success");
+		} else {
+			httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE);
+			
+			// session(kakaoLogin.getSeq(), kakaoLogin.getId(), kakaoLogin.getName(), kakaoLogin.getEmail(), kakaoLogin.getUser_div(), kakaoLogin.getSnsImg(), kakaoLogin.getSns_type(), httpSession);
+			session(kakaoLogin, httpSession);
+			System.out.println(kakaoLogin.getIfmmSeq());
+			System.out.println(kakaoLogin.getIfmmName());
+			System.out.println(kakaoLogin.getIfmmId());
+			System.out.println(kakaoLogin.getIfmmEmail());
+			returnMap.put("rt", "success");
+		}
+		return returnMap;
+	}
+
+	 public void session(Login dto, HttpSession httpSession) {
+		 httpSession.setAttribute("sessSeq", dto.getIfmmSeq());    
+	     httpSession.setAttribute("sessName", dto.getIfmmName());
+	     httpSession.setAttribute("sessId", dto.getIfmmId());
+	     httpSession.setAttribute("sessEmail", dto.getIfmmEmail());
+	 }
 	
 	
 	

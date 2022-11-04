@@ -8,7 +8,9 @@ public interface LoginService {
 	public List<Login> selectList() throws Exception; 
 	
 	public int insert(Login dto) throws Exception;
+	public int kakaoInst(Login dto) throws Exception;
 	
+	public Login snsLoginCheck(Login dto) throws Exception;
 	public int selectOneIdCheck(Login dto) throws Exception;
 	
 	public Login selectOneId(Login dto) throws Exception;
