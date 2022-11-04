@@ -308,6 +308,7 @@ input-group-text {
 
 									<div class="tab-pane fade show active My-Word pt-3" id="My-Word">
 										<form name="formList" id="formList" action="/home/mypage">
+											<span style="font-weight:bold">&nbsp;Total: ${vo.totalRows }</span>
 											<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>"> <input type="hidden" name="rowNumToShowMypage" value="<c:out value="${vo.rowNumToShowMypage }"/>">
 											<div class="dataTable-container">
 												<input type="hidden" name="ifmmName" value="${list.ifmmName }">
@@ -341,25 +342,35 @@ input-group-text {
 																				<input class="form-check-input" type="checkbox" name="chk_box" onclick="check();" value="">
 																			</div>
 																		</td>
-																		<td>${status.count }</td>
-																		<td style="text-align: left;">${list1.sdwWord }</td>
+																		<td ><c:out value="${vo.totalRows - ((vo.thisPage -1) * vo.rowNumToShowMypage + status.index) }" /></td>
+																		<td style="text-align: left; font-weight: bold;">${list1.sdwWord }</td>
 																		<td style="text-align: left;">
-																			<c:forEach items="${item1}" var="item1" varStatus="status">
-																				<c:if test="${list1.sdwWord == item1.sdwWord }">
-																					<div class="ask">
-																						<span class="content" style="font-weight: bold;" value="${list1.sdwSeq }">${item1.sdwmNum}. &nbsp;${item1.sdwmPartOfSpeech}</span> <span class="content" value="${list1.sdwSeq }">&nbsp;${item1.sdwmContents}</span> <br>
-																					</div>
-																				</c:if>
-																			</c:forEach>
+																			<ol type="1">
+																				<c:forEach items="${item1}" var="item1" varStatus="status">
+																					<c:if test="${list1.sdwWord == item1.sdwWord }">
+																						<div class="ask">
+																							<%-- 
+																							<span class="content" style="font-weight: bold;" value="${list1.sdwSeq }">${item1.sdwmNum}. &nbsp;${item1.sdwmPartOfSpeech}</span> <span class="content" value="${list1.sdwSeq }">&nbsp;${item1.sdwmContents}</span> <br>
+																							 --%>
+																							<li><span class="content" style="font-weight: bold;" value="${list1.sdwSeq }">${item1.sdwmPartOfSpeech}</span> <span class="content" value="${list1.sdwSeq }">&nbsp;${item1.sdwmContents}</span></li>
+																						</div>
+																					</c:if>
+																				</c:forEach>
+																			</ol>
 																		</td>
 																		<td style="text-align: left;">
-																			<c:forEach items="${item1}" var="item1" varStatus="status">
-																				<c:if test="${list1.sdwWord == item1.sdwWord }">
-																					<div class="ask1">
-																						<span class="content" style="font-weight: bold;">${item1.sdwmNum}.&nbsp;</span> <span class="content" value="${list1.sdwSeq }">${item1.sdweContents}</span> <br> <span class="content" value="${list1.sdwSeq }">&nbsp;&nbsp;&nbsp;&nbsp;${item1.sdweTranslate}</span> <br>
-																					</div>
-																				</c:if>
-																			</c:forEach>
+																			<ol type="1">
+																				<c:forEach items="${item1}" var="item1" varStatus="status">
+																					<c:if test="${list1.sdwWord == item1.sdwWord }">
+																						<div class="ask1">
+																							<%-- 
+																							<span class="content" style="font-weight: bold;">${item1.sdwmNum}.&nbsp;</span> <span class="content" value="${list1.sdwSeq }">${item1.sdweContents}</span> <br> <span class="content" value="${list1.sdwSeq }">&nbsp;&nbsp;&nbsp;&nbsp;${item1.sdweTranslate}</span> <br>
+																							 --%>
+																							<li><span class="content" style="font-weight:bold;" value="${list1.sdwSeq }">${item1.sdweContents}</span> <br> <span class="content" value="${list1.sdwSeq }">${item1.sdweTranslate}</span></li>
+																						</div>
+																					</c:if>
+																				</c:forEach>
+																			</ol>
 																		</td>
 																		<td style="text-align: left;">${list1.sddDateChoice }</td>
 																	</tr>
