@@ -32,6 +32,13 @@
 		AND b.sddDateChoice = #{sddDateChoice}
 		AND c.infrMember_ifmmSeq= #{mainKey}
 	</select>
+	
+	<delete id="delete">
+		DELETE FROM sdFavorite
+		WHERE 1=1
+			AND sdWord_sdwSeq = #{sdwSeq}
+	</delete>
+	
 	<select id="selectList" resultMap="resultMapObj">
 		SELECT
 		a.sdwSeq
@@ -90,6 +97,7 @@
 		<include refid="Base.selectListUpperForMysql" />
 		SELECT
 		a.sdfDelNY
+		,a.sdfSeq
 		,b.ifmmName
 		,c.sdwWord
 		,d.sddDateChoice

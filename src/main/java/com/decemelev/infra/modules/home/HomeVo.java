@@ -8,7 +8,16 @@ public class HomeVo extends BaseVo{
 	private String ifmmSeq;
 	private String sdwSeq;
 	private String sdWord_sdwSeq;
+	private String sdfSeq;
 	
+
+	public String getSdfSeq() {
+		return sdfSeq;
+	}
+
+	public void setSdfSeq(String sdfSeq) {
+		this.sdfSeq = sdfSeq;
+	}
 
 	public String getSdWord_sdwSeq() {
 		return sdWord_sdwSeq;

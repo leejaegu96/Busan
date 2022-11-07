@@ -29,6 +29,9 @@ public class HomeDao {
 		List<Home> list = sqlSession.selectList("com.decemelev.infra.modules.home.HomeMapper.favoriteList", dto);
 		return list;
 	}
+	
+	public int delete(HomeVo vo) { return sqlSession.delete(namespace + ".delete", vo); }
+	
 	public List<Home> selectList(Home dto) {
 		List<Home> list = sqlSession.selectList("com.decemelev.infra.modules.home.HomeMapper.selectList", dto);
 		return list;

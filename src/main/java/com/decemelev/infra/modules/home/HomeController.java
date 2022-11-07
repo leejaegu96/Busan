@@ -40,6 +40,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.decemelev.infra.common.util.UtilDateTime;
 import com.decemelev.infra.common.util.UtilSecurity;
 import com.decemelev.infra.modules.code.CodeServiceImpl;
+import com.decemelev.infra.modules.member.MemberVo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
@@ -226,6 +227,19 @@ public class HomeController {
 		model.addAttribute("listUploaded", service.selectListUploaded(vo));
 		
 		return "infra/home/user/mypage";
+	}
+	
+	@RequestMapping(value = "/home/wordMultiDele")
+	public String memberMultiDele(HomeVo vo, RedirectAttributes redirectAttributes) throws Exception {
+
+		for (String checkboxSeq : vo.getCheckboxSeqArray()) {
+			vo.setSdfSeq(checkboxSeq);
+			service.delete(vo);
+		}
+
+		redirectAttributes.addFlashAttribute("vo", vo);
+
+		return "redirect:/home/mypage";
 	}
 	
 	@RequestMapping(value = "/home/homeUpdt")

@@ -97,18 +97,46 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "memberUele")
-	public String memberUele(MemberVo vo, Member dto) throws Exception {
+	public String memberUele(MemberVo vo, Member dto, RedirectAttributes redirectAttributes) throws Exception {
 		
 		int result = service.uelete(dto);
+		redirectAttributes.addFlashAttribute("vo", vo);
 		System.out.println("Controller Result : " + result);
 		return "redirect:/member/memberList";
 	}
 	
 	@RequestMapping(value = "memberDele")
-	public String nationalityDele(MemberVo vo) throws Exception {
+	public String memberDele(MemberVo vo, RedirectAttributes redirectAttributes) throws Exception {
 		
 		int result = service.delete(vo);
+		redirectAttributes.addFlashAttribute("vo", vo);
 		System.out.println("Controller Result : " + result);
+		return "redirect:/member/memberList";
+	}
+	
+	@RequestMapping(value = "memberMultiUele")
+	public String memberMultiUele(MemberVo vo, Member dto, RedirectAttributes redirectAttributes) throws Exception {
+
+		for (String checkboxSeq : vo.getCheckboxSeqArray()) {
+			dto.setIfmmSeq(checkboxSeq);
+			service.uelete(dto);
+		}
+
+		redirectAttributes.addFlashAttribute("vo", vo);
+
+		return "redirect:/member/memberList";
+	}
+	
+	@RequestMapping(value = "memberMultiDele")
+	public String memberMultiDele(MemberVo vo, RedirectAttributes redirectAttributes) throws Exception {
+
+		for (String checkboxSeq : vo.getCheckboxSeqArray()) {
+			vo.setIfmmSeq(checkboxSeq);
+			service.delete(vo);
+		}
+
+		redirectAttributes.addFlashAttribute("vo", vo);
+
 		return "redirect:/member/memberList";
 	}
 	

@@ -20,11 +20,20 @@ public class BaseVo {
 
 	private int startRnumForMysql = 0;							// 쿼리 시작 row
 	private int endRnumForMysql = 0;							// 쿼리 시작 row
+	
+//	list
+	private String[] checkboxSeqArray;
+	
+	
+	
+	public String[] getCheckboxSeqArray() {
+		return checkboxSeqArray;
+	}
 
-	
-	
-	
-	
+	public void setCheckboxSeqArray(String[] checkboxSeqArray) {
+		this.checkboxSeqArray = checkboxSeqArray;
+	}
+
 	public int getRowNumToShowMypage() {
 		return rowNumToShowMypage;
 	}

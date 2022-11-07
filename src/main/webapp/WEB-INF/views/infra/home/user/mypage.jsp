@@ -147,13 +147,11 @@ input-group-text {
 
 		<header id="header">
 			<h3 style="color: white; font-size: 20px; margin-top: 10px; margin-left: 20px; height: 52px; cursor: pointer;" onClick="location.href='home'">
-				<i class="fa-solid fa-book-open"></i>
-				&nbsp;E-WORD
+				<i class="fa-solid fa-book-open"></i> &nbsp;E-WORD
 			</h3>
 			<nav id="nav">
 				<ul>
-					<li>
-						<c:choose>
+					<li><c:choose>
 							<c:when test="${sessSeq eq null}">
 							</c:when>
 							<c:when test="${sessSeq eq 144}">
@@ -164,50 +162,27 @@ input-group-text {
 								<span style="color: #959ADA; font-weight: bolder;"> <c:out value="${sessName }" />
 								</span>님
 							</c:otherwise>
-						</c:choose>
-					</li>
-					<li>
-						<a href="home" class="button" style="cursor: pointer; background-color: #444444;">Home</a>
-					</li>
+						</c:choose></li>
+					<li><a href="home" class="button" style="cursor: pointer; background-color: #444444;">Home</a></li>
 					<c:choose>
 						<c:when test="${sessSeq eq null}">
 							<!--로그인 전 화면  -->
-							<li>
-								<a href="#" class="button" onClick="location.href='../login/signUp'" style="cursor: pointer; background-color: #444444;">Sign Up</a>
-							</li>
-							<li>
-								<a href="#" class="button" onClick="location.href='../login/login'" style="cursor: pointer;">Login</a>
-							</li>
+							<li><a href="#" class="button" onClick="location.href='../login/signUp'" style="cursor: pointer; background-color: #444444;">Sign Up</a></li>
+							<li><a href="#" class="button" onClick="location.href='../login/login'" style="cursor: pointer;">Login</a></li>
 						</c:when>
 						<c:when test="${sessSeq eq 144}">
 							<!--관리자 로그인 후 화면  -->
-							<li>
-								<a href="mypage" class="button" style="cursor: pointer; background-color: #444444;">Mypage</a>
-							</li>
-							<li>
-								<a href="/member/memberList" class="button" style="cursor: pointer; background-color: #444444;">Admin</a>
-							</li>
-							<li>
-								<a href="#" class="button" id="btnLogout" style="cursor: pointer;">Logout</a>
-							</li>
+							<li><a href="mypage" class="button" style="cursor: pointer; background-color: #444444;">Mypage</a></li>
+							<li><a href="/member/memberList" class="button" style="cursor: pointer; background-color: #444444;">Admin</a></li>
+							<li><a href="#" class="button" id="btnLogout" style="cursor: pointer;">Logout</a></li>
 						</c:when>
 						<c:otherwise>
 							<!--로그인 후 화면  -->
-							<li>
-								<a href="test" class="button" style="cursor: pointer; background-color: #444444;">Test</a>
-							</li>
-							<li>
-								<a href="rank" class="button" style="cursor: pointer; background-color: #444444;">Rank</a>
-							</li>
-							<li>
-								<a href="translate" class="button" style="cursor: pointer; background-color: #444444;">Translate</a>
-							</li>
-							<li>
-								<a href="mypage" class="button" style="cursor: pointer; background-color: #444444;">Mypage</a>
-							</li>
-							<li>
-								<a href="#" class="button" id="btnLogout" style="cursor: pointer;">Logout</a>
-							</li>
+							<li><a href="test" class="button" style="cursor: pointer; background-color: #444444;">Test</a></li>
+							<li><a href="rank" class="button" style="cursor: pointer; background-color: #444444;">Rank</a></li>
+							<li><a href="translate" class="button" style="cursor: pointer; background-color: #444444;">Translate</a></li>
+							<li><a href="mypage" class="button" style="cursor: pointer; background-color: #444444;">Mypage</a></li>
+							<li><a href="#" class="button" id="btnLogout" style="cursor: pointer;">Logout</a></li>
 						</c:otherwise>
 					</c:choose>
 
@@ -279,12 +254,10 @@ input-group-text {
 
 					</div>
 					<div class="col-xl-9 g-3">
-
 						<div class="card">
 							<div class="card-body pt-3">
 								<!-- Bordered Tabs -->
 								<ul class="nav nav-tabs nav-tabs-bordered">
-
 									<li class="nav-item">
 										<button class="nav-link active" data-bs-toggle="tab" data-bs-target="#My-Word">My-Word</button>
 									</li>
@@ -300,16 +273,16 @@ input-group-text {
 									<li class="nav-item">
 										<button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
 									</li>
-
 								</ul>
 								<div class="tab-content pt-2">
-
 									<!--  나만의 단어--------------------------------------------------------------------------- -->
-
 									<div class="tab-pane fade show active My-Word pt-3" id="My-Word">
-										<form name="formList" id="formList" action="/home/mypage">
-											<span style="font-weight:bold">&nbsp;Total: ${vo.totalRows }</span>
-											<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>"> <input type="hidden" name="rowNumToShowMypage" value="<c:out value="${vo.rowNumToShowMypage }"/>">
+										<form name="formList" id="formList">
+											<span style="font-weight: bold">&nbsp;Total: ${vo.totalRows }</span>
+											<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
+											<input type="hidden" name="rowNumToShowMypage" value="<c:out value="${vo.rowNumToShowMypage }"/>">
+											<input type="hidden" name="checkboxSeqArray">
+											<input type="hidden" name="sdfSeq">
 											<div class="dataTable-container">
 												<input type="hidden" name="ifmmName" value="${list.ifmmName }">
 												<table class="table table-striped" id="table1">
@@ -317,7 +290,7 @@ input-group-text {
 														<tr>
 															<th style="width: 5%;">
 																<div class="form-check" id="">
-																	<input class="form-check-input" type="checkbox" name="chk_box" onclick="allcheck();" value="" id="flexCheckDefault">
+																	<input type="checkbox" id="checkboxAll" name="" value="" class="form-check-input">
 																</div>
 															</th>
 															<th>#</th>
@@ -339,10 +312,12 @@ input-group-text {
 																	<tr>
 																		<td>
 																			<div class="form-check">
-																				<input class="form-check-input" type="checkbox" name="chk_box" onclick="check();" value="">
+																				<input type="checkbox" id="checkboxSeq" name="checkboxSeq" value="<c:out value="${list1.sdfSeq }"/>" class="form-check-input">
 																			</div>
 																		</td>
-																		<td ><c:out value="${vo.totalRows - ((vo.thisPage -1) * vo.rowNumToShowMypage + status.index) }" /></td>
+																		<td>
+																			<c:out value="${vo.totalRows - ((vo.thisPage -1) * vo.rowNumToShowMypage + status.index) }" />
+																		</td>
 																		<td style="text-align: left; font-weight: bold;">${list1.sdwWord }</td>
 																		<td style="text-align: left;">
 																			<ol type="1">
@@ -366,7 +341,7 @@ input-group-text {
 																							<%-- 
 																							<span class="content" style="font-weight: bold;">${item1.sdwmNum}.&nbsp;</span> <span class="content" value="${list1.sdwSeq }">${item1.sdweContents}</span> <br> <span class="content" value="${list1.sdwSeq }">&nbsp;&nbsp;&nbsp;&nbsp;${item1.sdweTranslate}</span> <br>
 																							 --%>
-																							<li><span class="content" style="font-weight:bold;" value="${list1.sdwSeq }">${item1.sdweContents}</span> <br> <span class="content" value="${list1.sdwSeq }">${item1.sdweTranslate}</span></li>
+																							<li><span class="content" style="font-weight: bold;" value="${list1.sdwSeq }">${item1.sdweContents}</span> <br> <span class="content" value="${list1.sdwSeq }">${item1.sdweTranslate}</span></li>
 																						</div>
 																					</c:if>
 																				</c:forEach>
@@ -391,32 +366,24 @@ input-group-text {
 																<ul class="pagination justify-content-center mb-0">
 																	<!-- <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angles-left"></i></a></li> -->
 																	<c:if test="${vo.startPage gt vo.pageNumToShow}">
-																		<li class="page-item">
-																			<a class="page-link" href="javascript:goList(${vo.startPage - 1})">
+																		<li class="page-item"><a class="page-link" href="javascript:goList(${vo.startPage - 1})">
 																				<i class="fa-solid fa-angle-left"></i>
-																			</a>
-																		</li>
+																			</a></li>
 																	</c:if>
 																	<c:forEach begin="${vo.startPage}" end="${vo.endPage}" varStatus="i">
 																		<c:choose>
 																			<c:when test="${i.index eq vo.thisPage}">
-																				<li class="page-item active">
-																					<a class="page-link" href="javascript:goList(${i.index})">${i.index}</a>
-																				</li>
+																				<li class="page-item active"><a class="page-link" href="javascript:goList(${i.index})">${i.index}</a></li>
 																			</c:when>
 																			<c:otherwise>
-																				<li class="page-item">
-																					<a class="page-link" href="javascript:goList(${i.index})">${i.index}</a>
-																				</li>
+																				<li class="page-item"><a class="page-link" href="javascript:goList(${i.index})">${i.index}</a></li>
 																			</c:otherwise>
 																		</c:choose>
 																	</c:forEach>
 																	<c:if test="${vo.endPage ne vo.totalPages}">
-																		<li class="page-item">
-																			<a class="page-link" href="javascript:goList(${vo.endPage + 1})">
+																		<li class="page-item"><a class="page-link" href="javascript:goList(${vo.endPage + 1})">
 																				<i class="fa-solid fa-angle-right"></i>
-																			</a>
-																		</li>
+																			</a></li>
 																	</c:if>
 																	<!-- <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angles-right"></i></a></li> -->
 																</ul>
@@ -429,38 +396,46 @@ input-group-text {
 												<div class="row">
 
 													<div class="col-6" style="text-align: left;">
-														<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-															<i class="fa-solid fa-square-minus"></i>
+														<button type="button" class="btn btn-danger" name="" id="btnDelete">
+															<i class="fa-solid fa-x"></i>
 														</button>
-														<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-															<i class="fa-solid fa-xmark"></i>
+														<button type="button" class="btn btn-danger" name="" id="btnUelete">
+															<i class="far fa-trash-alt"></i>
 														</button>
-														<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-															<div class="modal-dialog">
+														<div class="modal fade" id="modalConfirm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+															<div class="modal-dialog modal-dialog-centered">
 																<div class="modal-content">
 																	<div class="modal-header">
-																		<h5 class="modal-title" id="exampleModalLabel2">삭제</h5>
+																		<h5 class="modal-title" id="staticBackdropLabel">title</h5>
 																		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 																	</div>
-																	<div class="modal-body">정말 삭제하시겠습니까?</div>
+																	<div class="modal-body">body</div>
 																	<div class="modal-footer">
-																		<button type="button" class="btn btn-danger" data-bs-dismiss="modal" onClick="delete_row();">삭제하기</button>
-																		<button type="button" class="btn btn-primary" data-bs-dismiss="modal">취소하기</button>
+																		<button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">
+																			<i class="fa-solid fa-angle-left"></i>
+																		</button>
+																		<button type="button" class="btn btn-danger btn-sm" name="" id="btnModalDelete">
+																			<i class="fa-solid fa-x"></i>
+																		</button>
+																		<button type="button" class="btn btn-danger btn-sm" name="" id="btnModalUelete">
+																			<i class="far fa-trash-alt"></i>
+																		</button>
 																	</div>
 																</div>
 															</div>
 														</div>
-														<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-															<div class="modal-dialog">
+														<div class="modal fade" id="modalAlert" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+															<div class="modal-dialog modal-dialog-centered">
 																<div class="modal-content">
 																	<div class="modal-header">
-																		<h5 class="modal-title" id="exampleModalLabel">삭제</h5>
+																		<h5 class="modal-title" id="staticBackdropLabel">title</h5>
 																		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 																	</div>
-																	<div class="modal-body">정말 삭제하시겠습니까?</div>
+																	<div class="modal-body">body</div>
 																	<div class="modal-footer">
-																		<button type="button" class="btn btn-danger" data-bs-dismiss="modal" onClick="delete_row();">삭제하기</button>
-																		<button type="button" class="btn btn-primary" data-bs-dismiss="modal">취소하기</button>
+																		<button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">
+																			<i class="fa-solid fa-check"></i>
+																		</button>
 																	</div>
 																</div>
 															</div>
@@ -550,13 +525,8 @@ input-group-text {
 												</div>
 											</div>
 										</form>
-
 									</div>
-
-
-
 									<div class="tab-pane fade profile-edit pt-3" id="profile-edit">
-
 										<!-- 수정폼---------------------------------------------------------------------------------------------------- -->
 										<form id="form" name="form" method="post" enctype="multipart/form-data">
 
@@ -627,7 +597,9 @@ input-group-text {
 												<label for="Country" class="col-md-4 col-lg-3 col-form-label">Email</label>
 												<div class="col-md-8 col-lg-9">
 													<div class="input-group">
-														<input type="text" id="Email" name="Email" class="form-control" placeholder="User email" value="${fn:split(list.ifmmEmail,'@')[0]}"> <span class="input-group-text">@</span> <input type="text" id="Domain" name="Domain" class="form-control" placeholder="Domain" value="${fn:split(list.ifmmEmail,'@')[1]}">
+														<input type="text" id="Email" name="Email" class="form-control" placeholder="User email" value="${fn:split(list.ifmmEmail,'@')[0]}">
+														<span class="input-group-text">@</span>
+														<input type="text" id="Domain" name="Domain" class="form-control" placeholder="Domain" value="${fn:split(list.ifmmEmail,'@')[1]}">
 														<%-- <input type="text" id="Domain" name="Domain" class="form-control" placeholder="Domain" value="${fn:split(list.ifmmEmail,'@')[1]}" > --%>
 
 														<select class="form-select" name="ifmmEmailDomain" id="ifmmEmailDomain">
@@ -647,7 +619,8 @@ input-group-text {
 
 													<input type="hidden" class="form-control" id="ifmmEmail" name="ifmmEmail" value="<c:out value="${list.ifmmEmail }"/>">
 													<div class="input-group">
-														<input class="form-text" type="hidden" name="ifmmMailNy" value="0" <c:if test="${list.ifmmMailNy eq 0 }"> </c:if>> <input class="form-text" type="checkbox" name="ifmmMailNy" value="1" <c:if test="${list.ifmmMailNy eq 1 }"> checked </c:if>>
+														<input class="form-text" type="hidden" name="ifmmMailNy" value="0" <c:if test="${list.ifmmMailNy eq 0 }"> </c:if>>
+														<input class="form-text" type="checkbox" name="ifmmMailNy" value="1" <c:if test="${list.ifmmMailNy eq 1 }"> checked </c:if>>
 														<label class="form-text" style="margin: auto; margin-left: 0;"> E-mail을 통한 소식/정보 수신을 동의하시겠습니까? </label>
 													</div>
 												</div>
@@ -668,7 +641,10 @@ input-group-text {
 															<option value="010" <c:if test="${fn:substring(list.ifmmPhone,0,3) eq 010 }"> selected </c:if>>010</option>
 															<option value="011" <c:if test="${fn:substring(list.ifmmPhone,0,3) eq 011 }"> selected </c:if>>011</option>
 															<option value="019" <c:if test="${fn:substring(list.ifmmPhone,0,3) eq 019 }"> selected </c:if>>019</option>
-														</select> <span class="input-group-text">-</span> <input type="text" id="inputPhone2" class="form-control" maxlength='4' onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" value="${fn:substring(list.ifmmPhone,3,7)}"> <span class="input-group-text">-</span> <input type="text" id="inputPhone3" class="form-control" maxlength='4' onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" value="${fn:substring(list.ifmmPhone,7,11)}">
+														</select> <span class="input-group-text">-</span>
+														<input type="text" id="inputPhone2" class="form-control" maxlength='4' onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" value="${fn:substring(list.ifmmPhone,3,7)}">
+														<span class="input-group-text">-</span>
+														<input type="text" id="inputPhone3" class="form-control" maxlength='4' onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" value="${fn:substring(list.ifmmPhone,7,11)}">
 
 														<!-- <button class="btn btn-outline-secondary" type="button" id="button-addon2">인증번호 요청</button> -->
 													</div>
@@ -676,7 +652,8 @@ input-group-text {
 													<input type="hidden" id="ifmmPhone" name="ifmmPhone" class="form-control" value="<c:out value="${list.ifmmPhone }"/>">
 
 													<div class="input-group">
-														<input class="form-text" type="hidden" name="ifmmSmsNy" value="0" <c:if test="${list.ifmmSmsNy eq 0 }"> </c:if>> <input class="form-text" type="checkbox" name="ifmmSmsNy" value="1" <c:if test="${list.ifmmSmsNy eq 1 }"> checked </c:if>>
+														<input class="form-text" type="hidden" name="ifmmSmsNy" value="0" <c:if test="${list.ifmmSmsNy eq 0 }"> </c:if>>
+														<input class="form-text" type="checkbox" name="ifmmSmsNy" value="1" <c:if test="${list.ifmmSmsNy eq 1 }"> checked </c:if>>
 														<label class="form-text" for="ifmmSmsNy" style="margin: auto; margin-left: 0;"> SMS을 통한 소식/정보 수신을 동의하시겠습니까? </label>
 													</div>
 												</div>
@@ -701,7 +678,8 @@ input-group-text {
 															<input type="text" class="form-control" id="ifmmResidence" name="ifmmResidence" value="<c:out value="${list.ifmmResidence }"/>" placeholder="주소" aria-label="Recipient's username" aria-describedby="button-addon2" required>
 														</div>
 														<div class="input-group" style="padding-top: 5px;">
-															<input type="text" class="form-control" id="ifmmDetailedAddress" name="ifmmDetailedAddress" value="<c:out value="${list.ifmmDetailedAddress }"/>" placeholder="상세주소" aria-label="Recipient's username" aria-describedby="button-addon2" required> <input type="text" class="form-control" id="ifmmReference" name="ifmmReference" value="<c:out value="${list.ifmmReference }"/>" placeholder="참고항목" aria-label="Recipient's username" aria-describedby="button-addon2" required>
+															<input type="text" class="form-control" id="ifmmDetailedAddress" name="ifmmDetailedAddress" value="<c:out value="${list.ifmmDetailedAddress }"/>" placeholder="상세주소" aria-label="Recipient's username" aria-describedby="button-addon2" required>
+															<input type="text" class="form-control" id="ifmmReference" name="ifmmReference" value="<c:out value="${list.ifmmReference }"/>" placeholder="참고항목" aria-label="Recipient's username" aria-describedby="button-addon2" required>
 														</div>
 														<input type="hidden" class="form-control" id="ifmmAddress" name="ifmmAddress" value="<c:out value="${list.ifmmAddress }"/>">
 													</div>
@@ -723,7 +701,8 @@ input-group-text {
 											<div class="row mb-3">
 												<label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
 												<div class="col-md-8 col-lg-9">
-													<input type="hidden" id="ifmmPwdAllowedNy" name="ifmmPwdAllowedNy" value="0"> <input type="password" class="form-control" id="ifmmPassword">
+													<input type="hidden" id="ifmmPwdAllowedNy" name="ifmmPwdAllowedNy" value="0">
+													<input type="password" class="form-control" id="ifmmPassword">
 													<div class="invalid-feedback" id="ifmmPwdFeedback"></div>
 												</div>
 											</div>
@@ -731,7 +710,8 @@ input-group-text {
 											<div class="row mb-3">
 												<label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
 												<div class="col-md-8 col-lg-9">
-													<input type="hidden" id="newPwdAllowedNy" name="newPwdAllowedNy" value="0"> <input name="ifmmPassword" type="password" class="form-control" id="newPassword">
+													<input type="hidden" id="newPwdAllowedNy" name="newPwdAllowedNy" value="0">
+													<input name="ifmmPassword" type="password" class="form-control" id="newPassword">
 													<div class="invalid-feedback" id="newPwdFeedback"></div>
 												</div>
 											</div>
@@ -739,7 +719,8 @@ input-group-text {
 											<div class="row mb-3">
 												<label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
 												<div class="col-md-8 col-lg-9">
-													<input type="hidden" id="renewPwdAllowedNy" name="renewPwdAllowedNy" value="0"> <input name="ifmmPasswordCheck" type="password" class="form-control" id="renewPassword">
+													<input type="hidden" id="renewPwdAllowedNy" name="renewPwdAllowedNy" value="0">
+													<input name="ifmmPasswordCheck" type="password" class="form-control" id="renewPassword">
 													<div class="invalid-feedback" id="renewPwdFeedback"></div>
 												</div>
 											</div>
@@ -749,17 +730,11 @@ input-group-text {
 											</div>
 										</form>
 										<!-- End Change Password Form -->
-
 									</div>
-
 								</div>
 								<!-- End Bordered Tabs -->
-
 							</div>
-
 						</div>
-
-
 					</div>
 				</div>
 			</div>
@@ -768,42 +743,28 @@ input-group-text {
 		<!-- Footer -->
 		<footer id="footer">
 			<ul class="icons">
-				<li>
-					<a href="#" class="icon brands fa-twitter">
+				<li><a href="#" class="icon brands fa-twitter">
 						<span class="label">Twitter</span>
-					</a>
-				</li>
-				<li>
-					<a href="#" class="icon brands fa-facebook-f">
+					</a></li>
+				<li><a href="#" class="icon brands fa-facebook-f">
 						<span class="label">Facebook</span>
-					</a>
-				</li>
-				<li>
-					<a href="#" class="icon brands fa-instagram">
+					</a></li>
+				<li><a href="#" class="icon brands fa-instagram">
 						<span class="label">Instagram</span>
-					</a>
-				</li>
-				<li>
-					<a href="#" class="icon brands fa-github">
+					</a></li>
+				<li><a href="#" class="icon brands fa-github">
 						<span class="label">Github</span>
-					</a>
-				</li>
-				<li>
-					<a href="#" class="icon brands fa-dribbble">
+					</a></li>
+				<li><a href="#" class="icon brands fa-dribbble">
 						<span class="label">Dribbble</span>
-					</a>
-				</li>
-				<li>
-					<a href="#" class="icon brands fa-google-plus">
+					</a></li>
+				<li><a href="#" class="icon brands fa-google-plus">
 						<span class="label">Google+</span>
-					</a>
-				</li>
+					</a></li>
 			</ul>
 			<ul class="copyright">
 				<li>&copy; Untitled. All rights reserved.</li>
-				<li>
-					Design:
-					<a href="http://html5up.net">HTML5 UP</a>
+				<li>Design: <a href="http://html5up.net">HTML5 UP</a>
 				</li>
 			</ul>
 		</footer>
@@ -860,10 +821,88 @@ input-group-text {
 	<script type="text/javascript">
 	var excelUri = "/home/excelDownload";
 	var form = $("form[name=formList]");
+	var goUrlMultiUele = "/home/wordMultiUele";			/* #-> */
+	var goUrlMultiDele = "/home/wordMultiDele";
+	var checkboxSeqArray = [];
+	
+	goList = function(thisPage) {
+		$("input:hidden[name=thisPage]").val(thisPage);
+		form.attr("action", goUrlList).submit();
+	}
 	
 	$("#btnExcel").click(function() {
 		form.attr("action", excelUri).submit();
 	});
+	$("#checkboxAll").click(function() {
+        if ($("#checkboxAll").is(":checked"))
+            $("input[name=checkboxSeq]").prop("checked", true);
+        else
+            $("input[name=checkboxSeq]").prop("checked", false);
+    });
+
+    $("input[name=checkboxSeq]").click(function() {
+        var total = $("input[name=checkboxSeq]").length;
+        var checked = $("input[name=checkboxSeq]:checked").length;
+
+        if (total != checked)
+            $("#checkboxAll").prop("checked", false);
+        else
+            $("#checkboxAll").prop("checked", true);
+    });
+
+    $("#btnUelete").on("click", function() {
+        if ($("input[name=checkboxSeq]:checked").length > 0) {
+            $("input:hidden[name=exDeleteType]").val(1);
+            $(".modal-title").text("확 인");
+            $(".modal-body").text("해당 데이터를 삭제하시겠습니까 ?");
+            $("#btnModalUelete").show();
+            $("#btnModalDelete").hide();
+            $("#modalConfirm").modal("show");
+        } else {
+            $(".modal-title").text("확 인");
+            $(".modal-body").text("데이터를 선택해 주세요!");
+            $("#modalAlert").modal("show");
+        }
+    });
+
+    $("#btnDelete").on("click", function() {
+        if ($("input[name=checkboxSeq]:checked").length > 0) {
+            $("input:hidden[name=exDeleteType]").val(2);
+            $(".modal-title").text("확 인");
+            $(".modal-body").text("해당 데이터를 삭제하시겠습니까 ?");
+            $("#btnModalUelete").hide();
+            $("#btnModalDelete").show();
+            $("#modalConfirm").modal("show");
+        } else {
+            $(".modal-title").text("확 인");
+            $(".modal-body").text("데이터를 선택해 주세요!");
+            $("#modalAlert").modal("show");
+        }
+    });
+
+    $("#btnModalUelete").on("click", function() {
+        $("input[name=checkboxSeq]:checked").each(function() {
+            checkboxSeqArray.push($(this).val());
+        });
+
+        $("input:hidden[name=checkboxSeqArray]").val(checkboxSeqArray);
+
+        $("#modalConfirm").modal("hide");
+
+        form.attr("action", goUrlMultiUele).submit();
+    });
+
+    $("#btnModalDelete").on("click", function() {
+        $("input[name=checkboxSeq]:checked").each(function() {
+            checkboxSeqArray.push($(this).val());
+        });
+
+        $("input:hidden[name=checkboxSeqArray]").val(checkboxSeqArray);
+
+        $("#modalConfirm").modal("hide");
+
+        form.attr("action", goUrlMultiDele).submit();
+    });
 	</script>
 
 	<script type="text/javascript">
@@ -1336,12 +1375,9 @@ input-group-text {
 
 	<script type="text/javascript">
 		var goUrlList = "/home/mypage";
-		var formMy = $("form[name=formList]");
+		/* var formMy = $("form[name=formList]"); */
 
-		goList = function(thisPage) {
-			$("input:hidden[name=thisPage]").val(thisPage);
-			formMy.attr("action", goUrlList).submit();
-		}
+		
 
 		// Simple Datatable
 		let table1 = document.querySelector('#table1');

@@ -39,64 +39,45 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 <script type="text/javascript">
-	$(document).ready(
-			function() {
-				$.datepicker.setDefaults($.datepicker.regional['ko']);
-				$("#shDateStart")
-						.datepicker(
-								{
-									changeMonth : true,
-									changeYear : true,
-									nextText : '다음 달',
-									prevText : '이전 달',
-									dayNames : [ '일요일', '월요일', '화요일', '수요일',
-											'목요일', '금요일', '토요일' ],
-									dayNamesMin : [ '일', '월', '화', '수', '목',
-											'금', '토' ],
-									monthNamesShort : [ '1월', '2월', '3월', '4월',
-											'5월', '6월', '7월', '8월', '9월',
-											'10월', '11월', '12월' ],
-									monthNames : [ '1월', '2월', '3월', '4월',
-											'5월', '6월', '7월', '8월', '9월',
-											'10월', '11월', '12월' ],
-									dateFormat : "yymmdd",
-									maxDate : 0, // 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)
-									onClose : function(selectedDate) {
-										//시작일(startDate) datepicker가 닫힐때
-										//종료일(endDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
-										$("#shDateEnd").datepicker("option",
-												"minDate", selectedDate);
-									}
+    $(document).ready(function() {
+        $.datepicker.setDefaults($.datepicker.regional['ko']);
+        $("#shDateStart").datepicker({
+            changeMonth : true,
+            changeYear : true,
+            nextText : '다음 달',
+            prevText : '이전 달',
+            dayNames : [ '일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일' ],
+            dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
+            monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월' ],
+            monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월' ],
+            dateFormat : "yymmdd",
+            maxDate : 0, // 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)
+            onClose : function(selectedDate) {
+                //시작일(startDate) datepicker가 닫힐때
+                //종료일(endDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
+                $("#shDateEnd").datepicker("option", "minDate", selectedDate);
+            }
 
-								});
-				$("#shDateEnd")
-						.datepicker(
-								{
-									changeMonth : true,
-									changeYear : true,
-									nextText : '다음 달',
-									prevText : '이전 달',
-									dayNames : [ '일요일', '월요일', '화요일', '수요일',
-											'목요일', '금요일', '토요일' ],
-									dayNamesMin : [ '일', '월', '화', '수', '목',
-											'금', '토' ],
-									monthNamesShort : [ '1월', '2월', '3월', '4월',
-											'5월', '6월', '7월', '8월', '9월',
-											'10월', '11월', '12월' ],
-									monthNames : [ '1월', '2월', '3월', '4월',
-											'5월', '6월', '7월', '8월', '9월',
-											'10월', '11월', '12월' ],
-									dateFormat : "yymmdd",
-									maxDate : 0, // 선택할수있는 최대날짜, ( 0 : 오늘 이후 날짜 선택 불가)
-									onClose : function(selectedDate) {
-										// 종료일(endDate) datepicker가 닫힐때
-										// 시작일(startDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 시작일로 지정
-										$("#shDateStart").datepicker("option",
-												"maxDate", selectedDate);
-									}
+        });
+        $("#shDateEnd").datepicker({
+            changeMonth : true,
+            changeYear : true,
+            nextText : '다음 달',
+            prevText : '이전 달',
+            dayNames : [ '일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일' ],
+            dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
+            monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월' ],
+            monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월' ],
+            dateFormat : "yymmdd",
+            maxDate : 0, // 선택할수있는 최대날짜, ( 0 : 오늘 이후 날짜 선택 불가)
+            onClose : function(selectedDate) {
+                // 종료일(endDate) datepicker가 닫힐때
+                // 시작일(startDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 시작일로 지정
+                $("#shDateStart").datepicker("option", "maxDate", selectedDate);
+            }
 
-								});
-			});
+        });
+    });
 </script>
 </head>
 
@@ -108,12 +89,15 @@
 					<div class="d-flex justify-content-between">
 						<div class="row" style="text-align: center; width: 300px;">
 							<div class="logo">
-								<a href="memberList"><span style="font-size: 30px;"><i class="fa-solid fa-book-open"></i>&nbsp E-Word</span><br>
-								<span style="font-size: 19px;">Administrator</span></a>
+								<a href="memberList">
+									<span style="font-size: 30px;"><i class="fa-solid fa-book-open"></i>&nbsp E-Word</span><br> <span style="font-size: 19px;">Administrator</span>
+								</a>
 							</div>
 						</div>
 						<div class="toggler">
-							<a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+							<a href="#" class="sidebar-hide d-xl-none d-block">
+								<i class="bi bi-x bi-middle"></i>
+							</a>
 						</div>
 					</div>
 				</div>
@@ -121,24 +105,30 @@
 					<ul class="menu">
 						<li class="sidebar-title">Menu</li>
 
-						<li class="sidebar-item active "><a href="memberList" class='sidebar-link'> <i class="bi bi-person-badge-fill"></i> <span>MemberList</span>
-						</a></li>
+						<li class="sidebar-item active "><a href="memberList" class='sidebar-link'>
+								<i class="bi bi-person-badge-fill"></i> <span>MemberList</span>
+							</a></li>
 
-						<li class="sidebar-item"><a href="../codeGroup/codeGroupList" class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>CodeGroup</span>
-						</a></li>
+						<li class="sidebar-item"><a href="../codeGroup/codeGroupList" class='sidebar-link'>
+								<i class="bi bi-grid-fill"></i> <span>CodeGroup</span>
+							</a></li>
 
-						<li class="sidebar-item "><a href="../code/codeList" class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>Code</span>
-						</a></li>
+						<li class="sidebar-item "><a href="../code/codeList" class='sidebar-link'>
+								<i class="bi bi-grid-fill"></i> <span>Code</span>
+							</a></li>
 
-						<li class="sidebar-item"><a href="../word/wordList" class='sidebar-link'> <i class="fa fa-book"></i> <span>Word</span>
-						</a></li>
+						<li class="sidebar-item"><a href="../word/wordList" class='sidebar-link'>
+								<i class="fa fa-book"></i> <span>Word</span>
+							</a></li>
 
-						<li class="sidebar-item"><a href="../test/testList" class='sidebar-link'> <i class="fa fa-chalkboard"></i> <span>Test</span>
-						</a></li>
-						
-						<li class="sidebar-item"><a href="/home/home" class='sidebar-link'> <i class="fa-solid fa-house-chimney-user"></i> <span>User Home</span>
-						</a></li>
-						
+						<li class="sidebar-item"><a href="../test/testList" class='sidebar-link'>
+								<i class="fa fa-chalkboard"></i> <span>Test</span>
+							</a></li>
+
+						<li class="sidebar-item"><a href="/home/home" class='sidebar-link'>
+								<i class="fa-solid fa-house-chimney-user"></i> <span>User Home</span>
+							</a></li>
+
 					</ul>
 				</div>
 				<button class="sidebar-toggler btn x">
@@ -151,45 +141,50 @@
 
 		<div id="main">
 			<header class="mb-3">
-				<a href="#" class="burger-btn d-block d-xl-none"> <i class="bi bi-justify fs-3"></i>
+				<a href="#" class="burger-btn d-block d-xl-none">
+					<i class="bi bi-justify fs-3"></i>
 				</a>
-				
+
 				<div class="btn-group" style="float: right;">
-				  <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-				    <i class="fa-regular fa-face-laugh"></i>
-				  </button>
-				  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-start">
-				    <li><a class="dropdown-item" href="#">
-							<div class="d-flex">
-								<div class="flex-shrink-0 me-3">
-									<div class="avatar">
-										<img src="../resources/assets/images/faces/1.jpg" alt="" class="w-px-40 h-auto rounded-circle" style="width: 40px;">
+					<button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+						<i class="fa-regular fa-face-laugh"></i>
+					</button>
+					<ul class="dropdown-menu dropdown-menu-end dropdown-menu-start">
+						<li><a class="dropdown-item" href="#">
+								<div class="d-flex">
+									<div class="flex-shrink-0 me-3">
+										<div class="avatar">
+											<img src="../resources/assets/images/faces/1.jpg" alt="" class="w-px-40 h-auto rounded-circle" style="width: 40px;">
+										</div>
+									</div>
+									<div class="flex-grow-1">
+										<span class="fw-semibold d-block">JaeguLee</span> <small class="text-muted">Admin</small>
 									</div>
 								</div>
-								<div class="flex-grow-1">
-									<span class="fw-semibold d-block">JaeguLee</span> <small class="text-muted">Admin</small>
-								</div>
-							</div>
-					</a></li>
-					<li>
-						<div class="dropdown-divider"></div>
-					</li>
-					<li><a class="dropdown-item" href=""> <i class="bx bx-user me-2"></i> <span class="align-middle">My Profile</span>
-					</a></li>
-					<li><a class="dropdown-item" href=""> <i class="bx bx-cog me-2"></i> <span class="align-middle">Settings</span>
-					</a></li>
-					<li><a class="dropdown-item" href=""> <span class="d-flex align-items-center align-middle"> <i class="flex-shrink-0 bx bx-credit-card me-2"></i> <span class="flex-grow-1 align-middle">Billing</span> <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-						</span>
-					</a></li>
-					<li>
-						<div class="dropdown-divider"></div>
-					</li>
-					<li><a class="dropdown-item" id="btnLogout" href=""> <i class="bx bx-power-off me-2"></i> <span class="align-middle">Log Out</span>
-					</a></li>
-				  </ul>
+							</a></li>
+						<li>
+							<div class="dropdown-divider"></div>
+						</li>
+						<li><a class="dropdown-item" href="">
+								<i class="bx bx-user me-2"></i> <span class="align-middle">My Profile</span>
+							</a></li>
+						<li><a class="dropdown-item" href="">
+								<i class="bx bx-cog me-2"></i> <span class="align-middle">Settings</span>
+							</a></li>
+						<li><a class="dropdown-item" href="">
+								<span class="d-flex align-items-center align-middle"> <i class="flex-shrink-0 bx bx-credit-card me-2"></i> <span class="flex-grow-1 align-middle">Billing</span> <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
+								</span>
+							</a></li>
+						<li>
+							<div class="dropdown-divider"></div>
+						</li>
+						<li><a class="dropdown-item" id="btnLogout" href="">
+								<i class="bx bx-power-off me-2"></i> <span class="align-middle">Log Out</span>
+							</a></li>
+					</ul>
 				</div>
-				
-				
+
+
 			</header>
 
 			<div class="page-heading">
@@ -291,16 +286,19 @@
 										 --%>
 									</div>
 									<div class="card-body">
-										<form method="post" name="formList" id="formList" action="/member/memberList">
+										<form method="post" name="formList" id="formList">
 											<span>Total: ${vo.totalRows }</span>
-											<input type="hidden" name="ifmmSeq"> <input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>"> <input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>"> <input type="hidden" name="checkboxSeqArray">
+											<input type="hidden" name="ifmmSeq">
+											<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
+											<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>">
+											<input type="hidden" name="checkboxSeqArray">
 
 											<div class="row gx-3 gy-2">
 												<div class="col-3">
-													<select id="shUseNy" name="shUseNy" class="form-select">
-														<option value="" <c:if test="${empty vo.shUseNy}">selected</c:if>>사용여부</option>
-														<option value="1" <c:if test="${vo.shUseNy eq 1}">selected</c:if>>Y</option>
-														<option value="0" <c:if test="${vo.shUseNy eq 0}">selected</c:if>>N</option>
+													<select id="shDelNy" name="shDelNy" class="form-select">
+														<option value="" <c:if test="${empty vo.shDelNy}">selected</c:if>>사용여부</option>
+														<option value="1" <c:if test="${vo.shDelNy eq 1}">selected</c:if>>Y</option>
+														<option value="0" <c:if test="${vo.shDelNy eq 0}">selected</c:if>>N</option>
 													</select>
 												</div>
 												<div class="col-3">
@@ -339,55 +337,71 @@
 													</button>
 												</div>
 											</div>
-										</form>
-										<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
 
-											<div class="dataTable-container">
-												<table class="table table-striped" id="table1">
-													<thead>
-														<tr>
-															<th>
-																<div class="form-check" id="">
-																	<input class="form-check-input" type="checkbox" name="chk_box" onclick="allcheck();" value="" id="flexCheckDefault">
-																</div>
-															</th>
-															<th>#</th>
-															<th>Seq</th>
-															<th>Id</th>
-															<th>Name</th>
-															<th>Email</th>
-															<th>EmailDomail</th>
-															<th>Gender</th>
-															<th>Dob</th>
-															<th>PhoneCarrier</th>
-															<th>PhoneNumber</th>
-															<th>MailNY</th>
-															<th>SmsNY</th>
-														</tr>
-													</thead>
-													<tbody id="my_tbody">
-														<c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('1')}" />
-														<c:set var="listCodeCarrier" value="${CodeServiceImpl.selectListCachedCode('2')}" />
-														<c:set var="listCodeDomain" value="${CodeServiceImpl.selectListCachedCode('3')}" />
-														<c:choose>
-															<c:when test="${fn:length(list) eq 0}">
-																<tr>
-																	<td class="" colspan="13" style="text-align: center;">There is no data!</td>
-																</tr>
-															</c:when>
-															<c:otherwise>
-																<c:forEach items="${list}" var="list" varStatus="status">
-																	<tr style="cursor: pointer;" onclick="location.href='/member/memberForm?ifmmSeq=<c:out value="${list.ifmmSeq }"/>'">
+											<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+
+												<div class="dataTable-container">
+													<table class="table table-striped" id="table1">
+														<thead>
+															<tr>
+																<th>
+																	<div class="form-check" id="">
+																		<!-- <input class="form-check-input" type="checkbox" name="chk_box" onclick="allcheck();" value="" id="flexCheckDefault"> -->
+																		<input type="checkbox" id="checkboxAll" name="" value="" class="form-check-input">
+																	</div>
+																</th>
+																<th>#</th>
+																<th>Seq</th>
+																<th>Id</th>
+																<th>Name</th>
+																<th>Email</th>
+																<th>EmailDomail</th>
+																<th>Gender</th>
+																<th>Dob</th>
+																<th>PhoneCarrier</th>
+																<th>PhoneNumber</th>
+																<th>MailNY</th>
+																<th>SmsNY</th>
+															</tr>
+														</thead>
+														<tbody id="my_tbody">
+															<c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('1')}" />
+															<c:set var="listCodeCarrier" value="${CodeServiceImpl.selectListCachedCode('2')}" />
+															<c:set var="listCodeDomain" value="${CodeServiceImpl.selectListCachedCode('3')}" />
+															<c:choose>
+																<c:when test="${fn:length(list) eq 0}">
+																	<tr>
+																		<td class="" colspan="13" style="text-align: center;">There is no data!</td>
+																	</tr>
+																</c:when>
+																<c:otherwise>
+																	<c:forEach items="${list}" var="list" varStatus="status">
+																		<%-- <tr style="cursor: pointer;" onclick="location.href='/member/memberForm?ifmmSeq=<c:out value="${list.ifmmSeq }"/>'"> --%>
+
 																		<td>
 																			<div class="form-check">
-																				<input class="form-check-input" type="checkbox" name="chk_box" onclick="check();" value="" id="flexCheckDefault">
+																				<input type="checkbox" id="checkboxSeq" name="checkboxSeq" value="<c:out value="${list.ifmmSeq }"/>" class="form-check-input">
+																				<!-- <input class="form-check-input" type="checkbox" name="chk_box" onclick="check();" value="" id="flexCheckDefault"> -->
 																			</div>
 																		</td>
-																		<td><c:out value="${vo.totalRows - ((vo.thisPage -1) * vo.rowNumToShow + status.index) }" /></td>
-																		<td><c:out value="${list.ifmmSeq }" /></td>
-																		<td><c:out value="${list.ifmmId }" /></td>
-																		<td><a href="javascript:goForm(<c:out value="${list.ifmmSeq }"/>)" class="text-decoration-none"><c:out value="${list.ifmmName }" /></a> <%-- <c:out value="${list.ifmmName }"/> --%></td>
-																		<td><c:out value="${list.ifmmEmail }" /></td>
+																		<td>
+																			<c:out value="${vo.totalRows - ((vo.thisPage -1) * vo.rowNumToShow + status.index) }" />
+																		</td>
+																		<td>
+																			<c:out value="${list.ifmmSeq }" />
+																		</td>
+																		<td>
+																			<c:out value="${list.ifmmId }" />
+																		</td>
+																		<td>
+																			<a href="javascript:goForm(<c:out value="${list.ifmmSeq }"/>)" class="text-decoration-none">
+																				<c:out value="${list.ifmmName }" />
+																			</a>
+																			<%-- <c:out value="${list.ifmmName }"/> --%>
+																		</td>
+																		<td>
+																			<c:out value="${list.ifmmEmail }" />
+																		</td>
 																		<td>
 																			<c:forEach items="${listCodeDomain}" var="listDomain" varStatus="statusDomain">
 																				<c:if test="${list.ifmmEmailDomain eq listDomain.ifcdSeq}">
@@ -396,13 +410,15 @@
 																			</c:forEach>
 																		</td>
 																		<td>
-																		 	<c:forEach items="${listCodeGender}" var="listGender" varStatus="statusGender">
+																			<c:forEach items="${listCodeGender}" var="listGender" varStatus="statusGender">
 																				<c:if test="${list.ifmmGender eq listGender.ifcdSeq}">
 																					<c:out value="${listGender.ifcdName }" />
 																				</c:if>
 																			</c:forEach>
 																		</td>
-																		<td><fmt:formatDate value="${list.ifmmDob }" pattern="yyyy-MM-dd" /></td>
+																		<td>
+																			<fmt:formatDate value="${list.ifmmDob }" pattern="yyyy-MM-dd" />
+																		</td>
 																		<td>
 																			<c:forEach items="${listCodeCarrier}" var="listCarrier" varStatus="statusGender">
 																				<c:if test="${list.ifmmPhoneCarrier eq listCarrier.ifcdSeq}">
@@ -410,35 +426,82 @@
 																				</c:if>
 																			</c:forEach>
 																		</td>
-																		<td><c:out value="${list.ifmmPhone }" /></td>
-																		<td><c:out value="${list.ifmmMailNy }" /></td>
-																		<td><c:out value="${list.ifmmSmsNy }" /></td>
-																	</tr>
-																</c:forEach>
-															</c:otherwise>
-														</c:choose>
-													</tbody>
-												</table>
-											</div>
-											<div class="row">
+																		<td>
+																			<c:out value="${list.ifmmPhone }" />
+																		</td>
+																		<td>
+																			<c:out value="${list.ifmmMailNy }" />
+																		</td>
+																		<td>
+																			<c:out value="${list.ifmmSmsNy }" />
+																		</td>
+																		</tr>
 
-												<div class="col">
 
-													<!-- pagination s -->
-													<%@include file="../../../common/xdmin/includeV1/pagination.jsp"%>
-													<!-- pagination e -->
-
+																	</c:forEach>
+																</c:otherwise>
+															</c:choose>
+														</tbody>
+													</table>
 												</div>
-
 												<div class="row">
 
-													<div class="col-6" style="text-align: left;">
-														<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-															<i class="fa-solid fa-square-minus"></i>
-														</button>
-														<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-															<i class="fa-solid fa-xmark"></i>
-														</button>
+													<div class="col">
+
+														<!-- pagination s -->
+														<%@include file="../../../common/xdmin/includeV1/pagination.jsp"%>
+														<!-- pagination e -->
+
+													</div>
+
+													<div class="row">
+
+														<div class="col-6" style="text-align: left;">
+															<button type="button" class="btn btn-danger" name="" id="btnDelete">
+																<i class="fa-solid fa-x"></i>
+															</button>
+															<button type="button" class="btn btn-danger" name="" id="btnUelete">
+																<i class="far fa-trash-alt"></i>
+															</button>
+															<div class="modal fade" id="modalConfirm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+																<div class="modal-dialog modal-dialog-centered">
+																	<div class="modal-content">
+																		<div class="modal-header">
+																			<h5 class="modal-title" id="staticBackdropLabel">title</h5>
+																			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+																		</div>
+																		<div class="modal-body">body</div>
+																		<div class="modal-footer">
+																			<button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">
+																				<i class="fa-solid fa-angle-left"></i>
+																			</button>
+																			<button type="button" class="btn btn-danger btn-sm" name="" id="btnModalDelete">
+																				<i class="fa-solid fa-x"></i>
+																			</button>
+																			<button type="button" class="btn btn-danger btn-sm" name="" id="btnModalUelete">
+																				<i class="far fa-trash-alt"></i>
+																			</button>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="modal fade" id="modalAlert" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+																<div class="modal-dialog modal-dialog-centered">
+																	<div class="modal-content">
+																		<div class="modal-header">
+																			<h5 class="modal-title" id="staticBackdropLabel">title</h5>
+																			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+																		</div>
+																		<div class="modal-body">body</div>
+																		<div class="modal-footer">
+																			<button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">
+																				<i class="fa-solid fa-check"></i>
+																			</button>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<!-- 
 														<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
 															<div class="modal-dialog">
 																<div class="modal-content">
@@ -454,6 +517,7 @@
 																</div>
 															</div>
 														</div>
+														
 														<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 															<div class="modal-dialog">
 																<div class="modal-content">
@@ -469,19 +533,20 @@
 																</div>
 															</div>
 														</div>
-													</div>
-													<div class="col-6" style="text-align: right;">
-														<button type="button" class="btn btn-success" id="btnExcel">
-															<i class="fa-solid fa-file-csv"></i>
-														</button>
-														<button type="button" class="btn btn-primary" id="btnForm">
-															<i class="fa-solid fa-square-plus"></i>
-														</button>
+													 -->
+														</div>
+														<div class="col-6" style="text-align: right;">
+															<button type="button" class="btn btn-success" id="btnExcel">
+																<i class="fa-solid fa-file-csv"></i>
+															</button>
+															<button type="button" class="btn btn-primary" id="btnForm">
+																<i class="fa-solid fa-square-plus"></i>
+															</button>
+														</div>
 													</div>
 												</div>
 											</div>
-
-										</div>
+										</form>
 									</div>
 								</div>
 
@@ -500,7 +565,8 @@
 					</div>
 					<div class="float-end">
 						<p>
-							Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a href="http://ahmadsaugi.com">A. Saugi</a>
+							Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by
+							<a href="http://ahmadsaugi.com">A. Saugi</a>
 						</p>
 					</div>
 				</div>
@@ -509,92 +575,171 @@
 	</div>
 	<script src="https://kit.fontawesome.com/20c294a34b.js" crossorigin="anonymous"></script>
 	<script src="../resources/assets/js/main.js"></script>
-	
+
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
-	<script>
-		var goUrlList = "/member/memberList";
-		var goUrlForm = "/member/memberForm";
-		var excelUri = "/member/excelDownload";
-
-		var seq = $("input:hidden[name=ifmmSeq]");
-
-		$('#btnForm').on("click", function() {
-			goForm(0);
-		});
-		
-		
-		goForm = function(keyValue) {
-			/* if(keyValue != 0) seq.val(btoa(keyValue)); */
-			seq.val(keyValue);
-			form.attr("action", goUrlForm).submit();
-		}
-
-		var form = $("form[name=formList]");
-		
-		$("#btnExcel").click(function() {
-			form.attr("action", excelUri).submit();
-		});
-		
-		goList = function(thisPage) {
-			$("input:hidden[name=thisPage]").val(thisPage);
-			form.attr("action", goUrlList).submit();
-		}
-
-		$("btnReset").on("click", function() {
-			$(location).attr("href", goUrlList)
-		})
-
-		/* 
-		// Simple Datatable
-		let table1 = document.querySelector('#table1');
-		let dataTable = new simpleDatatables.DataTable(table1);
-		 */
-		function allcheck() {
-			var chk_box = document.getElementsByName("chk_box");
-			var checkItem = "";
-			for (var i = 0; i < chk_box.length; i++) {
-				if (chk_box[0].checked == true) {
-					chk_box[i].checked = true;
-				} else {
-					chk_box[i].checked = false;
-				}
-			}
-		}
-		function check() {
-			var chk_box = document.getElementsByName("chk_box");
-			var checkItem = "";
-			for (var i = 0; i < chk_box.length; i++) {
-				if (chk_box[i].checked == false) {
-					checkItem = false;
-				}
-			}
-			chk_box[0].checked = checkItem;
-		}
-	</script>
 	<script type="text/javascript">
-	$("#btnLogout").on("click", function(){
-		$.ajax({
-			async: true 
-			,cache: false
-			,type: "post"
-			,url: "/login/logoutProc"
-			,data: {}
-			,success: function(response) {
-				if(response.rt == "success") {
-					location.href = "/login/login";
-				} else {
-					// by pass
-				}
-			}
-			,error : function(jqXHR, textStatus, errorThrown){
-				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-			}
-		});
-	});
-	</script>
-	
+        
+    </script>
+	<script>
+        var goUrlList = "/member/memberList";
+        var goUrlForm = "/member/memberForm";
+        var excelUri = "/member/excelDownload";
+        var goUrlMultiUele = "/member/memberMultiUele";			/* #-> */
+    	var goUrlMultiDele = "/member/memberMultiDele";	
+
+        var seq = $("input:hidden[name=ifmmSeq]");
+        
+        var form = $("form[name=formList]");
+
+        var checkboxSeqArray = [];
+        
+        $('#btnForm').on("click", function() {
+            goForm(0);
+        });
+
+        goForm = function(keyValue) {
+            /* if(keyValue != 0) seq.val(btoa(keyValue)); */
+            seq.val(keyValue);
+            form.attr("action", goUrlForm).submit();
+        }
+
+
+        $("#btnExcel").click(function() {
+            form.attr("action", excelUri).submit();
+        });
+
+        goList = function(thisPage) {
+            $("input:hidden[name=thisPage]").val(thisPage);
+            form.attr("action", goUrlList).submit();
+        }
+
+        $("btnReset").on("click", function() {
+            $(location).attr("href", goUrlList)
+        })
+
+        /* 
+        // Simple Datatable
+        let table1 = document.querySelector('#table1');
+        let dataTable = new simpleDatatables.DataTable(table1);
+         */
+
+        $("#checkboxAll").click(function() {
+            if ($("#checkboxAll").is(":checked"))
+                $("input[name=checkboxSeq]").prop("checked", true);
+            else
+                $("input[name=checkboxSeq]").prop("checked", false);
+        });
+
+        $("input[name=checkboxSeq]").click(function() {
+            var total = $("input[name=checkboxSeq]").length;
+            var checked = $("input[name=checkboxSeq]:checked").length;
+
+            if (total != checked)
+                $("#checkboxAll").prop("checked", false);
+            else
+                $("#checkboxAll").prop("checked", true);
+        });
+
+        $("#btnUelete").on("click", function() {
+            if ($("input[name=checkboxSeq]:checked").length > 0) {
+                $("input:hidden[name=exDeleteType]").val(1);
+                $(".modal-title").text("확 인");
+                $(".modal-body").text("해당 데이터를 삭제하시겠습니까 ?");
+                $("#btnModalUelete").show();
+                $("#btnModalDelete").hide();
+                $("#modalConfirm").modal("show");
+            } else {
+                $(".modal-title").text("확 인");
+                $(".modal-body").text("데이터를 선택해 주세요!");
+                $("#modalAlert").modal("show");
+            }
+        });
+
+        $("#btnDelete").on("click", function() {
+            if ($("input[name=checkboxSeq]:checked").length > 0) {
+                $("input:hidden[name=exDeleteType]").val(2);
+                $(".modal-title").text("확 인");
+                $(".modal-body").text("해당 데이터를 삭제하시겠습니까 ?");
+                $("#btnModalUelete").hide();
+                $("#btnModalDelete").show();
+                $("#modalConfirm").modal("show");
+            } else {
+                $(".modal-title").text("확 인");
+                $(".modal-body").text("데이터를 선택해 주세요!");
+                $("#modalAlert").modal("show");
+            }
+        });
+
+        $("#btnModalUelete").on("click", function() {
+            $("input[name=checkboxSeq]:checked").each(function() {
+                checkboxSeqArray.push($(this).val());
+            });
+
+            $("input:hidden[name=checkboxSeqArray]").val(checkboxSeqArray);
+
+            $("#modalConfirm").modal("hide");
+
+            form.attr("action", goUrlMultiUele).submit();
+        });
+
+        $("#btnModalDelete").on("click", function() {
+            $("input[name=checkboxSeq]:checked").each(function() {
+                checkboxSeqArray.push($(this).val());
+            });
+
+            $("input:hidden[name=checkboxSeqArray]").val(checkboxSeqArray);
+
+            $("#modalConfirm").modal("hide");
+
+            form.attr("action", goUrlMultiDele).submit();
+        });
+
+        function allcheck() {
+            var chk_box = document.getElementsByName("chk_box");
+            var checkItem = "";
+            for (var i = 0; i < chk_box.length; i++) {
+                if (chk_box[0].checked == true) {
+                    chk_box[i].checked = true;
+                } else {
+                    chk_box[i].checked = false;
+                }
+            }
+        }
+        function check() {
+            var chk_box = document.getElementsByName("chk_box");
+            var checkItem = "";
+            for (var i = 0; i < chk_box.length; i++) {
+                if (chk_box[i].checked == false) {
+                    checkItem = false;
+                }
+            }
+            chk_box[0].checked = checkItem;
+        }
+    </script>
+	<script type="text/javascript">
+        $("#btnLogout").on("click", function() {
+            $.ajax({
+                async : true,
+                cache : false,
+                type : "post",
+                url : "/login/logoutProc",
+                data : {},
+                success : function(response) {
+                    if (response.rt == "success") {
+                        location.href = "/login/login";
+                    } else {
+                        // by pass
+                    }
+                },
+                error : function(jqXHR, textStatus, errorThrown) {
+                    alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+                }
+            });
+        });
+    </script>
+
 
 </body>
 

@@ -68,7 +68,7 @@ public class Home extends Base {
 	private String ranking;
 	
 	private Integer sdfDelNy;
-	
+	private String sdfSeq;
 	private String mainKey;
 	
 	
@@ -106,6 +106,12 @@ public class Home extends Base {
 	
 	
 	
+	public String getSdfSeq() {
+		return sdfSeq;
+	}
+	public void setSdfSeq(String sdfSeq) {
+		this.sdfSeq = sdfSeq;
+	}
 	public String getCid() {
 		return cid;
 	}
