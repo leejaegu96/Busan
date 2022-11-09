@@ -21,7 +21,23 @@ public class HomeServiceImpl implements HomeService{
 		int result = dao.selectWordCount(vo);
 		return result;
 	}
+	@Override
+	public int WordCount(HomeVo vo) throws Exception {
+		int result = dao.WordCount(vo);
+		return result;
+	}
+	@Override
+	public Home selectOneWord(HomeVo vo) throws Exception{
+		Home result = dao.selectOneWord(vo);
+		System.out.println("service selectOneWord result: "+result);
+		return result;
+	}
 	
+	@Override
+	public List<Home> selectOneWordList(HomeVo vo) throws Exception {
+		List<Home> list = dao.selectOneWordList(vo);
+		return list;
+	}
 	@Override
 	public List<Home> favoriteList(Home dto) throws Exception {
 		List<Home> list = dao.favoriteList(dto);
@@ -40,8 +56,8 @@ public class HomeServiceImpl implements HomeService{
 		return list;
 	}
 	@Override
-	public List<Home> wordList() throws Exception {
-		List<Home> list = dao.wordList();
+	public List<Home> wordList(HomeVo vo) throws Exception {
+		List<Home> list = dao.wordList(vo);
 		return list;
 	}
 	
@@ -51,8 +67,8 @@ public class HomeServiceImpl implements HomeService{
 		return item;
 	}
 	@Override
-	public List<Home> wordContents() throws Exception {
-		List<Home> item = dao.wordContents();
+	public List<Home> wordContents(HomeVo vo) throws Exception {
+		List<Home> item = dao.wordContents(vo);
 		return item;
 	}
 	@Override

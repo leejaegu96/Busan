@@ -6,13 +6,16 @@ public interface HomeService {
 	
 	
 	public int selectWordCount(HomeVo vo) throws Exception;
+	public int WordCount(HomeVo vo) throws Exception;
+	public Home selectOneWord(HomeVo vo) throws Exception;
+	public List<Home> selectOneWordList(HomeVo vo) throws Exception;
 	public List<Home> favoriteList(Home dto) throws Exception;
 	public int delete(HomeVo vo) throws Exception;
 	
 	public List<Home> selectList(Home dto) throws Exception;
-	public List<Home> wordList() throws Exception;
 	public List<Home> selectContents(Home dto) throws Exception;
-	public List<Home> wordContents() throws Exception;
+	public List<Home> wordList(HomeVo vo) throws Exception;
+	public List<Home> wordContents(HomeVo vo) throws Exception;
 	public List<Home> myWordContents(HomeVo vo) throws Exception;
 	public List<Home> myWordList(HomeVo vo) throws Exception;
 	public List<Home> selectTest() throws Exception;

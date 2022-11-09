@@ -3,6 +3,7 @@ package com.decemelev.infra.modules.home;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -12,6 +13,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.net.http.HttpRequest;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,13 +30,17 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.decemelev.infra.common.util.UtilDateTime;
@@ -58,13 +64,20 @@ public class HomeController {
 		
 		vo.setParamsPagingMypage(service.selectWordCount(vo));
 	}
+	public void setSearchAndPagingWord(HomeVo vo) throws Exception {
+		vo.setShOptionDate(vo.getShOptionDate() == null ? 2 : vo.getShOptionDate());
+		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()) );
+		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()) );
+		
+		vo.setParamsPagingMypage(service.WordCount(vo));
+	}
 	
-	@RequestMapping(value = "/toast")
+	@RequestMapping(value = "/home/toast")
 	public String toast(Model model) throws Exception {
 		
 		return "infra/home/user/toast";
 	}
-
+	
 	
 	@RequestMapping(value = "/home/home")
 	public String home(Model model) throws Exception {
@@ -72,18 +85,27 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/word/wordList")
-	public String wordList(Model model) throws Exception {
+	public String wordList(@ModelAttribute("vo") HomeVo vo, Model model, HttpServletRequest httpServletRequest) throws Exception {
 		
-		List<Home> list = service.wordList();
+		setSearchAndPagingWord(vo);
+		
+		List<Home> list = service.wordList(vo);
 		model.addAttribute("list", list);
 		
-		List<Home> item = service.wordContents();
+		List<Home> item = service.wordContents(vo);
 		model.addAttribute("item", item);
 		
 		return "infra/word/xdmin/wordList";
 	}
 	@RequestMapping(value = "/word/wordForm")
-	public String wordForm(Model model) throws Exception {
+	public String wordForm(@ModelAttribute("vo") HomeVo vo, Model model) throws Exception {
+		System.out.println("vo.getSdwSeq(): " + vo.getSdwSeq());
+		
+		Home result = service.selectOneWord(vo);
+		model.addAttribute("item", result);
+		
+		List<Home> list = service.selectOneWordList(vo);
+		model.addAttribute("list", list);
 		
 		return "infra/word/xdmin/wordForm";
 	}
@@ -230,7 +252,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/home/wordMultiDele")
-	public String memberMultiDele(HomeVo vo, RedirectAttributes redirectAttributes) throws Exception {
+	public String wordMultiDele(HomeVo vo, RedirectAttributes redirectAttributes) throws Exception {
 
 		for (String checkboxSeq : vo.getCheckboxSeqArray()) {
 			vo.setSdfSeq(checkboxSeq);
@@ -440,8 +462,6 @@ public class HomeController {
 
 		System.out.println("stringBuilder.toString(): " + stringBuilder.toString());
 		
-//		json object + array string -> java map
-		
         ObjectMapper objectMapper = new ObjectMapper();
         Map<String, Object> map = objectMapper.readValue(stringBuilder.toString(), Map.class);
         
@@ -450,34 +470,6 @@ public class HomeController {
 			String value = String.valueOf(map.get(key));	// ok
 			System.out.println("[key]:" + key + ", [value]:" + value);
 		}
-
-//		List<HashMap<String, Object>> header = new ArrayList<HashMap<String, Object>>();
-//		header = (List<HashMap<String, Object>>) map.get("courses");
-////		
-//		System.out.println("######## Header");
-		
-//		for(int i=0; i<map.size(); i++) {
-//			System.out.println("ctimes:" + header.get(i));
-//		}
-		
-//		for (String key : header.keySet()) {
-//			String value = String.valueOf(header.get(key));	// ok
-//			System.out.println("[key]:" + key + ", [value]:" + value);
-//		}
-//		
-//		String aaa = (String) header.get("resultCode");
-		
-//		System.out.println("header.get(\"resultCode\"): " + header.get("resultCode"));
-//		System.out.println("header.get(\"resultMsg\"): " + header.get("resultMsg"));
-		
-//		Map<String, Object> body = new HashMap<String, Object>();
-//		body = (Map<String, Object>) map.get("body");
-		
-		
-		
-		
-//		List<Home> items = new ArrayList<Home>();
-//		items = (List<Home>) map.get("courses");
 		
 		List<HashMap<String, Object>> items = new ArrayList<HashMap<String, Object>>();
 		items = (List<HashMap<String, Object>>) map.get("courses");
@@ -485,15 +477,10 @@ public class HomeController {
 		System.out.println("items: " + items);
 		System.out.println("items.size(): " + items.size());
 		
-//		for(Home item : items) {
-//			System.out.println(item.getMM());
-//		}
 		System.out.println(items.getClass());
 		System.out.println(items.get(0).get("ctime"));
 		
 		model.addAttribute("items", items);
-//		model.addAllAttributes(header);
-//		model.addAllAttributes(body);
 		
 		return "infra/home/user/testCovid";
 	}

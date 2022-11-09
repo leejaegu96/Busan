@@ -136,19 +136,56 @@
 		</nav>
 	</div>
 
-	<script type="text/javascript">
-	const Editor = toastui.Editor;
-
-    const editor = new Editor({
-            el: document.querySelector('#editor'),
-            height: '500px',
-            initialEditType: 'markdown',
-            previewStyle: 'vertical'
+	<script>
+		
+        let intro = '<div id="info">' + '<h2>들어가는말</h2>    <p>    생활코딩의 세계에 오신 것을 환영합니다. 생활코딩은 <strong>일반인들에게 프로그래밍을 알려주는 무료 온라인, 오프라인 수업입니다. </strong>&nbsp;어떻게 공부할 것인가를 생각해보기 전에 왜&nbsp;프로그래밍을 공부하는 이유에 대한 이유를 함께 생각해보면 좋을 것 같습니다. 아래 영상을 한번 보시죠.</p>	<p>   입문자의 가장 큰 고충은 &#39;무엇을 모르는지 모르는 상태&#39;일 겁니다.   온라인에는 프로그래밍을 익히는 데 필요한 거의 모든 정보가 있지만, 이 지식들은 게시판이나 블로그 또는 커뮤니티에 포스팅 단위로 파편화되어 있습니다.	    그래서 최소한 무엇을 검색해야 하는지를 아는 사람들을 위해서는 더 없이 좋은 공간이지만, &#39;무엇을 모르는지 모르는 상태&#39;의 입문자에게는 그림의 떡으로 남아 있습니다.     다시말해서 전문가를 더욱 전문가답게 만드는 혁신에 머물고 있는 것이죠.</p>	<p> 생활코딩은 컴퓨터와 인터넷이 존재하는 시대의 공부방법은 어때야 하는가를 찾는 작업을 꾸준히 하고 있습니다.	    정보기술이 발전하지 않았던, 낭만적인 시절에는 어떤 일을 하려고 하면 그것을 하기 위해서 필요한 거의 모든 것을 알고 있어야 했습니다. 검색할수도 없었고, 질문하기도 어려웠기 때문입니다. 한편 한번 배운 지식만으로도 평생을 살아 갈 수 있었습니다. &nbsp;</p>' + '</div>'
+        const editor = new toastui.Editor({
+            el : document.querySelector('#editor'),
+            previewStyle : 'vertical',
+            height : '500px',
+            initialEditType : 'wysiwyg',
+            hooks: {
+                addImageBlobHook: function (blob, callback) {
+                  const formData = new FormData();
+                  formData.append("image", blob);
+                  const imageURL = imageUpload(formData);
+                  console.log(imageURL);
+                  callback(imageURL, "image");
+                },
+            },
+            initialValue : intro
         });
 
-    editor.getMarkdown();
-	</script>
+        // !!여기!! editor.getHtml()을 사용해서 에디터 내용 받아오기
+        console.log(editor.getHTML());
+        
+        function imageUpload(formData) {
+            let imageURL;
 
+            $.ajax({
+              type: "post",
+              url: "/bombom/image_upload.do",
+              async: false,
+              data: formData,
+              processData: false,
+              contentType: false,
+              success: function (data) {
+                imageURL = data;
+                console.log(imageURL);
+              },
+              error: function (request, status, error) {
+                alert(request + ", " + status + ", " + error);
+              },
+            });
+
+            return imageURL;
+          }
+        $('.tab-item').click(function(){
+		    alert('ssss');
+		    
+		});
+    </script>
+	
 	
 
 </body>

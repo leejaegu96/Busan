@@ -80,13 +80,15 @@
 					<div class="d-flex justify-content-between">
 						<div class="row" style="text-align: center; width: 300px;">
 							<div class="logo">
-								<a href="../member/memberList"> <span style="font-size: 30px;"> <i class="fa-solid fa-book-open"></i>&nbsp E-Word
-								</span> <br> <span style="font-size: 19px;">Administrator</span>
+								<a href="../member/memberList">
+									<span style="font-size: 30px;"> <i class="fa-solid fa-book-open"></i>&nbsp E-Word
+									</span> <br> <span style="font-size: 19px;">Administrator</span>
 								</a>
 							</div>
 						</div>
 						<div class="toggler">
-							<a href="#" class="sidebar-hide d-xl-none d-block"> <i class="bi bi-x bi-middle"></i>
+							<a href="#" class="sidebar-hide d-xl-none d-block">
+								<i class="bi bi-x bi-middle"></i>
 							</a>
 						</div>
 					</div>
@@ -95,23 +97,29 @@
 					<ul class="menu">
 						<li class="sidebar-title">Menu</li>
 
-						<li class="sidebar-item "><a href="../member/memberList" class='sidebar-link'> <i class="bi bi-person-badge-fill"></i> <span>MemberList</span>
-						</a></li>
+						<li class="sidebar-item "><a href="../member/memberList" class='sidebar-link'>
+								<i class="bi bi-person-badge-fill"></i> <span>MemberList</span>
+							</a></li>
 
-						<li class="sidebar-item"><a href="../codeGroup/codeGroupList" class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>CodeGroup</span>
-						</a></li>
+						<li class="sidebar-item"><a href="../codeGroup/codeGroupList" class='sidebar-link'>
+								<i class="bi bi-grid-fill"></i> <span>CodeGroup</span>
+							</a></li>
 
-						<li class="sidebar-item"><a href="../code/codeList" class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>Code</span>
-						</a></li>
+						<li class="sidebar-item"><a href="../code/codeList" class='sidebar-link'>
+								<i class="bi bi-grid-fill"></i> <span>Code</span>
+							</a></li>
 
-						<li class="sidebar-item active"><a href="../word/wordList" class='sidebar-link'> <i class="fa fa-book"></i> <span>Word</span>
-						</a></li>
+						<li class="sidebar-item active"><a href="../word/wordList" class='sidebar-link'>
+								<i class="fa fa-book"></i> <span>Word</span>
+							</a></li>
 
-						<li class="sidebar-item"><a href="../test/testList" class='sidebar-link'> <i class="fa fa-chalkboard"></i> <span>Test</span>
-						</a></li>
+						<li class="sidebar-item"><a href="../test/testList" class='sidebar-link'>
+								<i class="fa fa-chalkboard"></i> <span>Test</span>
+							</a></li>
 
-						<li class="sidebar-item"><a href="/home/home" class='sidebar-link'> <i class="fa-solid fa-house-chimney-user"></i> <span>User Home</span>
-						</a></li>
+						<li class="sidebar-item"><a href="/home/home" class='sidebar-link'>
+								<i class="fa-solid fa-house-chimney-user"></i> <span>User Home</span>
+							</a></li>
 					</ul>
 				</div>
 				<button class="sidebar-toggler btn x">
@@ -124,7 +132,8 @@
 
 		<div id="main">
 			<header class="mb-3">
-				<a href="#" class="burger-btn d-block d-xl-none"> <i class="bi bi-justify fs-3"></i>
+				<a href="#" class="burger-btn d-block d-xl-none">
+					<i class="bi bi-justify fs-3"></i>
 				</a>
 				<div class="btn-group" style="float: right;">
 					<button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
@@ -142,30 +151,34 @@
 										<span class="fw-semibold d-block">JaeguLee</span> <small class="text-muted">Admin</small>
 									</div>
 								</div>
-						</a></li>
+							</a></li>
 						<li>
 							<div class="dropdown-divider"></div>
 						</li>
-						<li><a class="dropdown-item" href=""> <i class="bx bx-user me-2"></i> <span class="align-middle">My Profile</span>
-						</a></li>
-						<li><a class="dropdown-item" href=""> <i class="bx bx-cog me-2"></i> <span class="align-middle">Settings</span>
-						</a></li>
-						<li><a class="dropdown-item" href=""> <span class="d-flex align-items-center align-middle"> <i class="flex-shrink-0 bx bx-credit-card me-2"></i> <span class="flex-grow-1 align-middle">Billing</span> <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-							</span>
-						</a></li>
+						<li><a class="dropdown-item" href="">
+								<i class="bx bx-user me-2"></i> <span class="align-middle">My Profile</span>
+							</a></li>
+						<li><a class="dropdown-item" href="">
+								<i class="bx bx-cog me-2"></i> <span class="align-middle">Settings</span>
+							</a></li>
+						<li><a class="dropdown-item" href="">
+								<span class="d-flex align-items-center align-middle"> <i class="flex-shrink-0 bx bx-credit-card me-2"></i> <span class="flex-grow-1 align-middle">Billing</span> <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
+								</span>
+							</a></li>
 						<li>
 							<div class="dropdown-divider"></div>
 						</li>
-						<li><a class="dropdown-item" id="btnLogout" href=""> <i class="bx bx-power-off me-2"></i> <span class="align-middle">Log Out</span>
-						</a></li>
+						<li><a class="dropdown-item" id="btnLogout" href="">
+								<i class="bx bx-power-off me-2"></i> <span class="align-middle">Log Out</span>
+							</a></li>
 					</ul>
 				</div>
 			</header>
 
 			<div class="page-heading">
 				<h3>Word Management</h3>
-				ifcdSeq =
-				<c:out value="${vo.ifcdSeq }" />
+				sdwSeq =
+				<c:out value="${vo.sdwSeq }" />
 				<br> shUseNy =
 				<c:out value="${vo.shUseNy }" />
 				<br> shOptionDate =
@@ -183,9 +196,13 @@
 							<section class="section">
 								<div class="card">
 									<div class="card-body">
-										<form method="post" name="formList" id="formList" action="/code/codeList">
+										<form method="post" name="formList" id="formList" >
 
-											<input type="hidden" name="ifcdSeq"> <input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>"> <input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>"> <input type="hidden" name="checkboxSeqArray">
+											<span>Total: ${vo.totalRows }</span>
+											<input type="hidden" name="sdwSeq">
+											<input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>">
+											<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>">
+											<input type="hidden" name="checkboxSeqArray">
 
 											<div class="row gx-3 gy-2">
 												<div class="col-3">
@@ -241,7 +258,7 @@
 														<tr>
 															<th>
 																<div class="form-check" id="">
-																	<input class="form-check-input" type="checkbox" name="chk_box" onclick="allcheck();" value="" id="flexCheckDefault">
+																	<input type="checkbox" id="checkboxAll" name="" value="" class="form-check-input">
 																</div>
 															</th>
 															<th>#</th>
@@ -266,25 +283,35 @@
 																	<tr>
 																		<td>
 																			<div class="form-check">
-																				<input class="form-check-input" type="checkbox" name="chk_box" onclick="check();" value="" id="flexCheckDefault">
+																				<input type="checkbox" id="checkboxSeq" name="checkboxSeq" value="<c:out value="${list.sdwSeq }"/>" class="form-check-input">
 																			</div>
 																		</td>
-																		<td>${status.count }</td>
-																		<td>${list.sdwWord }</td>
-																		<td><c:forEach items="${item}" var="item" varStatus="status">
+																		<td>
+																			<c:out value="${vo.totalRows - ((vo.thisPage -1) * vo.rowNumToShowMypage + status.index) }" />
+																		</td>
+																		<td>
+																			<a href="javascript:goForm(<c:out value="${list.sdwSeq }"/>)" class="text-decoration-none">
+																				<c:out value="${list.sdwWord }" /> 
+																			</a>
+																		</td>
+																		<td>
+																			<c:forEach items="${item}" var="item" varStatus="status">
 																				<c:if test="${list.sdwWord == item.sdwWord }">
 																					<div class="ask">
 																						<span class="content" style="font-weight: bold;" value="${list.sdwSeq }">${item.sdwmNum}. &nbsp;${item.sdwmPartOfSpeech}</span> <span class="content" value="${list.sdwSeq }">&nbsp;${item.sdwmContents}</span> <br>
 																					</div>
 																				</c:if>
-																			</c:forEach></td>
-																		<td><c:forEach items="${item}" var="item" varStatus="status">
+																			</c:forEach>
+																		</td>
+																		<td>
+																			<c:forEach items="${item}" var="item" varStatus="status">
 																				<c:if test="${list.sdwWord == item.sdwWord }">
 																					<div class="ask1">
 																						<span class="content" style="font-weight: bold;">${item.sdwmNum}.&nbsp;</span> <span class="content" value="${list.sdwSeq }">${item.sdweContents}</span> <br> <span class="content" value="${list.sdwSeq }">&nbsp;&nbsp;&nbsp;&nbsp;${item.sdweTranslate}</span> <br>
 																					</div>
 																				</c:if>
-																			</c:forEach></td>
+																			</c:forEach>
+																		</td>
 																		<td>${list.sddDateChoice }</td>
 																		<td></td>
 																		<td></td>
@@ -301,70 +328,88 @@
 												<div class="col">
 
 													<!-- pagination s -->
-													<%@include file="../../../common/xdmin/includeV1/pagination.jsp"%>
+													<div class="container-fluid px-0 mt-2">
+														<div class="row">
+															<div class="col">
+																<!-- <ul class="pagination pagination-sm justify-content-center mb-0"> -->
+																<ul class="pagination justify-content-center mb-0">
+																	<!-- <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angles-left"></i></a></li> -->
+																	<c:if test="${vo.startPage gt vo.pageNumToShow}">
+																		<li class="page-item"><a class="page-link" href="javascript:goList(${vo.startPage - 1})">
+																				<i class="fa-solid fa-angle-left"></i>
+																			</a></li>
+																	</c:if>
+																	<c:forEach begin="${vo.startPage}" end="${vo.endPage}" varStatus="i">
+																		<c:choose>
+																			<c:when test="${i.index eq vo.thisPage}">
+																				<li class="page-item active"><a class="page-link" href="javascript:goList(${i.index})">${i.index}</a></li>
+																			</c:when>
+																			<c:otherwise>
+																				<li class="page-item"><a class="page-link" href="javascript:goList(${i.index})">${i.index}</a></li>
+																			</c:otherwise>
+																		</c:choose>
+																	</c:forEach>
+																	<c:if test="${vo.endPage ne vo.totalPages}">
+																		<li class="page-item"><a class="page-link" href="javascript:goList(${vo.endPage + 1})">
+																				<i class="fa-solid fa-angle-right"></i>
+																			</a></li>
+																	</c:if>
+																	<!-- <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angles-right"></i></a></li> -->
+																</ul>
+															</div>
+														</div>
+													</div>
 													<!-- pagination e -->
-
-
-													<!-- 
-												<nav aria-label="Page navigation example">
-													<ul class="pagination justify-content-center">
-														<li class="page-item">
-															<a class="page-link" href="#">Previous</a>
-														</li>
-														<li class="page-item active"><a class="page-link" href="#">1</a></li>
-														<li class="page-item"><a class="page-link" href="#">2</a></li>
-														<li class="page-item"><a class="page-link" href="#">3</a></li>
-														<li class="page-item"><a class="page-link" href="#">┅</a></li>
-														<li class="page-item">
-															<a class="page-link" href="#">Next</a>
-														</li>
-													</ul>
-												</nav>
-												 -->
 												</div>
-
 												<div class="row">
-
 													<div class="col-6" style="text-align: left;">
-														<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-															<i class="fa-solid fa-square-minus"></i>
+														<button type="button" class="btn btn-danger" name="" id="btnDelete">
+															<i class="fa-solid fa-x"></i>
 														</button>
-														<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-															<i class="fa-solid fa-xmark"></i>
+														<button type="button" class="btn btn-danger" name="" id="btnUelete">
+															<i class="far fa-trash-alt"></i>
 														</button>
-														<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-															<div class="modal-dialog">
+														<div class="modal fade" id="modalConfirm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+															<div class="modal-dialog modal-dialog-centered">
 																<div class="modal-content">
 																	<div class="modal-header">
-																		<h5 class="modal-title" id="exampleModalLabel2">삭제</h5>
+																		<h5 class="modal-title" id="staticBackdropLabel">title</h5>
 																		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 																	</div>
-																	<div class="modal-body">정말 삭제하시겠습니까?</div>
+																	<div class="modal-body">body</div>
 																	<div class="modal-footer">
-																		<button type="button" class="btn btn-danger" data-bs-dismiss="modal" onClick="delete_row();">삭제하기</button>
-																		<button type="button" class="btn btn-primary" data-bs-dismiss="modal">취소하기</button>
+																		<button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">
+																			<i class="fa-solid fa-angle-left"></i>
+																		</button>
+																		<button type="button" class="btn btn-danger btn-sm" name="" id="btnModalDelete">
+																			<i class="fa-solid fa-x"></i>
+																		</button>
+																		<button type="button" class="btn btn-danger btn-sm" name="" id="btnModalUelete">
+																			<i class="far fa-trash-alt"></i>
+																		</button>
 																	</div>
 																</div>
 															</div>
 														</div>
-														<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-															<div class="modal-dialog">
+														<div class="modal fade" id="modalAlert" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+															<div class="modal-dialog modal-dialog-centered">
 																<div class="modal-content">
 																	<div class="modal-header">
-																		<h5 class="modal-title" id="exampleModalLabel">삭제</h5>
+																		<h5 class="modal-title" id="staticBackdropLabel">title</h5>
 																		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 																	</div>
-																	<div class="modal-body">정말 삭제하시겠습니까?</div>
+																	<div class="modal-body">body</div>
 																	<div class="modal-footer">
-																		<button type="button" class="btn btn-danger" data-bs-dismiss="modal" onClick="delete_row();">삭제하기</button>
-																		<button type="button" class="btn btn-primary" data-bs-dismiss="modal">취소하기</button>
+																		<button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal">
+																			<i class="fa-solid fa-check"></i>
+																		</button>
 																	</div>
 																</div>
 															</div>
 														</div>
 													</div>
 													<div class="col-6" style="text-align: right;">
-														<button type="button" class="btn btn-success">
+														<button type="button" class="btn btn-success" id="btnExcel">
 															<i class="fa-solid fa-file-csv"></i>
 														</button>
 														<button type="button" class="btn btn-primary" id="btnForm">
@@ -392,7 +437,8 @@
 					<div class="float-end">
 						<p>
 							Crafted with <span class="text-danger"> <i class="bi bi-heart"></i>
-							</span> by <a href="http://ahmadsaugi.com">A. Saugi</a>
+							</span> by
+							<a href="http://ahmadsaugi.com">A. Saugi</a>
 						</p>
 					</div>
 				</div>
@@ -418,25 +464,29 @@
 	<script type="text/javascript">
         var goUrlList = "/word/wordList";
         var goUrlForm = "/word/wordForm";
+        var excelUri = "/word/excelDownload";
+        var goUrlMultiUele = "/word/wordMultiUele"; /* #-> */
+        var goUrlMultiDele = "/word/wordMultiDele";
 
-        var seq = $("input:hidden[name=ifcdSeq]");
+        var form = $("form[name=formList]");
+
+        var seq = $("input:hidden[name=sdwSeq]");
+
+        var checkboxSeqArray = [];
 
         $('#btnForm').on("click", function() {
             goForm(0);
         });
 
-        goList = function(thisPage) {
-            $("input:hidden[name=thisPage]").val(thisPage);
-            form.attr("action", goUrlList).submit();
-        }
+        $("#btnExcel").click(function() {
+            form.attr("action", excelUri).submit();
+        });
 
         goForm = function(keyValue) {
             /* if(keyValue != 0) seq.val(btoa(keyValue)); */
             seq.val(keyValue);
             form.attr("action", goUrlForm).submit();
         }
-
-        var form = $("form[name=formList]");
 
         goList = function(thisPage) {
             $("input:hidden[name=thisPage]").val(thisPage);
@@ -446,6 +496,77 @@
         $("btnReset").on("click", function() {
             $(location).attr("href", goUrlList)
         })
+
+        $("#checkboxAll").click(function() {
+            if ($("#checkboxAll").is(":checked"))
+                $("input[name=checkboxSeq]").prop("checked", true);
+            else
+                $("input[name=checkboxSeq]").prop("checked", false);
+        });
+
+        $("input[name=checkboxSeq]").click(function() {
+            var total = $("input[name=checkboxSeq]").length;
+            var checked = $("input[name=checkboxSeq]:checked").length;
+
+            if (total != checked)
+                $("#checkboxAll").prop("checked", false);
+            else
+                $("#checkboxAll").prop("checked", true);
+        });
+
+        $("#btnUelete").on("click", function() {
+            if ($("input[name=checkboxSeq]:checked").length > 0) {
+                $("input:hidden[name=exDeleteType]").val(1);
+                $(".modal-title").text("확 인");
+                $(".modal-body").text("해당 데이터를 삭제하시겠습니까 ?");
+                $("#btnModalUelete").show();
+                $("#btnModalDelete").hide();
+                $("#modalConfirm").modal("show");
+            } else {
+                $(".modal-title").text("확 인");
+                $(".modal-body").text("데이터를 선택해 주세요!");
+                $("#modalAlert").modal("show");
+            }
+        });
+
+        $("#btnDelete").on("click", function() {
+            if ($("input[name=checkboxSeq]:checked").length > 0) {
+                $("input:hidden[name=exDeleteType]").val(2);
+                $(".modal-title").text("확 인");
+                $(".modal-body").text("해당 데이터를 삭제하시겠습니까 ?");
+                $("#btnModalUelete").hide();
+                $("#btnModalDelete").show();
+                $("#modalConfirm").modal("show");
+            } else {
+                $(".modal-title").text("확 인");
+                $(".modal-body").text("데이터를 선택해 주세요!");
+                $("#modalAlert").modal("show");
+            }
+        });
+
+        $("#btnModalUelete").on("click", function() {
+            $("input[name=checkboxSeq]:checked").each(function() {
+                checkboxSeqArray.push($(this).val());
+            });
+
+            $("input:hidden[name=checkboxSeqArray]").val(checkboxSeqArray);
+
+            $("#modalConfirm").modal("hide");
+
+            form.attr("action", goUrlMultiUele).submit();
+        });
+
+        $("#btnModalDelete").on("click", function() {
+            $("input[name=checkboxSeq]:checked").each(function() {
+                checkboxSeqArray.push($(this).val());
+            });
+
+            $("input:hidden[name=checkboxSeqArray]").val(checkboxSeqArray);
+
+            $("#modalConfirm").modal("hide");
+
+            form.attr("action", goUrlMultiDele).submit();
+        });
     </script>
 
 	<script>

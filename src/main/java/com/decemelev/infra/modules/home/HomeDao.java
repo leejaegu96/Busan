@@ -24,6 +24,20 @@ public class HomeDao {
 		System.out.println("dao selectWordCount result :" + result);
 		return result;
 	}
+	public int WordCount(HomeVo vo) {
+		int result = sqlSession.selectOne(namespace + ".WordCount", vo);
+		System.out.println("dao WordCount result :" + result);
+		return result;
+	}
+	public Home selectOneWord(HomeVo vo) {
+		Home result = sqlSession.selectOne(namespace+".selectOneWord", vo);
+		return result;
+	}
+	
+	public List<Home> selectOneWordList(HomeVo vo) {
+		List<Home> list = sqlSession.selectList("com.decemelev.infra.modules.home.HomeMapper.selectOneWordList", vo);
+		return list;
+	}
 	
 	public List<Home> favoriteList(Home dto) {
 		List<Home> list = sqlSession.selectList("com.decemelev.infra.modules.home.HomeMapper.favoriteList", dto);
@@ -36,16 +50,16 @@ public class HomeDao {
 		List<Home> list = sqlSession.selectList("com.decemelev.infra.modules.home.HomeMapper.selectList", dto);
 		return list;
 	}
-	public List<Home> wordList() {
-		List<Home> list = sqlSession.selectList("com.decemelev.infra.modules.home.HomeMapper.wordList", "");
-		return list;
-	}
 	public List<Home> selectContents(Home dto) {
 		List<Home> list = sqlSession.selectList("com.decemelev.infra.modules.home.HomeMapper.selectContents", dto);
 		return list;
 	}
-	public List<Home> wordContents() {
-		List<Home> list = sqlSession.selectList("com.decemelev.infra.modules.home.HomeMapper.wordContents", "");
+	public List<Home> wordList(HomeVo vo) {
+		List<Home> list = sqlSession.selectList("com.decemelev.infra.modules.home.HomeMapper.wordList", vo);
+		return list;
+	}
+	public List<Home> wordContents(HomeVo vo) {
+		List<Home> list = sqlSession.selectList("com.decemelev.infra.modules.home.HomeMapper.wordContents", vo);
 		return list;
 	}
 	public List<Home> myWordList(HomeVo vo) {

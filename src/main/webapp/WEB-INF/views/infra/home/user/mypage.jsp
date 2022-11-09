@@ -275,7 +275,7 @@ input-group-text {
 									</li>
 								</ul>
 								<div class="tab-content pt-2">
-									<!--  나만의 단어--------------------------------------------------------------------------- -->
+<!-- ----------------------------------------------------------------  나만의 단어--------------------------------------------------------------------------- -->
 									<div class="tab-pane fade show active My-Word pt-3" id="My-Word">
 										<form name="formList" id="formList">
 											<span style="font-weight: bold">&nbsp;Total: ${vo.totalRows }</span>
@@ -399,9 +399,6 @@ input-group-text {
 														<button type="button" class="btn btn-danger" name="" id="btnDelete">
 															<i class="fa-solid fa-x"></i>
 														</button>
-														<button type="button" class="btn btn-danger" name="" id="btnUelete">
-															<i class="far fa-trash-alt"></i>
-														</button>
 														<div class="modal fade" id="modalConfirm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 															<div class="modal-dialog modal-dialog-centered">
 																<div class="modal-content">
@@ -444,9 +441,6 @@ input-group-text {
 													<div class="col-6" style="text-align: right;">
 														<button type="button" class="btn btn-success" id="btnExcel">
 															<i class="fa-solid fa-file-csv"></i>
-														</button>
-														<button type="button" class="btn btn-primary" id="btnForm">
-															<i class="fa-solid fa-square-plus"></i>
 														</button>
 													</div>
 												</div>
@@ -820,18 +814,19 @@ input-group-text {
 
 	<script type="text/javascript">
 	var excelUri = "/home/excelDownload";
-	var form = $("form[name=formList]");
+	var formMy = $("form[name=formList]");
 	var goUrlMultiUele = "/home/wordMultiUele";			/* #-> */
 	var goUrlMultiDele = "/home/wordMultiDele";
+	
 	var checkboxSeqArray = [];
 	
 	goList = function(thisPage) {
 		$("input:hidden[name=thisPage]").val(thisPage);
-		form.attr("action", goUrlList).submit();
+		formMy.attr("action", goUrlList).submit();
 	}
 	
 	$("#btnExcel").click(function() {
-		form.attr("action", excelUri).submit();
+	    formMy.attr("action", excelUri).submit();
 	});
 	$("#checkboxAll").click(function() {
         if ($("#checkboxAll").is(":checked"))
@@ -889,19 +884,20 @@ input-group-text {
 
         $("#modalConfirm").modal("hide");
 
-        form.attr("action", goUrlMultiUele).submit();
+        formMy.attr("action", goUrlMultiUele).submit();
     });
 
     $("#btnModalDelete").on("click", function() {
         $("input[name=checkboxSeq]:checked").each(function() {
             checkboxSeqArray.push($(this).val());
+            console.log(checkboxSeqArray.push($(this).val()));
         });
 
         $("input:hidden[name=checkboxSeqArray]").val(checkboxSeqArray);
 
         $("#modalConfirm").modal("hide");
 
-        form.attr("action", goUrlMultiDele).submit();
+        formMy.attr("action", goUrlMultiDele).submit();
     });
 	</script>
 

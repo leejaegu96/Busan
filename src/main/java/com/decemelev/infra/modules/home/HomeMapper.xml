@@ -17,6 +17,101 @@
 		AND infrMember_ifmmSeq = #{mainKey}
 	</select>
 	
+	<select id="WordCount" resultType="Integer">
+		SELECT
+			COUNT(*)
+		FROM sdWord
+		WHERE 1=1
+	</select>
+	
+	<select id="selectOneWord" resultMap="resultMapObj">
+		select
+		    a.sdwWord
+		    ,a.sdwNum
+		    ,b.sddDateChoice
+		from sdWord a
+		inner join sdDate b on b.sddSeq=a.sdDate_sddSeq
+		where 1=1 
+			and a.sdwSeq = #{sdwSeq}
+	</select>
+	<select id="selectOneWordList" resultMap="resultMapObj">
+		select
+		    a.sdwWord
+		    ,c.sdwmNum
+		    ,c.sdwmPartOfSpeech
+		    ,c.sdwmContents
+		    ,d.sdweContents
+		    ,d.sdweTranslate
+		    ,b.sddDateChoice
+		from sdWord a
+		inner join sdDate b on b.sddSeq=a.sdDate_sddSeq
+		inner join sdwMean c on c.sdWord_sdwSeq=a.sdwSeq
+		inner join sdwExample d on d.sdwMean_sdwmSeq=c.sdwmSeq
+		where 1=1 
+			and a.sdwSeq = #{sdwSeq}
+	</select>
+	
+	<insert id="dateInsert">
+		INSERT INTO sdDate (
+			sddDateChoice
+			)
+		VALUES (
+			#{sddDateChoice}
+		)
+		<selectKey resultType="String" keyProperty="sddSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	<insert id="wordInsert">
+		INSERT INTO sdWord (
+			sdwWord
+			,sdwNum
+			,sdDate_sddSeq
+			)
+		VALUES (
+			#{sdwWord}
+			,#{sdwNum}
+			,#{sddSeq}
+		)
+		<selectKey resultType="String" keyProperty="sdwSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	<insert id="meanInsert">
+		INSERT INTO sdwMean (
+			sdwmPartOfSpeech
+			,sdwmContents
+			,sdwmNum
+			,sdWord_sdwSeq
+			)
+		VALUES (
+			#{sdwmPartOfSpeech}
+			,#{sdwmContents}
+			,#{sdwmNum}
+			,#{sdwSeq}
+		)
+		<selectKey resultType="String" keyProperty="sdwmSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	<insert id="exampleInsert">
+		INSERT INTO sdwMean (
+			sdweContents
+			,sdweTranslate
+			,sdweDefaultNy
+			,sdwMean_sdwmSeq
+			)
+		VALUES (
+			#{sdweContents}
+			,#{sdweTranslate}
+			,#{sdweDefaultNy}
+			,#{sdwmSeq}
+		)
+		<selectKey resultType="String" keyProperty="sdwmSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
 	<select id="favoriteList" resultMap="resultMapObj">
 		SELECT
 		a.sdwSeq
@@ -36,7 +131,7 @@
 	<delete id="delete">
 		DELETE FROM sdFavorite
 		WHERE 1=1
-			AND sdWord_sdwSeq = #{sdwSeq}
+			AND sdfSeq = #{sdfSeq}
 	</delete>
 	
 	<select id="selectList" resultMap="resultMapObj">
@@ -51,6 +146,7 @@
 		AND b.sddDateChoice = #{sddDateChoice}
 	</select>
 	<select id="wordList" resultMap="resultMapObj">
+		<include refid="Base.selectListUpperForMysql" />
 		SELECT
 		a.sdwSeq
 		,a.sdwWord
@@ -58,6 +154,8 @@
 		FROM sdWord a
 		INNER JOIN sdDate b on b.sddSeq=a.sdDate_sddSeq
 		WHERE 1=1
+		<include refid="Base.orderByLimitForMysql" />
+		<include refid="Base.selectListLowerForMysqlMypage" />
 	</select>
 	
 	<select id="selectContents" resultMap="resultMapObj">

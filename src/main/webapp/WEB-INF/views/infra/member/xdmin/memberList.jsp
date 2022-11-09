@@ -586,15 +586,15 @@
         var goUrlList = "/member/memberList";
         var goUrlForm = "/member/memberForm";
         var excelUri = "/member/excelDownload";
-        var goUrlMultiUele = "/member/memberMultiUele";			/* #-> */
-    	var goUrlMultiDele = "/member/memberMultiDele";	
+        var goUrlMultiUele = "/member/memberMultiUele"; /* #-> */
+        var goUrlMultiDele = "/member/memberMultiDele";
 
         var seq = $("input:hidden[name=ifmmSeq]");
-        
+
         var form = $("form[name=formList]");
 
         var checkboxSeqArray = [];
-        
+
         $('#btnForm').on("click", function() {
             goForm(0);
         });
@@ -604,7 +604,6 @@
             seq.val(keyValue);
             form.attr("action", goUrlForm).submit();
         }
-
 
         $("#btnExcel").click(function() {
             form.attr("action", excelUri).submit();
