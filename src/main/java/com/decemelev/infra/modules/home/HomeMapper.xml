@@ -51,6 +51,7 @@
 			and a.sdwSeq = #{sdwSeq}
 	</select>
 	
+	<!-- word insert -->
 	<insert id="dateInsert">
 		INSERT INTO sdDate (
 			sddDateChoice
@@ -111,6 +112,7 @@
 			SELECT last_insert_id()
 		</selectKey>
 	</insert>
+	<!-- word insert finish -->
 	
 	<select id="favoriteList" resultMap="resultMapObj">
 		SELECT

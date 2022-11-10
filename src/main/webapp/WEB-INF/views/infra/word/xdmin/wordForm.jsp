@@ -188,7 +188,7 @@ ul li {
 											<div class="container-fluid">
 												<div class="row" id="InputPadding">
 													<div class="col-6">
-														<label class="form-label">단어${item.sdwNum }</label>
+														<label class="form-label">단어</label>
 														<div class="row">
 															<div class="col-3">
 																<select id="inputState" name="sdwNum" value="<c:out value="${item.sdwNum }"/>" class="form-select">
@@ -210,149 +210,233 @@ ul li {
 														<input type="text" class="form-control" id="datepicker" value="<c:out value="${item.sddDateChoice }"/>">
 													</div>
 												</div>
-												<c:forEach items="${list}" var="list" varStatus="status">
-													<div id="workPoint">
-														<div class="row" id="InputPadding">
-															<div class="col-6">
-
-																<label class="form-label">정의</label>
-																<div class="form-check form-switch">
-																	<input class="form-check-input" type="checkbox" role="switch" name="sdweDefaultNy" id="sdweDefaultNy" value="1" checked>
-																	<label class="form-check-label">Default value</label>
-																</div>
-																<div class="row">
-																	<div class="col-2" style="padding-right: 0;">
-																		<select id="inputState" name="sdwmNum" value="<c:out value="${list.sdwmNum }"/>" class="form-select">
-																			<option selected disabled>#</option>
-																			<option value="1"<c:if test="${list.sdwmNum eq 1 }">selected</c:if>>1</option>
-																			<option value="2"<c:if test="${list.sdwmNum eq 2 }">selected</c:if>>2</option>
-																			<option value="3"<c:if test="${list.sdwmNum eq 3 }">selected</c:if>>3</option>
-																		</select>
+												<c:choose>
+													<c:when test="${vo.sdwSeq eq 0 }">
+														<div id="workPoint">
+															<div class="row" id="InputPadding">
+																<div class="col-6">
+																	<label class="form-label">정의</label>
+																	<div class="form-check form-switch">
+																		<input class="form-check-input" type="checkbox" role="switch" name="sdweDefaultNy" id="sdweDefaultNy" value="1" checked>
+																		<label class="form-check-label">Default value</label>
 																	</div>
-																	<div class="col-3" style="padding-right: 0;">
-																		<select id="inputState" name="sdwmPartOfSpeech" value="<c:out value="${list.sdwmPartOfSpeech }"/>" class="form-select">
-																			<option selected disabled>형태소</option>
-																			<option value="형용사">형용사</option>
-																			<option value="명사">명사</option>
-																			<option value="동사">동사</option>
-																		</select>
-																	</div>
-																	<div class="col-7">
-																		<input type="text" class="form-control" name="sdwmContents" value="<c:out value="${list.sdwmContents }"/>">
-																	</div>
-																</div>
-															</div>
-															<div class="col-6">
-																<label class="form-label">예시1</label>
-																<div class="row">
-																	<div class="col-10">
-																		<div class="input-group mb-3">
-																			<span class="input-group-text" id="basic-addon1">영문</span>
-																			<input type="text" class="form-control" name="sdweContents" value="<c:out value="${list.sdweContents }"/>">
+																	<div class="row">
+																		<div class="col-2" style="padding-right: 0;">
+																			<select id="sdwmNum" name="sdwmNum" class="form-select">
+																				<option selected disabled>#</option>
+																				<option value="1">1</option>
+																				<option value="2">2</option>
+																				<option value="3">3</option>
+																			</select>
 																		</div>
-																		<div class="input-group mb-3">
-																			<span class="input-group-text" id="basic-addon1">해석</span>
-																			<input type="text" class="form-control" name="sdweTranslate" value="<c:out value="${list.sdweTranslate }"/>">
+																		<div class="col-3" style="padding-right: 0;">
+																			<select id="sdwmPartOfSpeech" name="sdwmPartOfSpeech" class="form-select">
+																				<option selected disabled>형태소</option>
+																				<option value="형용사">형용사</option>
+																				<option value="명사">명사</option>
+																				<option value="동사">동사</option>
+																			</select>
+																		</div>
+																		<div class="col-7">
+																			<input type="text" class="form-control" name="sdwmContents" >
 																		</div>
 																	</div>
-																	<div class="col-2">
-																		<button type="button" class="regFrombutton1" onclick="addWork()">
-																			<i class="fa-solid fa-plus"></i>
-																		</button>
+																</div>
+																<div class="col-6">
+																	<label class="form-label">예시1</label>
+																	<div class="row">
+																		<div class="col-10">
+																			<div class="input-group mb-3">
+																				<span class="input-group-text" id="basic-addon1">영문</span>
+																				<input type="text" class="form-control" name="sdweContents" >
+																			</div>
+																			<div class="input-group mb-3">
+																				<span class="input-group-text" id="basic-addon1">해석</span>
+																				<input type="text" class="form-control" name="sdweTranslate" >
+																			</div>
+																		</div>
+																		<div class="col-2">
+																			<button type="button" class="regFrombutton1" onclick="addWork()">
+																				<i class="fa-solid fa-plus"></i>
+																			</button>
+																		</div>
 																	</div>
 																</div>
 															</div>
 														</div>
-													</div>
-												</c:forEach>
+													</c:when>
+													<c:otherwise>
+														<c:forEach items="${list}" var="list" varStatus="status">
+															<c:choose>
+																<c:when test="${list.sdwmNum eq 1 }">
+																	<div id="workPoint">
+																</c:when>
+																<c:otherwise>
+																	<div id="careerDelete">
+																</c:otherwise>
+															</c:choose>
+															<div class="row" id="InputPadding">
+																<div class="col-6">
+																	<label class="form-label">정의</label>
+																	<c:choose>
+																		<c:when test="${list.sdwmNum eq 1 }">
+																			<div class="form-check form-switch">
+																				<input class="form-check-input" type="checkbox" role="switch" name="sdweDefaultNy" id="sdweDefaultNy" value="1" checked>
+																				<label class="form-check-label">Default value</label>
+																			</div>
+																		</c:when>
+																		<c:otherwise>
+																			<div class="form-check form-switch">
+																				<input class="form-check-input" type="checkbox" role="switch" name="sdweDefaultNy" id="sdweDefaultNy" value="0">
+																				<label class="form-check-label">Default value</label>
+																			</div>
+																		</c:otherwise>
+																	</c:choose>
 
-												<div class="row" id="InputPadding">
-													<div class="col-6" style="text-align: left;">
-														<button type="button" class="btn btn-secondary" id="btnList">
-															<i class="fa-solid fa-bars"></i>
-														</button>
-													</div>
-													<div class="col-6" style="text-align: right;">
-														<button type="button" id="btnDelete" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
-															<i class="fa-solid fa-xmark"></i>
-														</button>
-														<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-															<div class="modal-dialog">
-																<div class="modal-content">
-																	<div class="modal-header">
-																		<h5 class="modal-title"></h5>
-																		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+																	<div class="row">
+																		<div class="col-2" style="padding-right: 0;">
+																			<select id="sdwmNum" name="sdwmNum" value="<c:out value="${list.sdwmNum }"/>" class="form-select">
+																				<option selected disabled>#</option>
+																				<option value="1" <c:if test="${list.sdwmNum eq 1 }">selected</c:if>>1</option>
+																				<option value="2" <c:if test="${list.sdwmNum eq 2 }">selected</c:if>>2</option>
+																				<option value="3" <c:if test="${list.sdwmNum eq 3 }">selected</c:if>>3</option>
+																			</select>
+																		</div>
+																		<div class="col-3" style="padding-right: 0;">
+																			<select id="sdwmPartOfSpeech" name="sdwmPartOfSpeech" value="<c:out value="${list.sdwmPartOfSpeech }"/>" class="form-select">
+																				<option selected disabled>형태소</option>
+																				<option value="형용사">형용사</option>
+																				<option value="명사">명사</option>
+																				<option value="동사">동사</option>
+																			</select>
+																		</div>
+																		<div class="col-7">
+																			<input type="text" class="form-control" name="sdwmContents" value="<c:out value="${list.sdwmContents }"/>">
+																		</div>
 																	</div>
-																	<div class="modal-body" style="text-align: left;"></div>
-																	<div class="modal-footer">
-																		<button type="button" class="btn btn-danger" id="btnModalUelete">삭제하기</button>
-																		<button type="button" class="btn btn-warning" id="btnModalDelete">삭제하기</button>
-																		<button type="button" class="btn btn-primary" id="">취소하기</button>
+																</div>
+																<div class="col-6">
+																	<label class="form-label">예시1</label>
+																	<div class="row">
+																		<div class="col-10">
+																			<div class="input-group mb-3">
+																				<span class="input-group-text" id="basic-addon1">영문</span>
+																				<input type="text" class="form-control" name="sdweContents" value="<c:out value="${list.sdweContents }"/>">
+																			</div>
+																			<div class="input-group mb-3">
+																				<span class="input-group-text" id="basic-addon1">해석</span>
+																				<input type="text" class="form-control" name="sdweTranslate" value="<c:out value="${list.sdweTranslate }"/>">
+																			</div>
+																		</div>
+																		<div class="col-2">
+																			<c:choose>
+																				<c:when test="${list.sdwmNum eq 1 }">
+																					<button type="button" class="regFrombutton1" onclick="addWork()">
+																						<i class="fa-solid fa-plus"></i>
+																					</button>
+																				</c:when>
+																				<c:otherwise>
+																					<button type="button" class="regFrombutton1" onclick="remove(careerDelete)">
+																						<i class="fa-solid fa-minus"></i>
+																					</button>
+																				</c:otherwise>
+																			</c:choose>
+																		</div>
 																	</div>
 																</div>
 															</div>
-														</div>
-														<button type="button" id="btnUelete" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-															<i class="fa-solid fa-trash-can"></i>
-														</button>
-														<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-															<div class="modal-dialog">
-																<div class="modal-content">
-																	<div class="modal-header">
-																		<h5 class="modal-title"></h5>
-																		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-																	</div>
-																	<div class="modal-body" style="text-align: left;"></div>
-																	<div class="modal-footer">
-																		<button type="button" class="btn btn-danger" id="btnModalUelete">삭제하기</button>
-																		<button type="button" class="btn btn-warning" id="btnModalDelete">삭제하기</button>
-																		<button type="button" class="btn btn-primary" id="">취소하기</button>
-																	</div>
-																</div>
-															</div>
-														</div>
-
-														<button type="button" id="btnSave" class="btn btn-success">
-															<i class="fa-solid fa-bookmark"></i>
-														</button>
-													</div>
-												</div>
+														</c:forEach>
+													</c:otherwise>
+												</c:choose>
 											</div>
 
+											<div class="row" id="InputPadding">
+												<div class="col-6" style="text-align: left;">
+													<button type="button" class="btn btn-secondary" id="btnList">
+														<i class="fa-solid fa-bars"></i>
+													</button>
+												</div>
+												<div class="col-6" style="text-align: right;">
+													<button type="button" id="btnDelete" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+														<i class="fa-solid fa-xmark"></i>
+													</button>
+													<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+														<div class="modal-dialog">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<h5 class="modal-title"></h5>
+																	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+																</div>
+																<div class="modal-body" style="text-align: left;"></div>
+																<div class="modal-footer">
+																	<button type="button" class="btn btn-danger" id="btnModalUelete">삭제하기</button>
+																	<button type="button" class="btn btn-warning" id="btnModalDelete">삭제하기</button>
+																	<button type="button" class="btn btn-primary" id="">취소하기</button>
+																</div>
+															</div>
+														</div>
+													</div>
+													<button type="button" id="btnUelete" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+														<i class="fa-solid fa-trash-can"></i>
+													</button>
+													<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+														<div class="modal-dialog">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<h5 class="modal-title"></h5>
+																	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+																</div>
+																<div class="modal-body" style="text-align: left;"></div>
+																<div class="modal-footer">
+																	<button type="button" class="btn btn-danger" id="btnModalUelete">삭제하기</button>
+																	<button type="button" class="btn btn-warning" id="btnModalDelete">삭제하기</button>
+																	<button type="button" class="btn btn-primary" id="">취소하기</button>
+																</div>
+															</div>
+														</div>
+													</div>
 
-										</form>
-										<form name="formVo" id="formVo" method="post">
-											<!-- *Vo.jsp s -->
-											<%@include file="wordVo.jsp"%>
-											<!-- #-> -->
-											<!-- *Vo.jsp e -->
-										</form>
-
+													<button type="button" id="btnSave" class="btn btn-success">
+														<i class="fa-solid fa-bookmark"></i>
+													</button>
+												</div>
+											</div>
 									</div>
+
+
+									</form>
+									<form name="formVo" id="formVo" method="post">
+										<!-- *Vo.jsp s -->
+										<%@include file="wordVo.jsp"%>
+										<!-- #-> -->
+										<!-- *Vo.jsp e -->
+									</form>
+
 								</div>
-							</section>
 						</div>
-
-					</div>
-
 				</section>
 			</div>
 
-			<footer>
-				<div class="footer clearfix mb-0 text-muted">
-					<div class="float-start">
-						<p>2021 &copy; Mazer</p>
-					</div>
-					<div class="float-end">
-						<p>
-							Crafted with <span class="text-danger"> <i class="bi bi-heart"></i>
-							</span> by
-							<a href="http://ahmadsaugi.com">A. Saugi</a>
-						</p>
-					</div>
-				</div>
-			</footer>
 		</div>
+
+		</section>
+	</div>
+
+	<footer>
+		<div class="footer clearfix mb-0 text-muted">
+			<div class="float-start">
+				<p>2021 &copy; Mazer</p>
+			</div>
+			<div class="float-end">
+				<p>
+					Crafted with <span class="text-danger"> <i class="bi bi-heart"></i>
+					</span> by
+					<a href="http://ahmadsaugi.com">A. Saugi</a>
+				</p>
+			</div>
+		</div>
+	</footer>
+	</div>
 	</div>
 	<!-- 
 	<script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
@@ -455,7 +539,7 @@ ul li {
             listHTML += '</div>';
             listHTML += '<div class="row">';
             listHTML += '<div class="col-2" style="padding-right:0;">';
-            listHTML += '<select id="inputState" name="sdwmNum" value="<c:out value="${list.sdwmNum }"/>" class="form-select">';
+            listHTML += '<select id="inputState" name="sdwmNum" class="form-select">';
             listHTML += '<option selected disabled>#</option>';
             listHTML += '<option value="1">1</option>';
             listHTML += '<option value="2">2</option>';
@@ -463,7 +547,7 @@ ul li {
             listHTML += '</select>';
             listHTML += '</div>';
             listHTML += '<div class="col-3" style="padding-right:0;">';
-            listHTML += '<select id="inputState" name="sdwmPartOfSpeech" value="<c:out value="${list.sdwmPartOfSpeech }"/>" class="form-select">';
+            listHTML += '<select id="inputState" name="sdwmPartOfSpeech" class="form-select">';
             listHTML += '<option selected disabled>형태소</option>';
             listHTML += '<option value="형용사">형용사</option>';
             listHTML += '<option value="명사">명사</option>';
@@ -471,7 +555,7 @@ ul li {
             listHTML += '</select>';
             listHTML += '</div>';
             listHTML += '<div class="col-7">';
-            listHTML += '<input type="text" class="form-control" name="sdwmContents" value="<c:out value="${list.sdwmContents }"/>">';
+            listHTML += '<input type="text" class="form-control" name="sdwmContents">';
             listHTML += '</div>';
             listHTML += '</div>';
             listHTML += '</div>';
@@ -481,11 +565,11 @@ ul li {
             listHTML += '<div class="col-10">';
             listHTML += '<div class="input-group mb-3">';
             listHTML += '<span class="input-group-text" id="basic-addon1">영문</span>';
-            listHTML += '<input type="text" class="form-control" name="sdweContents" value="<c:out value="${list.sdweContents }"/>" >';
+            listHTML += '<input type="text" class="form-control" name="sdweContents" >';
             listHTML += '</div>';
             listHTML += '<div class="input-group mb-3">';
             listHTML += '<span class="input-group-text" id="basic-addon1">해석</span>';
-            listHTML += '<input type="text" class="form-control" name="sdweTranslate" value="<c:out value="${list.sdweTranslate }"/>" >';
+            listHTML += '<input type="text" class="form-control" name="sdweTranslate" >';
             listHTML += '</div>';
             listHTML += '</div>';
             listHTML += '<div class="col-2">';

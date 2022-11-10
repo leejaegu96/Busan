@@ -38,6 +38,34 @@ public class HomeServiceImpl implements HomeService{
 		List<Home> list = dao.selectOneWordList(vo);
 		return list;
 	}
+	
+//	word insert
+	@Override
+	public int dateInsert(Home dto) throws Exception{
+		int result = dao.dateInsert(dto);
+		System.out.println("service result: "+ result);
+		return result;
+	}
+	@Override
+	public int wordInsert(Home dto) throws Exception{
+		int result = dao.wordInsert(dto);
+		System.out.println("service result: "+ result);
+		return result;
+	}
+	@Override
+	public int meanInsert(Home dto) throws Exception{
+		int result = dao.meanInsert(dto);
+		System.out.println("service result: "+ result);
+		return result;
+	}
+	@Override
+	public int exampleInsert(Home dto) throws Exception{
+		int result = dao.exampleInsert(dto);
+		System.out.println("service result: "+ result);
+		return result;
+	}
+//	word insert
+	
 	@Override
 	public List<Home> favoriteList(Home dto) throws Exception {
 		List<Home> list = dao.favoriteList(dto);

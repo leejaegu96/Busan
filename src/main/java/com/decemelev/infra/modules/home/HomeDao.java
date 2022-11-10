@@ -39,6 +39,30 @@ public class HomeDao {
 		return list;
 	}
 	
+//	word insert
+	public int dateInsert(Home dto) {
+		int result = sqlSession.insert(namespace + ".dateInsert", dto);
+		System.out.println("dao.result :" + result);
+		return result;
+	}
+	public int wordInsert(Home dto) {
+		int result = sqlSession.insert(namespace + ".wordInsert", dto);
+		System.out.println("dao.result :" + result);
+		return result;
+	}
+	public int meanInsert(Home dto) {
+		int result = sqlSession.insert(namespace + ".meanInsert", dto);
+		System.out.println("dao.result :" + result);
+		return result;
+	}
+	public int exampleInsert(Home dto) {
+		int result = sqlSession.insert(namespace + ".exampleInsert", dto);
+		System.out.println("dao.result :" + result);
+		return result;
+	}
+//	word insert
+	
+	
 	public List<Home> favoriteList(Home dto) {
 		List<Home> list = sqlSession.selectList("com.decemelev.infra.modules.home.HomeMapper.favoriteList", dto);
 		return list;

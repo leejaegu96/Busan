@@ -109,6 +109,11 @@ public class HomeController {
 		
 		return "infra/word/xdmin/wordForm";
 	}
+	
+//	word insert
+	
+//	word insert
+	
 	@RequestMapping(value = "/test/testList")
 	public String testList(Model model) throws Exception {
 		
