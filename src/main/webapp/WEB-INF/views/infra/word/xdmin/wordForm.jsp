@@ -157,7 +157,7 @@ ul li {
 				<br> shOptionDate =
 				<c:out value="${vo.shOptionDate }" />
 				<br> shOption =
-				<c:out value="${vo.shOption }" />
+				<c:out value="${vo.shOption }" /> 
 				<br> shValue =
 				<c:out value="${vo.shValue }" />
 				<br>
