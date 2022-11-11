@@ -263,7 +263,7 @@
 															</th>
 															<th>#</th>
 															<th style="width: 5%;">단어</th>
-															<th style="width: 25%;">뜻</th>
+															<th style="width: 25%;">뜻</th> 
 															<th style="width: 35%;">예시</th>
 															<th style="width: 10%;">날짜</th>
 															<th>등록일</th>
