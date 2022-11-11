@@ -270,7 +270,7 @@
 															<th>수정일</th>
 														</tr>
 													</thead>
-													<tbody id="my_tbody">
+													<tbody id="my_tbody"> 
 														<c:choose>
 															<c:when test="${fn:length(list) eq 0}">
 																<tr>
