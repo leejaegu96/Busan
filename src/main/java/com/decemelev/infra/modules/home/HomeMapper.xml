@@ -260,7 +260,8 @@
 		WHERE 1=1
 			AND a.sddDateChoice = #{sddDateChoice}
 	</select>
-
+	
+	<!-- rank -->
 	<select id="selectRank" resultMap="resultMapObj">
 		select
 			a.infrMember_ifmmSeq
@@ -272,7 +273,7 @@
 		where 1=1
 		and b.sddDateChoice between "2022-07-25" and "2022-07-27"
 		group by a.infrMember_ifmmSeq
-		order by sum desc limit 6
+		order by sum desc limit 7
 	</select>
 	<select id="selectRank1" resultMap="resultMapObj">
 		select
@@ -287,6 +288,19 @@
 		group by a.infrMember_ifmmSeq
 		order by sum desc
 	</select>
+	<select id="selectRankDate" resultMap="resultMapObj">
+		SELECT 
+			b.ifmmSeq
+		    ,b.ifmmName
+		    ,a.sdtrsTotalScore
+		    ,c.sddDateChoice
+		from sdTotalResult a
+		inner join infrMember b on b.ifmmSeq = a.infrMember_ifmmSeq
+		inner join sdDate c on c.sddSeq = a.sdDate_sddSeq
+		where 1=1
+		AND b.ifmmSeq = #{mainKey}
+	</select>
+	<!-- rank -->
 	
 	<select id="memberList" resultMap="resultMapObj">
 		select

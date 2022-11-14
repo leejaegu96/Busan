@@ -127,6 +127,7 @@ public class HomeServiceImpl implements HomeService{
 		return result;
 	}
 
+//	rank
 	@Override
 	public List<Home> selectRank() throws Exception {
 		List<Home> rank = dao.selectRank();
@@ -137,6 +138,12 @@ public class HomeServiceImpl implements HomeService{
 		List<Home> rank = dao.selectRank1();
 		return rank;
 	}
+	@Override
+	public List<Home> selectRankDate(HomeVo vo) throws Exception {
+		List<Home> rank = dao.selectRankDate(vo);
+		return rank;
+	}
+//	rank
 	
 	@Override
 	public int update(Home dto) throws Exception {

@@ -31,6 +31,12 @@ public class CodeController {
 		
 		vo.setParamsPaging(service.selectOneCount(vo));
 	}
+	public void setSearch(CodeVo vo) throws Exception {
+		/* vo.setShUseNy(vo.getShUseNy() == null ? 1 : vo.getShUseNy() ); */
+		vo.setShOptionDate(vo.getShOptionDate() == null ? 2 : vo.getShOptionDate());
+		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()) );
+		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()) );
+	}
 	
 	@RequestMapping(value = "codeList")
 	public String codeList(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception {
@@ -47,6 +53,23 @@ public class CodeController {
 		return "infra/code/xdmin/codeList";
 	}
 	
+	@RequestMapping(value="codeAjaxList")
+	public String codeAjaxList(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception {
+		setSearch(vo);
+
+		return "infra/code/xdmin/codeAjaxList";
+	}
+	@RequestMapping(value="codeAjaxLita")
+	public String codeAjaxLita(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception {
+		
+		vo.setParamsPaging(service.selectOneCount(vo));
+
+		List<Code> list = service.selectList(vo);
+		model.addAttribute("list", list);
+		
+		return "infra/code/xdmin/codeAjaxLita";
+	}
+	
 	@RequestMapping(value = "codeForm")
 	public String codeForm(@ModelAttribute("vo") CodeVo vo, Code dto, Model model) throws Exception {
 		
@@ -61,6 +84,8 @@ public class CodeController {
 		
 		return "infra/code/xdmin/codeForm";
 	}
+	
+	
 	
 	@RequestMapping(value = "codeInst")
 	public String codeInst(CodeVo vo, Code dto, RedirectAttributes redirectAttributes) throws Exception {

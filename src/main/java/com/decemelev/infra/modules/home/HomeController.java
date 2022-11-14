@@ -213,11 +213,14 @@ public class HomeController {
 		List<Home> rank1 = service.selectRank1();
 		model.addAttribute("rank1", rank1);
 		
+		
 		HttpSession httpSession =  httpServletRequest.getSession();
 		sessSeq = (String) httpSession.getAttribute("sessSeq");
 		
 		vo.setMainKey(sessSeq);
 		
+		List<Home> rank2 = service.selectRankDate(vo);
+		model.addAttribute("score", rank2);
 		Home list = service.memberList(vo);
 		model.addAttribute("list", list);
 		

@@ -243,7 +243,7 @@ ul li {
 																	</div>
 																</div>
 																<div class="col-6">
-																	<label class="form-label">예시1</label>
+																	<label class="form-label">예시</label>
 																	<div class="row">
 																		<div class="col-10">
 																			<div class="input-group mb-3">
@@ -316,7 +316,7 @@ ul li {
 																	</div>
 																</div>
 																<div class="col-6">
-																	<label class="form-label">예시1</label>
+																	<label class="form-label">예시</label>
 																	<div class="row">
 																		<div class="col-10">
 																			<div class="input-group mb-3">
