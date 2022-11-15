@@ -9,8 +9,10 @@ public interface LoginService {
 	
 	public int insert(Login dto) throws Exception;
 	public int kakaoInst(Login dto) throws Exception;
+	public int naverInst(Login dto) throws Exception;
 	
 	public Login snsLoginCheck(Login dto) throws Exception;
+	public Login snsLoginCheckNaver(Login dto) throws Exception;
 	public int selectOneIdCheck(Login dto) throws Exception;
 	
 	public Login selectOneId(Login dto) throws Exception;

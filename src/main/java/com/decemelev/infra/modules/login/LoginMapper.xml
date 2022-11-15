@@ -83,6 +83,30 @@
 			SELECT last_insert_id()
 		</selectKey>
 	</insert>
+	<!-- 네이버 로그인 -->
+	<insert id="naverInst">
+		INSERT INTO infrMember (
+			ifmmName
+			,ifmmID
+			,ifmmEmail
+			,ifmmGender
+			,ifmmDob
+			,ifmmPhone
+			,ifmmSnsLogin
+		)
+		VALUES (
+			#{name}
+			,#{sns_id}
+			,#{email}
+			,#{gender}
+			,#{dob}
+			,#{phone}
+			,3
+		)
+		<selectKey resultType="String" keyProperty="ifmmSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>
+	</insert>
 	
 	<select id="snsLoginCheck" resultMap="resultMapObj">
 		SELECT
@@ -95,6 +119,18 @@
 		WHERE 1=1 
 			AND ifmmEmail = #{email}
 			AND ifmmSnsLogin = 2
+	</select>
+	<select id="snsLoginCheckNaver" resultMap="resultMapObj">
+		SELECT
+			ifmmEmail
+			,ifmmName
+			,ifmmSeq
+			,ifmmId
+			,ifmmSnsLogin
+		FROM infrMember a
+		WHERE 1=1 
+			AND ifmmEmail = #{email}
+			AND ifmmSnsLogin = 3
 	</select>
 	<!-- 카카오 로그인 -->
 	<select id="selectOneIdCheck" resultType="Integer">

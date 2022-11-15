@@ -41,10 +41,24 @@ public class Login extends Base {
 	private String seq;
 	private String id;
 	
+	private String phone;
+	
+	private String sns_id;
 	
 	
 	
-	
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getSns_id() {
+		return sns_id;
+	}
+	public void setSns_id(String sns_id) {
+		this.sns_id = sns_id;
+	}
 	public String getId() {
 		return id;
 	}

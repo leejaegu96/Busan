@@ -53,7 +53,12 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public int kakaoInst(Login dto) throws Exception {
 		int result = dao.kakaoInst(dto);
-		
+		System.out.println("service insert result: " + result);
+		return result;
+	}
+	@Override
+	public int naverInst(Login dto) throws Exception {
+		int result = dao.naverInst(dto);
 		System.out.println("service insert result: " + result);
 		return result;
 	}
@@ -61,6 +66,12 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public Login snsLoginCheck(Login dto) throws Exception {
 		Login result = dao.snsLoginCheck(dto);
+		System.out.println("service snsLoginCheck result: " + result);
+		return result;
+	}
+	@Override
+	public Login snsLoginCheckNaver(Login dto) throws Exception {
+		Login result = dao.snsLoginCheckNaver(dto);
 		System.out.println("service snsLoginCheck result: " + result);
 		return result;
 	}

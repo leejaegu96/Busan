@@ -27,13 +27,23 @@ public class LoginDao {
 		System.out.println("dao insert result: " + result);
 		return result;
 	}
+//	카카오 로그인
 	public int kakaoInst(Login dto) {
 		int result = sqlSession.insert(namespace + ".kakaoInst", dto);
 		System.out.println("dao insert result: " + result);
 		return result;
 	}
 	
+//	네이버 로그인
+	public int naverInst(Login dto) {
+		int result = sqlSession.insert(namespace + ".naverInst", dto);
+		System.out.println("dao insert result: " + result);
+		return result;
+	}
+	
+	
 	public Login snsLoginCheck(Login dto) { return sqlSession.selectOne(namespace + ".snsLoginCheck", dto);}
+	public Login snsLoginCheckNaver(Login dto) { return sqlSession.selectOne(namespace + ".snsLoginCheckNaver", dto);}
 	
 	public int selectOneIdCheck(Login dto) { return sqlSession.selectOne(namespace + ".selectOneIdCheck", dto);}
 	

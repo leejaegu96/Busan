@@ -168,6 +168,32 @@ public class LoginController {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value = "naverLoginProc")
+	public Map<String, Object> naverLoginProc(Login dto, HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		Login naverLogin = service.snsLoginCheckNaver(dto);
+		System.out.println("test : " + dto.getToken());
+		if (naverLogin == null) {
+			service.naverInst(dto);
+			
+			httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE);
+			// session(dto.getSeq(), dto.getId(), dto.getName(), dto.getEmail(), dto.getUser_div(), dto.getSnsImg(), dto.getSns_type(), httpSession);
+			session(dto, httpSession); 
+			returnMap.put("rt", "success");
+		} else {
+			httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE);
+			
+			// session(kakaoLogin.getSeq(), kakaoLogin.getId(), kakaoLogin.getName(), kakaoLogin.getEmail(), kakaoLogin.getUser_div(), kakaoLogin.getSnsImg(), kakaoLogin.getSns_type(), httpSession);
+			session(naverLogin, httpSession);
+			System.out.println(naverLogin.getIfmmSeq());
+			System.out.println(naverLogin.getIfmmName());
+			System.out.println(naverLogin.getIfmmId());
+			System.out.println(naverLogin.getIfmmEmail());
+			returnMap.put("rt", "success");
+		}
+		return returnMap;
+	}
+	@ResponseBody
 	@RequestMapping(value = "kakaoLoginProc")
 	public Map<String, Object> kakaoLoginProc(Login dto, HttpSession httpSession) throws Exception {
 	    Map<String, Object> returnMap = new HashMap<String, Object>();
