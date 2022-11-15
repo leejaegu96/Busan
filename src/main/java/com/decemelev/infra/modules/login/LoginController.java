@@ -33,41 +33,20 @@ public class LoginController {
 		
 		return "infra/login/user/login";
 	} 
+	@RequestMapping(value="userLogin")
+	public String userLogin(Model model) throws Exception {
+		
+		List<Login> list = service.selectList();
+		model.addAttribute("list", list);
+		
+		return "infra/login/user/userLogin";
+	} 
 	
 	@RequestMapping(value="signUp")
 	public String signUp(Model model) throws Exception {
 		
 		return "infra/login/user/signUp";
 	} 
-	
-	
-	/*
-	 * @RequestMapping(value="signUp", method = RequestMethod.GET) public String
-	 * signUp(Locale locale, Model model) { return "infra/login/user/signUp"; }
-	 */
-	@RequestMapping(value="findIdPassword", method = RequestMethod.GET)
-	public String findIdPassword(Locale locale, Model model) {
-		return "infra/login/user/findIdPassword";
-	}
-
-	
-	
-	/*
-	 *
-	 * @RequestMapping(value="selectForm", method = RequestMethod.GET) public String
-	 * selectForm(Locale locale, Model model) { return
-	 * "infra/login/user/selectForm"; }
-	 */
-	
-	
-	
-	/* @SuppressWarnings(value= {"all"}) */
-	@RequestMapping(value = "loginInst")
-	public String loginInst(Login dto) throws Exception {
-		int result = service.insert(dto);
-		System.out.println("result: " + result);
-		return "redirect:/login/login";
-	}
 	
 	@ResponseBody
 	@RequestMapping(value="checkId")
@@ -113,6 +92,36 @@ public class LoginController {
 		}
 		
 		return returnMap;
+	}
+	
+	
+
+	/*
+	 * @RequestMapping(value="signUp", method = RequestMethod.GET) public String
+	 * signUp(Locale locale, Model model) { return "infra/login/user/signUp"; }
+	 */
+	@RequestMapping(value="findIdPassword", method = RequestMethod.GET)
+	public String findIdPassword(Locale locale, Model model) {
+		return "infra/login/user/findIdPassword";
+	}
+
+	
+	
+	/*
+	 *
+	 * @RequestMapping(value="selectForm", method = RequestMethod.GET) public String
+	 * selectForm(Locale locale, Model model) { return
+	 * "infra/login/user/selectForm"; }
+	 */
+	
+	
+	
+	/* @SuppressWarnings(value= {"all"}) */
+	@RequestMapping(value = "loginInst")
+	public String loginInst(Login dto) throws Exception {
+		int result = service.insert(dto);
+		System.out.println("result: " + result);
+		return "redirect:/login/login";
 	}
 	
 	//강사로그인

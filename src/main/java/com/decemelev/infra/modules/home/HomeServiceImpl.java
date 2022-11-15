@@ -143,6 +143,11 @@ public class HomeServiceImpl implements HomeService{
 		List<Home> rank = dao.selectRankDate(vo);
 		return rank;
 	}
+	@Override
+	public Home selectOneRank(HomeVo vo) throws Exception {
+		Home rank = dao.selectOneRank(vo);
+		return rank;
+	}
 //	rank
 	
 	@Override

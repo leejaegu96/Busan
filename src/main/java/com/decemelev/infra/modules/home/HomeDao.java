@@ -121,6 +121,10 @@ public class HomeDao {
 		List<Home> rank = sqlSession.selectList(namespace +".selectRankDate", vo);
 		return rank;
 	}
+	public Home selectOneRank(HomeVo vo){
+		Home rank = sqlSession.selectOne(namespace +".selectOneRank", vo);
+		return rank;
+	}
 //	rank
 	
 	public int update(Home dto) {

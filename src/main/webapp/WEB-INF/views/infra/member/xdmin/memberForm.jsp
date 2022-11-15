@@ -94,11 +94,8 @@
 						<div class="row" style="text-align: center; width: 300px;">
 							<div class="logo">
 								<a href="memberList">
-									<span style="font-size: 30px;">
-										<i class="fa-solid fa-book-open"></i>&nbsp E-Word
-									</span>
-									<br>
-									<span style="font-size: 19px;">Administrator</span>
+									<span style="font-size: 30px;"> <i class="fa-solid fa-book-open"></i>&nbsp E-Word
+									</span> <br> <span style="font-size: 19px;">Administrator</span>
 								</a>
 							</div>
 						</div>
@@ -114,33 +111,27 @@
 						<li class="sidebar-title">Menu</li>
 
 						<li class="sidebar-item active "><a href="memberList" class='sidebar-link'>
-								<i class="bi bi-person-badge-fill"></i>
-								<span>MemberList</span>
+								<i class="bi bi-person-badge-fill"></i> <span>MemberList</span>
 							</a></li>
 
 						<li class="sidebar-item"><a href="../codeGroup/codeGroupList" class='sidebar-link'>
-								<i class="bi bi-grid-fill"></i>
-								<span>CodeGroup</span>
+								<i class="bi bi-grid-fill"></i> <span>CodeGroup</span>
 							</a></li>
 
 						<li class="sidebar-item "><a href="../code/codeList" class='sidebar-link'>
-								<i class="bi bi-grid-fill"></i>
-								<span>Code</span>
+								<i class="bi bi-grid-fill"></i> <span>Code</span>
 							</a></li>
 
 						<li class="sidebar-item"><a href="../word/wordList" class='sidebar-link'>
-								<i class="fa fa-book"></i>
-								<span>Word</span>
+								<i class="fa fa-book"></i> <span>Word</span>
 							</a></li>
 
 						<li class="sidebar-item"><a href="../test/testList" class='sidebar-link'>
-								<i class="fa fa-chalkboard"></i>
-								<span>Test</span>
+								<i class="fa fa-chalkboard"></i> <span>Test</span>
 							</a></li>
 
 						<li class="sidebar-item"><a href="/home/home" class='sidebar-link'>
-								<i class="fa-solid fa-house-chimney-user"></i>
-								<span>User Home</span>
+								<i class="fa-solid fa-house-chimney-user"></i> <span>User Home</span>
 							</a></li>
 					</ul>
 				</div>
@@ -232,16 +223,16 @@
 
 												</div>
 											</div>
-											
+
 											<c:if test="${item.ifmmSeq eq 0 || item.ifmmSeq eq null }">
-											<div class="row mb-3">
-												<label for="Name" class="col-md-4 col-lg-3 col-form-label">Password</label>
-												<div class="col-md-8 col-lg-9">
-													<input type="hidden" id="ifmmPasswordAllowedNy" name="ifmmPasswordAllowedNy" value="0">
-													<input type="password" class="form-control" id="ifmmPassword" name="ifmmPassword" value="<c:out value="${item.ifmmPassword }"/>">
-													<div class="invalid-feedback" id="ifmmPasswordFeedback"></div>
+												<div class="row mb-3">
+													<label for="Name" class="col-md-4 col-lg-3 col-form-label">Password</label>
+													<div class="col-md-8 col-lg-9">
+														<input type="hidden" id="ifmmPasswordAllowedNy" name="ifmmPasswordAllowedNy" value="0">
+														<input type="password" class="form-control" id="ifmmPassword" name="ifmmPassword" value="<c:out value="${item.ifmmPassword }"/>">
+														<div class="invalid-feedback" id="ifmmPasswordFeedback"></div>
+													</div>
 												</div>
-											</div>
 											</c:if>
 
 											<div class="row mb-3">
@@ -276,8 +267,7 @@
 												<div class="col-md-8 col-lg-9">
 													<div class="input-group">
 														<input type="text" id="inputEmail" class="form-control" value="" aria-label="Username" required="">
-														<span class="input-group-text">@</span>
-														<select class="form-select" id="validationCustom04">
+														<span class="input-group-text">@</span> <select class="form-select" id="validationCustom04">
 															<option selected="" value="">naver.com</option>
 															<option>google.com</option>
 															<option>hanmail.net</option>
@@ -302,8 +292,7 @@
 															</option>
 															<option><span>019</span>
 															</option>
-														</select>
-														<span class="input-group-text">-</span>
+														</select> <span class="input-group-text">-</span>
 														<input type="text" id="inputPhone" class="form-control" value="" required>
 														<span class="input-group-text">-</span>
 														<input type="text" id="inputPhone" class="form-control" value="" required>
@@ -343,68 +332,6 @@
 												</div>
 
 											</div>
-											<!-- 이미지 파일 업로드--------------------------------------------- -->
-											<div class="row mb-3">
-												<label for="ifmmUploadedImage" class="col-md-4 col-lg-3 col-form-label">이미지 첨부</label>
-												<div class="col-md-8 col-lg-9">
-													<input class="form-control form-control-sm" id="ifmmUploadedImage" name="ifmmUploadedImage" type="file" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedImage', 1, 0, 1, 0, 0, 1);">
-													<div class="addScroll">
-														<ul id="ulFile1" class="list-group">
-														</ul>
-													</div>
-												</div>
-											</div>
-											<div class="row mb-3">
-												<label for="ifmmUploadedFile" class="col-md-4 col-lg-3 col-form-label">파일 첨부</label>
-												<div class="col-md-8 col-lg-9">
-													<input class="form-control form-control-sm" id="ifmmUploadedFile" name="ifmmUploadedFile" type="file" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedFile', 2, 0, 2, 0, 0, 2);">
-													<div class="addScroll">
-														<ul id="ulFile2" class="list-group">
-														</ul>
-													</div>
-												</div>
-											</div>
-											<div class="row mb-3">
-												<label for="ifmmUploadedImage" class="col-md-4 col-lg-3 col-form-label">이미지 첨부</label>
-												<div class="col-md-8 col-lg-9">
-													<input class="form-control form-control-sm" id="ifmmUploadedImage1" name="ifmmUploadedImage1" type="file" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedImage1', 1, 0, 1, 0, 0, 1);">
-													<div class="addScroll" id="ifmmUploadedImage1View">
-														<ul id="ulFile1" class="list-group">
-														</ul>
-													</div>
-												</div>
-											</div>
-											<div class="row mb-3">
-												<label for="ifmmUploadedFile" class="col-md-4 col-lg-3 col-form-label">파일 첨부</label>
-												<div class="col-md-8 col-lg-9">
-													<input class="form-control form-control-sm" id="ifmmUploadedFile1" name="ifmmUploadedFil1e" type="file" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedFile1', 2, 0, 2, 0, 0, 2);">
-													<div class="addScroll">
-														<ul id="ulFile2" class="list-group">
-														</ul>
-													</div>
-												</div>
-											</div>
-											<div class="row mb-3">
-												<label for="ifmmUploadedFile" class="col-md-4 col-lg-3 col-form-label">이미지 첨부</label>
-												<div class="col-md-8 col-lg-9">
-													<input type="file" multiple="multiple" name="img12" id="img12">
-												</div>
-											</div>
-											<div class="row mb-3">
-												<label for="ifmmUploadedFile" class="col-md-4 col-lg-3 col-form-label">파일 첨부</label>
-												<div class="col-md-8 col-lg-9">
-													<input type="file" name="img1" id="img1">
-												</div>
-											</div>
-											<div class="row mb-3">
-												<label for="ifmmUploadedFile" class="col-md-4 col-lg-3 col-form-label">확인!</label>
-												<div class="col-md-8 col-lg-9">
-													<button type="button" onclick="upload('img12', 1, 0, 3, 0, 0, 1)">파일 확인</button>
-												</div>
-											</div>
-
-
-											<!-- 이미지 파일 업로드 끝---------------------------------------------- -->
 											<div class="row" id="InputPadding">
 												<div class="col-6" style="text-align: left;">
 													<button type="button" class="btn btn-secondary" id="btnList">
@@ -486,11 +413,8 @@
 					</div>
 					<div class="float-end">
 						<p>
-							Crafted with
-							<span class="text-danger">
-								<i class="bi bi-heart"></i>
-							</span>
-							by
+							Crafted with <span class="text-danger"> <i class="bi bi-heart"></i>
+							</span> by
 							<a href="http://ahmadsaugi.com">A. Saugi</a>
 						</p>
 					</div>
@@ -642,6 +566,7 @@
 			var resultDiv = document.getElementById('result');
 			resultDiv.innerHTML = message;
 		});
+		
 	</script>
 	<script type="text/javascript">
 		function sample6_execDaumPostcode() {
@@ -696,10 +621,10 @@
 											function(result, status) {
 												// 정상적으로 검색이 완료됐으면,
 												if (status == daum.maps.services.Status.OK) {
-													document
-															.getElementById("ifmaLatArray0").value = result[0].y;
-													document
-															.getElementById("ifmaLngArray0").value = result[0].x;
+													document.getElementById("ifmaLatArray0").value = result[0].y;
+													document.getElementById("ifmaLngArray0").value = result[0].x;
+													console.log(result[0].y)
+													console.log(result[0].x)
 												}
 											});
 							/* lat and lng from address e */

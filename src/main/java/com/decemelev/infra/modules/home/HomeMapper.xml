@@ -300,6 +300,21 @@
 		where 1=1
 		AND b.ifmmSeq = #{mainKey}
 	</select>
+	<select id="selectOneRank" resultMap="resultMapObj">
+		select
+			a.infrMember_ifmmSeq
+			,(select aa.ifmmName from infrMember aa where 1=1 and aa.ifmmSeq = a.infrMember_ifmmSeq) as name
+			,sum(a.sdtrsTotalScore) as sum
+			,count(a.infrMember_ifmmSeq) as count
+			,(rank() over (order by sum(a.sdtrsTotalScore) desc)) as ranking
+		from sdTotalResult a
+		join sdDate b on b.sddSeq = a.sdDate_sddSeq
+		where 1=1
+		and b.sddDateChoice between "2022-07-25" and "2022-07-27"
+        and a.infrMember_ifmmSeq = #{mainKey}
+		group by a.infrMember_ifmmSeq
+		order by sum desc
+	</select>
 	<!-- rank -->
 	
 	<select id="memberList" resultMap="resultMapObj">

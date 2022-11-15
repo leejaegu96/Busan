@@ -223,6 +223,8 @@ public class HomeController {
 		model.addAttribute("score", rank2);
 		Home list = service.memberList(vo);
 		model.addAttribute("list", list);
+		Home ranking = service.selectOneRank(vo);
+		model.addAttribute("ranking", ranking);
 		
 		return "infra/home/user/rank";
 		

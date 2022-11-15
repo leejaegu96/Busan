@@ -215,30 +215,42 @@ body {
 								</div>
 							</div>
 							<div class="col-7">
-								<h3>🏆️ User Ranking</h3>
+								<h4 style="text-align:center; font-weight:bold;">User Detail</h4>
 								<table class="table" style="width: 100%; height: auto; text-align: center;">
 									<thead>
-										<tr>
-											<td>DATE</td>
-											<td>RANK</td>
+										<tr style="font-weight:bold;">
+											<td>Division</td>
+											<td>Note</td>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
-											<td>This Week</td>
-											<td>2nd</td>
+											<td>Real-Time User Ranking</td>
+											<c:if test="${ranking.ranking eq null}"><td>-</td></c:if>
+											<c:if test="${ranking.ranking ne null}">
+												<td style="font-weight:bold;">
+													${ranking.ranking }
+													<span style="font-style: italic;">
+														<c:choose>
+															<c:when test="${ranking.ranking eq 1}">st</c:when>
+															<c:when test="${ranking.ranking eq 2}">nd</c:when>
+															<c:when test="${ranking.ranking eq 3}">rd</c:when>
+															<c:otherwise>th</c:otherwise>
+														</c:choose>
+													</span>
+												</td>
+											</c:if>
 										</tr>
 										<tr>
-											<td>Last Week</td>
-											<td>3rd</td>
+											<td>Real-Time User Score</td>
+											<c:if test="${ranking.sum eq null}"><td>-</td></c:if>
+											<c:if test="${ranking.sum ne null}"><td style="font-weight:bold;">${ranking.sum } <span style="font-style: italic;">Point</span></td></c:if>
+											
 										</tr>
 										<tr>
-											<td>This Month</td>
-											<td>5th</td>
-										</tr>
-										<tr>
-											<td>Last Month</td>
-											<td>-</td>
+											<td>Number Of Test</td>
+											<c:if test="${ranking.count eq null}"><td>-</td></c:if>
+											<c:if test="${ranking.count ne null}"><td style="font-weight:bold;">${ranking.count } <span style="font-style: italic;">EA</span></td></c:if>
 										</tr>
 									</tbody>
 								</table>

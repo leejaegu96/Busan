@@ -65,6 +65,7 @@ public class Home extends Base {
 	
 	private String name;
 	private String sum;
+	private Integer count;
 	private String ranking;
 	
 	private Integer sdfDelNy;
@@ -106,6 +107,12 @@ public class Home extends Base {
 	
 	
 	
+	public Integer getCount() {
+		return count;
+	}
+	public void setCount(Integer count) {
+		this.count = count;
+	}
 	public String getSdfSeq() {
 		return sdfSeq;
 	}
