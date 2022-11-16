@@ -275,7 +275,7 @@ input-group-text {
 									</li>
 								</ul>
 								<div class="tab-content pt-2">
-<!-- ----------------------------------------------------------------  나만의 단어--------------------------------------------------------------------------- -->
+									<!-- ----------------------------------------------------------------  나만의 단어--------------------------------------------------------------------------- -->
 									<div class="tab-pane fade show active My-Word pt-3" id="My-Word">
 										<form name="formList" id="formList">
 											<span style="font-weight: bold">&nbsp;Total: ${vo.totalRows }</span>
@@ -972,15 +972,11 @@ input-group-text {
 	</script>
 	<script type="text/javascript">
 	// 패스워드 확인
-	
 		$("#newPassword").on("focusout", function(){
 			var pw = $("#newPassword").val();
 			var num = pw.search(/[0-9]/g);
 			var eng = pw.search(/[a-z]/ig);
 			var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
-			
-			
-			
 			if(pw.length < 10 || pw.length > 20){
 				document.getElementById("newPassword").classList.add('is-invalid');
 				document.getElementById("newPwdFeedback").classList.remove('valid-feedback');

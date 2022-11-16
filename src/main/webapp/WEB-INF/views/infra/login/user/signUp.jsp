@@ -1,57 +1,56 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="rb" uri="http://www.springframework.org/tags"%>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login V2</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
-    <link rel="stylesheet" href="../resources/assets/css/login.css">
-	
-	<style type="text/css">
-	#btn-upload {
-	  width: 150px;
-	  height: 30px;
-	  background: #fff;
-	  border: 1px solid rgb(77,77,77);
-	  border-radius: 10px;
-	  font-weight: 500;
-	  cursor: pointer;
-	  display: flex;
-	  align-items: center;
-	  justify-content: center;
-	  margin: auto;
-	  &:hover {
-	    background: rgb(77,77,77);
-	    color: #fff;
-	  }
-	}
-	
-	#file {
-	  display: none;
-	}
-	#preview {
-	    width: 150px;
-	    height: 150px; 
-	    border-radius: 70%;
-	    overflow: hidden;
-	}
-	</style>
-		
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  	
-  	<script type="text/javascript">
+<title>Login V2</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+<link rel="stylesheet" href="../resources/assets/css/login.css">
+
+<style type="text/css">
+#btn-upload {
+	width: 150px;
+	height: 30px;
+	background: #fff;
+	border: 1px solid rgb(77, 77, 77);
+	border-radius: 10px;
+	font-weight: 500;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: auto; &: hover { background : rgb( 77, 77, 77);
+	color: #fff;
+}
+
+}
+#file {
+	display: none;
+}
+
+#preview {
+	width: 150px;
+	height: 150px;
+	border-radius: 70%;
+	overflow: hidden;
+}
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script type="text/javascript">
     $(document).ready(function () {
         $.datepicker.setDefaults($.datepicker.regional['ko']); 
         $( "#ifmmDob" ).datepicker({
@@ -82,13 +81,14 @@
 		<div class="container-login150">
 			<div class="wrap-login150">
 				<h4 class="mb-3">Create your learner account</h4>
-		          <form id="form" name="form" method="post" enctype="multipart/form-data">
-		            <div class="row">
-		              <div class="col-md-12 mb-3 text-center">
-		                <label for="ifmmId">Profile</label>
-		                <div class="col text-center"  >
-		                	<img id="imgProfile" src="/resources/assets/images/faces/default_100_100.png" class="rounded-circle mx-auto d-block" width="100" height="100">
-		                	<%-- 
+				<span>* 표시 해둔 사항은 필수입니다.</span>
+				<form id="form" name="form" method="post" enctype="multipart/form-data">
+					<div class="row">
+						<div class="col-md-12 mb-3 text-center">
+							<label for="ifmmId">Profile</label>
+							<div class="col text-center">
+								<img id="imgProfile" src="/resources/assets/images/faces/default_100_100.png" class="rounded-circle mx-auto d-block" width="100" height="100">
+								<%-- 
 							<c:choose>
 								<c:when test="${fn:length(listUploaded) eq 0 }">
 									<img id="imgProfile" src="/resources/assets/images/faces/default_100_100.png" class="rounded-circle mx-auto d-block" width="100" height="100">
@@ -102,79 +102,78 @@
 								</c:otherwise>
 							</c:choose>
 							 --%>
-							<br>
-							<label for="ifmmUploadedProfileImage" >
-								<span id="btn-upload" style="text-align:center; margin:auto;">UPLOAD</span>
-							</label>
-							<input class="form-control form-control-sm" id="ifmmUploadedProfileImage" name="ifmmUploadedProfileImage" type="file" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedProfileImage', 0, 1, 1, 0, 0, 3);">
-		              </div>
-		            </div>
-		            <div class="row">
-		              <div class="col-md-6 mb-3">
-		                <label for="ifmmId">Id</label>
-		                <input type="hidden" id="ifmmIdAllowedNy" name="ifmmIdAllowedNy" value="0">
-		                <input type="text" class="form-control" id="ifmmId" name="ifmmId" value="<c:out value="${item.ifmmId}"/>" maxlength="20" placeholder="영문,숫자,4~15자리">
-		                <div class="invalid-feedback" id="ifmmIdFeedback"></div>
-		              </div>
-		              <div class="col-md-6 mb-3">
-		                <label for="ifmmName">Name</label>
-		                <input type="text" class="form-control" name="ifmmName" >
-		              </div>
-		            </div>
-					
-					<div class="row">
-		              <div class="col-md-6 mb-3">
-		                <label for="ifmmPassword">Password</label>
-		                <input type="hidden" id="ifmmPasswordAllowedNy" name="ifmmPasswordAllowedNy" value="0">
-		                <input type="password" class="form-control" name="ifmmPassword" id="ifmmPassword" placeholder="" value="" required>
-		                <div class="invalid-feedback" id="ifmmPasswordFeedback"></div>
-		              </div>
-		              <div class="col-md-6 mb-3">
-		                <label for="ifmmPasswordChk">Password Check</label>
-		                <input type="hidden" id="ifmmPasswordAllowedNy" name="ifmmPasswordAllowedNy" value="0">
-		                <input type="password" class="form-control" name="ifmmPasswordChk" id="ifmmPasswordChk" placeholder="" value="" required>
-		                <div class="invalid-feedback" id="ifmmPasswordChkFeedback"></div>
-		              </div>
-					</div>
-					
-					<div class="row">
-		              <div class="col-md-6 mb-3">
-		                <label for="username">Gender</label>
-		                <select class="form-select" name="ifmmGender">
-							<option value="1">Male</option>
-							<option value="2">Female</option>
-							<option value="3">etc</option>
-						</select>
-		              </div>
-		              <div class="col-md-6 mb-3">
-		                <label for="ifmmDob">Date Of Birth</label>
-						<input type="text" class="form-control" id="ifmmDob" name="ifmmDob">
-		              </div>
-					</div>
-					
-					
-		            <div class="mb-3">
-		              <label for="user_email">User email</label>
-		              <div class="input-group">
-		                <input type="text" id="Email" name="Email" class="form-control" placeholder="User email">
-						<span class="input-group-text">@</span>
-						<input type="text" id="Domain" name="Domain" class="form-control" placeholder="Domain" >
-						<select class="form-select" name="ifmmEmailDomain" id="ifmmEmailDomain">
-							<option value="11" >직접입력</option>
-							<option value="8" >naver.com</option>
-							<option value="9" >google.com</option>
-							<option value="10" >daum.net</option>
-						</select>
-		              </div>
-		              <input type="hidden" class="form-control" id="ifmmEmail" name="ifmmEmail" >
-		              <input class="form-text" type="checkbox" name="ifmmMailNy" value="1" >
-		              <input class="form-text" type="hidden" name="ifmmMailNy" value="0" >
-					  <label class="form-text" for="ifmmMailNy" >
-						E-mail을 통한 소식/정보 수신을 동의하시겠습니까? 
-					  </label>
-		            </div>
-		
-<!-- 
+								<br>
+								<label for="ifmmUploadedProfileImage">
+									<span id="btn-upload" style="text-align: center; margin: auto;">UPLOAD</span>
+								</label>
+								<input class="form-control form-control-sm" id="ifmmUploadedProfileImage" name="ifmmUploadedProfileImage" type="file" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedProfileImage', 0, 1, 1, 0, 0, 3);">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6 mb-3">
+								<label for="ifmmId">Id *</label>
+								<input type="hidden" id="ifmmIdAllowedNy" name="ifmmIdAllowedNy" value="0">
+								<input type="text" class="form-control" id="ifmmId" name="ifmmId" maxlength="20" placeholder="영문,숫자,4~15자리">
+								<div class="invalid-feedback" id="ifmmIdFeedback"></div>
+							</div>
+							<div class="col-md-6 mb-3">
+								<label for="ifmmName">Name *</label>
+								<input type="text" class="form-control" id="ifmmName" name="ifmmName">
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-6 mb-3">
+								<label for="ifmmPassword">Password *</label>
+								<input type="hidden" id="ifmmPasswordAllowedNy" name="ifmmPasswordAllowedNy" value="0">
+								<input type="password" class="form-control" name="ifmmPassword" id="ifmmPassword" placeholder="영문,숫자,특수문자 10자리~20자리" value="" required>
+								<div class="invalid-feedback" id="ifmmPasswordFeedback"></div>
+							</div>
+							<div class="col-md-6 mb-3">
+								<label for="ifmmPasswordChk">Password Check *</label>
+								<input type="hidden" id="ifmmPasswordAllowedNy" name="ifmmPasswordAllowedNy" value="0">
+								<input type="password" class="form-control" name="ifmmPasswordChk" id="ifmmPasswordChk" placeholder="" value="" required>
+								<div class="invalid-feedback" id="ifmmPasswordChkFeedback"></div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-6 mb-3">
+								<label for="username">Gender *</label>
+								<select class="form-select" name="ifmmGender" id="ifmmGender">
+									<option selected disabled>==성별==</option>
+									<option value="1">Male</option>
+									<option value="2">Female</option>
+									<option value="3">etc</option>
+								</select>
+							</div>
+							<div class="col-md-6 mb-3">
+								<label for="ifmmDob">Date Of Birth *</label>
+								<input type="text" class="form-control" id="ifmmDob" name="ifmmDob">
+							</div>
+						</div>
+
+
+						<div class="mb-3">
+							<label for="user_email">User email *</label>
+							<div class="input-group">
+								<input type="text" id="Email" name="Email" class="form-control" placeholder="User email">
+								<span class="input-group-text">@</span>
+								<input type="text" id="Domain" name="Domain" class="form-control" placeholder="Domain">
+								<select class="form-select" name="ifmmEmailDomain" id="ifmmEmailDomain">
+									<option value="11">직접입력</option>
+									<option value="8">naver.com</option>
+									<option value="9">google.com</option>
+									<option value="10">daum.net</option>
+								</select>
+							</div>
+							<input type="hidden" class="form-control" id="ifmmEmail" name="ifmmEmail">
+							<input class="form-text" type="checkbox" name="ifmmMailNy" value="1">
+							<input class="form-text" type="hidden" name="ifmmMailNy" value="0">
+							<label class="form-text" for="ifmmMailNy"> E-mail을 통한 소식/정보 수신을 동의하시겠습니까? </label>
+						</div>
+
+						<!-- 
 		            <div class="mb-3">
 		              <label for="email">Email <span class="text-muted">(Optional)</span></label>
 		              <input type="email" class="form-control" id="email" placeholder="you@example.com">
@@ -183,32 +182,31 @@
 		              </div>
 		            </div>
  -->
-		            
-		            <div class="mb-3">
-		            	<label for="user_email">User Phone</label>
-		            	<input type="hidden" id="inputPhone2AllowedNy" name="inputPhone2AllowedNy" value="0">
-			            <div class="input-group">
-			            	<select class="form-select" id="ifmmPhoneCarrier" name="ifmmPhoneCarrier" >
-								<option value="4">SKT</option>
-								<option value="5">KT</option>
-								<option value="6">LG</option>
-								<option value="7">기타</option>
-							</select>
-							<select class="form-select" id="inputPhone1" required>
-								<option>010</option>
-								<option>011</option>
-								<option>019</option>
-							</select>
-							<span class="input-group-text">-</span>
-							<input type="text" id="inputPhone2" class="form-control" maxlength='4' onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
-							<span class="input-group-text">-</span>
-							<input type="text" id="inputPhone3" class="form-control" maxlength='4' onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
-							
-							<!-- <button class="btn btn-outline-secondary" type="button" id="button-addon2">인증번호 요청</button> -->
-						</div>
-						<div class="invalid-feedback" id="inputPhone2ChkFeedback"></div>
-						<input type="hidden" id="ifmmPhone" name="ifmmPhone" class="form-control" >
-						<!-- 
+
+						<div class="mb-3">
+							<label for="user_email">User Phone *</label>
+							<input type="hidden" id="inputPhone2AllowedNy" name="inputPhone2AllowedNy" value="0">
+							<div class="input-group">
+								<select class="form-select" id="ifmmPhoneCarrier" name="ifmmPhoneCarrier">
+									<option selected disabled>==통신사==</option>
+									<option value="4">SKT</option>
+									<option value="5">KT</option>
+									<option value="6">LG</option>
+									<option value="7">기타</option>
+								</select> <select class="form-select" id="inputPhone1" required>
+									<option>010</option>
+									<option>011</option>
+									<option>019</option>
+								</select> <span class="input-group-text">-</span>
+								<input type="text" id="inputPhone2" class="form-control" maxlength='4' onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
+								<span class="input-group-text">-</span>
+								<input type="text" id="inputPhone3" class="form-control" maxlength='4' onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
+
+								<!-- <button class="btn btn-outline-secondary" type="button" id="button-addon2">인증번호 요청</button> -->
+							</div>
+							<div class="invalid-feedback" id="inputPhone2ChkFeedback"></div>
+							<input type="hidden" id="ifmmPhone" name="ifmmPhone" class="form-control">
+							<!-- 
 						<div class="col-6">
 							<div class="input-group md-3" style="padding-top: 5px;">
 								<input type="text" class="form-control" placeholder="Code Number" aria-label="Recipient's username" aria-describedby="button-addon2" required>
@@ -216,38 +214,36 @@
 							</div>
 						</div>
 						 -->
-						<input class="form-text" type="checkbox" name="ifmmSmsNy" value="1" >
-						<input class="form-text" type="hidden" name="ifmmSmsNy" value="0" >
-					    <label class="form-text" for="ifmmSmsNy">
-					  	  SMS을 통한 소식/정보 수신을 동의하시겠습니까? 
-					    </label>
-					</div>
-		
-		            <div class="mb-3">
-		              <label for="address">Address</label>
-		              <div class="input-group">
-						<div class="col-6">
+							<input class="form-text" type="checkbox" name="ifmmSmsNy" value="1">
+							<input class="form-text" type="hidden" name="ifmmSmsNy" value="0">
+							<label class="form-text" for="ifmmSmsNy"> SMS을 통한 소식/정보 수신을 동의하시겠습니까? </label>
+						</div>
+
+						<div class="mb-3">
+							<label for="address">Address *</label>
 							<div class="input-group">
-								<input type="text" id="ifmmPostNum" name="ifmmPostNum" class="form-control" placeholder="우편번호" aria-label="Recipient's username" aria-describedby="button-addon2" required>
-								<button class="btn btn-outline-secondary" type="button"  onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
-									<i class="fa-solid fa-magnifying-glass"></i>
-								</button>
-								<button class="btn btn-outline-secondary" type="button" id="btnAddressClear" value="리셋하기">
-									<i class="fa-solid fa-xmark"></i>
-								</button>
+								<div class="col-6">
+									<div class="input-group">
+										<input type="text" id="ifmmPostNum" name="ifmmPostNum" class="form-control" placeholder="우편번호" aria-label="Recipient's username" aria-describedby="button-addon2" required>
+										<button class="btn btn-outline-secondary" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+											<i class="fa-solid fa-magnifying-glass"></i>
+										</button>
+										<button class="btn btn-outline-secondary" type="button" id="btnAddressClear" value="리셋하기">
+											<i class="fa-solid fa-xmark"></i>
+										</button>
+									</div>
+								</div>
+								<div class="input-group" style="padding-top: 5px;">
+									<input type="text" class="form-control" id="ifmmResidence" name="ifmmResidence" placeholder="주소" aria-label="Recipient's username" aria-describedby="button-addon2" required>
+								</div>
+								<div class="input-group" style="padding-top: 5px;">
+									<input type="text" class="form-control" id="ifmmDetailedAddress" name="ifmmDetailedAddress" placeholder="상세주소" aria-label="Recipient's username" aria-describedby="button-addon2" required>
+									<input type="text" class="form-control" id="ifmmReference" name="ifmmReference" placeholder="참고항목" aria-label="Recipient's username" aria-describedby="button-addon2" required>
+								</div>
+								<input type="hidden" class="form-control" id="ifmmAddress" name="ifmmAddress">
 							</div>
 						</div>
-						<div class="input-group" style="padding-top: 5px;">
-							<input type="text" class="form-control" id="ifmmResidence" name="ifmmResidence" placeholder="주소" aria-label="Recipient's username" aria-describedby="button-addon2" required>
-						</div>
-						<div class="input-group" style="padding-top: 5px;">
-							<input type="text" class="form-control" id="ifmmDetailedAddress" name="ifmmDetailedAddress" placeholder="상세주소" aria-label="Recipient's username" aria-describedby="button-addon2" required>
-							<input type="text" class="form-control" id="ifmmReference" name="ifmmReference" placeholder="참고항목" aria-label="Recipient's username" aria-describedby="button-addon2" required>
-						</div>
-						<input type="hidden" class="form-control" id="ifmmAddress" name="ifmmAddress">
-				  	  </div>
-		            </div>
-		            <!-- 
+						<!-- 
 		            <div class="mb-3">
 		              <label for="address">Profile</label>
 		              <div class="row">
@@ -260,17 +256,15 @@
 					  </div>
 		            </div>
 					 -->
-		            <hr class="mb-4">
-   					<div class="container-login100-form-btn">
-						<div class="wrap-login100-form-btn">
-							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn" type="button" id="btnSave">								
-								Continue to checkout
-							</button>
+						<hr class="mb-4">
+						<div class="container-login100-form-btn">
+							<div class="wrap-login100-form-btn">
+								<div class="login100-form-bgbtn"></div>
+								<button class="login100-form-btn" type="button" id="btnSave">Continue to checkout</button>
+							</div>
 						</div>
-					</div>
-		            
-		            <!-- <button class="btn btn-primary btn-lg btn-block" type="submit" onClick="location.href='../Main/HomeForm.html'">Continue to checkout</button> -->
+
+						<!-- <button class="btn btn-primary btn-lg btn-block" type="submit" onClick="location.href='../Main/HomeForm.html'">Continue to checkout</button> -->
 				</form>
 			</div>
 		</div>
@@ -298,6 +292,78 @@ $("#ifmmMailNy").on("click", function(){
 	return false;
 });
  */
+</script>
+<script>
+let idC = document.form.ifmmId;
+let nameC = document.form.ifmmName;
+let passwordC = document.form.ifmmPassword;
+let passwordCh = document.form.ifmmPasswordChk;
+let genderC = document.form.ifmmGender;
+let dobC = document.form.ifmmDob;
+let emailC = document.form.ifmmEmail;
+let emailCh = document.form.Email;
+let phoneC = document.form.ifmmPhone;
+let phoneCa = document.form.ifmmPhoneCarrier;
+let phone1C = document.form.inputPhone1;
+let phone2C = document.form.inputPhone2;
+let phone3C = document.form.inputPhone3;
+let addressC = document.form.ifmmDetailedAddress;
+let pwdCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{10,20}$/;
+
+$("#btnSave").on("click", function(){
+    if(idC.value == "" || idC.value == null){
+        alert("아이디를 입력하세요.");
+        idC.focus();
+        return false;
+    }else if(nameC.value == ""){
+        alert("이름을 입력하세요.");
+        nameC.focus();
+        return false;
+    }else if(!pwdCheck.test(passwordC.value)) {
+        alert("비밀번호는 영문자+숫자+특수문자 조합으로 10~20자리 사용해야 합니다.");
+        passwordC.focus();
+        return false;
+    }else if(passwordC.value != passwordCh.value) {
+        alert("비밀번호가 일치하지 않습니다..");
+        passwordCh.focus();
+        return false;
+    }else if(genderC.value == ""){
+        alert("성별을 선택하세요.");
+        genderC.focus();
+        return false;
+    }else if(dobC.value == ""){
+        alert("생년월일을 입력하세요.");
+        dobC.focus();
+        return false;
+    }else if(emailC.value == ""){
+        alert("이메일을 입력하세요.");
+        emailCh.focus();
+        return false;
+    }else if(phoneCa.value == ""){
+        alert("통신사를 선택하세요.");
+        phoneCa.focus();
+        return false;
+    }else if(phone1C.value == ""){
+        alert("전화번호를 선택하세요.");
+        phone1C.focus();
+        return false;
+    }else if(phone2C.value == ""){
+        alert("전화번호 앞자리를 입력하세요.");
+        phone2C.focus();
+        return false;
+    }else if(phone3C.value == ""){
+        alert("전화번호 뒷자리를 입력하세요.");
+        phone3C.focus();
+        return false;
+    }else if(addressC.value == ""){
+        alert("상세주소를 입력하세요.");
+        residC.focus();
+        return false;
+    }else {
+		form.attr("action", goUrlInst).submit();
+    }
+}); 
+
 </script>
 
 <script type="text/javascript">
@@ -369,7 +435,7 @@ document.getElementById('ifmmAddress').value = str;
 			document.getElementById("ifmmId").classList.add('is-invalid');
 			document.getElementById("ifmmIdFeedback").classList.remove('valid-feedback');
 			document.getElementById("ifmmIdFeedback").classList.add('invalid-feedback');
-			document.getElementById("ifmmIdFeedback").innerText = "영문, 숫자 포함 4~15자를 입력해주세요.";
+			document.getElementById("ifmmIdFeedback").innerText = "영문, 숫자, 특수문자 포함 4~15자를 입력해주세요.";
 			document.getElementById("ifmmIdAllowedNy").value = 0;
 			return false;
 		} else if(id.search(/\s/) != -1){
@@ -447,11 +513,11 @@ document.getElementById('ifmmAddress').value = str;
 			document.getElementById("ifmmPasswordFeedback").innerText = "비밀번호는 공백 없이 입력해주세요.";
 			document.getElementById("ifmmPasswordAllowedNy").value = 0;
 			return false;
-		}else if( (num < 0 && eng < 0) || (eng < 0 && spe < 0) || (spe < 0 && num < 0) ){
+		}else if(!pwdCheck.test(passwordC.value)){
 			document.getElementById("ifmmPassword").classList.add('is-invalid');
 			document.getElementById("ifmmPasswordFeedback").classList.remove('valid-feedback');
 			document.getElementById("ifmmPasswordFeedback").classList.add('invalid-feedback');
-			document.getElementById("ifmmPasswordFeedback").innerText = "영문,숫자, 특수문자 중 2가지 이상을 혼합하여 입력해주세요.";
+			document.getElementById("ifmmPasswordFeedback").innerText = "영문,숫자, 특수문자를 혼합하여 입력해주세요.";
 			document.getElementById("ifmmPasswordAllowedNy").value = 0;
 			return false;
 		}else {
@@ -514,10 +580,6 @@ $("#btnAddressClear").on("click", function() {
 	$("#ifmaLatArray0").val('');
 	$("#ifmaLngArray0").val('');
 });
-
-$("#btnSave").on("click", function(){
-		form.attr("action", goUrlInst).submit();
-}); 
 
 //Example starter JavaScript for disabling form submissions if there are invalid fields
 (function() {

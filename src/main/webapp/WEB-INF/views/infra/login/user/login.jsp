@@ -373,7 +373,7 @@ $("#btnLogin").on("click", function(){
             js = d.createElement('script');
             js.id = id;
             js.async = true;
-            js.src = "//connect.facebook.net/en_US/all.js";
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
             d.getElementsByTagName('head')[0].appendChild(js);
         }(document));
 

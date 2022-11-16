@@ -28,7 +28,6 @@
 			,ifmmPhoneCarrier
 			,ifmmPhone
 			,ifmmAddress
-			,ifmmDelNy
 			,ifmmMailNy
 			,ifmmSmsNy
 			,ifmmPostNum
@@ -49,7 +48,6 @@
 			,#{ifmmPhoneCarrier}
 			,#{ifmmPhone}
 			,#{ifmmAddress}
-			,0
 			,#{ifmmMailNy}
 			,#{ifmmSmsNy}
 			,#{ifmmPostNum}

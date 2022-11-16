@@ -554,7 +554,9 @@
 		// 지도의 확대 레벨
 		};
 		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+		
 		// 지도가 이동, 확대, 축소로 인해 중심좌표가 변경되면 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
+		/* 
 		kakao.maps.event.addListener(map, 'center_changed', function() {
 			// 지도의  레벨을 얻어옵니다
 			var level = map.getLevel();
@@ -566,9 +568,7 @@
 			var resultDiv = document.getElementById('result');
 			resultDiv.innerHTML = message;
 		});
-		
-	</script>
-	<script type="text/javascript">
+		 */
 		function sample6_execDaumPostcode() {
 			new daum.Postcode(
 					{
@@ -578,6 +578,7 @@
 							// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
 							var addr = ''; // 주소 변수
 							var extraAddr = ''; // 참고항목 변수
+							
 							//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
 							if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
 								addr = data.roadAddress;
@@ -614,17 +615,26 @@
 							/* lat and lng from address s */
 							// 주소-좌표 변환 객체를 생성
 							var geocoder = new daum.maps.services.Geocoder();
+							console.log(geocoder);
+							var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
 							// 주소로 좌표를 검색
-							geocoder
-									.addressSearch(
-											addr,
-											function(result, status) {
+							geocoder.addressSearch(addr,function(result, status) {
 												// 정상적으로 검색이 완료됐으면,
 												if (status == daum.maps.services.Status.OK) {
 													document.getElementById("ifmaLatArray0").value = result[0].y;
 													document.getElementById("ifmaLngArray0").value = result[0].x;
 													console.log(result[0].y)
 													console.log(result[0].x)
+													const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+													// 결과값으로 받은 위치를 마커로 표시합니다
+													const marker = new kakao.maps.Marker({
+									                  map: map,
+									                  position: coords
+									              	});
+
+										              // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+										              map.setCenter(coords);
 												}
 											});
 							/* lat and lng from address e */

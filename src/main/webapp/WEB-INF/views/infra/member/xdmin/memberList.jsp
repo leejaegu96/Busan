@@ -352,7 +352,7 @@
 																</th>
 																<th>#</th>
 																<th>Seq</th>
-																<th>Id</th>
+																<th style="width:15%">Id</th>
 																<th>Name</th>
 																<th>Email</th>
 																<th>EmailDomail</th>
