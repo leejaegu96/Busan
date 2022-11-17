@@ -47,11 +47,35 @@
 			ifmmName
 			,ifmmId
 			,ifmmPassword
+			,ifmmGender
+			,ifmmDob
+			,ifmmEmail
+			,ifmmMailNy
+			,ifmmPhoneCarrier
+			,ifmmPhone
+			,ifmmSmsNy
+			,ifmmPostNum
+			,ifmmResidence
+			,ifmmDetailedAddress
+			,ifmmReference
+			,ifmmAddress
 			)
 		VALUES(
 			#{ifmmName}
 			,#{ifmmId}
 			,#{ifmmPassword}
+			,#{ifmmGender}
+			,#{ifmmDob}
+			,#{ifmmEmail}
+			,#{ifmmMailNy}
+			,#{ifmmPhoneCarrier}
+			,#{ifmmPhone}
+			,#{ifmmSmsNy}
+			,#{ifmmPostNum}
+			,#{ifmmResidence}
+			,#{ifmmDetailedAddress}
+			,#{ifmmReference}
+			,#{ifmmAddress}
 		)
 		<selectKey resultType="String" keyProperty="ifmmSeq" order="AFTER">
 			SELECT last_insert_id()
@@ -62,8 +86,18 @@
 		UPDATE infrMember
 		SET
 			ifmmName = #{ifmmName}
-			,ifmmId = #{ifmmId}
-			<!-- <include refid="Base.updateModColumnValue" /> -->
+			,ifmmGender = #{ifmmGender}
+			,ifmmDob = #{ifmmDob}
+			,ifmmEmail = #{ifmmEmail}
+			,ifmmMailNy = #{ifmmMailNy}
+			,ifmmPhoneCarrier = #{ifmmPhoneCarrier}
+			,ifmmPhone = #{ifmmPhone}
+			,ifmmSmsNy = #{ifmmSmsNy}
+			,ifmmPostNum = #{ifmmPostNum}
+			,ifmmResidence = #{ifmmResidence}
+			,ifmmDetailedAddress = #{ifmmDetailedAddress}
+			,ifmmReference = #{ifmmReference}
+			,ifmmAddress = #{ifmmAddress}
 		WHERE 
 			ifmmSeq = #{ifmmSeq}
 	</update>

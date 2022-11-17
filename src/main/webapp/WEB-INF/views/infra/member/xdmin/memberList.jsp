@@ -297,8 +297,8 @@
 												<div class="col-3">
 													<select id="shDelNy" name="shDelNy" class="form-select">
 														<option value="" <c:if test="${empty vo.shDelNy}">selected</c:if>>사용여부</option>
-														<option value="1" <c:if test="${vo.shDelNy eq 1}">selected</c:if>>Y</option>
-														<option value="0" <c:if test="${vo.shDelNy eq 0}">selected</c:if>>N</option>
+														<option value="1" <c:if test="${vo.shDelNy eq 0}">selected</c:if>>Y</option>
+														<option value="0" <c:if test="${vo.shDelNy eq 1}">selected</c:if>>N</option>
 													</select>
 												</div>
 												<div class="col-3">
@@ -352,7 +352,7 @@
 																</th>
 																<th>#</th>
 																<th>Seq</th>
-																<th style="width:15%">Id</th>
+																<th>Id</th>
 																<th>Name</th>
 																<th>Email</th>
 																<th>EmailDomail</th>
@@ -364,7 +364,7 @@
 																<th>SmsNY</th>
 															</tr>
 														</thead>
-														<tbody id="my_tbody">
+														<tbody>
 															<c:set var="listCodeGender" value="${CodeServiceImpl.selectListCachedCode('1')}" />
 															<c:set var="listCodeCarrier" value="${CodeServiceImpl.selectListCachedCode('2')}" />
 															<c:set var="listCodeDomain" value="${CodeServiceImpl.selectListCachedCode('3')}" />
@@ -417,7 +417,8 @@
 																			</c:forEach>
 																		</td>
 																		<td>
-																			<fmt:formatDate value="${list.ifmmDob }" pattern="yyyy-MM-dd" />
+																			${list.ifmmDob }
+																			<%-- <fmt:formatDate value="${list.ifmmDob }" pattern="yyyy-MM-dd" /> --%>
 																		</td>
 																		<td>
 																			<c:forEach items="${listCodeCarrier}" var="listCarrier" varStatus="statusGender">

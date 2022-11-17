@@ -83,6 +83,32 @@
 	overflow: hidden;
 }
 </style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.datepicker.setDefaults($.datepicker.regional['ko']); 
+        $( "#ifmmDob" ).datepicker({
+             changeMonth: true, 
+             changeYear: true,
+             nextText: '다음 달',
+             prevText: '이전 달', 
+             dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+             dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], 
+             monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+             monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+             dateFormat: "yy-mm-dd",
+             maxDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)
+             onClose: function( selectedDate ) {    
+                  //시작일(startDate) datepicker가 닫힐때
+                  //종료일(endDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
+             }    
+
+        });
+    });
+</script>
 </head>
 
 <body>
@@ -94,8 +120,11 @@
 						<div class="row" style="text-align: center; width: 300px;">
 							<div class="logo">
 								<a href="memberList">
-									<span style="font-size: 30px;"> <i class="fa-solid fa-book-open"></i>&nbsp E-Word
-									</span> <br> <span style="font-size: 19px;">Administrator</span>
+									<span style="font-size: 30px;">
+										<i class="fa-solid fa-book-open"></i>&nbsp E-Word
+									</span>
+									<br>
+									<span style="font-size: 19px;">Administrator</span>
 								</a>
 							</div>
 						</div>
@@ -111,27 +140,33 @@
 						<li class="sidebar-title">Menu</li>
 
 						<li class="sidebar-item active "><a href="memberList" class='sidebar-link'>
-								<i class="bi bi-person-badge-fill"></i> <span>MemberList</span>
+								<i class="bi bi-person-badge-fill"></i>
+								<span>MemberList</span>
 							</a></li>
 
 						<li class="sidebar-item"><a href="../codeGroup/codeGroupList" class='sidebar-link'>
-								<i class="bi bi-grid-fill"></i> <span>CodeGroup</span>
+								<i class="bi bi-grid-fill"></i>
+								<span>CodeGroup</span>
 							</a></li>
 
 						<li class="sidebar-item "><a href="../code/codeList" class='sidebar-link'>
-								<i class="bi bi-grid-fill"></i> <span>Code</span>
+								<i class="bi bi-grid-fill"></i>
+								<span>Code</span>
 							</a></li>
 
 						<li class="sidebar-item"><a href="../word/wordList" class='sidebar-link'>
-								<i class="fa fa-book"></i> <span>Word</span>
+								<i class="fa fa-book"></i>
+								<span>Word</span>
 							</a></li>
 
 						<li class="sidebar-item"><a href="../test/testList" class='sidebar-link'>
-								<i class="fa fa-chalkboard"></i> <span>Test</span>
+								<i class="fa fa-chalkboard"></i>
+								<span>Test</span>
 							</a></li>
 
 						<li class="sidebar-item"><a href="/home/home" class='sidebar-link'>
-								<i class="fa-solid fa-house-chimney-user"></i> <span>User Home</span>
+								<i class="fa-solid fa-house-chimney-user"></i>
+								<span>User Home</span>
 							</a></li>
 					</ul>
 				</div>
@@ -203,12 +238,6 @@
 													<input class="form-control form-control-sm" id="ifmmUploadedProfileImage" name="ifmmUploadedProfileImage" type="file" multiple="multiple" style="display: none;" onChange="upload('ifmmUploadedProfileImage', 0, 1, 1, 0, 0, 3);">
 												</div>
 											</div>
-											<div class="row mb-3">
-												<label for="about" class="col-md-4 col-lg-3 col-form-label">About</label>
-												<div class="col-md-8 col-lg-9">
-													<textarea name="about" class="form-control" id="about" style="height: 100px"></textarea>
-												</div>
-											</div>
 
 											<div class="row mb-3">
 												<label for="ifmmId" class="col-md-4 col-lg-3 col-form-label">Id</label>
@@ -247,10 +276,10 @@
 											<div class="row mb-3">
 												<label for="Gender" class="col-md-4 col-lg-3 col-form-label">Gender</label>
 												<div class="col-md-8 col-lg-9">
-													<select class="form-select" id="basicSelect">
-														<option>Male</option>
-														<option>Female</option>
-														<option>etc..</option>
+													<select class="form-select" id="ifmmGender" name="ifmmGender">
+														<option value="1" <c:if test="${item.ifmmGender eq 1 }">selected</c:if>>Male</option>
+														<option value="2" <c:if test="${item.ifmmGender eq 2 }">selected</c:if>>Female</option>
+														<option value="3" <c:if test="${item.ifmmGender eq 3 }">selected</c:if>>etc..</option>
 													</select>
 												</div>
 											</div>
@@ -258,7 +287,7 @@
 											<div class="row mb-3">
 												<label for="date" class="col-md-4 col-lg-3 col-form-label">Date Of Birth</label>
 												<div class="col-md-8 col-lg-9">
-													<input type="date" class="form-control" id="date" value="">
+													<input type="text" class="form-control" id="ifmmDob" name="ifmmDob" value="${item.ifmmDob }">
 												</div>
 											</div>
 
@@ -266,12 +295,22 @@
 												<label for="Country" class="col-md-4 col-lg-3 col-form-label">Email</label>
 												<div class="col-md-8 col-lg-9">
 													<div class="input-group">
-														<input type="text" id="inputEmail" class="form-control" value="" aria-label="Username" required="">
-														<span class="input-group-text">@</span> <select class="form-select" id="validationCustom04">
-															<option selected="" value="">naver.com</option>
-															<option>google.com</option>
-															<option>hanmail.net</option>
+														<input type="text" id="Email" name="Email" class="form-control" placeholder="User email" value="${fn:split(item.ifmmEmail,'@')[0]}">
+														<span class="input-group-text">@</span>
+														<input type="text" id="Domain" name="Domain" class="form-control" placeholder="Domain" value="${fn:split(item.ifmmEmail,'@')[1]}">
+														<select class="form-select" name="ifmmEmailDomain" id="ifmmEmailDomain">
+															<option value="8" <c:if test="${item.ifmmEmailDomain eq 8 }">selected</c:if>>naver.com</option>
+															<option value="9" <c:if test="${item.ifmmEmailDomain eq 9 }">selected</c:if>>google.com</option>
+															<option value="10" <c:if test="${item.ifmmEmailDomain eq 10 }">selected</c:if>>hanmail.net</option>
+															<option value="11" <c:if test="${item.ifmmEmailDomain eq 11 }">selected</c:if>>직접입력</option>
 														</select>
+
+													</div>
+													<input type="hidden" class="form-control" id="ifmmEmail" name="ifmmEmail" value="<c:out value="${item.ifmmEmail }"/>">
+													<div class="input-group">
+														<input class="form-text" type="hidden" name="ifmmMailNy" value="0" >
+														<input class="form-text" type="checkbox" name="ifmmMailNy" value="1" <c:if test="${item.ifmmMailNy eq 1 }"> checked </c:if>>
+														<label class="form-text" style="margin: auto; margin-left: 0;"> E-mail을 통한 소식/정보 수신을 동의하시겠습니까? </label>
 													</div>
 												</div>
 											</div>
@@ -280,22 +319,26 @@
 												<label for="Address" class="col-md-4 col-lg-3 col-form-label">Phone</label>
 												<div class="col-md-8 col-lg-9">
 													<div class="input-group">
-														<select class="form-select" name="category" id="category">
-															<option selected value="">SKT</option>
-															<option><span>KT</span>
-															</option>
-															<option><span>LG</span>
-															</option>
-														</select> <select class="form-select" name="category" id="category">
-															<option selected value="">010</option>
-															<option><span>011</span>
-															</option>
-															<option><span>019</span>
-															</option>
-														</select> <span class="input-group-text">-</span>
-														<input type="text" id="inputPhone" class="form-control" value="" required>
+														<select class="form-select" id="ifmmPhoneCarrier" name="ifmmPhoneCarrier">
+															<option value="4" <c:if test="${item.ifmmPhoneCarrier eq 4 }">selected</c:if> >SKT</option>
+															<option value="5" <c:if test="${item.ifmmPhoneCarrier eq 5 }">selected</c:if> >KT</option>
+															<option value="6" <c:if test="${item.ifmmPhoneCarrier eq 6 }">selected</c:if> >LG</option>
+														</select>
+														<select class="form-select" id="inputPhone1" value="${fn:substring(list.ifmmPhone,0,3)}" required>
+															<option value="010" <c:if test="${fn:substring(item.ifmmPhone,0,3) eq 010 }">selected</c:if> >010</option>
+															<option value="011" <c:if test="${fn:substring(item.ifmmPhone,0,3) eq 011 }">selected</c:if> >011</option>
+															<option value="019" <c:if test="${fn:substring(item.ifmmPhone,0,3) eq 019 }">selected</c:if> >019</option>
+														</select>
 														<span class="input-group-text">-</span>
-														<input type="text" id="inputPhone" class="form-control" value="" required>
+														<input type="text" id="inputPhone2" class="form-control" maxlength='4' onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" value="${fn:substring(item.ifmmPhone,3,7)}">
+														<span class="input-group-text">-</span>
+														<input type="text" id="inputPhone3" class="form-control" maxlength='4' onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" value="${fn:substring(item.ifmmPhone,7,11)}">
+													</div>
+													<input type="hidden" id="ifmmPhone" name="ifmmPhone" class="form-control" value="<c:out value="${list.ifmmPhone }"/>">
+													<div class="input-group">
+														<input class="form-text" type="hidden" name="ifmmSmsNy" value="0" >
+														<input class="form-text" type="checkbox" name="ifmmSmsNy" value="1" <c:if test="${list.ifmmSmsNy eq 1 }"> checked </c:if>>
+														<label class="form-text" for="ifmmSmsNy" style="margin: auto; margin-left: 0;"> SMS을 통한 소식/정보 수신을 동의하시겠습니까? </label>
 													</div>
 												</div>
 											</div>
@@ -306,7 +349,7 @@
 													<div class="input-group">
 														<div class="col-6">
 															<div class="input-group">
-																<input type="text" id="sample6_postcode" class="form-control" placeholder="우편번호" disabled>
+																<input type="text" id="ifmmPostNum" name="ifmmPostNum" value="<c:out value="${item.ifmmPostNum }"/>" class="form-control" placeholder="우편번호" aria-label="Recipient's username" aria-describedby="button-addon2" required>
 																<button class="btn btn-outline-secondary" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
 																	<i class="fa-solid fa-magnifying-glass"></i>
 																</button>
@@ -316,16 +359,15 @@
 															</div>
 														</div>
 														<div class="input-group" style="padding-top: 5px;">
-															<input type="text" class="form-control" id="sample6_address" placeholder="주소" disabled>
+															<input type="text" class="form-control" id="ifmmResidence" name="ifmmResidence" value="<c:out value="${item.ifmmResidence }"/>" placeholder="주소" aria-label="Recipient's username" aria-describedby="button-addon2" required>
 														</div>
 														<div class="input-group" style="padding-top: 5px;">
-															<input type="text" class="form-control" id="sample6_detailAddress" placeholder="상세주소" required>
-															<input type="text" class="form-control" id="sample6_extraAddress" placeholder="참고항목" disabled>
+															<input type="text" class="form-control" id="ifmmDetailedAddress" name="ifmmDetailedAddress" value="<c:out value="${item.ifmmDetailedAddress }"/>" placeholder="상세주소" aria-label="Recipient's username" aria-describedby="button-addon2" required>
+															<input type="text" class="form-control" id="ifmmReference" name="ifmmReference" value="<c:out value="${item.ifmmReference }"/>" placeholder="참고항목" aria-label="Recipient's username" aria-describedby="button-addon2" required>
 														</div>
-														<div class="input-group" style="padding-top: 5px; padding-bottom: 5px;">
-															<input type="text" class="form-control" id="ifmaLatArray0" placeholder="위도" disabled>
-															<input type="text" class="form-control" id="ifmaLngArray0" placeholder="경도" disabled>
-														</div>
+														<input type="hidden" class="form-control" id="ifmmAddress" name="ifmmAddress" value="<c:out value="${item.ifmmAddress }"/>">
+														<input type="hidden" class="form-control" id="ifmaLatArray0" name="ifmaLatArray0" value="<c:out value="${item.ifmaLatArray0 }"/>">
+														<input type="hidden" class="form-control" id="ifmaLngArray0" name="ifmaLngArray0" value="<c:out value="${item.ifmaLngArray0 }"/>">
 													</div>
 													<p id="result"></p>
 													<div id="map" style="width: 500px; height: 400px;"></div>
@@ -413,8 +455,11 @@
 					</div>
 					<div class="float-end">
 						<p>
-							Crafted with <span class="text-danger"> <i class="bi bi-heart"></i>
-							</span> by
+							Crafted with
+							<span class="text-danger">
+								<i class="bi bi-heart"></i>
+							</span>
+							by
 							<a href="http://ahmadsaugi.com">A. Saugi</a>
 						</p>
 					</div>
@@ -425,8 +470,6 @@
 
 
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
 	<script src="https://kit.fontawesome.com/20c294a34b.js" crossorigin="anonymous"></script>
@@ -549,7 +592,7 @@
 	<script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 		mapOption = {
-			center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+			center : new kakao.maps.LatLng(33.4502228270572, 126.570142146152), // 지도의 중심좌표
 			level : 3
 		// 지도의 확대 레벨
 		};
@@ -605,13 +648,13 @@
 									extraAddr = ' (' + extraAddr + ')';
 								}
 								// 조합된 참고항목을 해당 필드에 넣는다.
-								document.getElementById("sample6_extraAddress").value = extraAddr;
+								document.getElementById("ifmmReference").value = extraAddr;
 							} else {
-								document.getElementById("sample6_extraAddress").value = '';
+								document.getElementById("ifmmReference").value = '';
 							}
 							// 우편번호와 주소 정보를 해당 필드에 넣는다.
-							document.getElementById('sample6_postcode').value = data.zonecode;
-							document.getElementById("sample6_address").value = addr;
+							document.getElementById('ifmmPostNum').value = data.zonecode;
+							document.getElementById("ifmmResidence").value = addr;
 							/* lat and lng from address s */
 							// 주소-좌표 변환 객체를 생성
 							var geocoder = new daum.maps.services.Geocoder();
@@ -639,7 +682,7 @@
 											});
 							/* lat and lng from address e */
 							// 커서를 상세주소 필드로 이동한다.
-							document.getElementById("sample6_detailAddress")
+							document.getElementById("ifmmDetailedAddress")
 									.focus();
 						}
 					}).open();
@@ -904,7 +947,55 @@
         }
 	});
 </script>
+	<script type="text/javascript">
+		//이메일
+		const Email = document.getElementById('Email');
+		const Domain = document.getElementById('Domain');
+		const ifmmEmailDomain = document.getElementById('ifmmEmailDomain');
 
+		Email.addEventListener('keyup', callback);
+		Domain.addEventListener('keyup', callback);
+		ifmmEmailDomain.addEventListener('focusout', callback);
+
+		function callback() {
+			if (Domain.value == null && Domain.value == '') {
+				let str = Email.value + '@' + ifmmEmailDomain.value;
+				document.getElementById('ifmmEmail').value = str;
+			} else {
+				let str = Email.value + '@' + Domain.value;
+				document.getElementById('ifmmEmail').value = str;
+			}
+		}
+		</script>
+	<script type="text/javascript">
+		$('#ifmmEmailDomain').change(function() {
+			$("#ifmmEmailDomain option:selected").each(function() {
+
+				if ($(this).val() == '11') { //직접입력일 경우
+					$("#Domain").val(''); //값 초기화
+					$("#Domain").attr("disabled", false); //활성화
+				} else { //직접입력이 아닐경우
+					$("#Domain").val($(this).text()); //선택값 입력
+					$("#Domain").attr("disabled", true); //비활성화
+				}
+			});
+		});
+	</script>
+	<script type="text/javascript">
+		// 핸드폰
+		const inputPhone1 = document.getElementById('inputPhone1');
+		const inputPhone2 = document.getElementById('inputPhone2');
+		const inputPhone3 = document.getElementById('inputPhone3');
+
+		inputPhone1.addEventListener('focusout', callback);
+		inputPhone2.addEventListener('keyup', callback);
+		inputPhone3.addEventListener('keyup', callback);
+
+		function callback() {
+			let str = inputPhone1.value + inputPhone2.value + inputPhone3.value;
+			document.getElementById('ifmmPhone').value = str;
+		}
+	</script>
 
 </body>
 

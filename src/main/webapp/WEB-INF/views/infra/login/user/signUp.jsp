@@ -71,7 +71,7 @@
 
         });
     });
-	</script>
+</script>
 
 </head>
 
@@ -327,7 +327,7 @@ $("#btnSave").on("click", function(){
         alert("비밀번호가 일치하지 않습니다..");
         passwordCh.focus();
         return false;
-    }else if(genderC.value == ""){
+    }else if(genderC.value !== "1" && genderC.value !== "2" && genderC.value !== "3"){
         alert("성별을 선택하세요.");
         genderC.focus();
         return false;
@@ -339,7 +339,7 @@ $("#btnSave").on("click", function(){
         alert("이메일을 입력하세요.");
         emailCh.focus();
         return false;
-    }else if(phoneCa.value == ""){
+    }else if(phoneCa.value !== "4" && phoneCa.value !== "5" && phoneCa.value !== "6" && phoneCa.value !== "7"){
         alert("통신사를 선택하세요.");
         phoneCa.focus();
         return false;

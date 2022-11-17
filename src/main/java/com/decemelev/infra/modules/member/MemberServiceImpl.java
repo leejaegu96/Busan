@@ -46,6 +46,18 @@ public class MemberServiceImpl implements MemberService {
 	    		dto.setSort(1);
 	    		dto.setPseq(dto.getIfmmSeq());
 
+	    		dao.uploadedUpdate(dto);
+    		} else {
+
+    			String pathModule = this.getClass().getSimpleName().toString().toLowerCase().replace("serviceimpl", "");
+	    		UtilUpload.upload(multipartFile, pathModule, dto);
+	    		
+	    		dto.setTableName("infrMemberUploaded");
+	    		dto.setType(1);
+	    		dto.setDefaultNy(1);
+	    		dto.setSort(1);
+	    		dto.setPseq(dto.getIfmmSeq());
+
 				dao.insertUploaded(dto);
     		}
     	}
@@ -89,8 +101,7 @@ public class MemberServiceImpl implements MemberService {
 	    		dto.setSort(1);
 	    		dto.setPseq(dto.getIfmmSeq());
 
-				dao.uploadedUpdate(dto);
-				
+	    		dao.insertUploaded(dto);
     		} else {
 
     			String pathModule = this.getClass().getSimpleName().toString().toLowerCase().replace("serviceimpl", "");
@@ -101,8 +112,8 @@ public class MemberServiceImpl implements MemberService {
 	    		dto.setDefaultNy(1);
 	    		dto.setSort(1);
 	    		dto.setPseq(dto.getIfmmSeq());
-
-				dao.insertUploaded(dto);
+	    		
+				dao.uploadedUpdate(dto);
     		}
     	}
 		

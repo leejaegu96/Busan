@@ -30,8 +30,13 @@
 			<div class="wrap-login100">
 				<form id="form" name="form" method="post">
 					<div class="bd-example">
-						<br> <br> <span class="login100-form-title p-b-26"> Welcome </span><br> <br> <span class="login100-form-title p-b-48" onClick="location.href='/home/home'" style="cursor: pointer;"> <i class="fa-solid fa-book-open" style="font-size: 50px;"></i><br>
-						</span><br> <br>
+						<br> <br>
+						<span class="login100-form-title p-b-26"> Welcome </span>
+						<br> <br>
+						<span class="login100-form-title p-b-48" onClick="location.href='/home/home'" style="cursor: pointer;">
+							<i class="fa-solid fa-book-open" style="font-size: 50px;"></i><br>
+						</span>
+						<br> <br>
 
 						<div class="wrap-input100 validate-input">
 							<input class="input100" type="text" id="ifmmId" name="ifmmId" value="dlworn123">
@@ -39,7 +44,8 @@
 						</div>
 
 						<div class="wrap-input100 validate-input" data-validate="Enter password">
-							<span class="btn-show-pass"> <i class="zmdi zmdi-eye"></i>
+							<span class="btn-show-pass">
+								<i class="zmdi zmdi-eye"></i>
 							</span>
 							<input class="input100" type="password" id="ifmmPassword" name="ifmmPassword" value="dlworn12!@">
 							<span class="focus-input100" id="ifmmPassword" name="ifmmPassword" data-placeholder="Password" style="text-align: center;"></span>
@@ -257,33 +263,35 @@ $("#btnLogin").on("click", function(){
     	loginButton: {color: "green", type: 3, height: 70} 
     }
     ); */
-
     $("#naverBtn").on("click", function() {
         var naverLogin = new naver.LoginWithNaverId({
-            clientId : "oWJJlc2ehy7nlWILKoyh",
-            callbackUrl : "http://localhost:8080/signin",
+            clientId : "8B39nCp0YjSVrS3h2K_G",
+            callbackUrl : "http://localhost:8080/login/login",
             isPopup : true
         });
 
         naverLogin.init();
 
         naverLogin.getLoginStatus(function(status) {
-
-            if (!status)
+            if (!status) {
                 naverLogin.authorize();
-            else
+            } else {
                 setLoginStatus(); //하늘님 메소드 실행 -> Ajax
+            }
         });
 
         console.log(naverLogin);
 
         window.addEventListener('load', function() {
-            naverLogin.getLoginStatus(function(status) {
-                if (status) {
-                    /* (6) 로그인 상태가 "true" 인 경우 로그인 버튼을 없애고 사용자 정보를 출력합니다. */
-                    setLoginStatus();
-                }
-            });
+            if (naverLogin.accessToken != null) {
+                naverLogin.getLoginStatus(function(status) {
+                    if (status) {
+                        /* (6) 로그인 상태가 "true" 인 경우 로그인 버튼을 없애고 사용자 정보를 출력합니다. */
+                        setLoginStatus();
+                    }
+                });
+            }
+
         });
         function setLoginStatus() {
 

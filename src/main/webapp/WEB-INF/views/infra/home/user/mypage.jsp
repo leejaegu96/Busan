@@ -155,11 +155,13 @@ input-group-text {
 							<c:when test="${sessSeq eq null}">
 							</c:when>
 							<c:when test="${sessSeq eq 144}">
-								<span style="color: #959ADA; font-weight: bolder;"> <c:out value="${sessName }" />
+								<span style="color: #959ADA; font-weight: bolder;">
+									<c:out value="${sessName }" />
 								</span> 관리자님
 							</c:when>
 							<c:otherwise>
-								<span style="color: #959ADA; font-weight: bolder;"> <c:out value="${sessName }" />
+								<span style="color: #959ADA; font-weight: bolder;">
+									<c:out value="${sessName }" />
 								</span>님
 							</c:otherwise>
 						</c:choose></li>
@@ -232,7 +234,8 @@ input-group-text {
 										<c:otherwise> USER </c:otherwise>
 									</c:choose>
 								</h3>
-								<span style="color: white;"> <c:out value="${list.ifmmSeq }" />
+								<span style="color: white;">
+									<c:out value="${list.ifmmSeq }" />
 								</span>
 								<div class="social-links mt-2">
 									<a href="#" class="twitter">
@@ -631,11 +634,13 @@ input-group-text {
 																	<c:out value="${listCarrier.ifcdName }" />
 																</option>
 															</c:forEach>
-														</select> <select class="form-select" id="inputPhone1" value="${fn:substring(list.ifmmPhone,0,3)}" required>
+														</select>
+														<select class="form-select" id="inputPhone1" value="${fn:substring(list.ifmmPhone,0,3)}" required>
 															<option value="010" <c:if test="${fn:substring(list.ifmmPhone,0,3) eq 010 }"> selected </c:if>>010</option>
 															<option value="011" <c:if test="${fn:substring(list.ifmmPhone,0,3) eq 011 }"> selected </c:if>>011</option>
 															<option value="019" <c:if test="${fn:substring(list.ifmmPhone,0,3) eq 019 }"> selected </c:if>>019</option>
-														</select> <span class="input-group-text">-</span>
+														</select>
+														<span class="input-group-text">-</span>
 														<input type="text" id="inputPhone2" class="form-control" maxlength='4' onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" value="${fn:substring(list.ifmmPhone,3,7)}">
 														<span class="input-group-text">-</span>
 														<input type="text" id="inputPhone3" class="form-control" maxlength='4' onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" value="${fn:substring(list.ifmmPhone,7,11)}">

@@ -16,17 +16,69 @@ public class Member extends Base {
 	private Integer ifmmEmailDomain;
 	private String ifmmPassword;
 	private Integer ifmmGender;
-	private Date ifmmDob;
+	private String ifmmDob;
 	private Integer ifmmPhoneCarrier;
 	private String ifmmPhone;
 	private Integer ifmmMailNy;
 	private Integer ifmmSmsNy;
 	private String ifcdName;
 	private Integer ifmmDelNy;
+	private String ifmmPostNum;
+	private String ifmmResidence;
+	private String ifmmDetailedAddress;
+	private String ifmmReference;
+	private String ifmmAddress;
+	private String ifmaLatArray0;
+	private String ifmaLngArray0;
+	
+	
 	
 	private MultipartFile[] ifmmUploadedProfileImage;
 	
 	
+	
+	public String getIfmaLatArray0() {
+		return ifmaLatArray0;
+	}
+	public void setIfmaLatArray0(String ifmaLatArray0) {
+		this.ifmaLatArray0 = ifmaLatArray0;
+	}
+	public String getIfmaLngArray0() {
+		return ifmaLngArray0;
+	}
+	public void setIfmaLngArray0(String ifmaLngArray0) {
+		this.ifmaLngArray0 = ifmaLngArray0;
+	}
+	public String getIfmmPostNum() {
+		return ifmmPostNum;
+	}
+	public void setIfmmPostNum(String ifmmPostNum) {
+		this.ifmmPostNum = ifmmPostNum;
+	}
+	public String getIfmmResidence() {
+		return ifmmResidence;
+	}
+	public void setIfmmResidence(String ifmmResidence) {
+		this.ifmmResidence = ifmmResidence;
+	}
+	public String getIfmmDetailedAddress() {
+		return ifmmDetailedAddress;
+	}
+	public void setIfmmDetailedAddress(String ifmmDetailedAddress) {
+		this.ifmmDetailedAddress = ifmmDetailedAddress;
+	}
+	public String getIfmmReference() {
+		return ifmmReference;
+	}
+	public void setIfmmReference(String ifmmReference) {
+		this.ifmmReference = ifmmReference;
+	}
+	public String getIfmmAddress() {
+		return ifmmAddress;
+	}
+	public void setIfmmAddress(String ifmmAddress) {
+		this.ifmmAddress = ifmmAddress;
+	}
 	public Integer getIfmmMailNy() {
 		return ifmmMailNy;
 	}
@@ -87,10 +139,11 @@ public class Member extends Base {
 	public void setIfmmGender(Integer ifmmGender) {
 		this.ifmmGender = ifmmGender;
 	}
-	public Date getIfmmDob() {
+	
+	public String getIfmmDob() {
 		return ifmmDob;
 	}
-	public void setIfmmDob(Date ifmmDob) {
+	public void setIfmmDob(String ifmmDob) {
 		this.ifmmDob = ifmmDob;
 	}
 	public Integer getIfmmPhoneCarrier() {

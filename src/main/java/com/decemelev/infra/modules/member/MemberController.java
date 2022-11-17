@@ -92,7 +92,6 @@ public class MemberController {
 		
 		System.out.println("업데이트 !");
 		 return "redirect:/member/memberList"; 
-
 		
 	}
 	
