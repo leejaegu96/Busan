@@ -77,11 +77,11 @@
 
             <div class="page-heading">
                 <h3>CodeGroupForm</h3>
-                ifcgSeq =   <c:out value="${vo.ifcgSeq }"/><br>
+               <%--  ifcgSeq =   <c:out value="${vo.ifcgSeq }"/><br>
                 shUseNy  =  <c:out value="${vo.shUseNy }"/><br>
                 shOptionDate  =  <c:out value="${vo.shOptionDate }"/><br>
                 shOption  =  <c:out value="${vo.shOption }"/><br>
-                shValue  =  <c:out value="${vo.shValue }"/><br>
+                shValue  =  <c:out value="${vo.shValue }"/><br> --%>
             </div>
             <div class="page-content">
                 <section class="row">

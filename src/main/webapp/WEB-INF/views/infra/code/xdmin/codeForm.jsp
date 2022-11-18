@@ -83,7 +83,7 @@ ul li {
 
 			<div class="page-heading">
 				<h3>CodeForm</h3>
-				ifcdSeq =
+				<%-- ifcdSeq =
 				<c:out value="${vo.ifcdSeq }" />
 				<br> shUseNy =
 				<c:out value="${vo.shUseNy }" />
@@ -93,7 +93,7 @@ ul li {
 				<c:out value="${vo.shOption }" />
 				<br> shValue =
 				<c:out value="${vo.shValue }" />
-				<br>
+				<br> --%>
 			</div>
 			<div class="page-content">
 				<section class="row">

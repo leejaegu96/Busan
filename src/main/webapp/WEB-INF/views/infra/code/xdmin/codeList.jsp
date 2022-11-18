@@ -139,7 +139,7 @@
 
 			<div class="page-heading">
 				<h3>Code Management</h3>
-				ifcdSeq =
+				<%-- ifcdSeq =
 				<c:out value="${vo.ifcdSeq }" />
 				<br> shUseNy =
 				<c:out value="${vo.shUseNy }" />
@@ -149,7 +149,7 @@
 				<c:out value="${vo.shOption }" />
 				<br> shValue =
 				<c:out value="${vo.shValue }" />
-				<br>
+				<br> --%>
 			</div>
 			<div class="page-content">
 				<section class="row">
@@ -159,7 +159,7 @@
 								<div class="card">
 									<div class="card-body">
 										<form method="post" name="formList" id="formList" action="/code/codeList">
-
+											<span>Total: ${vo.totalRows }</span>
 											<input type="hidden" name="ifcdSeq"> <input type="hidden" name="thisPage" value="<c:out value="${vo.thisPage }" default="1"/>"> <input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow }"/>"> <input type="hidden" name="checkboxSeqArray">
 
 											<div class="row gx-3 gy-2">

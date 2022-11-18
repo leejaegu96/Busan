@@ -196,8 +196,8 @@
 												</div>
 											</div>
 											<div class="col-md-8">
-												<h6 class="text-muted font-semibold">Profile Views</h6>
-												<h6 class="font-extrabold mb-0">121</h6>
+												<h6 class="text-muted font-semibold">Number Of Visitors</h6>
+												<h6 class="font-extrabold mb-0">-</h6>
 											</div>
 										</div>
 									</div>
@@ -213,8 +213,8 @@
 												</div>
 											</div>
 											<div class="col-md-8">
-												<h6 class="text-muted font-semibold">Followers</h6>
-												<h6 class="font-extrabold mb-0">347</h6>
+												<h6 class="text-muted font-semibold">Number Of Tests</h6>
+												<h6 class="font-extrabold mb-0">-</h6>
 											</div>
 										</div>
 									</div>
@@ -230,8 +230,8 @@
 												</div>
 											</div>
 											<div class="col-md-8">
-												<h6 class="text-muted font-semibold">Following</h6>
-												<h6 class="font-extrabold mb-0">278</h6>
+												<h6 class="text-muted font-semibold">Number Of Likes</h6>
+												<h6 class="font-extrabold mb-0">-</h6>
 											</div>
 										</div>
 									</div>

@@ -149,7 +149,7 @@
 
 			<div class="page-heading">
 				<h3>Word Management</h3>
-				sdwSeq =
+				<%-- sdwSeq =
 				<c:out value="${vo.sdwSeq }" />
 				<br> shUseNy =
 				<c:out value="${vo.shUseNy }" />
@@ -158,7 +158,7 @@
 				<br> shOption =
 				<c:out value="${vo.shOption }" />
 				<br> shValue =
-				<c:out value="${vo.shValue }" />
+				<c:out value="${vo.shValue }" /> --%>
 				<br>
 			</div>
 			<div class="page-content">

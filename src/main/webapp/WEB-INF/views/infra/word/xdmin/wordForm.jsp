@@ -123,7 +123,7 @@ ul li {
 
 			<div class="page-heading">
 				<h3>WordForm</h3>
-				sdwSeq =
+				<%-- sdwSeq =
 				<c:out value="${vo.sdwSeq }" />
 				<br> shUseNy =
 				<c:out value="${vo.shUseNy }" />
@@ -133,7 +133,7 @@ ul li {
 				<c:out value="${vo.shOption }" /> 
 				<br> shValue =
 				<c:out value="${vo.shValue }" />
-				<br>
+				<br> --%>
 			</div>
 			<div class="page-content">
 				<section class="row">

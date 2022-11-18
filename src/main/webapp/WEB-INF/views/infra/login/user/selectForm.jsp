@@ -185,7 +185,7 @@ figure.snip1141.hover i {
 		<div class="container-login100">
 			<div class="row">
 				<div class="col-6">
-					<figure class="snip1141"><img alt="" src="/resources/assets/images/background/user.PNG"  class="img-fluid">
+					<figure class="snip1141"><img alt="" src="/resources/assets/images/background/homepage.PNG" style="height:600px" class="img-fluid">
 					  <figcaption>
 					    <div class="circle"><i class="ion-ios-plus-empty"> </i></div>
 					    <h2>USER</h2>
@@ -194,7 +194,7 @@ figure.snip1141.hover i {
 					</figure>
 				</div>
 				<div class="col-6">
-					<figure class="snip1141"><img alt="" src="/resources/assets/images/background/xdmin.PNG"  class="img-fluid">
+					<figure class="snip1141"><img alt="" src="/resources/assets/images/background/adminpage.PNG" style="height:600px" class="img-fluid">
 					  <figcaption>
 					    <div class="circle"><i class="ion-ios-plus-empty"> </i></div>
 					    <h2>ADMIN</h2>
