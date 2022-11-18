@@ -167,4 +167,8 @@ public class HomeDao {
 	public int likeUpdate(Home dto) {
 		return sqlSession.update(namespace + ".likeUpdate", dto);
 	}
+	
+	public List<Home> selectListTest(){
+		return sqlSession.selectList(namespace+ ".selectListTest", "");
+	}
 }

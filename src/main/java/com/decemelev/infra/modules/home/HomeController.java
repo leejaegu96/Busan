@@ -78,6 +78,20 @@ public class HomeController {
 		return "infra/home/user/toast";
 	}
 	
+	@RequestMapping(value = "/home/purchase")
+	public String purchase(HomeVo vo, Model model, HttpServletRequest httpServletRequest) throws Exception {
+		HttpSession httpSession =  httpServletRequest.getSession();
+		sessSeq = (String) httpSession.getAttribute("sessSeq");
+		vo.setMainKey(sessSeq);
+		
+		return "infra/home/user/purchase";
+	}
+	@RequestMapping(value = "/home/purchaseEnd")
+	public String purchaseEnd(Model model) throws Exception {
+		
+		return "infra/home/user/purchaseEnd";
+	}
+	
 	
 	@RequestMapping(value = "/home/home")
 	public String home(Model model) throws Exception {
@@ -139,6 +153,9 @@ public class HomeController {
 		
 		Home list = service.memberList(vo);
 		model.addAttribute("list", list);
+		
+		List<Home> LTest = service.selectListTest();
+		model.addAttribute("LTest", LTest);
 		
 		return "infra/home/user/test";
 		
@@ -313,13 +330,14 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/home/testInst")
-	public String testInst(Home dto, RedirectAttributes redirectAttributes) throws Exception{
+	public String testInst(Home dto, String sdDate_sddSeq, String ifmmSeq,  RedirectAttributes redirectAttributes) throws Exception{
 		
+		System.out.println("sdDate_sddSeq: " + sdDate_sddSeq);
+		System.out.println("ifmmSeq: " + ifmmSeq);
+//		if(sdDate_sddSeq == null && ifmmSeq == null ) {
+//		}
 		int result = service.insert(dto);
-		dto.getInfrMember_ifmmSeq();
-		dto.getSdwSeq();
 		
-		System.out.println("controller result: " + result);
 		return "redirect:/home/test";
 	}
 	

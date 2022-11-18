@@ -51,4 +51,5 @@ public interface HomeService {
 	public int selectOneWordCount(HomeVo vo) throws Exception;
 	public int likeUpdate(Home dto) throws Exception;
 	
+	public List<Home> selectListTest() throws Exception;
 }

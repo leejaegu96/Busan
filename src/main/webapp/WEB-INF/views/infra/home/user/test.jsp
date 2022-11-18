@@ -45,36 +45,27 @@
 }
 </style>
 <script type="text/javascript">
-	$(document).ready(
-			function() {
-				$.datepicker.setDefaults($.datepicker.regional['ko']);
-				$("#datepicker")
-						.datepicker(
-								{
-									changeMonth : true,
-									changeYear : true,
-									nextText : '다음 달',
-									prevText : '이전 달',
-									dayNames : [ '일요일', '월요일', '화요일', '수요일',
-											'목요일', '금요일', '토요일' ],
-									dayNamesMin : [ '일', '월', '화', '수', '목',
-											'금', '토' ],
-									monthNamesShort : [ '1월', '2월', '3월', '4월',
-											'5월', '6월', '7월', '8월', '9월',
-											'10월', '11월', '12월' ],
-									monthNames : [ '1월', '2월', '3월', '4월',
-											'5월', '6월', '7월', '8월', '9월',
-											'10월', '11월', '12월' ],
-									dateFormat : "yy-mm-dd",
-									maxDate : 0,
-									minDate : new Date('2022-07-25'),
-									maxDate : new Date('2022-07-27'),
-									// 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)
-									onClose : function(selectedDate) {
-									}
+    $(document).ready(function() {
+        $.datepicker.setDefaults($.datepicker.regional['ko']);
+        $("#datepicker").datepicker({
+            changeMonth : true,
+            changeYear : true,
+            nextText : '다음 달',
+            prevText : '이전 달',
+            dayNames : [ '일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일' ],
+            dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
+            monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월' ],
+            monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월' ],
+            dateFormat : "yy-mm-dd",
+            maxDate : 0,
+            minDate : new Date('2022-07-25'),
+            maxDate : new Date('2022-07-27'),
+            // 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)
+            onClose : function(selectedDate) {
+            }
 
-								});
-			});
+        });
+    });
 </script>
 </head>
 <body>
@@ -91,10 +82,14 @@
 							<c:when test="${sessSeq eq null}">
 							</c:when>
 							<c:when test="${sessSeq eq 144}">
-								<span style="color: #959ADA; font-weight: bolder;"><c:out value="${sessName }" /></span> 관리자님
+								<span style="color: #959ADA; font-weight: bolder;">
+									<c:out value="${sessName }" />
+								</span> 관리자님
 									</c:when>
 							<c:otherwise>
-								<span style="color: #959ADA; font-weight: bolder;"><c:out value="${sessName }" /></span>님
+								<span style="color: #959ADA; font-weight: bolder;">
+									<c:out value="${sessName }" />
+								</span>님
 									</c:otherwise>
 						</c:choose></li>
 					<li><a href="home" class="button" style="cursor: pointer; background-color: #444444;">Home</a></li>
@@ -139,7 +134,7 @@
 				<!-- 날짜 선택 --------------------------------------------------------------------------------------------------------------------------------------------------- -->
 				<div class="row">
 					<div class="col-10">
-						<input type="hidden" name="ifmmSeq" value="<c:out value="${list.ifmmSeq }"/>" />
+						<input type="hidden" name="ifmmSeq" id="ifmmSeq" value="<c:out value="${list.ifmmSeq }"/>" />
 						<div id="testDate"></div>
 						<input type="text" class="form-control" id="datepicker" name="sddDateChoice" placeholder="Choice Date!!" style="text-align: center; color: black; height: 50px;">
 					</div>
@@ -229,213 +224,159 @@
 	</div>
 
 	<script type="text/javascript">
-		var goUrlInst = "/home/testInst";
+        var goUrlInst = "/home/testInst";
 
-		var form = $("form[name = form]");
-
-		$("#btn").on("click", function() {
-			form.attr("action", goUrlInst).submit();
-		});
-	</script>
-
-	<script type="text/javascript">
-		$("#btnLogout").on(
-				"click",
-				function() {
-					$.ajax({
-						async : true,
-						cache : false,
-						type : "post",
-						url : "/login/logoutProc",
-						data : {},
-						success : function(response) {
-							if (response.rt == "success") {
-								location.href = "/home/home";
-							} else {
-								// by pass
-							}
-						},
-						error : function(jqXHR, textStatus, errorThrown) {
-							alert("ajaxUpdate " + jqXHR.textStatus + " : "
-									+ jqXHR.errorThrown);
-						}
-					});
-				});
-	</script>
+        var form = $("form[name = form]");
+		var Seq = $("#ifmmSeq").val();
+		
+		console.log(Seq);
+        $("#btn").on("click", function() {
+       	    form.attr("action", goUrlInst).submit();
+        });
+    </script>
 
 	<script type="text/javascript">
-		$("#datepicker")
-				.on(
-						"change",
-						function() {
-							$
-									.ajax({
-										async : true,
-										cache : false,
-										type : "post"
-										/* ,dataType:"json" */
-										,
-										url : "/home/testDate"
-										/* ,data : $("#formLogin").serialize() */
-										,
-										data : {
-											"sddDateChoice" : $("#datepicker")
-													.val()
-										},
-										success : function(response) {
-											if (response.rt == "success") {
-												console.log(response);
+        $("#btnLogout").on("click", function() {
+            $.ajax({
+                async : true,
+                cache : false,
+                type : "post",
+                url : "/login/logoutProc",
+                data : {},
+                success : function(response) {
+                    if (response.rt == "success") {
+                        location.href = "/home/home";
+                    } else {
+                        // by pass
+                    }
+                },
+                error : function(jqXHR, textStatus, errorThrown) {
+                    alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+                }
+            });
+        });
+    </script>
 
-												let listHTML = "";
-												listHTML += '<input type="hidden" name="sdDate_sddSeq" value="'+response.tt[0].sdDate_sddSeq+'">';
+	<script type="text/javascript">
+        $("#datepicker").on("change", function() {
+            $.ajax({
+                async : true,
+                cache : false,
+                type : "post"
+                /* ,dataType:"json" */
+                ,
+                url : "/home/testDate"
+                /* ,data : $("#formLogin").serialize() */
+                ,
+                data : {
+                    "sddDateChoice" : $("#datepicker").val()
+                },
+                success : function(response) {
+                    if (response.rt == "success") {
+                        console.log(response);
 
-												document
-														.getElementById('testDate').innerHTML += listHTML;
+                        let listHTML = "";
+                        listHTML += '<input type="hidden" id="sdDate_sddSeq" name="sdDate_sddSeq" value="'+response.tt[0].sdDate_sddSeq+'">';
+                        var Date = response.tt[0].sdDate_sddSeq;
+                        console.log(Date);
+                        document.getElementById('testDate').innerHTML += listHTML;
 
-												document
-														.getElementById('testChoice').innerHTML = "";
-												for (let i = 0; i < response.tt.length; i++) {
-													console.log(response.tt[i]);
-													let listHTML = "";
+                        document.getElementById('testChoice').innerHTML = "";
+                        for (let i = 0; i < response.tt.length; i++) {
+                            console.log(response.tt[i]);
+                            let listHTML = "";
 
-													listHTML += '<div class="col-6" style="margin:auto;">';
-													listHTML += '<div class="quiz">';
-													listHTML += '<span class="quiz__type">'
-															+ response.tt[i].sddDateChoice
-															+ '</span>';
-													listHTML += '<h2 class="quiz__question">';
-													listHTML += '<span class="number">'
-															+ response.tt[i].sdwNum
-															+ '</span>';
-													listHTML += '<div class="ask" >'
-															+ response.tt[i].first
-															+ '____________'
-															+ response.tt[i].second
-															+ '</div>';
-													listHTML += '<div class="ask1" >'
-															+ response.tt[i].sdweTranslate
-															+ '</div>';
-													listHTML += '</h2>';
-													listHTML += '<div class="quiz__view">';
-													listHTML += '<div class="true">정답🐾</div>';
-													listHTML += '<div class="false">오답 입니다!</div>';
-													listHTML += '<input type="hidden" class="test" id="testCk'+response.tt[i].sdwNum+'" name="testCk">';
-													listHTML += '</div>';
-													listHTML += '<div class="quiz__answer">';
-													listHTML += '<input type="text" class="input" id="input'
-															+ response.tt[i].sdwNum
-															+ '" style="text-align:center;" placeholder="정답을 적어주세요!">';
-													listHTML += '<button class="confirm" id="confirm'+response.tt[i].sdwNum+'">정답 확인하기</button>';
-													listHTML += '<div class="result" style="display:none;"></div>';
-													listHTML += '</div>';
-													listHTML += '</div>';
-													listHTML += '</div>';
+                            listHTML += '<div class="col-6" style="margin:auto;">';
+                            listHTML += '<div class="quiz">';
+                            listHTML += '<span class="quiz__type">' + response.tt[i].sddDateChoice + '</span>';
+                            listHTML += '<h2 class="quiz__question">';
+                            listHTML += '<span class="number">' + response.tt[i].sdwNum + '</span>';
+                            listHTML += '<div class="ask" >' + response.tt[i].first + '____________' + response.tt[i].second + '</div>';
+                            listHTML += '<div class="ask1" >' + response.tt[i].sdweTranslate + '</div>';
+                            listHTML += '</h2>';
+                            listHTML += '<div class="quiz__view">';
+                            listHTML += '<div class="true">정답🐾</div>';
+                            listHTML += '<div class="false">오답 입니다!</div>';
+                            listHTML += '<input type="hidden" class="test" id="testCk'+response.tt[i].sdwNum+'" name="testCk">';
+                            listHTML += '</div>';
+                            listHTML += '<div class="quiz__answer">';
+                            listHTML += '<input type="text" class="input" id="input' + response.tt[i].sdwNum + '" style="text-align:center;" placeholder="정답을 적어주세요!">';
+                            listHTML += '<button class="confirm" id="confirm'+response.tt[i].sdwNum+'">정답 확인하기</button>';
+                            listHTML += '<div class="result" style="display:none;"></div>';
+                            listHTML += '</div>';
+                            listHTML += '</div>';
+                            listHTML += '</div>';
 
-													document
-															.getElementById('testChoice').innerHTML += listHTML;
+                            document.getElementById('testChoice').innerHTML += listHTML;
 
-												}
-												for (let i = 0; i < response.tt.length; i++) {
-													document
-															.getElementById("confirm"
-																	+ response.tt[i].sdwNum).onclick = function() {
-														if (document
-																.getElementById('input'
-																		+ response.tt[i].sdwNum).value == response.tt[i].sdwWord) {
-															document
-																	.getElementById('input'
-																			+ response.tt[i].sdwNum).value = response.tt[i].sdwWord
-																	+ " 정답 입니다.!!";
-															document
-																	.getElementById('input'
-																			+ response.tt[i].sdwNum).disabled = true;
-															document
-																	.getElementById("testCk"
-																			+ response.tt[i].sdwNum).checked = true;
-															let cnt = 0;
-															for (let i = 0; i < response.tt.length; i++) {
-																if (document
-																		.getElementById("testCk"
-																				+ response.tt[i].sdwNum).checked == true) {
-																	cnt++;
-																}
-															}
+                        }
+                        for (let i = 0; i < response.tt.length; i++) {
+                            document.getElementById("confirm" + response.tt[i].sdwNum).onclick = function() {
+                                if (document.getElementById('input' + response.tt[i].sdwNum).value == response.tt[i].sdwWord) {
+                                    document.getElementById('input' + response.tt[i].sdwNum).value = response.tt[i].sdwWord + " 정답 입니다.!!";
+                                    document.getElementById('input' + response.tt[i].sdwNum).disabled = true;
+                                    document.getElementById("testCk" + response.tt[i].sdwNum).checked = true;
+                                    let cnt = 0;
+                                    for (let i = 0; i < response.tt.length; i++) {
+                                        if (document.getElementById("testCk" + response.tt[i].sdwNum).checked == true) {
+                                            cnt++;
+                                        }
+                                    }
 
-															console.log(cnt);
+                                    console.log(cnt);
 
-															var score = response.tt.length;
-															var result_test = document
-																	.getElementById('result1');
-															var result_test1 = document
-																	.getElementById('answer1');
+                                    var score = response.tt.length;
+                                    var result_test = document.getElementById('result1');
+                                    var result_test1 = document.getElementById('answer1');
 
-															result_test.innerHTML = score
-																	+ '개중에서 '
-																	+ cnt
-																	+ '개 맞추셨습니다.';
-															result_test1.value = cnt;
-															/* var btn = document.getElementById("btn");
-															var asw = document.getElementById("answer1");
-															btn.addEventListener("click", function() {
-																alert(asw.value);  
-															}, false); */
-														} else {
-															document
-																	.getElementById('input'
-																			+ response.tt[i].sdwNum).value = "틀렸습니다! 정답은  "
-																	+ response.tt[i].sdwWord
-																	+ " 입니다.";
-															document
-																	.getElementById('input'
-																			+ response.tt[i].sdwNum).disabled = true;
-															let cnt = 0;
-															for (let i = 0; i < response.tt.length; i++) {
-																if (document
-																		.getElementById("testCk"
-																				+ response.tt[i].sdwNum).checked == true) {
-																	cnt++;
-																}
-															}
+                                    result_test.innerHTML = score + '개중에서 ' + cnt + '개 맞추셨습니다.';
+                                    result_test1.value = cnt;
+                                    /* var btn = document.getElementById("btn");
+                                    var asw = document.getElementById("answer1");
+                                    btn.addEventListener("click", function() {
+                                    	alert(asw.value);  
+                                    }, false); */
+                                } else {
+                                    document.getElementById('input' + response.tt[i].sdwNum).value = "틀렸습니다! 정답은  " + response.tt[i].sdwWord + " 입니다.";
+                                    document.getElementById('input' + response.tt[i].sdwNum).disabled = true;
+                                    let cnt = 0;
+                                    for (let i = 0; i < response.tt.length; i++) {
+                                        if (document.getElementById("testCk" + response.tt[i].sdwNum).checked == true) {
+                                            cnt++;
+                                        }
+                                    }
 
-															console.log(cnt);
+                                    console.log(cnt);
 
-															var score = response.tt.length;
-															var result_test = document
-																	.getElementById('result1');
-															var result_test1 = document
-																	.getElementById('answer1');
+                                    var score = response.tt.length;
+                                    var result_test = document.getElementById('result1');
+                                    var result_test1 = document.getElementById('answer1');
 
-															result_test.innerHTML = score
-																	+ '개중에서 '
-																	+ cnt
-																	+ '개 맞추셨습니다.';
-															result_test1.innerHTML = cnt;
-															/* var btn = document.getElementById("btn");
-															var asw = document.getElementById("answer1");
-															btn.addEventListener("click", function() {
-																alert(asw.value);  
-															}, false); */
-														}
-													};
+                                    result_test.innerHTML = score + '개중에서 ' + cnt + '개 맞추셨습니다.';
+                                    result_test1.innerHTML = cnt;
+                                    /* var btn = document.getElementById("btn");
+                                    var asw = document.getElementById("answer1");
+                                    btn.addEventListener("click", function() {
+                                    	alert(asw.value);  
+                                    }, false); */
+                                }
+                            };
 
-												}
+                        }
 
-											} else {
-												// 
-											}
-										}
+                    } else {
+                        // 
+                    }
+                }
 
-										,
-										error : function(jqXHR, textStatus,
-												errorThrown) {
-											alert("ajaxUpdate "
-													+ jqXHR.textStatus + " : "
-													+ jqXHR.errorThrown);
-										}
+                ,
+                error : function(jqXHR, textStatus, errorThrown) {
+                    alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+                }
 
-									});
-						});
-	</script>
+            });
+        });
+    </script>
 
 </body>
 </html>

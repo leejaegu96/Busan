@@ -235,4 +235,9 @@ public class HomeServiceImpl implements HomeService{
 		System.out.println(result);
 		return result;
 	}
+	
+	@Override
+	public List<Home> selectListTest() throws Exception {
+		return dao.selectListTest();
+	}
 }
