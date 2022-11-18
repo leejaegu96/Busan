@@ -30,20 +30,6 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <style>
-.ui-datepicker {
-	font-size: 15px;
-	width: 400px;
-}
-
-.ui-datepicker select.ui-datepicker-month {
-	width: 30%;
-	font-size: 15px;
-}
-
-.ui-datepicker select.ui-datepicker-year {
-	width: 40%;
-	font-size: 15px;
-}
 </style>
 <script type="text/javascript">
    $(document).ready(function () {
@@ -59,8 +45,6 @@
             monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
             dateFormat: "yy-mm-dd",
             maxDate: 0,
-            minDate: new Date('2022-07-25'),
-            maxDate: new Date('2022-07-27'),
        	// 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)
             onClose: function( selectedDate ) {    
             }    

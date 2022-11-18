@@ -227,12 +227,9 @@
         var goUrlInst = "/home/testInst";
 
         var form = $("form[name = form]");
-		var Seq = $("#ifmmSeq").val();
-		
-		console.log(Seq);
-        $("#btn").on("click", function() {
-       	    form.attr("action", goUrlInst).submit();
-        });
+        var Seq = $("#ifmmSeq").val();
+
+        console.log(Seq);
     </script>
 
 	<script type="text/javascript">
@@ -363,6 +360,24 @@
                             };
 
                         }
+
+                        $("#btn").on("click", function() {
+
+                            let testR = 0;
+                            for (let k = 0; k < response.rr.length; k++) {
+                                if (response.rr[k].infrMember_ifmmSeq == Seq && response.rr[k].sdDate_sddSeq == Date) {
+                                    testR += 1;
+                                }
+                            }
+                            if (testR > 0) {
+                                alert("이미 제출하신 시험입니다.");
+                            } else {
+                                form.attr("action", goUrlInst).submit();
+                            }
+                            /* 
+                            form.attr("action", goUrlInst).submit();
+                             */
+                        });
 
                     } else {
                         // 

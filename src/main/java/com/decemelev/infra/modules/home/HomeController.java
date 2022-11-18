@@ -154,9 +154,6 @@ public class HomeController {
 		Home list = service.memberList(vo);
 		model.addAttribute("list", list);
 		
-		List<Home> LTest = service.selectListTest();
-		model.addAttribute("LTest", LTest);
-		
 		return "infra/home/user/test";
 		
 	}
@@ -169,9 +166,11 @@ public class HomeController {
 		dto.setSddDateChoice(sddDateChoice);
 		System.out.println("처음: " + sddDateChoice);
 		List<Home> result = service.selectTest(dto);
+		List<Home> LTest = service.selectListTest();
 		if(result != null) {
 			returnMap.put("rt", "success");
 			returnMap.put("tt", result);
+			returnMap.put("rr", LTest);
 		} else {
 			returnMap.put("rt", "fail");
 		}

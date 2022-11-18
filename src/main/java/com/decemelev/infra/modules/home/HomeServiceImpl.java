@@ -159,30 +159,34 @@ public class HomeServiceImpl implements HomeService{
 			System.out.println(!multipartFile.isEmpty());
 			 
     		if(!multipartFile.isEmpty() == true) {
-
-    			String pathModule = this.getClass().getSimpleName().toString().toLowerCase().replace("serviceimpl", "");
-	    		UtilUpload.upload1(multipartFile, pathModule, dto);
 	    		
-	    		dto.setTableName("infrMemberUploaded");
-	    		dto.setType(1);
-	    		dto.setDefaultNy(1);
-	    		dto.setSort(1);
-	    		dto.setPseq(dto.getIfmmSeq());
+				String pathModule = this.getClass().getSimpleName().toString().toLowerCase().replace("serviceimpl", "");
+				UtilUpload.upload1(multipartFile, pathModule, dto);
 
-				dao.uploadedUpdate(dto);
-				
-    		} else {
-
-    			String pathModule = this.getClass().getSimpleName().toString().toLowerCase().replace("serviceimpl", "");
-	    		UtilUpload.upload1(multipartFile, pathModule, dto);
-	    		
-	    		dto.setTableName("infrMemberUploaded");
-	    		dto.setType(1);
-	    		dto.setDefaultNy(1);
-	    		dto.setSort(1);
-	    		dto.setPseq(dto.getIfmmSeq());
+				dto.setTableName("infrMemberUploaded");
+				dto.setType(1);
+				dto.setDefaultNy(1);
+				dto.setSort(1);
+				dto.setPseq(dto.getIfmmSeq());
 
 				dao.insertUploaded(dto);
+	    		
+				
+    		} else {
+    			if(dto.getExt() == null ) {
+    				System.out.println("업데이트 변경된 사항이 없다.");
+    			}else {
+    				String pathModule = this.getClass().getSimpleName().toString().toLowerCase().replace("serviceimpl", "");
+    	    		UtilUpload.upload1(multipartFile, pathModule, dto);
+    	    		
+    	    		dto.setTableName("infrMemberUploaded");
+    	    		dto.setType(1);
+    	    		dto.setDefaultNy(1);
+    	    		dto.setSort(1);
+    	    		dto.setPseq(dto.getIfmmSeq());
+    				
+    				dao.uploadedUpdate(dto);
+    			}
     		}
     	}
 		
@@ -238,6 +242,7 @@ public class HomeServiceImpl implements HomeService{
 	
 	@Override
 	public List<Home> selectListTest() throws Exception {
-		return dao.selectListTest();
+		List<Home> list = dao.selectListTest();
+		return list;
 	}
 }
