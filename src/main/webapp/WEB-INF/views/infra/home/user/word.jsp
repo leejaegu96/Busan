@@ -27,7 +27,6 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <style type="text/css">
-
 .ui-datepicker {
 	font-size: 15px;
 	width: 400px;
@@ -77,7 +76,8 @@
 			</h3>
 			<nav id="nav">
 				<ul>
-					<li><c:choose>
+					<li>
+						<c:choose>
 							<c:when test="${sessSeq eq null}">
 							</c:when>
 							<c:when test="${sessSeq eq 144}">
@@ -90,27 +90,50 @@
 									<c:out value="${sessName }" />
 								</span>님
 							</c:otherwise>
-						</c:choose></li>
-					<li><a href="home" class="button" style="cursor: pointer; background-color: #444444;">Home</a></li>
+						</c:choose>
+					</li>
+					<li>
+						<a href="home" class="button" style="cursor: pointer; background-color: #444444;">Home</a>
+					</li>
 					<c:choose>
 						<c:when test="${sessSeq eq null}">
 							<!--로그인 전 화면  -->
-							<li><a href="#" class="button" onClick="location.href='../login/signUp'" style="cursor: pointer; background-color: #444444;">Sign Up</a></li>
-							<li><a href="#" class="button" onClick="location.href='../login/login'" style="cursor: pointer;">Login</a></li>
+							<li>
+								<a href="#" class="button" onClick="location.href='../login/signUp'" style="cursor: pointer; background-color: #444444;">Sign Up</a>
+							</li>
+							<li>
+								<a href="#" class="button" onClick="location.href='../login/login'" style="cursor: pointer;">Login</a>
+							</li>
 						</c:when>
 						<c:when test="${sessSeq eq 144}">
 							<!--관리자 로그인 후 화면  -->
-							<li><a href="mypage" class="button" style="cursor: pointer; background-color: #444444;">Mypage</a></li>
-							<li><a href="/member/memberList" class="button" style="cursor: pointer; background-color: #444444;">Admin</a></li>
-							<li><a href="#" class="button" id="btnLogout" style="cursor: pointer;">Logout</a></li>
+							<li>
+								<a href="mypage" class="button" style="cursor: pointer; background-color: #444444;">Mypage</a>
+							</li>
+							<li>
+								<a href="/member/memberList" class="button" style="cursor: pointer; background-color: #444444;">Admin</a>
+							</li>
+							<li>
+								<a href="#" class="button" id="btnLogout" style="cursor: pointer;">Logout</a>
+							</li>
 						</c:when>
 						<c:otherwise>
 							<!--로그인 후 화면  -->
-							<li><a href="test" class="button" style="cursor: pointer; background-color: #444444;">Test</a></li>
-							<li><a href="rank" class="button" style="cursor: pointer; background-color: #444444;">Rank</a></li>
-							<li><a href="translate" class="button" style="cursor: pointer; background-color: #444444;">Translate</a></li>
-							<li><a href="mypage" class="button" style="cursor: pointer; background-color: #444444;">Mypage</a></li>
-							<li><a href="#" class="button" id="btnLogout" style="cursor: pointer;">Logout</a></li>
+							<li>
+								<a href="test" class="button" style="cursor: pointer; background-color: #444444;">Test</a>
+							</li>
+							<li>
+								<a href="rank" class="button" style="cursor: pointer; background-color: #444444;">Rank</a>
+							</li>
+							<li>
+								<a href="translate" class="button" style="cursor: pointer; background-color: #444444;">Translate</a>
+							</li>
+							<li>
+								<a href="mypage" class="button" style="cursor: pointer; background-color: #444444;">Mypage</a>
+							</li>
+							<li>
+								<a href="#" class="button" id="btnLogout" style="cursor: pointer;">Logout</a>
+							</li>
 						</c:otherwise>
 					</c:choose>
 					<!-- 
@@ -132,8 +155,8 @@
 			<section class="box" style="height: 100%;">
 				<div class="row">
 					<!-- <form id="form" name="form" method="post"> -->
-						<div id="wordChoice"></div>
-						<div id="wordDate"></div>
+					<div id="wordChoice"></div>
+					<div id="wordDate"></div>
 					<!-- </form> -->
 				</div>
 			</section>
@@ -142,28 +165,43 @@
 			<!-- Footer -->
 			<footer id="footer">
 				<ul class="icons">
-					<li><a href="#" class="icon brands fa-twitter">
+					<li>
+						<a href="#" class="icon brands fa-twitter">
 							<span class="label">Twitter</span>
-						</a></li>
-					<li><a href="#" class="icon brands fa-facebook-f">
+						</a>
+					</li>
+					<li>
+						<a href="#" class="icon brands fa-facebook-f">
 							<span class="label">Facebook</span>
-						</a></li>
-					<li><a href="#" class="icon brands fa-instagram">
+						</a>
+					</li>
+					<li>
+						<a href="#" class="icon brands fa-instagram">
 							<span class="label">Instagram</span>
-						</a></li>
-					<li><a href="#" class="icon brands fa-github">
+						</a>
+					</li>
+					<li>
+						<a href="#" class="icon brands fa-github">
 							<span class="label">Github</span>
-						</a></li>
-					<li><a href="#" class="icon brands fa-dribbble">
+						</a>
+					</li>
+					<li>
+						<a href="#" class="icon brands fa-dribbble">
 							<span class="label">Dribbble</span>
-						</a></li>
-					<li><a href="#" class="icon brands fa-google-plus">
+						</a>
+					</li>
+					<li>
+						<a href="#" class="icon brands fa-google-plus">
 							<span class="label">Google+</span>
-						</a></li>
+						</a>
+					</li>
 				</ul>
 				<ul class="copyright">
 					<li>&copy; Untitled. All rights reserved.</li>
-					<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					<li>
+						Design:
+						<a href="http://html5up.net">HTML5 UP</a>
+					</li>
 				</ul>
 			</footer>
 	</div>

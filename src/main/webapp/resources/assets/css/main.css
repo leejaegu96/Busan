@@ -1,5 +1,5 @@
 @import url("fontawesome-all.min.css");
-
+@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@300&display=swap');
 @import
 	url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic")
 	;
@@ -35,6 +35,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup,
 
 body {
 	line-height: 1;
+	font-family: 'Hahmlet' !important;
+}
+table, td, tr, span, a, li, ul, div, button, input, h3  {
+	font-family: 'Hahmlet' !important;
 }
 
 ol, ul {

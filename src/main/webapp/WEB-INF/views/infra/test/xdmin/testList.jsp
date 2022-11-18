@@ -88,29 +88,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="sidebar-menu">
-					<ul class="menu">
-						<li class="sidebar-title">Menu</li>
-
-						<li class="sidebar-item "><a href="../member/memberList" class='sidebar-link'> <i class="bi bi-person-badge-fill"></i> <span>MemberList</span>
-						</a></li>
-
-						<li class="sidebar-item"><a href="../codeGroup/codeGroupList" class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>CodeGroup</span>
-						</a></li>
-
-						<li class="sidebar-item"><a href="../code/codeList" class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>Code</span>
-						</a></li>
-
-						<li class="sidebar-item "><a href="../word/wordList" class='sidebar-link'> <i class="fa fa-book"></i> <span>Word</span>
-						</a></li>
-
-						<li class="sidebar-item active"><a href="" class='sidebar-link'> <i class="fa fa-chalkboard"></i> <span>Test</span>
-						</a></li>
-						
-						<li class="sidebar-item"><a href="/home/home" class='sidebar-link'> <i class="fa-solid fa-house-chimney-user"></i> <span>User Home</span>
-						</a></li>
-					</ul>
-				</div>
+				<%@include file="../../../common/user/includeV1/header.jsp"%>
 				<button class="sidebar-toggler btn x">
 					<i data-feather="x"></i>
 				</button>

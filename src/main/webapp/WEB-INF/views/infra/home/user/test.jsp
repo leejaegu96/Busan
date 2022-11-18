@@ -78,7 +78,8 @@
 			</h3>
 			<nav id="nav">
 				<ul>
-					<li><c:choose>
+					<li>
+						<c:choose>
 							<c:when test="${sessSeq eq null}">
 							</c:when>
 							<c:when test="${sessSeq eq 144}">
@@ -90,28 +91,51 @@
 								<span style="color: #959ADA; font-weight: bolder;">
 									<c:out value="${sessName }" />
 								</span>님
-									</c:otherwise>
-						</c:choose></li>
-					<li><a href="home" class="button" style="cursor: pointer; background-color: #444444;">Home</a></li>
+							</c:otherwise>
+						</c:choose>
+					</li>
+					<li>
+						<a href="home" class="button" style="cursor: pointer; background-color: #444444;">Home</a>
+					</li>
 					<c:choose>
 						<c:when test="${sessSeq eq null}">
 							<!--로그인 전 화면  -->
-							<li><a href="#" class="button" onClick="location.href='../login/signUp'" style="cursor: pointer; background-color: #444444;">Sign Up</a></li>
-							<li><a href="#" class="button" onClick="location.href='../login/login'" style="cursor: pointer;">Login</a></li>
+							<li>
+								<a href="#" class="button" onClick="location.href='../login/signUp'" style="cursor: pointer; background-color: #444444;">Sign Up</a>
+							</li>
+							<li>
+								<a href="#" class="button" onClick="location.href='../login/login'" style="cursor: pointer;">Login</a>
+							</li>
 						</c:when>
 						<c:when test="${sessSeq eq 144}">
 							<!--관리자 로그인 후 화면  -->
-							<li><a href="mypage" class="button" style="cursor: pointer; background-color: #444444;">Mypage</a></li>
-							<li><a href="/member/memberList" class="button" style="cursor: pointer; background-color: #444444;">Admin</a></li>
-							<li><a href="#" class="button" id="btnLogout" style="cursor: pointer;">Logout</a></li>
+							<li>
+								<a href="mypage" class="button" style="cursor: pointer; background-color: #444444;">Mypage</a>
+							</li>
+							<li>
+								<a href="/member/memberList" class="button" style="cursor: pointer; background-color: #444444;">Admin</a>
+							</li>
+							<li>
+								<a href="#" class="button" id="btnLogout" style="cursor: pointer;">Logout</a>
+							</li>
 						</c:when>
 						<c:otherwise>
 							<!--로그인 후 화면  -->
-							<li><a href="test" class="button" style="cursor: pointer; background-color: #444444;">Test</a></li>
-							<li><a href="rank" class="button" style="cursor: pointer; background-color: #444444;">Rank</a></li>
-							<li><a href="translate" class="button" style="cursor: pointer; background-color: #444444;">Translate</a></li>
-							<li><a href="mypage" class="button" style="cursor: pointer; background-color: #444444;">Mypage</a></li>
-							<li><a href="#" class="button" id="btnLogout" style="cursor: pointer;">Logout</a></li>
+							<li>
+								<a href="test" class="button" style="cursor: pointer; background-color: #444444;">Test</a>
+							</li>
+							<li>
+								<a href="rank" class="button" style="cursor: pointer; background-color: #444444;">Rank</a>
+							</li>
+							<li>
+								<a href="translate" class="button" style="cursor: pointer; background-color: #444444;">Translate</a>
+							</li>
+							<li>
+								<a href="mypage" class="button" style="cursor: pointer; background-color: #444444;">Mypage</a>
+							</li>
+							<li>
+								<a href="#" class="button" id="btnLogout" style="cursor: pointer;">Logout</a>
+							</li>
 						</c:otherwise>
 					</c:choose>
 					<!-- 
@@ -148,6 +172,7 @@
 				<input type="hidden" id="answer1" name="sdtrsTotalScore">
 			</form>
 			<!-- 폼 끝------------------------------------------------------------------------------------------------------------------------------------------------- -->
+			
 			<div class="row">
 				<div class="col-12">
 					<main id="main">
