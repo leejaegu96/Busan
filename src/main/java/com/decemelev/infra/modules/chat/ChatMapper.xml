@@ -15,7 +15,7 @@
 		JOIN chat ct
 		ON ct.chatSeq = cu.cuChatSeq
 		AND ct.chatDelNy = 0
-		WHERE 1=1
+		WHERE 1=1 
 		AND cu.cuMember = #{seq}
 	</select>
 
