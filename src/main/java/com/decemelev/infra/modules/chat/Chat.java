@@ -15,6 +15,15 @@ public class Chat {
 	private String path;       //프로필 이미지 경로
 	private String uuidName;   //프로필 이미지 파일 이름
 	
+	private String kakaopay;
+	
+	
+	public String getKakaopay() {
+		return kakaopay;
+	}
+	public void setKakaopay(String kakaopay) {
+		this.kakaopay = kakaopay;
+	}
 	public Integer getChatSeq() {
 		return chatSeq;
 	}

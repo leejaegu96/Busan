@@ -48,6 +48,12 @@ public class LoginController {
 		return "infra/login/user/signUp";
 	} 
 	
+	@RequestMapping(value="userSignUp")
+	public String userSignUp(Model model) throws Exception {
+		
+		return "infra/login/user/userSignUp";
+	} 
+	
 	@ResponseBody
 	@RequestMapping(value="checkId")
 	public Map<String, Object> checkId(Login dto) throws Exception {
