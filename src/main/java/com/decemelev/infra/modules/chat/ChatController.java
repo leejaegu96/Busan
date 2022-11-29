@@ -33,7 +33,7 @@ public class ChatController {
 	@RequestMapping(value="")
 	public String chat(HttpSession httpSession,Model model) throws Exception {
 		String seq = (String) httpSession.getAttribute("sessSeq");
-		int real = Integer.parseInt(seq);
+		int real = Integer.parseInt(seq); 
 		
 		List<Chat> list = service.selectChatListFromOne(real);
 		
@@ -52,7 +52,7 @@ public class ChatController {
 		String seq = (String) httpSession.getAttribute("sessSeq");
 		int real = Integer.parseInt(seq);
 		Chat newChat = service.createChat(real,dto.getCuMember());
-		
+		 
 		if(newChat != null) {
 			result.put("rt", "success");
 			result.put("newChat", newChat);
