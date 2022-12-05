@@ -15,6 +15,10 @@ public class CodeGroupDao {
 	@Resource(name = "sqlSession")
 	private SqlSession sqlSession;
 	
+	@Inject
+	@Resource(name = "sqlSessionOracle")
+	private SqlSession sqlSessionOracle;
+	
 	private static String namespace = "com.decemelev.infra.modules.codegroup.CodeGroupMapper";
 	
 //	public List<CodeGroup> selectList(CodeGroupVo vo){ return sqlSession.selectList(namespace + ".selectList", vo); }
@@ -28,6 +32,10 @@ public class CodeGroupDao {
 	public List<CodeGroup> selectList() {
 //		List<CodeGroup> list = sqlSession.selectList(namespace + ".selectList", vo);
 		List<CodeGroup> list = sqlSession.selectList("com.decemelev.infra.modules.codegroup.CodeGroupMapper.selectList", "");
+		return list;
+	}
+	public List<CodeGroup> selectCG() {
+		List<CodeGroup> list = sqlSessionOracle.selectList(namespace + ".selectCG","");
 		return list;
 	}
 	

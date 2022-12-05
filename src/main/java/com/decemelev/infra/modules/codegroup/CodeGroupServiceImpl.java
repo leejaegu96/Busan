@@ -27,6 +27,11 @@ public class CodeGroupServiceImpl implements CodeGroupService {
 		List<CodeGroup> list = dao.selectList();
 		return list;
 	}
+	@Override
+	public List<CodeGroup> selectCG() throws Exception {
+		List<CodeGroup> list = dao.selectCG();
+		return list;
+	}
 	
 	@Override
 	public int insert(CodeGroup dto) throws Exception {

@@ -47,6 +47,13 @@
 		<include refid="Base.selectListLowerForMysql" />
 	</select>
 	
+	<select id="selectCG" resultMap="resultMapObj">
+			SELECT
+				a.*
+			from INFR_CODEGROUP a
+			where 1=1
+	</select>
+	
 	<select id="selectOneCount" resultType="Integer">
 		SELECT COUNT(*)
 		<include refid="selectCommon" />

@@ -50,6 +50,15 @@ public class CodeGroupController {
 		return "infra/codegroup/xdmin/codeGroupList";
 	}
 	
+	@RequestMapping(value = "codeGroup")
+	public String codeGroup(Model model) throws Exception {
+		
+		List<CodeGroup> list = service.selectCG();
+		model.addAttribute("list", list);
+		
+		return "infra/codegroup/xdmin/codeGroup";
+	}
+	
 //	@RequestMapping(value = "/codeGroupForm", method = RequestMethod.GET)
 //	public String a(Locale locale, Model model) {
 //		return "infra/codegroup/xdmin/codeGroupForm";
