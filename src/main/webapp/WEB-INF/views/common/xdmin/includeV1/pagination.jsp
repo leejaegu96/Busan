@@ -10,7 +10,7 @@
 						<a class="page-link" href="javascript:goList(${vo.startPage - 1})">
 							<i class="fa-solid fa-angle-left"></i>
 						</a>
-					</li>
+					</li> 
 				</c:if> 
 				<c:forEach begin="${vo.startPage}" end="${vo.endPage}" varStatus="i">
 					<c:choose>
