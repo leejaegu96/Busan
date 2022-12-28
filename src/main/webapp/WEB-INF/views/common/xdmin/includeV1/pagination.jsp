@@ -22,7 +22,7 @@
 						<c:otherwise>
 							<li class="page-item">
 								<a class="page-link" href="javascript:goList(${i.index})">${i.index}</a>
-							</li>
+							</li> 
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
